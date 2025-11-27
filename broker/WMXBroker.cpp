@@ -1,10 +1,10 @@
 // WMXBroker.cpp
-// WMX 1.5 API를 WMX3 API로 변환하는 Broker 구현
+// WMX 1.5 API to WMX3 API Broker Implementation
 
 #include "WMXBroker.h"
 #include "StatusMapper.h"
 
-// WMX3 헤더
+// WMX3 headers
 #include "WMX3Api.h"
 #include "CoreMotionApi.h"
 #include "IOApi.h"
@@ -12,7 +12,7 @@
 namespace wmxAPI {
 
     //////////////////////////////////////////////////////////////////////////
-    // WMXLIB 클래스 구현
+    // WMXLIB class implementation
     //////////////////////////////////////////////////////////////////////////
 
     WMXLIB::WMXLIB()
@@ -22,10 +22,10 @@ namespace wmxAPI {
         , isConnected(false)
         , lastError(WMX_API_ERROR_CODE())
     {
-        // Io 클래스 인스턴스 생성
+        // Create Io class instance
         io = new common::Io(this);
 
-        // Initial output 버퍼 초기화
+        // Initialize initial output buffer
         memset(initialOut, 0, sizeof(initialOut));
     }
 
@@ -41,11 +41,11 @@ namespace wmxAPI {
 
     WMXAPIFUNC WMXLIB::CreateDevice(TCHAR* path, PLTFRM_TYPE type)
     {
-        // WMX3 API 인스턴스 생성
+        // Create WMX3 API instance
         wmx3 = new wmx3Api::WMX3Api();
 
-        // WMX3 디바이스 생성
-        // path는 WMX3 설치 경로로 사용 (예: "C:\Program Files\SoftServo\WMX3")
+        // Create WMX3 device
+        // path is used as WMX3 installation path (e.g., "C:\Program Files\SoftServo\WMX3")
         long ret = wmx3->CreateDevice(path, wmx3Api::DeviceType::DeviceTypeNormal);
         if (ret != 0) {
             delete wmx3;
@@ -53,10 +53,11 @@ namespace wmxAPI {
             return ret;
         }
 
-        // CoreMotion 모듈 생성
+        wmx3->SetDeviceName(_T("WMXBroker"));
+        // Create CoreMotion module
         coreMotion = new wmx3Api::CoreMotion(wmx3);
 
-        // Io 모듈 생성
+        // Create Io module
         wmx3Io = new wmx3Api::Io(wmx3);
 
         isConnected = true;
@@ -89,15 +90,15 @@ namespace wmxAPI {
     {
         if (!wmx3) return -1;
 
-        // WMX3에서는 CreateDevice 시 이미 통신이 시작됨
-        // 호환성을 위해 성공 반환
+        // In WMX3, communication starts with CreateDevice
+        // Return success for compatibility
         return 0;
     }
 
     WMXAPIFUNC WMXLIB::StopCommunication()
     {
-        // WMX3에서는 CloseDevice 시 통신 종료
-        // 호환성을 위해 성공 반환
+        // In WMX3, communication stops with CloseDevice
+        // Return success for compatibility
         return 0;
     }
 
@@ -105,12 +106,12 @@ namespace wmxAPI {
     {
         if (!wmx3 || !coreMotion || !wmx3Io || !st) return -1;
 
-        // WMX3 상태 조회
+        // Get WMX3 status
         wmx3Api::CoreMotionStatus wmx3Status;
         long ret = coreMotion->GetStatus(&wmx3Status);
         if (ret != 0) return ret;
 
-        // WMX3 상태를 WMX 1.5 상태로 변환
+        // Convert WMX3 status to WMX 1.5 status
         StatusMapper::MapStatus(wmx3Status, wmx3Io, st);
 
         return 0;
@@ -118,13 +119,13 @@ namespace wmxAPI {
 
     WMXAPIFUNC WMXLIB::GetStatus(WMX_STATUS* st, short axis)
     {
-        // 단일 축 상태 조회 - 전체 조회 후 해당 축만 사용
+        // Single axis status query - get all and use the specified axis
         return GetStatus(st);
     }
 
     WMXAPIFUNC WMXLIB::GetStatus(WMX_STATUS* st, short firstAxis, short lastAxis)
     {
-        // 범위 축 상태 조회 - 전체 조회 후 해당 범위만 사용
+        // Range axis status query - get all and use the specified range
         return GetStatus(st);
     }
 
@@ -132,12 +133,12 @@ namespace wmxAPI {
     {
         if (!coreMotion) return -1;
 
-        // WMX3 버전 조회
+        // Get WMX3 version
         int major, minor, revision, fix;
         long ret = coreMotion->GetVersion(&major, &minor, &revision, &fix);
         if (ret != 0) return ret;
 
-        // WMX 1.5 형식으로 변환
+        // Convert to WMX 1.5 format
         if (pCeVersion) *pCeVersion = major + minor / 1000.0;
         if (pPeVersion) *pPeVersion = revision + fix / 1000.0;
 

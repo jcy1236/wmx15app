@@ -1,5 +1,5 @@
 // IoBroker.cpp
-// WMX 1.5 Io 클래스 API를 WMX3 Io API로 변환
+// WMX 1.5 Io class API to WMX3 Io API conversion
 
 #include "IoBroker.h"
 #include "IOApi.h"
@@ -92,7 +92,7 @@ namespace common {
     }
 
     //////////////////////////////////////////////////////////////////////////
-    // Initial Output APIs (WMX3에는 해당 기능 없음 - 내부 버퍼에 저장)
+    // Initial Output APIs (not available in WMX3 - stored in internal buffer)
     //////////////////////////////////////////////////////////////////////////
 
     WMXAPIFUNC Io::SetInitialOutBit(short byte, short bit, unsigned char data)

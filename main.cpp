@@ -1,27 +1,26 @@
-// WMX 1.5 Application - Main Entry Point
+// WMX 1.5 Application using WMX3 Broker
 #include <iostream>
 #include <windows.h>
 #include <tchar.h>
-#include "WMXLIB.h"
+#include "WMXBroker.h"
 
 using namespace std;
 using namespace wmxAPI;
 
 int main()
 {
-    // Set DLL search path for WMX libraries
-    SetDllDirectory(_T("C:\\Program Files\\SoftServo\\WMX1.5\\Lib"));
+    // Set DLL search path for WMX3 libraries
+    SetDllDirectory(_T("C:\\Program Files\\SoftServo\\WMX3\\Lib"));
 
-    cout << "=== WMX 1.5 Application ===" << endl;
-    cout << "WMX Version: " << WMX_MAJOR_VERSION << "." << WMX_MINOR_VERSION << endl;
+    cout << "=== WMX 1.5 Application (via WMX3 Broker) ===" << endl;
 
-    // WMXLIB instance
+    // WMXLIB instance (now using WMXBroker)
     WMXLIB wmx;
 
     // Create device (Simulation Engine)
     // WMX_SIM_ENGINE: Simulation mode
     // WMX_RTEX_ENGINE: Real-time EtherCAT mode
-    TCHAR path[MAX_PATH] = _T("C:\\Program Files\\SoftServo\\WMX1.5");
+    TCHAR path[MAX_PATH] = _T("C:\\Program Files\\SoftServo\\WMX3");
     long result = wmx.CreateDevice(path, WMX_SIM_ENGINE);
     if (result != 0)
     {
@@ -47,14 +46,7 @@ int main()
     if (result == 0)
     {
         cout << "Device Status retrieved successfully." << endl;
-    }
-
-    // Get WMX version
-    double ceVersion = 0, peVersion = 0;
-    result = wmx.GetVersion(&ceVersion, &peVersion);
-    if (result == 0)
-    {
-        cout << "CE Version: " << ceVersion << ", PE Version: " << peVersion << endl;
+        cout << "Engine Status: " << status.EngineStatus << endl;
     }
 
     // Stop communication and close device

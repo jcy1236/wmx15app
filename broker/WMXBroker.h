@@ -1,6 +1,6 @@
 // WMXBroker.h
-// WMX 1.5 API를 WMX3 API로 변환하는 Broker 레이어
-// WMXLIB과 동일한 인터페이스를 제공하여 기존 코드 수정 최소화
+// WMX 1.5 API to WMX3 API Broker Layer
+// Provides WMXLIB compatible interface to minimize code changes
 
 #ifndef WMXBROKER_H
 #define WMXBROKER_H
@@ -8,9 +8,15 @@
 #include <windows.h>
 #include <tchar.h>
 
-// WMX 1.5 타입 정의 포함
+// DLL Export/Import macros
+#ifdef WMXBROKER_EXPORTS
+#define WMXBROKER_API __declspec(dllexport)
+#else
+#define WMXBROKER_API __declspec(dllimport)
+#endif
+
+// WMX 1.5 type definitions (wmxapi_type.h includes wmxapi_def.h)
 #include "wmxapi_type.h"
-#include "wmxapi_def.h"
 
 // Forward declarations for WMX3
 namespace wmx3Api {
@@ -26,8 +32,8 @@ namespace wmxAPI {
 
     namespace common {
 
-        // Io 클래스 - WMX 1.5 인터페이스 유지
-        class Io {
+        // Io class - maintains WMX 1.5 interface
+        class WMXBROKER_API Io {
         public:
             WMXLIB* wmxlib;
             Io(WMXLIB* f) : wmxlib(f) {}
@@ -43,7 +49,7 @@ namespace wmxAPI {
             WMXAPIFUNC GetOutByte(short offsetByte, unsigned char* data);
             WMXAPIFUNC GetOutBytes(short offsetByte, short size, unsigned char* data);
 
-            // Initial Output APIs (WMX3에는 해당 기능 없음 - 내부 저장)
+            // Initial Output APIs (not available in WMX3 - stored internally)
             WMXAPIFUNC SetInitialOutBit(short byte, short bit, unsigned char data);
             WMXAPIFUNC SetInitialOutByte(short offsetByte, unsigned char data);
             WMXAPIFUNC SetInitialOutBytes(short offsetByte, short size, unsigned char* data);
@@ -54,22 +60,22 @@ namespace wmxAPI {
 
     } // namespace common
 
-    // WMXLIB 클래스 - WMX 1.5 인터페이스 유지, 내부적으로 WMX3 사용
-    class WMXLIB {
+    // WMXLIB class - maintains WMX 1.5 interface, internally uses WMX3
+    class WMXBROKER_API WMXLIB {
     private:
         wmx3Api::WMX3Api* wmx3;
         wmx3Api::CoreMotion* coreMotion;
         wmx3Api::Io* wmx3Io;
         bool isConnected;
 
-        // Initial output 저장용 버퍼
+        // Initial output buffer
         unsigned char initialOut[MAX_IOOUTSIZE];
 
     public:
         WMXLIB();
         ~WMXLIB();
 
-        // WMX3 내부 객체 접근 (Broker 내부용)
+        // WMX3 internal object access (for Broker internal use)
         wmx3Api::WMX3Api* GetWMX3Api() { return wmx3; }
         wmx3Api::CoreMotion* GetCoreMotion() { return coreMotion; }
         wmx3Api::Io* GetWMX3Io() { return wmx3Io; }
@@ -85,10 +91,10 @@ namespace wmxAPI {
         WMXAPIFUNC GetStatus(WMX_STATUS* st, short firstAxis, short lastAxis);
         WMXAPIFUNC GetVersion(double* pCeVersion, double* pPeVersion);
 
-        // Io 클래스 인스턴스
+        // Io class instance
         common::Io* io;
 
-        // 에러 코드
+        // Error code
         WMX_API_ERROR_CODE lastError;
     };
 
