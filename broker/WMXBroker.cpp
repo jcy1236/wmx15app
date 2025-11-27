@@ -90,16 +90,15 @@ namespace wmxAPI {
     {
         if (!wmx3) return -1;
 
-        // In WMX3, communication starts with CreateDevice
-        // Return success for compatibility
-        return 0;
+        // Call WMX3 StartCommunication with 5 second timeout
+        return wmx3->StartCommunication(5000);
     }
 
     WMXAPIFUNC WMXLIB::StopCommunication()
     {
-        // In WMX3, communication stops with CloseDevice
-        // Return success for compatibility
-        return 0;
+        if (!wmx3) return -1;
+
+        return wmx3->StopCommunication();
     }
 
     WMXAPIFUNC WMXLIB::GetStatus(WMX_STATUS* st)
