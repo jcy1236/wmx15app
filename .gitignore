@@ -1,0 +1,29 @@
+# Visual Studio generated files
+.vs/
+x64/
+Debug/
+Release/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.db
+*.opendb
+
+# Build outputs
+*.exe
+*.dll
+*.lib
+*.pdb
+*.ilk
+*.obj
+*.iobj
+*.ipdb
+*.log
+*.tlog/
+
+# Intermediate directories
+wmx15app/
+
+# NuGet
+packages/
