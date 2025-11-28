@@ -1,0 +1,38 @@
+; WMXBroker.def
+; Module definition file for WMXBroker DLL
+; Exports C-style API without name decoration for VS2012 compatibility
+
+LIBRARY "WMXBroker"
+EXPORTS
+    ; System APIs
+    WMXBroker_CreateDevice          @1
+    WMXBroker_CloseDevice           @2
+    WMXBroker_StartCommunication    @3
+    WMXBroker_StopCommunication     @4
+    WMXBroker_GetStatus             @5
+    WMXBroker_GetStatusAxis         @6
+    WMXBroker_GetStatusRange        @7
+    WMXBroker_GetVersion            @8
+
+    ; I/O Output APIs
+    WMXBroker_Io_SetOutBit          @10
+    WMXBroker_Io_SetOutByte         @11
+    WMXBroker_Io_SetOutBytes        @12
+
+    ; I/O Input APIs
+    WMXBroker_Io_GetInBit           @13
+    WMXBroker_Io_GetInByte          @14
+    WMXBroker_Io_GetInBytes         @15
+
+    ; I/O Output Read APIs
+    WMXBroker_Io_GetOutBit          @16
+    WMXBroker_Io_GetOutByte         @17
+    WMXBroker_Io_GetOutBytes        @18
+
+    ; I/O Initial Output APIs
+    WMXBroker_Io_SetInitialOutBit   @19
+    WMXBroker_Io_SetInitialOutByte  @20
+    WMXBroker_Io_SetInitialOutBytes @21
+    WMXBroker_Io_GetInitialOutBit   @22
+    WMXBroker_Io_GetInitialOutByte  @23
+    WMXBroker_Io_GetInitialOutBytes @24

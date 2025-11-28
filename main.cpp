@@ -3,7 +3,8 @@
 #include <cstdio>
 #include <windows.h>
 #include <tchar.h>
-#include "WMXBroker.h"
+//#include "WMXBroker.h"    // for c++
+#include "WMXBrokerClient.h"  // for vs2012 compatibility
 
 using namespace std;
 using namespace wmxAPI;
@@ -60,7 +61,7 @@ int main()
     cout << "CloseDevice done." << endl;
 
     cout << "Press Enter to exit..." << endl;
-    cin.get();
+    //cin.get();
 
     return 0;
 }

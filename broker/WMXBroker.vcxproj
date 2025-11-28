@@ -66,6 +66,7 @@
       <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -87,17 +88,23 @@
       <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="WMXBroker.h" />
+    <ClInclude Include="WMXBrokerC.h" />
     <ClInclude Include="IoBroker.h" />
     <ClInclude Include="StatusMapper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMXBroker.cpp" />
+    <ClCompile Include="WMXBrokerC.cpp" />
     <ClCompile Include="IoBroker.cpp" />
     <ClCompile Include="StatusMapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="WMXBroker.def" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
