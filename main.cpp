@@ -8,6 +8,8 @@
 using namespace std;
 using namespace wmxAPI;
 
+void test1(WMXLIB& wmx, WMX_STATUS& status);
+
 int main()
 {
     cout << "=== WMX 1.5 Application (via WMX3 Broker) ===" << endl;
@@ -47,6 +49,9 @@ int main()
         cout << "Engine Status: " << status.EngineStatus << endl;
     }
 
+    // Test: Sample GenIn/GenOut for 60 seconds at 1 second intervals
+	test1(wmx, status);
+
     // Stop communication and close device
     wmx.StopCommunication();
     cout << "StopCommunication done." << endl;
@@ -58,4 +63,44 @@ int main()
     cin.get();
 
     return 0;
+}
+
+void test1(WMXLIB& wmx, WMX_STATUS& status)
+{
+    cout << endl << "=== GenIn/GenOut Sampling Test (60 seconds) ===" << endl;
+    cout << "Sampling GenIn/GenOut every 1 second..." << endl << endl;
+
+    long result = -1;;
+
+    for (int i = 0; i < 60; i++)
+    {
+        result = wmx.GetStatus(&status);
+        if (result == 0)
+        {
+            cout << "[" << (i + 1) << "/60] ";
+
+            // Print first 8 bytes of GenIn
+            cout << "GenIn[0-7]: ";
+            for (int j = 0; j < 8; j++)
+            {
+                printf("%02X ", status.GenIn[j]);
+            }
+
+            // Print first 8 bytes of GenOut
+            cout << " | GenOut[0-7]: ";
+            for (int j = 0; j < 8; j++)
+            {
+                printf("%02X ", status.GenOut[j]);
+            }
+            cout << endl;
+        }
+        else
+        {
+            cout << "[" << (i + 1) << "/60] GetStatus failed. Error: " << result << endl;
+        }
+
+        Sleep(1000);  // 1 second interval
+    }
+
+    cout << endl << "=== Sampling Complete ===" << endl << endl;
 }
