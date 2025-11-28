@@ -1,5 +1,6 @@
 // WMX 1.5 Application using WMX3 Broker
 #include <iostream>
+#include <cstdio>
 #include <windows.h>
 #include <tchar.h>
 #include "WMXBroker.h"
@@ -9,9 +10,6 @@ using namespace wmxAPI;
 
 int main()
 {
-    // Set DLL search path for WMX3 libraries
-    SetDllDirectory(_T("C:\\Program Files\\SoftServo\\WMX3\\Lib"));
-
     cout << "=== WMX 1.5 Application (via WMX3 Broker) ===" << endl;
 
     // WMXLIB instance (now using WMXBroker)

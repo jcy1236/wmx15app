@@ -3,6 +3,8 @@
 
 #include "WMXBroker.h"
 #include "StatusMapper.h"
+#include <tchar.h>
+#include <cstdio>
 
 // WMX3 headers
 #include "WMX3Api.h"
@@ -41,6 +43,11 @@ namespace wmxAPI {
 
     WMXAPIFUNC WMXLIB::CreateDevice(TCHAR* path, PLTFRM_TYPE type)
     {
+        // Set DLL search path for WMX3 libraries
+        TCHAR dllPath[MAX_PATH];
+        _stprintf_s(dllPath, MAX_PATH, _T("%s\\Lib"), path);
+        SetDllDirectory(dllPath);
+
         // Create WMX3 API instance
         wmx3 = new wmx3Api::WMX3Api();
 
