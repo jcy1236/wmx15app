@@ -25,6 +25,14 @@ namespace wmx3Api {
     class Io;
 }
 
+// Forward declarations for Motion namespaces
+namespace wmxAPI {
+namespace basicMotion { class BasicMotion; }
+namespace extMotion1 { class ExtMotion1; }
+namespace extMotion2 { class ExtMotion2; }
+namespace extList2 { class ExtList2; }
+}
+
 namespace wmxAPI {
 
     // Forward declaration
@@ -91,8 +99,20 @@ namespace wmxAPI {
         WMXAPIFUNC GetStatus(WMX_STATUS* st, short firstAxis, short lastAxis);
         WMXAPIFUNC GetVersion(double* pCeVersion, double* pPeVersion);
 
+        // Extended System APIs
+        WMXAPIFUNC GetLastError();
+        WMXAPIFUNC SetDeviceName(TCHAR* name);
+        WMXAPIFUNC GetActiveDeviceList(WMX_ACT_DEV_LIST* list);
+        WMXAPIFUNC ForceCloseDevice(int id);
+
         // Io class instance
         common::Io* io;
+
+        // Motion namespace instances
+        basicMotion::BasicMotion* basicMotion;
+        extMotion1::ExtMotion1* extMotion1;
+        extMotion2::ExtMotion2* extMotion2;
+        extList2::ExtList2* extList2;
 
         // Error code
         WMX_API_ERROR_CODE lastError;

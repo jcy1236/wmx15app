@@ -3,6 +3,10 @@
 
 #include "WMXBrokerC.h"
 #include "WMXBroker.h"
+#include "BasicMotionBroker.h"
+#include "ExtMotion1Broker.h"
+#include "ExtMotion2Broker.h"
+#include "ExtList2Broker.h"
 
 // Global singleton instance
 static wmxAPI::WMXLIB* g_wmxlib = nullptr;
@@ -88,6 +92,45 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_GetVersion(double* pCeVersion
         return -1;
     }
     return g_wmxlib->GetVersion(pCeVersion, pPeVersion);
+}
+
+//=============================================================================
+// Extended System APIs
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_GetLastError(void)
+{
+    if (g_wmxlib == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->GetLastError();
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(TCHAR* name)
+{
+    if (g_wmxlib == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->SetDeviceName(name);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_GetActiveDeviceList(WMX_ACT_DEV_LIST* list)
+{
+    if (g_wmxlib == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->GetActiveDeviceList(list);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ForceCloseDevice(int id)
+{
+    if (g_wmxlib == nullptr) {
+        return -1;
+    }
+    long result = g_wmxlib->ForceCloseDevice(id);
+    delete g_wmxlib;
+    g_wmxlib = nullptr;
+    return result;
 }
 
 //=============================================================================
@@ -224,4 +267,196 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Io_GetInitialOutBytes(short o
         return -1;
     }
     return g_wmxlib->io->GetInitialOutBytes(offsetByte, size, data);
+}
+
+//=============================================================================
+// basicMotion APIs
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPos(short axis, double target, double velocity, double acc, double dec)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->StartPos(axis, target, velocity, acc, dec);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMov(short axis, double target, double velocity, double acc, double dec)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->StartMov(axis, target, velocity, acc, dec);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartJog(short axis, double velocity, double acc)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->StartJog(axis, velocity, acc);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StopAxis(int axis)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->StopAxis(axis);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxis(int axis)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->QStopAxis(axis);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_WaitAxis(int axis)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->WaitAxis(axis);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_PauseAxis(int axis)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->PauseAxis(axis);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_ResumeAxis(int axis)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->basicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->basicMotion->ResumeAxis(axis);
+}
+
+//=============================================================================
+// extMotion1 APIs (Jerk - pulse/s^3)
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkPos(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAcc, double jerkDec,
+    double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion1 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion1->StartJerkPos(axis, static_cast<WMX_PROFILE_TYPE>(profile), target,
+        velocity, acc, dec, jerkAcc, jerkDec, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkMov(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAcc, double jerkDec,
+    double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion1 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion1->StartJerkMov(axis, static_cast<WMX_PROFILE_TYPE>(profile), target,
+        velocity, acc, dec, jerkAcc, jerkDec, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkJog(short axis, int profile,
+    double velocity, double acc, double jerkAcc)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion1 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion1->StartJerkJog(axis, static_cast<WMX_PROFILE_TYPE>(profile),
+        velocity, acc, jerkAcc);
+}
+
+//=============================================================================
+// extMotion2 APIs (Jerk Ratio)
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPos(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion2->StartJerkPos(axis, static_cast<WMX_PROFILE_TYPE>(profile), target,
+        velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkMov(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion2->StartJerkMov(axis, static_cast<WMX_PROFILE_TYPE>(profile), target,
+        velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkJog(short axis, int profile,
+    double velocity, double acc, double jerkAccRatio)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extMotion2->StartJerkJog(axis, static_cast<WMX_PROFILE_TYPE>(profile),
+        velocity, acc, jerkAccRatio);
+}
+
+//=============================================================================
+// extList2 APIs
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_BeginList(unsigned int channel)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->BeginList(channel);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_EndList(unsigned int channel)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->EndList(channel);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ExecuteList(unsigned int channel)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->ExecuteList(channel);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_AbortList(unsigned int channel)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->AbortList(channel);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ClearList(unsigned int channel)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->ClearList(channel);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->extList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->extList2->GetListStatus(channel, pStatus);
 }

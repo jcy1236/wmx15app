@@ -33,6 +33,14 @@ WMXBROKER_CAPI long __stdcall WMXBroker_GetStatusRange(WMX_STATUS* st, short fir
 WMXBROKER_CAPI long __stdcall WMXBroker_GetVersion(double* pCeVersion, double* pPeVersion);
 
 //=============================================================================
+// Extended System APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_GetLastError(void);
+WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(TCHAR* name);
+WMXBROKER_CAPI long __stdcall WMXBroker_GetActiveDeviceList(WMX_ACT_DEV_LIST* list);
+WMXBROKER_CAPI long __stdcall WMXBroker_ForceCloseDevice(int id);
+
+//=============================================================================
 // I/O Output APIs
 //=============================================================================
 WMXBROKER_CAPI long __stdcall WMXBroker_Io_SetOutBit(short byte, short bit, unsigned char data);
@@ -62,6 +70,52 @@ WMXBROKER_CAPI long __stdcall WMXBroker_Io_SetInitialOutBytes(short offsetByte, 
 WMXBROKER_CAPI long __stdcall WMXBroker_Io_GetInitialOutBit(short byte, short bit, unsigned char* data);
 WMXBROKER_CAPI long __stdcall WMXBroker_Io_GetInitialOutByte(short offsetByte, unsigned char* data);
 WMXBROKER_CAPI long __stdcall WMXBroker_Io_GetInitialOutBytes(short offsetByte, short size, unsigned char* data);
+
+//=============================================================================
+// basicMotion APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPos(short axis, double target, double velocity, double acc, double dec);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMov(short axis, double target, double velocity, double acc, double dec);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartJog(short axis, double velocity, double acc);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StopAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_WaitAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_PauseAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_ResumeAxis(int axis);
+
+//=============================================================================
+// extMotion1 APIs (Jerk - pulse/s^3)
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkPos(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAcc, double jerkDec,
+    double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkMov(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAcc, double jerkDec,
+    double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion1_StartJerkJog(short axis, int profile,
+    double velocity, double acc, double jerkAcc);
+
+//=============================================================================
+// extMotion2 APIs (Jerk Ratio)
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPos(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkMov(short axis, int profile, double target,
+    double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkJog(short axis, int profile,
+    double velocity, double acc, double jerkAccRatio);
+
+//=============================================================================
+// extList2 APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_BeginList(unsigned int channel);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_EndList(unsigned int channel);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ExecuteList(unsigned int channel);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_AbortList(unsigned int channel);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ClearList(unsigned int channel);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus);
 
 #ifdef __cplusplus
 }

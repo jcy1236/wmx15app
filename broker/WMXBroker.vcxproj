@@ -96,12 +96,20 @@
     <ClInclude Include="WMXBrokerC.h" />
     <ClInclude Include="IoBroker.h" />
     <ClInclude Include="StatusMapper.h" />
+    <ClInclude Include="BasicMotionBroker.h" />
+    <ClInclude Include="ExtMotion1Broker.h" />
+    <ClInclude Include="ExtMotion2Broker.h" />
+    <ClInclude Include="ExtList2Broker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMXBroker.cpp" />
     <ClCompile Include="WMXBrokerC.cpp" />
     <ClCompile Include="IoBroker.cpp" />
     <ClCompile Include="StatusMapper.cpp" />
+    <ClCompile Include="BasicMotionBroker.cpp" />
+    <ClCompile Include="ExtMotion1Broker.cpp" />
+    <ClCompile Include="ExtMotion2Broker.cpp" />
+    <ClCompile Include="ExtList2Broker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WMXBroker.def" />

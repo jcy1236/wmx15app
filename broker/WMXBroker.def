@@ -14,6 +14,12 @@ EXPORTS
     WMXBroker_GetStatusRange        @7
     WMXBroker_GetVersion            @8
 
+    ; Extended System APIs
+    WMXBroker_GetLastError          @30
+    WMXBroker_SetDeviceName         @31
+    WMXBroker_GetActiveDeviceList   @32
+    WMXBroker_ForceCloseDevice      @33
+
     ; I/O Output APIs
     WMXBroker_Io_SetOutBit          @10
     WMXBroker_Io_SetOutByte         @11
@@ -36,3 +42,31 @@ EXPORTS
     WMXBroker_Io_GetInitialOutBit   @22
     WMXBroker_Io_GetInitialOutByte  @23
     WMXBroker_Io_GetInitialOutBytes @24
+
+    ; basicMotion APIs
+    WMXBroker_BasicMotion_StartPos  @100
+    WMXBroker_BasicMotion_StartMov  @101
+    WMXBroker_BasicMotion_StartJog  @102
+    WMXBroker_BasicMotion_StopAxis  @103
+    WMXBroker_BasicMotion_QStopAxis @104
+    WMXBroker_BasicMotion_WaitAxis  @105
+    WMXBroker_BasicMotion_PauseAxis @106
+    WMXBroker_BasicMotion_ResumeAxis @107
+
+    ; extMotion1 APIs (Jerk - pulse/s^3)
+    WMXBroker_ExtMotion1_StartJerkPos @120
+    WMXBroker_ExtMotion1_StartJerkMov @121
+    WMXBroker_ExtMotion1_StartJerkJog @122
+
+    ; extMotion2 APIs (Jerk Ratio)
+    WMXBroker_ExtMotion2_StartJerkPos @140
+    WMXBroker_ExtMotion2_StartJerkMov @141
+    WMXBroker_ExtMotion2_StartJerkJog @142
+
+    ; extList2 APIs
+    WMXBroker_ExtList2_BeginList      @160
+    WMXBroker_ExtList2_EndList        @161
+    WMXBroker_ExtList2_ExecuteList    @162
+    WMXBroker_ExtList2_AbortList      @163
+    WMXBroker_ExtList2_ClearList      @164
+    WMXBroker_ExtList2_GetListStatus  @165
