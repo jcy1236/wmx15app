@@ -36,7 +36,7 @@ WMXBROKER_CAPI long __stdcall WMXBroker_GetVersion(double* pCeVersion, double* p
 // Extended System APIs
 //=============================================================================
 WMXBROKER_CAPI long __stdcall WMXBroker_GetLastError(void);
-WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(TCHAR* name);
+WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(const TCHAR* name);
 WMXBROKER_CAPI long __stdcall WMXBroker_GetActiveDeviceList(WMX_ACT_DEV_LIST* list);
 WMXBROKER_CAPI long __stdcall WMXBroker_ForceCloseDevice(int id);
 

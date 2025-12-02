@@ -101,7 +101,7 @@ namespace wmxAPI {
 
         // Extended System APIs
         WMXAPIFUNC GetLastError();
-        WMXAPIFUNC SetDeviceName(TCHAR* name);
+        WMXAPIFUNC SetDeviceName(const TCHAR* name);
         WMXAPIFUNC GetActiveDeviceList(WMX_ACT_DEV_LIST* list);
         WMXAPIFUNC ForceCloseDevice(int id);
 

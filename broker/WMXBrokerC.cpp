@@ -106,7 +106,7 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_GetLastError(void)
     return g_wmxlib->GetLastError();
 }
 
-extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(TCHAR* name)
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_SetDeviceName(const TCHAR* name)
 {
     if (g_wmxlib == nullptr) {
         return -1;

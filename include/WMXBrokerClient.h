@@ -268,7 +268,7 @@ public:
         return WMXBroker_GetLastError();
     }
 
-    WMXAPIFUNC SetDeviceName(TCHAR* name) {
+    WMXAPIFUNC SetDeviceName(const TCHAR* name) {
         return WMXBroker_SetDeviceName(name);
     }
 
