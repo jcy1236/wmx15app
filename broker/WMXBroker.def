@@ -70,3 +70,42 @@ EXPORTS
     WMXBroker_ExtList2_AbortList      @163
     WMXBroker_ExtList2_ClearList      @164
     WMXBroker_ExtList2_GetListStatus  @165
+
+    ; EC_Network_Api - Device Management
+    ecCreateDevice                    @200
+    ecCloseDevice                     @201
+    ecGetLastError                    @202
+    ecForceCloseDevice                @203
+    ecGetActiveDeviceList             @204
+    ecGetDeviceID                     @205
+    ecGetDeviceCount                  @206
+
+    ; EC_Network_Api - Master Status
+    ecGetMasterState                  @210
+    ecGetMasterStatus                 @211
+    ecGetMasterStatistics             @212
+    ecClearMasterStatistics           @213
+
+    ; EC_Network_Api - Network Status
+    ecGetTotalSlaveCount              @220
+    ecGetOnlineSlaveCount             @221
+    ecGetOfflineSlaveCount            @222
+    ecGetUnknownSlaveCount            @223
+
+    ; EC_Network_Api - Slave Control
+    ecGetSlaveInfo                    @230
+    ecGetSlaveState                   @231
+    ecSetSlaveState                   @232
+
+    ; EC_Network_Api - SDO Communication
+    ecDownloadSDO                     @240
+    ecUploadSDO                       @241
+
+    ; EC_Network_Api - HotConnect
+    ecStartHotConnect                 @250
+    ecStartHotConnectWithRes          @251
+    ecClearHotConnectAbortionFlag     @252
+
+    ; EC_Network_Api - Config
+    ecGetMasterConfigFilename         @260
+    ecSetMasterConfigFilename         @261

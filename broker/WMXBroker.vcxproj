@@ -63,7 +63,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files\SoftServo\WMX3\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;EcApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
@@ -85,7 +85,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Program Files\SoftServo\WMX3\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;IOApi.lib;EcApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
@@ -100,6 +100,8 @@
     <ClInclude Include="ExtMotion1Broker.h" />
     <ClInclude Include="ExtMotion2Broker.h" />
     <ClInclude Include="ExtList2Broker.h" />
+    <ClInclude Include="EcDeviceManager.h" />
+    <ClInclude Include="EcNetworkBroker.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMXBroker.cpp" />
@@ -110,6 +112,8 @@
     <ClCompile Include="ExtMotion1Broker.cpp" />
     <ClCompile Include="ExtMotion2Broker.cpp" />
     <ClCompile Include="ExtList2Broker.cpp" />
+    <ClCompile Include="EcDeviceManager.cpp" />
+    <ClCompile Include="EcNetworkBroker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WMXBroker.def" />
