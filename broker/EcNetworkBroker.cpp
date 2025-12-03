@@ -3,10 +3,14 @@
 
 #include "EcNetworkBroker.h"
 #include "EcDeviceManager.h"
+#include "WMX3ContextManager.h"
 #include "WMX3Api.h"
 // Include WMX3's EcApi.h (not WMX1.5's) using full path to avoid conflict
 #include "C:/Program Files/SoftServo/WMX3/Include/EcApi.h"
 #include <cstring>
+
+// Helper macro to get shared Ecat instance
+#define GET_SHARED_ECAT() WMX3ContextManager::GetInstance()->GetEcat()
 
 //=============================================================================
 // Helper Functions
@@ -155,12 +159,17 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterState(ECDEV dev, PEC_MASTER_ST
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -177,12 +186,17 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatus(ECDEV dev, PEC_MASTER_S
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -211,12 +225,17 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatistics(ECDEV dev, PEC_MAST
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -239,11 +258,16 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatistics(ECDEV dev, PEC_MAST
 extern "C" ECBROKER_API long __stdcall ecClearMasterStatistics(ECDEV dev)
 {
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
-    long ret = ctx->ecat->ResetTransmitStatisticsInfo();
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    long ret = ecat->ResetTransmitStatisticsInfo();
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -263,12 +287,17 @@ extern "C" ECBROKER_API long __stdcall ecGetTotalSlaveCount(ECDEV dev, int* pCou
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -285,12 +314,17 @@ extern "C" ECBROKER_API long __stdcall ecGetOnlineSlaveCount(ECDEV dev, int* pCo
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -307,12 +341,17 @@ extern "C" ECBROKER_API long __stdcall ecGetOfflineSlaveCount(ECDEV dev, int* pC
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -329,12 +368,17 @@ extern "C" ECBROKER_API long __stdcall ecGetUnknownSlaveCount(ECDEV dev, int* pC
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -363,12 +407,17 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveInfo(ECDEV dev, int nodeId, PEC
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -426,12 +475,17 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveState(ECDEV dev, int configured
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcMasterInfo masterInfo;
-    long ret = ctx->ecat->GetMasterInfo(&masterInfo);
+    long ret = ecat->GetMasterInfo(&masterInfo);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -451,14 +505,19 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveState(ECDEV dev, int configured
 extern "C" ECBROKER_API long __stdcall ecSetSlaveState(ECDEV dev, int configuredId, EC_SLAVE_STATE newState)
 {
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     wmx3Api::ecApi::EcStateMachine::T wmx3State = ConvertFromSlaveState(newState);
     int errorCode = 0;
 
-    long ret = ctx->ecat->ChangeSlaveState(configuredId, wmx3State, &errorCode);
+    long ret = ecat->ChangeSlaveState(configuredId, wmx3State, &errorCode);
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -480,14 +539,19 @@ extern "C" ECBROKER_API long __stdcall ecDownloadSDO(ECDEV dev, int configuredId
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     unsigned int errCode = 0;
     wmx3Api::ecApi::EcSdoType::T wmx3SdoType = ConvertSdoType(sdoType);
 
-    long ret = ctx->ecat->SdoDownload(configuredId, index, subIndex,
+    long ret = ecat->SdoDownload(configuredId, index, subIndex,
         wmx3SdoType, length, data, &errCode, 0);
     if (ret != 0) {
         ctx->lastError = ret;
@@ -506,7 +570,12 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
@@ -514,7 +583,7 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
     unsigned int errCode = 0;
     wmx3Api::ecApi::EcSdoType::T wmx3SdoType = ConvertSdoType(sdoType);
 
-    long ret = ctx->ecat->SdoUpload(configuredId, index, subIndex,
+    long ret = ecat->SdoUpload(configuredId, index, subIndex,
         wmx3SdoType, length, data, &actualSize, &errCode, 0);
     if (ret != 0) {
         ctx->lastError = ret;
@@ -531,11 +600,16 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
 extern "C" ECBROKER_API long __stdcall ecStartHotConnect(ECDEV dev)
 {
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
-    long ret = ctx->ecat->StartHotconnect();
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    long ret = ecat->StartHotconnect();
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -547,12 +621,17 @@ extern "C" ECBROKER_API long __stdcall ecStartHotConnect(ECDEV dev)
 extern "C" ECBROKER_API long __stdcall ecStartHotConnectWithRes(ECDEV dev)
 {
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
     // Start HotConnect
-    long ret = ctx->ecat->StartHotconnect();
+    long ret = ecat->StartHotconnect();
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -565,7 +644,7 @@ extern "C" ECBROKER_API long __stdcall ecStartHotConnectWithRes(ECDEV dev)
 
     while (waited < maxWait) {
         wmx3Api::ecApi::EcMasterInfo masterInfo;
-        ret = ctx->ecat->GetMasterInfo(&masterInfo);
+        ret = ecat->GetMasterInfo(&masterInfo);
         if (ret != 0) {
             ctx->lastError = ret;
             return EC_FAIL;
@@ -590,7 +669,7 @@ extern "C" ECBROKER_API long __stdcall ecStartHotConnectWithRes(ECDEV dev)
 extern "C" ECBROKER_API long __stdcall ecClearHotConnectAbortionFlag(ECDEV dev)
 {
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
@@ -610,14 +689,19 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHA
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
 #ifdef UNICODE
-    long ret = ctx->ecat->GetEniFilePath(0, filename, bufferSize);
+    long ret = ecat->GetEniFilePath(0, filename, bufferSize);
 #else
-    long ret = ctx->ecat->GetEniFilePath(0, filename, bufferSize);
+    long ret = ecat->GetEniFilePath(0, filename, bufferSize);
 #endif
 
     if (ret != 0) {
@@ -635,14 +719,19 @@ extern "C" ECBROKER_API long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHA
     }
 
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
-    if (ctx == NULL || ctx->ecat == NULL) {
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
 #ifdef UNICODE
-    long ret = ctx->ecat->SetEniFilePath(0, filename);
+    long ret = ecat->SetEniFilePath(0, filename);
 #else
-    long ret = ctx->ecat->SetEniFilePath(0, filename);
+    long ret = ecat->SetEniFilePath(0, filename);
 #endif
 
     if (ret != 0) {

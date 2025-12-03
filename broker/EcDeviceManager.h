@@ -45,23 +45,24 @@ namespace wmx3Api {
 
 //=============================================================================
 // Device context structure
+// Note: wmx3 and ecat are now shared via WMX3ContextManager
 //=============================================================================
 struct EcDeviceContext {
-    wmx3Api::WMX3Api* wmx3;
-    wmx3Api::ecApi::Ecat* ecat;
     int deviceId;
     long lastError;
 
-    EcDeviceContext() : wmx3(NULL), ecat(NULL), deviceId(0), lastError(0) {}
+    EcDeviceContext() : deviceId(0), lastError(0) {}
 };
 
 //=============================================================================
 // EcDeviceManager - Singleton class for managing ECDEV handles
+// Uses WMX3ContextManager for shared WMX3 instance
 //=============================================================================
 class EcDeviceManager {
 private:
     std::map<ECDEV, EcDeviceContext> m_devices;
     int m_nextDeviceId;
+    int m_nextHandleId;  // For generating unique ECDEV handles
     CRITICAL_SECTION m_cs;
 
     static EcDeviceManager* s_instance;

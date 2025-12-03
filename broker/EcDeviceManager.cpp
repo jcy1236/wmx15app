@@ -1,7 +1,9 @@
 // EcDeviceManager.cpp
 // ECDEV handle to WMX3 object mapping manager implementation
+// Uses WMX3ContextManager for shared WMX3 instance
 
 #include "EcDeviceManager.h"
+#include "WMX3ContextManager.h"
 #include "WMX3Api.h"
 // Include WMX3's EcApi.h (not WMX1.5's) using full path to avoid conflict
 #include "C:/Program Files/SoftServo/WMX3/Include/EcApi.h"
@@ -11,23 +13,19 @@ EcDeviceManager* EcDeviceManager::s_instance = NULL;
 
 EcDeviceManager::EcDeviceManager()
     : m_nextDeviceId(1)
+    , m_nextHandleId(1)
 {
     InitializeCriticalSection(&m_cs);
 }
 
 EcDeviceManager::~EcDeviceManager()
 {
-    // Close all devices
+    // Close all devices - release shared context for each
     EnterCriticalSection(&m_cs);
     for (std::map<ECDEV, EcDeviceContext>::iterator it = m_devices.begin();
          it != m_devices.end(); ++it) {
-        if (it->second.ecat) {
-            delete it->second.ecat;
-        }
-        if (it->second.wmx3) {
-            it->second.wmx3->CloseDevice();
-            delete it->second.wmx3;
-        }
+        // Release shared WMX3 context
+        WMX3ContextManager::GetInstance()->ReleaseDevice();
     }
     m_devices.clear();
     LeaveCriticalSection(&m_cs);
@@ -62,37 +60,19 @@ long EcDeviceManager::CreateDevice(PECDEV pDev)
 
     EnterCriticalSection(&m_cs);
 
-    // Create WMX3Api instance
-    wmx3Api::WMX3Api* wmx3 = new wmx3Api::WMX3Api();
-    if (wmx3 == NULL) {
-        LeaveCriticalSection(&m_cs);
-        return EC_FAIL;
-    }
-
-    // Open WMX3 device (use NULL path for default installation)
-    long ret = wmx3->CreateDevice((const char*)NULL, wmx3Api::DeviceType::DeviceTypeNormal);
+    // Use shared WMX3 context manager
+    WMX3ContextManager* ctxMgr = WMX3ContextManager::GetInstance();
+    long ret = ctxMgr->AcquireDevice();
     if (ret != 0) {
-        delete wmx3;
         LeaveCriticalSection(&m_cs);
         return ret;
     }
 
-    // Create Ecat instance
-    wmx3Api::ecApi::Ecat* ecat = new wmx3Api::ecApi::Ecat(wmx3);
-    if (ecat == NULL) {
-        wmx3->CloseDevice();
-        delete wmx3;
-        LeaveCriticalSection(&m_cs);
-        return EC_FAIL;
-    }
-
-    // Create handle (use unique pointer as handle)
-    ECDEV handle = (ECDEV)ecat;
+    // Create unique handle using sequential ID
+    ECDEV handle = (ECDEV)(ULONG_PTR)m_nextHandleId++;
 
     // Store context
     EcDeviceContext ctx;
-    ctx.wmx3 = wmx3;
-    ctx.ecat = ecat;
     ctx.deviceId = m_nextDeviceId++;
     ctx.lastError = 0;
 
@@ -117,14 +97,8 @@ long EcDeviceManager::CloseDevice(ECDEV dev)
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
-    // Cleanup
-    if (it->second.ecat) {
-        delete it->second.ecat;
-    }
-    if (it->second.wmx3) {
-        it->second.wmx3->CloseDevice();
-        delete it->second.wmx3;
-    }
+    // Release shared WMX3 context
+    WMX3ContextManager::GetInstance()->ReleaseDevice();
 
     m_devices.erase(it);
 
@@ -225,14 +199,8 @@ long EcDeviceManager::ForceCloseDevice(int deviceId)
     for (std::map<ECDEV, EcDeviceContext>::iterator it = m_devices.begin();
          it != m_devices.end(); ++it) {
         if (it->second.deviceId == deviceId) {
-            // Cleanup
-            if (it->second.ecat) {
-                delete it->second.ecat;
-            }
-            if (it->second.wmx3) {
-                it->second.wmx3->CloseDevice();
-                delete it->second.wmx3;
-            }
+            // Release shared WMX3 context
+            WMX3ContextManager::GetInstance()->ReleaseDevice();
             m_devices.erase(it);
             LeaveCriticalSection(&m_cs);
             return EC_SUCCESS;

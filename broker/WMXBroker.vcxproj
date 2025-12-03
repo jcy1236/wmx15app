@@ -100,6 +100,7 @@
     <ClInclude Include="ExtMotion1Broker.h" />
     <ClInclude Include="ExtMotion2Broker.h" />
     <ClInclude Include="ExtList2Broker.h" />
+    <ClInclude Include="WMX3ContextManager.h" />
     <ClInclude Include="EcDeviceManager.h" />
     <ClInclude Include="EcNetworkBroker.h" />
   </ItemGroup>
@@ -112,6 +113,7 @@
     <ClCompile Include="ExtMotion1Broker.cpp" />
     <ClCompile Include="ExtMotion2Broker.cpp" />
     <ClCompile Include="ExtList2Broker.cpp" />
+    <ClCompile Include="WMX3ContextManager.cpp" />
     <ClCompile Include="EcDeviceManager.cpp" />
     <ClCompile Include="EcNetworkBroker.cpp" />
   </ItemGroup>

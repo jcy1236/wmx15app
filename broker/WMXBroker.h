@@ -69,8 +69,10 @@ namespace wmxAPI {
     } // namespace common
 
     // WMXLIB class - maintains WMX 1.5 interface, internally uses WMX3
+    // Uses WMX3ContextManager for shared WMX3 instance
     class WMXBROKER_API WMXLIB {
     private:
+        // Pointers to shared WMX3 objects (owned by WMX3ContextManager)
         wmx3Api::WMX3Api* wmx3;
         wmx3Api::CoreMotion* coreMotion;
         wmx3Api::Io* wmx3Io;
