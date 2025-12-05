@@ -17,9 +17,15 @@ namespace BasicMotion {
         BasicMotion(WMXLIB* lib);
         ~BasicMotion();
 
-        // Position commands
+        // Position commands (5 params)
         WMXAPIFUNC StartPos(short axis, double target, double velocity, double acc, double dec);
         WMXAPIFUNC StartMov(short axis, double target, double velocity, double acc, double dec);
+
+        // Position commands with starting/end velocity (7 params)
+        WMXAPIFUNC StartPos(short axis, double target, double velocity, double acc, double dec,
+            double startingVelocity, double endVelocity);
+        WMXAPIFUNC StartMov(short axis, double target, double velocity, double acc, double dec,
+            double startingVelocity, double endVelocity);
 
         // Jog command
         WMXAPIFUNC StartJog(short axis, double velocity, double acc);
@@ -27,6 +33,7 @@ namespace BasicMotion {
         // Stop commands
         WMXAPIFUNC StopAxis(int axis);
         WMXAPIFUNC QStopAxis(int axis);
+        WMXAPIFUNC TimeStopAxis(int axis, double time);
 
         // Wait/Pause/Resume
         WMXAPIFUNC WaitAxis(int axis);

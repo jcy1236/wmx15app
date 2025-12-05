@@ -12,6 +12,78 @@
 #include "WMXBrokerC.h"
 #include "wmxapi_def.h"
 
+//=============================================================================
+// WMX 1.5 Motion Block Structures (for API compatibility)
+//=============================================================================
+
+#ifndef MAX_ALLAXES
+#define MAX_ALLAXES 64
+#endif
+
+// CoordinatedPosBlockExt2 - extMotion2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockExt2Ind, *PCoordinatedPosBlockExt2Ind;
+
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockExt2, *PCoordinatedPosBlockExt2;
+
+// CoordinatedPosBlockListExt2 - extList2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockListExt2Ind, *PCoordinatedPosBlockListExt2Ind;
+
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockListExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockListExt2, *PCoordinatedPosBlockListExt2;
+
+// IntBlock2 - Trapezoidal profile composite vector interpolation
+typedef struct {
+    short axis;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+} IntBlock2Ind, *PIntBlock2Ind;
+
+typedef struct {
+    short axisCount;
+    double compVelocity;
+    double compAcc;
+    double compDec;
+    double compStartingVelocity;
+    double compEndVelocity;
+    double compMinimumVelocity;
+    IntBlock2Ind pos_block[MAX_ALLAXES];
+} IntBlock2, *PIntBlock2;
+
 namespace wmxAPI {
 
 class WMXLIB;  // Forward declaration
@@ -237,11 +309,23 @@ public:
     WMXAPIFUNC StartJog(short axis, double velocity, double acc) {
         return WMXBroker_BasicMotion_StartJog(axis, velocity, acc);
     }
+    // Position commands with starting/end velocity (7 params)
+    WMXAPIFUNC StartPos(short axis, double target, double velocity, double acc, double dec,
+        double startingVelocity, double endVelocity) {
+        return WMXBroker_BasicMotion_StartPosEx(axis, target, velocity, acc, dec, startingVelocity, endVelocity);
+    }
+    WMXAPIFUNC StartMov(short axis, double target, double velocity, double acc, double dec,
+        double startingVelocity, double endVelocity) {
+        return WMXBroker_BasicMotion_StartMovEx(axis, target, velocity, acc, dec, startingVelocity, endVelocity);
+    }
     WMXAPIFUNC StopAxis(int axis) {
         return WMXBroker_BasicMotion_StopAxis(axis);
     }
     WMXAPIFUNC QStopAxis(int axis) {
         return WMXBroker_BasicMotion_QStopAxis(axis);
+    }
+    WMXAPIFUNC TimeStopAxis(int axis, double time) {
+        return WMXBroker_BasicMotion_TimeStopAxis(axis, time);
     }
     WMXAPIFUNC WaitAxis(int axis) {
         return WMXBroker_BasicMotion_WaitAxis(axis);
@@ -307,6 +391,22 @@ public:
         double velocity, double acc, double jerkAccRatio) {
         return WMXBroker_ExtMotion2_StartJerkJog(axis, static_cast<int>(profile),
             velocity, acc, jerkAccRatio);
+    }
+    // Stop jerk jog at position
+    WMXAPIFUNC StopJerkJogAtPos(short axis, WMX_PROFILE_TYPE profile, double target,
+        double dec, double jerkDecRatio) {
+        return WMXBroker_ExtMotion2_StopJerkJogAtPos(axis, static_cast<int>(profile),
+            target, dec, jerkDecRatio);
+    }
+    // Coordinated position command
+    WMXAPIFUNC StartJerkCoordinatedPos(short axis, WMX_PROFILE_TYPE profile,
+        double target, double velocity, double acc, double dec,
+        double jerkAccRatio, double jerkDecRatio,
+        double startingVelocity, double endVelocity,
+        short axis2, double axis2target, double axis2smoothRatio) {
+        return WMXBroker_ExtMotion2_StartJerkCoordinatedPos(axis, static_cast<int>(profile),
+            target, velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity, endVelocity,
+            axis2, axis2target, axis2smoothRatio);
     }
 };
 

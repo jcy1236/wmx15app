@@ -30,6 +30,17 @@ namespace ExtMotion2 {
         // Jerk ratio jog command
         WMXAPIFUNC StartJerkJog(short axis, WMX_PROFILE_TYPE profile,
             double velocity, double acc, double jerkAccRatio);
+
+        // Stop jerk jog at position
+        WMXAPIFUNC StopJerkJogAtPos(short axis, WMX_PROFILE_TYPE profile, double target,
+            double dec, double jerkDecRatio);
+
+        // Coordinated position command
+        WMXAPIFUNC StartJerkCoordinatedPos(short axis, WMX_PROFILE_TYPE profile,
+            double target, double velocity, double acc, double dec,
+            double jerkAccRatio, double jerkDecRatio,
+            double startingVelocity, double endVelocity,
+            short axis2, double axis2target, double axis2smoothRatio);
     };
 
 } // namespace ExtMotion2

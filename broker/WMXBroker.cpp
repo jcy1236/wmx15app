@@ -30,7 +30,7 @@ namespace wmxAPI
     //////////////////////////////////////////////////////////////////////////
 
     WMXLIB::WMXLIB()
-        : wmx3(nullptr), coreMotion(nullptr), wmx3Io(nullptr), isConnected(false)
+        : wmx3(nullptr), coreMotion(nullptr), advancedMotion(nullptr), wmx3Io(nullptr), isConnected(false)
         , BasicMotion(nullptr), ExtMotion1(nullptr), ExtMotion2(nullptr), ExtList2(nullptr)
         , AxisControl(nullptr), Home(nullptr), Config(nullptr)
         , BasicVelocity(nullptr), ExtVelocity2(nullptr), TorqueControl(nullptr)
@@ -69,6 +69,7 @@ namespace wmxAPI
         // Get shared WMX3 objects (owned by WMX3ContextManager)
         wmx3 = ctx->GetWMX3();
         coreMotion = ctx->GetCoreMotion();
+        advancedMotion = ctx->GetAdvancedMotion();
         wmx3Io = ctx->GetIo();
 
         // Create Motion namespace instances (owned by WMXLIB) - PascalCase
@@ -155,6 +156,7 @@ namespace wmxAPI
 
         // Clear pointers to shared objects (do NOT delete - owned by WMX3ContextManager)
         wmx3Io = nullptr;
+        advancedMotion = nullptr;
         coreMotion = nullptr;
         wmx3 = nullptr;
 
@@ -269,6 +271,7 @@ namespace wmxAPI
         // Force close - same as CloseDevice
         // Clear pointers to shared objects (do NOT delete - owned by WMX3ContextManager)
         wmx3Io = nullptr;
+        advancedMotion = nullptr;
         coreMotion = nullptr;
         wmx3 = nullptr;
 

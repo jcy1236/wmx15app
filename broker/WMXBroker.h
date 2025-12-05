@@ -91,6 +91,7 @@ typedef struct {
 namespace wmx3Api {
     class WMX3Api;
     class CoreMotion;
+    class AdvancedMotion;
     class Io;
 }
 
@@ -150,6 +151,7 @@ namespace wmxAPI {
         // Pointers to shared WMX3 objects (owned by WMX3ContextManager)
         wmx3Api::WMX3Api* wmx3;
         wmx3Api::CoreMotion* coreMotion;
+        wmx3Api::AdvancedMotion* advancedMotion;
         wmx3Api::Io* wmx3Io;
         bool isConnected;
 
@@ -163,6 +165,7 @@ namespace wmxAPI {
         // WMX3 internal object access (for Broker internal use)
         wmx3Api::WMX3Api* GetWMX3Api() { return wmx3; }
         wmx3Api::CoreMotion* GetCoreMotion() { return coreMotion; }
+        wmx3Api::AdvancedMotion* GetAdvancedMotion() { return advancedMotion; }
         wmx3Api::Io* GetWMX3Io() { return wmx3Io; }
         unsigned char* GetInitialOutBuffer() { return initialOut; }
 

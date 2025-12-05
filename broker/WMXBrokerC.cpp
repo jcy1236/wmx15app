@@ -319,6 +319,30 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxis(int axi
     return g_wmxlib->BasicMotion->QStopAxis(axis);
 }
 
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_TimeStopAxis(int axis, double time)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->BasicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->BasicMotion->TimeStopAxis(axis, time);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPosEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->BasicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->BasicMotion->StartPos(axis, target, velocity, acc, dec, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMovEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->BasicMotion == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->BasicMotion->StartMov(axis, target, velocity, acc, dec, startingVelocity, endVelocity);
+}
+
 extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_WaitAxis(int axis)
 {
     if (g_wmxlib == nullptr || g_wmxlib->BasicMotion == nullptr) {
@@ -413,6 +437,28 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkJog(short
     }
     return g_wmxlib->ExtMotion2->StartJerkJog(axis, static_cast<WMX_PROFILE_TYPE>(profile),
         velocity, acc, jerkAccRatio);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StopJerkJogAtPos(short axis, int profile, double target,
+    double dec, double jerkDecRatio)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtMotion2->StopJerkJogAtPos(axis, static_cast<WMX_PROFILE_TYPE>(profile),
+        target, dec, jerkDecRatio);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkCoordinatedPos(short axis, int profile,
+    double target, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity, short axis2, double axis2target, double axis2smoothRatio)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtMotion2->StartJerkCoordinatedPos(axis, static_cast<WMX_PROFILE_TYPE>(profile),
+        target, velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity, endVelocity,
+        axis2, axis2target, axis2smoothRatio);
 }
 
 //=============================================================================

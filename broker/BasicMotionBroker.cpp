@@ -84,6 +84,54 @@ namespace BasicMotion {
         return coreMotion->motion->ExecQuickStop(axis);
     }
 
+    WMXAPIFUNC BasicMotion::TimeStopAxis(int axis, double time)
+    {
+        if (!wmxlib) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        return coreMotion->motion->ExecTimedStop(axis, time);
+    }
+
+    WMXAPIFUNC BasicMotion::StartPos(short axis, double target, double velocity, double acc, double dec,
+        double startingVelocity, double endVelocity)
+    {
+        if (!wmxlib) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Setup WMX3 position command with trapezoidal profile and custom start/end velocity
+        wmx3Api::Motion::PosCommand posCmd;
+        posCmd.axis = axis;
+        posCmd.target = target;
+        posCmd.profile = wmx3Api::Profile::SetupTrapezoidal(velocity, acc, dec);
+        posCmd.profile.startingVelocity = startingVelocity;
+        posCmd.profile.endVelocity = endVelocity;
+
+        return coreMotion->motion->StartPos(&posCmd);
+    }
+
+    WMXAPIFUNC BasicMotion::StartMov(short axis, double target, double velocity, double acc, double dec,
+        double startingVelocity, double endVelocity)
+    {
+        if (!wmxlib) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Setup WMX3 move command with trapezoidal profile and custom start/end velocity
+        wmx3Api::Motion::PosCommand posCmd;
+        posCmd.axis = axis;
+        posCmd.target = target;
+        posCmd.profile = wmx3Api::Profile::SetupTrapezoidal(velocity, acc, dec);
+        posCmd.profile.startingVelocity = startingVelocity;
+        posCmd.profile.endVelocity = endVelocity;
+
+        return coreMotion->motion->StartMov(&posCmd);
+    }
+
     WMXAPIFUNC BasicMotion::WaitAxis(int axis)
     {
         if (!wmxlib) return -1;

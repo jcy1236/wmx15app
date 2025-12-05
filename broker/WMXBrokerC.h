@@ -97,8 +97,11 @@ WMXBROKER_CAPI long __stdcall WMXBroker_Io_GetInitialOutBytes(short offsetByte, 
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPos(short axis, double target, double velocity, double acc, double dec);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMov(short axis, double target, double velocity, double acc, double dec);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartJog(short axis, double velocity, double acc);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPosEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMovEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StopAxis(int axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_TimeStopAxis(int axis, double time);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_WaitAxis(int axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_PauseAxis(int axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_ResumeAxis(int axis);
@@ -126,6 +129,11 @@ WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkMov(short axis, int 
     double startingVelocity, double endVelocity);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkJog(short axis, int profile,
     double velocity, double acc, double jerkAccRatio);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StopJerkJogAtPos(short axis, int profile, double target,
+    double dec, double jerkDecRatio);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkCoordinatedPos(short axis, int profile,
+    double target, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity, short axis2, double axis2target, double axis2smoothRatio);
 
 //=============================================================================
 // extList2 APIs

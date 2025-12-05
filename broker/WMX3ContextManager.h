@@ -11,6 +11,7 @@
 namespace wmx3Api {
     class WMX3Api;
     class CoreMotion;
+    class AdvancedMotion;
     class Io;
     namespace ecApi {
         class Ecat;
@@ -25,6 +26,7 @@ private:
     // WMX3 objects (shared)
     wmx3Api::WMX3Api* m_wmx3;
     wmx3Api::CoreMotion* m_coreMotion;
+    wmx3Api::AdvancedMotion* m_advancedMotion;
     wmx3Api::Io* m_io;
     wmx3Api::ecApi::Ecat* m_ecat;
 
@@ -71,6 +73,7 @@ public:
     // Shared object accessors
     wmx3Api::WMX3Api* GetWMX3() { return m_wmx3; }
     wmx3Api::CoreMotion* GetCoreMotion() { return m_coreMotion; }
+    wmx3Api::AdvancedMotion* GetAdvancedMotion() { return m_advancedMotion; }
     wmx3Api::Io* GetIo() { return m_io; }
     wmx3Api::ecApi::Ecat* GetEcat() { return m_ecat; }
 };

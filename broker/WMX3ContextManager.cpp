@@ -4,6 +4,7 @@
 #include "WMX3ContextManager.h"
 #include "WMX3Api.h"
 #include "CoreMotionApi.h"
+#include "AdvancedMotionApi.h"
 #include "IOApi.h"
 // Include WMX3's EcApi.h (not WMX1.5's) using full path to avoid conflict
 #include "C:/Program Files/SoftServo/WMX3/Include/EcApi.h"
@@ -20,6 +21,7 @@ static const TCHAR* WMX3_PATH = _T("C:\\Program Files\\SoftServo\\WMX3");
 WMX3ContextManager::WMX3ContextManager()
     : m_wmx3(NULL)
     , m_coreMotion(NULL)
+    , m_advancedMotion(NULL)
     , m_io(NULL)
     , m_ecat(NULL)
     , m_refCount(0)
@@ -100,9 +102,24 @@ long WMX3ContextManager::CreateDeviceInternal()
         return -1;
     }
 
+    // Create AdvancedMotion module (for coordinated motion)
+    m_advancedMotion = new wmx3Api::AdvancedMotion(m_wmx3);
+    if (m_advancedMotion == NULL) {
+        delete m_io;
+        m_io = NULL;
+        delete m_coreMotion;
+        m_coreMotion = NULL;
+        m_wmx3->CloseDevice();
+        delete m_wmx3;
+        m_wmx3 = NULL;
+        return -1;
+    }
+
     // Create Ecat module (for EC_Network_Api)
     m_ecat = new wmx3Api::ecApi::Ecat(m_wmx3);
     if (m_ecat == NULL) {
+        delete m_advancedMotion;
+        m_advancedMotion = NULL;
         delete m_io;
         m_io = NULL;
         delete m_coreMotion;
@@ -121,6 +138,11 @@ void WMX3ContextManager::CloseDeviceInternal()
     if (m_ecat != NULL) {
         delete m_ecat;
         m_ecat = NULL;
+    }
+
+    if (m_advancedMotion != NULL) {
+        delete m_advancedMotion;
+        m_advancedMotion = NULL;
     }
 
     if (m_io != NULL) {
