@@ -9,7 +9,7 @@
 #include "CoreMotionApi.h"
 
 namespace wmxAPI {
-namespace extList2 {
+namespace ExtList2 {
 
     ExtList2::ExtList2(WMXLIB* lib)
         : wmxlib(lib)
@@ -59,5 +59,5 @@ namespace extList2 {
         return NOT_IMPLEMENTED;
     }
 
-} // namespace extList2
+} // namespace ExtList2
 } // namespace wmxAPI

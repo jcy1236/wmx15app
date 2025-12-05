@@ -78,6 +78,141 @@ public:
     }
 };
 
+// AxisControl wrapper class - WMX 1.5 compatible interface (common namespace)
+class AxisControl {
+public:
+    AxisControl() {}
+
+    WMXAPIFUNC GetAxisMode(short axis, int* pMode) {
+        return WMXBroker_AxisControl_GetAxisMode(axis, pMode);
+    }
+    WMXAPIFUNC SetAxisMode(short axis, int mode) {
+        return WMXBroker_AxisControl_SetAxisMode(axis, mode);
+    }
+    WMXAPIFUNC ServoOn(short axis, int on) {
+        return WMXBroker_AxisControl_ServoOn(axis, on);
+    }
+    WMXAPIFUNC ServoOn(short firstAxis, short lastAxis, int on) {
+        return WMXBroker_AxisControl_ServoOnRange(firstAxis, lastAxis, on);
+    }
+    WMXAPIFUNC AmpAlarmClear(short axis) {
+        return WMXBroker_AxisControl_AmpAlarmClear(axis);
+    }
+    WMXAPIFUNC AmpAlarmClear(short firstAxis, short lastAxis) {
+        return WMXBroker_AxisControl_AmpAlarmClearRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC AxisAlarmClear(short axis) {
+        return WMXBroker_AxisControl_AxisAlarmClear(axis);
+    }
+    WMXAPIFUNC AxisAlarmClear(short firstAxis, short lastAxis) {
+        return WMXBroker_AxisControl_AxisAlarmClearRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC GetPosCommand(short axis, double* pPosition) {
+        return WMXBroker_AxisControl_GetPosCommand(axis, pPosition);
+    }
+    WMXAPIFUNC GetPosFeedback(short axis, double* pPosition) {
+        return WMXBroker_AxisControl_GetPosFeedback(axis, pPosition);
+    }
+    WMXAPIFUNC GetVelCommand(short axis, double* pVelocity) {
+        return WMXBroker_AxisControl_GetVelCommand(axis, pVelocity);
+    }
+    WMXAPIFUNC GetVelFeedback(short axis, double* pVelocity) {
+        return WMXBroker_AxisControl_GetVelFeedback(axis, pVelocity);
+    }
+};
+
+// Config wrapper class - WMX 1.5 compatible interface (common namespace)
+class Config {
+public:
+    Config() {}
+
+    WMXAPIFUNC GetAxisHomeParam(short axis, WMX_HOME_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisHomeParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisHomeParam(short axis, WMX_HOME_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisHomeParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisFeedbackParam(short axis, WMX_FEEDBACK_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisFeedbackParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisFeedbackParam(short axis, WMX_FEEDBACK_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisFeedbackParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisLimitParam(short axis, WMX_LIMIT_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisLimitParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisLimitParam(short axis, WMX_LIMIT_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisLimitParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisSystemParam(short axis, WMX_SYSTEM_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisSystemParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisSystemParam(short axis, WMX_SYSTEM_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisSystemParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisAlarmParam(short axis, WMX_ALARM_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisAlarmParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisAlarmParam(short axis, WMX_ALARM_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisAlarmParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam) {
+        return WMXBroker_Config_GetAxisMotionParam(axis, pParam);
+    }
+    WMXAPIFUNC SetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam) {
+        return WMXBroker_Config_SetAxisMotionParam(axis, pParam);
+    }
+    WMXAPIFUNC GetAxisSingleTurn(short axis, int* pEnable, unsigned int* pEncoderCount) {
+        return WMXBroker_Config_GetAxisSingleTurn(axis, pEnable, pEncoderCount);
+    }
+    WMXAPIFUNC SetAxisSingleTurn(short axis, int enable, unsigned int encoderCount) {
+        return WMXBroker_Config_SetAxisSingleTurn(axis, enable, encoderCount);
+    }
+    WMXAPIFUNC GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator) {
+        return WMXBroker_Config_GetAxisMultiplier(axis, pNumerator, pDenominator);
+    }
+    WMXAPIFUNC SetAxisMultiplier(short axis, double numerator, double denominator) {
+        return WMXBroker_Config_SetAxisMultiplier(axis, numerator, denominator);
+    }
+    WMXAPIFUNC GetAxisVelocityFeedforwardGain(short axis, double* pGain) {
+        return WMXBroker_Config_GetAxisVelocityFeedforwardGain(axis, pGain);
+    }
+    WMXAPIFUNC SetAxisVelocityFeedforwardGain(short axis, double gain) {
+        return WMXBroker_Config_SetAxisVelocityFeedforwardGain(axis, gain);
+    }
+};
+
+// Home wrapper class - WMX 1.5 compatible interface (common namespace)
+class Home {
+public:
+    Home() {}
+
+    WMXAPIFUNC StartHome(short axis) {
+        return WMXBroker_Home_StartHome(axis);
+    }
+    WMXAPIFUNC StartHome(short firstAxis, short lastAxis) {
+        return WMXBroker_Home_StartHomeRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC Continue(short axis) {
+        return WMXBroker_Home_Continue(axis);
+    }
+    WMXAPIFUNC Cancel(short axis) {
+        return WMXBroker_Home_Cancel(axis);
+    }
+    WMXAPIFUNC SetFeedbackPosition(short axis, double position) {
+        return WMXBroker_Home_SetFeedbackPosition(axis, position);
+    }
+    WMXAPIFUNC SetCommandPosition(short axis, double position) {
+        return WMXBroker_Home_SetCommandPosition(axis, position);
+    }
+    WMXAPIFUNC SetCmdPosToFbPos(short axis) {
+        return WMXBroker_Home_SetCmdPosToFbPos(axis);
+    }
+    WMXAPIFUNC GetHomeData(WMX_HOME_DATA* pHomeData) {
+        return WMXBroker_Home_GetHomeData(pHomeData);
+    }
+};
+
 } // namespace common
 
 namespace basicMotion {
@@ -200,32 +335,159 @@ public:
 
 } // namespace extList2
 
+namespace basicVelocity {
+
+// BasicVelocity wrapper class - WMX 1.5 compatible interface
+class BasicVelocity {
+public:
+    BasicVelocity() {}
+
+    WMXAPIFUNC StopVel(short axis) {
+        return WMXBroker_BasicVelocity_StopVel(axis);
+    }
+    WMXAPIFUNC StopVel(short firstAxis, short lastAxis) {
+        return WMXBroker_BasicVelocity_StopVelRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC QStopVel(short axis) {
+        return WMXBroker_BasicVelocity_QStopVel(axis);
+    }
+    WMXAPIFUNC QStopVel(short firstAxis, short lastAxis) {
+        return WMXBroker_BasicVelocity_QStopVelRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC TimedStopVel(short axis, double timeMilliseconds) {
+        return WMXBroker_BasicVelocity_TimedStopVel(axis, timeMilliseconds);
+    }
+    WMXAPIFUNC TimedStopVel(short firstAxis, short lastAxis, double timeMilliseconds) {
+        return WMXBroker_BasicVelocity_TimedStopVelRange(firstAxis, lastAxis, timeMilliseconds);
+    }
+    WMXAPIFUNC StartVel(short axis, WMX_PROFILE_TYPE profile, double velocity, double acc, double dec) {
+        return WMXBroker_BasicVelocity_StartVel(axis, static_cast<int>(profile), velocity, acc, dec);
+    }
+};
+
+} // namespace basicVelocity
+
+namespace extVelocity2 {
+
+// ExtVelocity2 wrapper class - Jerk ratio based velocity
+class ExtVelocity2 {
+public:
+    ExtVelocity2() {}
+
+    WMXAPIFUNC StartJerkVel(short axis, WMX_PROFILE_TYPE profile, double velocity,
+        double acc, double dec, double jerkAccRatio, double jerkDecRatio) {
+        return WMXBroker_ExtVelocity2_StartJerkVel(axis, static_cast<int>(profile),
+            velocity, acc, dec, jerkAccRatio, jerkDecRatio);
+    }
+    WMXAPIFUNC StartJerkVel(short axis, WMX_PROFILE_TYPE profile, double velocity,
+        double acc, double dec, double jerkAccRatio, double jerkDecRatio, double startingVelocity) {
+        return WMXBroker_ExtVelocity2_StartJerkVelWithStarting(axis, static_cast<int>(profile),
+            velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity);
+    }
+    WMXAPIFUNC OverrideVel(short axis, double velocity, double acc, double dec) {
+        return WMXBroker_ExtVelocity2_OverrideVel(axis, velocity, acc, dec);
+    }
+};
+
+} // namespace extVelocity2
+
+namespace torque {
+
+// TorqueControl wrapper class - WMX 1.5 compatible interface
+class TorqueControl {
+public:
+    TorqueControl() {}
+
+    WMXAPIFUNC GetMaxTrqLimit(short axis, double* pTorque) {
+        return WMXBroker_TorqueControl_GetMaxTrqLimit(axis, pTorque);
+    }
+    WMXAPIFUNC SetMaxTrqLimit(short axis, double torque) {
+        return WMXBroker_TorqueControl_SetMaxTrqLimit(axis, torque);
+    }
+    WMXAPIFUNC GetPositiveTrqLimit(short axis, double* pTorque) {
+        return WMXBroker_TorqueControl_GetPositiveTrqLimit(axis, pTorque);
+    }
+    WMXAPIFUNC SetPositiveTrqLimit(short axis, double torque) {
+        return WMXBroker_TorqueControl_SetPositiveTrqLimit(axis, torque);
+    }
+    WMXAPIFUNC GetNegativeTrqLimit(short axis, double* pTorque) {
+        return WMXBroker_TorqueControl_GetNegativeTrqLimit(axis, pTorque);
+    }
+    WMXAPIFUNC SetNegativeTrqLimit(short axis, double torque) {
+        return WMXBroker_TorqueControl_SetNegativeTrqLimit(axis, torque);
+    }
+    WMXAPIFUNC StartTrq(short axis, double torque) {
+        return WMXBroker_TorqueControl_StartTrq(axis, torque);
+    }
+    WMXAPIFUNC StartTrq(short axis, double torque, double maxMotorSpeed) {
+        return WMXBroker_TorqueControl_StartTrqWithMaxSpeed(axis, torque, maxMotorSpeed);
+    }
+    WMXAPIFUNC StopTrq(short axis) {
+        return WMXBroker_TorqueControl_StopTrq(axis);
+    }
+    WMXAPIFUNC StopTrq(short firstAxis, short lastAxis) {
+        return WMXBroker_TorqueControl_StopTrqRange(firstAxis, lastAxis);
+    }
+    WMXAPIFUNC StartRampTimeTrq(short axis, double torque, unsigned int rampCycleTime) {
+        return WMXBroker_TorqueControl_StartRampTimeTrq(axis, torque, rampCycleTime);
+    }
+    WMXAPIFUNC StartRampRateTrq(short axis, double torque, double rampRate) {
+        return WMXBroker_TorqueControl_StartRampRateTrq(axis, torque, rampRate);
+    }
+};
+
+} // namespace torque
+
 // WMXLIB wrapper class - WMX 1.5 compatible interface
 class WMXLIB {
 public:
     common::Io* io;
+    common::AxisControl* axisControl;
+    common::Config* config;
+    common::Home* home;
     basicMotion::BasicMotion* basicMotion;
     extMotion1::ExtMotion1* extMotion1;
     extMotion2::ExtMotion2* extMotion2;
+    basicVelocity::BasicVelocity* basicVelocity;
+    extVelocity2::ExtVelocity2* extVelocity2;
+    torque::TorqueControl* torqueControl;
     extList2::ExtList2* extList2;
 
     WMXLIB() {
         io = new common::Io(this);
+        axisControl = new common::AxisControl();
+        config = new common::Config();
+        home = new common::Home();
         basicMotion = new basicMotion::BasicMotion();
         extMotion1 = new extMotion1::ExtMotion1();
         extMotion2 = new extMotion2::ExtMotion2();
+        basicVelocity = new basicVelocity::BasicVelocity();
+        extVelocity2 = new extVelocity2::ExtVelocity2();
+        torqueControl = new torque::TorqueControl();
         extList2 = new extList2::ExtList2();
     }
 
     ~WMXLIB() {
         delete io;
         io = NULL;
+        delete axisControl;
+        axisControl = NULL;
+        delete config;
+        config = NULL;
+        delete home;
+        home = NULL;
         delete basicMotion;
         basicMotion = NULL;
         delete extMotion1;
         extMotion1 = NULL;
         delete extMotion2;
         extMotion2 = NULL;
+        delete basicVelocity;
+        basicVelocity = NULL;
+        delete extVelocity2;
+        extVelocity2 = NULL;
+        delete torqueControl;
+        torqueControl = NULL;
         delete extList2;
         extList2 = NULL;
     }

@@ -8,7 +8,7 @@
 #include "WMXBroker.h"
 
 namespace wmxAPI {
-namespace extMotion1 {
+namespace ExtMotion1 {
 
     class WMXBROKER_API ExtMotion1 {
     private:
@@ -32,7 +32,7 @@ namespace extMotion1 {
             double velocity, double acc, double jerkAcc);
     };
 
-} // namespace extMotion1
+} // namespace ExtMotion1
 } // namespace wmxAPI
 
 #endif // EXTMOTION1BROKER_H

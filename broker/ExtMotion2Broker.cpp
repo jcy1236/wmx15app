@@ -7,7 +7,7 @@
 #include "CoreMotionApi.h"
 
 namespace wmxAPI {
-namespace extMotion2 {
+namespace ExtMotion2 {
 
     ExtMotion2::ExtMotion2(WMXLIB* lib)
         : wmxlib(lib)
@@ -92,5 +92,5 @@ namespace extMotion2 {
         return coreMotion->motion->StartJog(&jogCmd);
     }
 
-} // namespace extMotion2
+} // namespace ExtMotion2
 } // namespace wmxAPI

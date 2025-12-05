@@ -8,7 +8,7 @@
 #include "WMXBroker.h"
 
 namespace wmxAPI {
-namespace extList2 {
+namespace ExtList2 {
 
     class WMXBROKER_API ExtList2 {
     private:
@@ -27,7 +27,7 @@ namespace extList2 {
         WMXAPIFUNC GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus);
     };
 
-} // namespace extList2
+} // namespace ExtList2
 } // namespace wmxAPI
 
 #endif // EXTLIST2BROKER_H

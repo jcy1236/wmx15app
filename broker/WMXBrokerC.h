@@ -9,6 +9,26 @@
 #include <tchar.h>
 #include "wmxapi_type.h"
 
+// Forward declare types from WMXBroker.h for C API
+// These are defined in WMXBroker.h for DLL internal use
+#ifndef WMX_HOME_DATA_DEFINED
+#define WMX_HOME_DATA_DEFINED
+
+#ifndef MAX_AXIS
+#define MAX_AXIS 64
+#endif
+
+typedef struct {
+    double distHStoZPulse;
+    double distLStoZPulse;
+} WMX_AXIS_HOME_DATA;
+
+typedef struct {
+    WMX_AXIS_HOME_DATA axesHomeData[MAX_AXIS];
+} WMX_HOME_DATA;
+
+#endif // WMX_HOME_DATA_DEFINED
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -116,6 +136,90 @@ WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ExecuteList(unsigned int channe
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_AbortList(unsigned int channel);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ClearList(unsigned int channel);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus);
+
+//=============================================================================
+// AxisControl APIs (common namespace)
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetAxisMode(short axis, int* pMode);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_SetAxisMode(short axis, int mode);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_ServoOn(short axis, int on);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_ServoOnRange(short firstAxis, short lastAxis, int on);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_AmpAlarmClear(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_AmpAlarmClearRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_AxisAlarmClear(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_AxisAlarmClearRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetPosCommand(short axis, double* pPosition);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetPosFeedback(short axis, double* pPosition);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetVelCommand(short axis, double* pVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetVelFeedback(short axis, double* pVelocity);
+
+//=============================================================================
+// Home APIs (common namespace)
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_Continue(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_Cancel(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_SetFeedbackPosition(short axis, double position);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_SetCommandPosition(short axis, double position);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_SetCmdPosToFbPos(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_GetHomeData(WMX_HOME_DATA* pData);
+
+//=============================================================================
+// Config APIs (common namespace)
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisHomeParam(short axis, WMX_HOME_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisHomeParam(short axis, WMX_HOME_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisFeedbackParam(short axis, WMX_FEEDBACK_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisFeedbackParam(short axis, WMX_FEEDBACK_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisLimitParam(short axis, WMX_LIMIT_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisLimitParam(short axis, WMX_LIMIT_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisSystemParam(short axis, WMX_SYSTEM_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisSystemParam(short axis, WMX_SYSTEM_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisAlarmParam(short axis, WMX_ALARM_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisAlarmParam(short axis, WMX_ALARM_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisSingleTurn(short axis, int* pEnable, unsigned int* pEncoderCount);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisSingleTurn(short axis, int enable, unsigned int encoderCount);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMultiplier(short axis, double numerator, double denominator);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisVelocityFeedforwardGain(short axis, double* pGain);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisVelocityFeedforwardGain(short axis, double gain);
+
+//=============================================================================
+// BasicVelocity APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_StopVel(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_StopVelRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_QStopVel(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_QStopVelRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_TimedStopVel(short axis, double timeMilliseconds);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_TimedStopVelRange(short firstAxis, short lastAxis, double timeMilliseconds);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicVelocity_StartVel(short axis, int profile, double velocity, double acc, double dec);
+
+//=============================================================================
+// ExtVelocity2 APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtVelocity2_StartJerkVel(short axis, int profile, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtVelocity2_StartJerkVelWithStarting(short axis, int profile, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio, double startingVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtVelocity2_OverrideVel(short axis, double velocity, double acc, double dec);
+
+//=============================================================================
+// TorqueControl APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_GetMaxTrqLimit(short axis, double* pTorque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_SetMaxTrqLimit(short axis, double torque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_GetPositiveTrqLimit(short axis, double* pTorque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_SetPositiveTrqLimit(short axis, double torque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_GetNegativeTrqLimit(short axis, double* pTorque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_SetNegativeTrqLimit(short axis, double torque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartTrq(short axis, double torque);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartTrqWithMaxSpeed(short axis, double torque, double maxMotorSpeed);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StopTrq(short axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StopTrqRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampTimeTrq(short axis, double torque, unsigned int rampCycleTime);
+WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampRateTrq(short axis, double torque, double rampRate);
 
 #ifdef __cplusplus
 }

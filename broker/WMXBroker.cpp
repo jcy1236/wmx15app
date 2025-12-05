@@ -8,6 +8,12 @@
 #include "ExtMotion1Broker.h"
 #include "ExtMotion2Broker.h"
 #include "ExtList2Broker.h"
+#include "AxisControlBroker.h"
+#include "HomeBroker.h"
+#include "ConfigBroker.h"
+#include "BasicVelocityBroker.h"
+#include "ExtVelocity2Broker.h"
+#include "TorqueControlBroker.h"
 #include <tchar.h>
 #include <cstdio>
 
@@ -24,7 +30,11 @@ namespace wmxAPI
     //////////////////////////////////////////////////////////////////////////
 
     WMXLIB::WMXLIB()
-        : wmx3(nullptr), coreMotion(nullptr), wmx3Io(nullptr), isConnected(false), basicMotion(nullptr), extMotion1(nullptr), extMotion2(nullptr), extList2(nullptr), lastError(WMX_API_ERROR_CODE())
+        : wmx3(nullptr), coreMotion(nullptr), wmx3Io(nullptr), isConnected(false)
+        , BasicMotion(nullptr), ExtMotion1(nullptr), ExtMotion2(nullptr), ExtList2(nullptr)
+        , AxisControl(nullptr), Home(nullptr), Config(nullptr)
+        , BasicVelocity(nullptr), ExtVelocity2(nullptr), TorqueControl(nullptr)
+        , lastError(WMX_API_ERROR_CODE())
     {
         // Create Io class instance
         io = new common::Io(this);
@@ -61,11 +71,19 @@ namespace wmxAPI
         coreMotion = ctx->GetCoreMotion();
         wmx3Io = ctx->GetIo();
 
-        // Create Motion namespace instances (owned by WMXLIB)
-        basicMotion = new basicMotion::BasicMotion(this);
-        extMotion1 = new extMotion1::ExtMotion1(this);
-        extMotion2 = new extMotion2::ExtMotion2(this);
-        extList2 = new extList2::ExtList2(this);
+        // Create Motion namespace instances (owned by WMXLIB) - PascalCase
+        BasicMotion = new wmxAPI::BasicMotion::BasicMotion(this);
+        ExtMotion1 = new wmxAPI::ExtMotion1::ExtMotion1(this);
+        ExtMotion2 = new wmxAPI::ExtMotion2::ExtMotion2(this);
+        ExtList2 = new wmxAPI::ExtList2::ExtList2(this);
+
+        // Create new namespace instances
+        AxisControl = new axisControl::AxisControl(this);
+        Home = new home::Home(this);
+        Config = new config::Config(this);
+        BasicVelocity = new basicVelocity::BasicVelocity(this);
+        ExtVelocity2 = new extVelocity2::ExtVelocity2(this);
+        TorqueControl = new torque::TorqueControl(this);
 
         isConnected = true;
         return 0;
@@ -73,29 +91,66 @@ namespace wmxAPI
 
     WMXAPIFUNC WMXLIB::CloseDevice()
     {
-        // Delete Motion namespace instances (owned by WMXLIB)
-        if (extList2)
+        // Delete new namespace instances
+        if (TorqueControl)
         {
-            delete extList2;
-            extList2 = nullptr;
+            delete TorqueControl;
+            TorqueControl = nullptr;
         }
 
-        if (extMotion2)
+        if (ExtVelocity2)
         {
-            delete extMotion2;
-            extMotion2 = nullptr;
+            delete ExtVelocity2;
+            ExtVelocity2 = nullptr;
         }
 
-        if (extMotion1)
+        if (BasicVelocity)
         {
-            delete extMotion1;
-            extMotion1 = nullptr;
+            delete BasicVelocity;
+            BasicVelocity = nullptr;
         }
 
-        if (basicMotion)
+        if (Config)
         {
-            delete basicMotion;
-            basicMotion = nullptr;
+            delete Config;
+            Config = nullptr;
+        }
+
+        if (Home)
+        {
+            delete Home;
+            Home = nullptr;
+        }
+
+        if (AxisControl)
+        {
+            delete AxisControl;
+            AxisControl = nullptr;
+        }
+
+        // Delete Motion namespace instances (owned by WMXLIB) - PascalCase
+        if (ExtList2)
+        {
+            delete ExtList2;
+            ExtList2 = nullptr;
+        }
+
+        if (ExtMotion2)
+        {
+            delete ExtMotion2;
+            ExtMotion2 = nullptr;
+        }
+
+        if (ExtMotion1)
+        {
+            delete ExtMotion1;
+            ExtMotion1 = nullptr;
+        }
+
+        if (BasicMotion)
+        {
+            delete BasicMotion;
+            BasicMotion = nullptr;
         }
 
         // Clear pointers to shared objects (do NOT delete - owned by WMX3ContextManager)

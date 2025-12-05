@@ -7,7 +7,7 @@
 #include "WMXBroker.h"
 
 namespace wmxAPI {
-namespace basicMotion {
+namespace BasicMotion {
 
     class WMXBROKER_API BasicMotion {
     private:
@@ -34,7 +34,7 @@ namespace basicMotion {
         WMXAPIFUNC ResumeAxis(int axis);
     };
 
-} // namespace basicMotion
+} // namespace BasicMotion
 } // namespace wmxAPI
 
 #endif // BASICMOTIONBROKER_H

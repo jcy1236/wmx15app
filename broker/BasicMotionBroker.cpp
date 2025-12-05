@@ -6,7 +6,7 @@
 #include "CoreMotionApi.h"
 
 namespace wmxAPI {
-namespace basicMotion {
+namespace BasicMotion {
 
     BasicMotion::BasicMotion(WMXLIB* lib)
         : wmxlib(lib)
@@ -128,5 +128,5 @@ namespace basicMotion {
         return coreMotion->motion->Resume(axis);
     }
 
-} // namespace basicMotion
+} // namespace BasicMotion
 } // namespace wmxAPI
