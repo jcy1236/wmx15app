@@ -254,25 +254,25 @@ namespace config {
         return coreMotion->config->SetSingleTurn(axis, enable, encoderCount);
     }
 
-    WMXAPIFUNC Config::GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator)
+    WMXAPIFUNC Config::GetAxisMultiplier(short axis, unsigned int* pMultiplier)
     {
-        if (!wmxlib || !pNumerator || !pDenominator) return -1;
+        if (!wmxlib || !pMultiplier) return -1;
 
         wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
         if (!coreMotion) return -1;
 
         // Get axis param which contains gear ratio
+        // WMX 1.5 uses single multiplier (numerator with denominator=1)
         wmx3Api::Config::AxisParam axisParam;
         long ret = coreMotion->config->GetAxisParam(axis, &axisParam);
         if (ret != 0) return ret;
 
-        *pNumerator = axisParam.gearRatioNumerator[axis];
-        *pDenominator = axisParam.gearRatioDenominator[axis];
+        *pMultiplier = static_cast<unsigned int>(axisParam.gearRatioNumerator[axis]);
 
         return 0;
     }
 
-    WMXAPIFUNC Config::SetAxisMultiplier(short axis, double numerator, double denominator)
+    WMXAPIFUNC Config::SetAxisMultiplier(short axis, unsigned int multiplier)
     {
         if (!wmxlib) return -1;
 
@@ -284,9 +284,9 @@ namespace config {
         long ret = coreMotion->config->GetAxisParam(&axisParam);
         if (ret != 0) return ret;
 
-        // Update gear ratio
-        axisParam.gearRatioNumerator[axis] = numerator;
-        axisParam.gearRatioDenominator[axis] = denominator;
+        // Update gear ratio (WMX 1.5 uses multiplier as numerator with denominator=1)
+        axisParam.gearRatioNumerator[axis] = static_cast<double>(multiplier);
+        axisParam.gearRatioDenominator[axis] = 1.0;
 
         return coreMotion->config->SetAxisParam(axis, &axisParam);
     }

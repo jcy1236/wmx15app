@@ -182,8 +182,8 @@ WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMotionParam(short axis, WM
 WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam);
 WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisSingleTurn(short axis, int* pEnable, unsigned int* pEncoderCount);
 WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisSingleTurn(short axis, int enable, unsigned int encoderCount);
-WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator);
-WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMultiplier(short axis, double numerator, double denominator);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMultiplier(short axis, unsigned int* pMultiplier);
+WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMultiplier(short axis, unsigned int multiplier);
 WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisVelocityFeedforwardGain(short axis, double* pGain);
 WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisVelocityFeedforwardGain(short axis, double gain);
 

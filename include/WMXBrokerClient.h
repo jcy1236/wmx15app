@@ -83,11 +83,14 @@ class AxisControl {
 public:
     AxisControl() {}
 
-    WMXAPIFUNC GetAxisMode(short axis, int* pMode) {
-        return WMXBroker_AxisControl_GetAxisMode(axis, pMode);
+    WMXAPIFUNC GetAxisMode(short axis, WMX_AXIS_COMMAND_MODE* pMode) {
+        int mode;
+        long ret = WMXBroker_AxisControl_GetAxisMode(axis, &mode);
+        if (ret == 0 && pMode) *pMode = static_cast<WMX_AXIS_COMMAND_MODE>(mode);
+        return ret;
     }
-    WMXAPIFUNC SetAxisMode(short axis, int mode) {
-        return WMXBroker_AxisControl_SetAxisMode(axis, mode);
+    WMXAPIFUNC SetAxisMode(short axis, WMX_AXIS_COMMAND_MODE mode) {
+        return WMXBroker_AxisControl_SetAxisMode(axis, static_cast<int>(mode));
     }
     WMXAPIFUNC ServoOn(short axis, int on) {
         return WMXBroker_AxisControl_ServoOn(axis, on);
@@ -162,17 +165,20 @@ public:
     WMXAPIFUNC SetAxisMotionParam(short axis, WMX_MOTION_PARAM* pParam) {
         return WMXBroker_Config_SetAxisMotionParam(axis, pParam);
     }
-    WMXAPIFUNC GetAxisSingleTurn(short axis, int* pEnable, unsigned int* pEncoderCount) {
-        return WMXBroker_Config_GetAxisSingleTurn(axis, pEnable, pEncoderCount);
+    WMXAPIFUNC GetAxisSingleTurn(short axis, unsigned char* pEnable, unsigned int* pEncoderCount) {
+        int enable;
+        long ret = WMXBroker_Config_GetAxisSingleTurn(axis, &enable, pEncoderCount);
+        if (ret == 0 && pEnable) *pEnable = static_cast<unsigned char>(enable);
+        return ret;
     }
-    WMXAPIFUNC SetAxisSingleTurn(short axis, int enable, unsigned int encoderCount) {
-        return WMXBroker_Config_SetAxisSingleTurn(axis, enable, encoderCount);
+    WMXAPIFUNC SetAxisSingleTurn(short axis, unsigned char enable, unsigned int encoderCount) {
+        return WMXBroker_Config_SetAxisSingleTurn(axis, static_cast<int>(enable), encoderCount);
     }
-    WMXAPIFUNC GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator) {
-        return WMXBroker_Config_GetAxisMultiplier(axis, pNumerator, pDenominator);
+    WMXAPIFUNC GetAxisMultiplier(short axis, unsigned int* pMultiplier) {
+        return WMXBroker_Config_GetAxisMultiplier(axis, pMultiplier);
     }
-    WMXAPIFUNC SetAxisMultiplier(short axis, double numerator, double denominator) {
-        return WMXBroker_Config_SetAxisMultiplier(axis, numerator, denominator);
+    WMXAPIFUNC SetAxisMultiplier(short axis, unsigned int multiplier) {
+        return WMXBroker_Config_SetAxisMultiplier(axis, multiplier);
     }
     WMXAPIFUNC GetAxisVelocityFeedforwardGain(short axis, double* pGain) {
         return WMXBroker_Config_GetAxisVelocityFeedforwardGain(axis, pGain);

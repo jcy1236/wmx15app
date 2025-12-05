@@ -761,20 +761,20 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisSingleTurn(shor
     return g_wmxlib->Config->SetAxisSingleTurn(axis, enable != 0, encoderCount);
 }
 
-extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator)
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisMultiplier(short axis, unsigned int* pMultiplier)
 {
     if (g_wmxlib == nullptr || g_wmxlib->Config == nullptr) {
         return -1;
     }
-    return g_wmxlib->Config->GetAxisMultiplier(axis, pNumerator, pDenominator);
+    return g_wmxlib->Config->GetAxisMultiplier(axis, pMultiplier);
 }
 
-extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMultiplier(short axis, double numerator, double denominator)
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_SetAxisMultiplier(short axis, unsigned int multiplier)
 {
     if (g_wmxlib == nullptr || g_wmxlib->Config == nullptr) {
         return -1;
     }
-    return g_wmxlib->Config->SetAxisMultiplier(axis, numerator, denominator);
+    return g_wmxlib->Config->SetAxisMultiplier(axis, multiplier);
 }
 
 extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Config_GetAxisVelocityFeedforwardGain(short axis, double* pGain)

@@ -42,9 +42,9 @@ namespace config {
         WMXAPIFUNC GetAxisSingleTurn(short axis, bool* pEnable, unsigned int* pEncoderCount);
         WMXAPIFUNC SetAxisSingleTurn(short axis, bool enable, unsigned int encoderCount);
 
-        // Multiplier (gear ratio)
-        WMXAPIFUNC GetAxisMultiplier(short axis, double* pNumerator, double* pDenominator);
-        WMXAPIFUNC SetAxisMultiplier(short axis, double numerator, double denominator);
+        // Multiplier (gear ratio) - WMX 1.5 uses single unsigned int multiplier
+        WMXAPIFUNC GetAxisMultiplier(short axis, unsigned int* pMultiplier);
+        WMXAPIFUNC SetAxisMultiplier(short axis, unsigned int multiplier);
 
         // Velocity feedforward
         WMXAPIFUNC GetAxisVelocityFeedforwardGain(short axis, double* pGain);
