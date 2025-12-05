@@ -94,6 +94,58 @@ namespace BasicMotion {
         return coreMotion->motion->ExecTimedStop(axis, time);
     }
 
+    // Multi-axis Stop with WMX_AXIS_SELECTION
+    WMXAPIFUNC BasicMotion::StopAxis(WMX_AXIS_SELECTION* axis_selection)
+    {
+        if (!wmxlib || !axis_selection) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Convert WMX 1.5 WMX_AXIS_SELECTION to WMX3 AxisSelection
+        wmx3Api::AxisSelection wmx3AxisSel;
+        wmx3AxisSel.axisCount = axis_selection->axisCount;
+        for (int i = 0; i < axis_selection->axisCount && i < 64; i++) {
+            wmx3AxisSel.axis[i] = axis_selection->axis[i];
+        }
+
+        return coreMotion->motion->Stop(&wmx3AxisSel);
+    }
+
+    WMXAPIFUNC BasicMotion::QStopAxis(WMX_AXIS_SELECTION* axis_selection)
+    {
+        if (!wmxlib || !axis_selection) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Convert WMX 1.5 WMX_AXIS_SELECTION to WMX3 AxisSelection
+        wmx3Api::AxisSelection wmx3AxisSel;
+        wmx3AxisSel.axisCount = axis_selection->axisCount;
+        for (int i = 0; i < axis_selection->axisCount && i < 64; i++) {
+            wmx3AxisSel.axis[i] = axis_selection->axis[i];
+        }
+
+        return coreMotion->motion->ExecQuickStop(&wmx3AxisSel);
+    }
+
+    WMXAPIFUNC BasicMotion::TimeStopAxis(WMX_AXIS_SELECTION* axis_selection, double time)
+    {
+        if (!wmxlib || !axis_selection) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Convert WMX 1.5 WMX_AXIS_SELECTION to WMX3 AxisSelection
+        wmx3Api::AxisSelection wmx3AxisSel;
+        wmx3AxisSel.axisCount = axis_selection->axisCount;
+        for (int i = 0; i < axis_selection->axisCount && i < 64; i++) {
+            wmx3AxisSel.axis[i] = axis_selection->axis[i];
+        }
+
+        return coreMotion->motion->ExecTimedStop(&wmx3AxisSel, time);
+    }
+
     WMXAPIFUNC BasicMotion::StartPos(short axis, double target, double velocity, double acc, double dec,
         double startingVelocity, double endVelocity)
     {

@@ -100,8 +100,11 @@ WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartJog(short axis, double 
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartPosEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StartMovEx(short axis, double target, double velocity, double acc, double dec, double startingVelocity, double endVelocity);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StopAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_StopAxisSelection(WMX_AXIS_SELECTION* axis_selection);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxis(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_QStopAxisSelection(WMX_AXIS_SELECTION* axis_selection);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_TimeStopAxis(int axis, double time);
+WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_TimeStopAxisSelection(WMX_AXIS_SELECTION* axis_selection, double time);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_WaitAxis(int axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_PauseAxis(int axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_BasicMotion_ResumeAxis(int axis);
@@ -144,6 +147,9 @@ WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ExecuteList(unsigned int channe
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_AbortList(unsigned int channel);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ClearList(unsigned int channel);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkCoordinatedPos(unsigned int channel, short axis, int profile,
+    double target, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+    double startingVelocity, double endVelocity, short axis2, double axis2target, double axis2smoothRatio);
 
 //=============================================================================
 // AxisControl APIs (common namespace)

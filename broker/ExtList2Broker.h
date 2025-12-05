@@ -25,6 +25,11 @@ namespace ExtList2 {
         WMXAPIFUNC AbortList(unsigned int channel);
         WMXAPIFUNC ClearList(unsigned int channel);
         WMXAPIFUNC GetListStatus(unsigned int channel, WMX_LIST_STATUS* pStatus);
+
+        // List motion commands (individual parameters)
+        WMXAPIFUNC ListJerkCoordinatedPos(unsigned int channel, short axis, WMX_PROFILE_TYPE profile,
+            double target, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
+            double startingVelocity, double endVelocity, short axis2, double axis2target, double axis2smoothRatio);
     };
 
 } // namespace ExtList2

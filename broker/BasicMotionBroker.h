@@ -30,10 +30,15 @@ namespace BasicMotion {
         // Jog command
         WMXAPIFUNC StartJog(short axis, double velocity, double acc);
 
-        // Stop commands
+        // Stop commands (single axis)
         WMXAPIFUNC StopAxis(int axis);
         WMXAPIFUNC QStopAxis(int axis);
         WMXAPIFUNC TimeStopAxis(int axis, double time);
+
+        // Stop commands (multi-axis with WMX_AXIS_SELECTION)
+        WMXAPIFUNC StopAxis(WMX_AXIS_SELECTION* axis_selection);
+        WMXAPIFUNC QStopAxis(WMX_AXIS_SELECTION* axis_selection);
+        WMXAPIFUNC TimeStopAxis(WMX_AXIS_SELECTION* axis_selection, double time);
 
         // Wait/Pause/Resume
         WMXAPIFUNC WaitAxis(int axis);
