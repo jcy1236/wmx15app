@@ -741,3 +741,67 @@ extern "C" ECBROKER_API long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHA
 
     return EC_SUCCESS;
 }
+
+//=============================================================================
+// Raw Register Read/Write APIs
+//=============================================================================
+
+extern "C" ECBROKER_API long __stdcall ecRawWrite(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data)
+{
+    if (data == NULL || size == 0) {
+        return EC_API_ERROR_CODE_NULL_ARG;
+    }
+
+    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    // WMX 1.5 location uses negative values for slave position
+    // Convert to WMX3 slaveId (0-based index)
+    int slaveId = (location < 0) ? -location : location;
+
+    // WMX3 RegisterWrite: slaveId, regAddr, len, data
+    long ret = ecat->RegisterWrite(slaveId, static_cast<int>(address), static_cast<int>(size), data);
+    if (ret != 0) {
+        ctx->lastError = ret;
+        return EC_FAIL;
+    }
+
+    return EC_SUCCESS;
+}
+
+extern "C" ECBROKER_API long __stdcall ecRawRead(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data)
+{
+    if (data == NULL || size == 0) {
+        return EC_API_ERROR_CODE_NULL_ARG;
+    }
+
+    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    if (ctx == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    wmx3Api::ecApi::Ecat* ecat = GET_SHARED_ECAT();
+    if (ecat == NULL) {
+        return EC_API_ERROR_CODE_DEVICE_IS_NULL;
+    }
+
+    // WMX 1.5 location uses negative values for slave position
+    // Convert to WMX3 slaveId (0-based index)
+    int slaveId = (location < 0) ? -location : location;
+
+    // WMX3 RegisterRead: slaveId, regAddr, len, buff
+    long ret = ecat->RegisterRead(slaveId, static_cast<int>(address), static_cast<int>(size), data);
+    if (ret != 0) {
+        ctx->lastError = ret;
+        return EC_FAIL;
+    }
+
+    return EC_SUCCESS;
+}

@@ -115,6 +115,32 @@ typedef struct {
 
 #endif // POSBLOCKEXT2_DEFINED
 
+#ifndef COORDINATED_POSBLOCK_EXT2_DEFINED
+#define COORDINATED_POSBLOCK_EXT2_DEFINED
+
+// CoordinatedPosBlockExt2 - extMotion2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockExt2Ind, *PCoordinatedPosBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockExt2, *PCoordinatedPosBlockExt2;
+
+#endif // COORDINATED_POSBLOCK_EXT2_DEFINED
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -256,8 +282,8 @@ WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetVelFeedback(short axis, d
 //=============================================================================
 // Home APIs (common namespace)
 //=============================================================================
-WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(short axis);
-WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeRange(short firstAxis, short lastAxis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(int axis);
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeRange(int firstAxis, int lastAxis);
 WMXBROKER_CAPI long __stdcall WMXBroker_Home_Continue(short axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_Home_Cancel(short axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_Home_SetFeedbackPosition(short axis, double position);
@@ -325,6 +351,7 @@ WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampRateTrq(short axi
 // ExtMotion2 Block APIs
 //=============================================================================
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPosBlock(PosBlockExt2* mpos_block);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkCoordinatedPosBlock(CoordinatedPosBlockExt2* mpos_block);
 WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkLinIntPos(IntBlockExt2* mpos_block);
 
 //=============================================================================

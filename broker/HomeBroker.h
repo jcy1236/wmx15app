@@ -19,8 +19,8 @@ namespace home {
         ~Home();
 
         // Homing
-        WMXAPIFUNC StartHome(short axis);
-        WMXAPIFUNC StartHome(short firstAxis, short lastAxis);
+        WMXAPIFUNC StartHome(int axis);
+        WMXAPIFUNC StartHome(int firstAxis, int lastAxis);
 
         // Continue/Cancel
         WMXAPIFUNC Continue(short axis);

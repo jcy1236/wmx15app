@@ -173,6 +173,32 @@ typedef struct {
 
 #endif // POSBLOCKEXT2_DEFINED
 
+#ifndef COORDINATED_POSBLOCK_EXT2_DEFINED
+#define COORDINATED_POSBLOCK_EXT2_DEFINED
+
+// CoordinatedPosBlockExt2 - extMotion2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockExt2Ind, *PCoordinatedPosBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockExt2, *PCoordinatedPosBlockExt2;
+
+#endif // COORDINATED_POSBLOCK_EXT2_DEFINED
+
 // Forward declarations for WMX3
 namespace wmx3Api {
     class WMX3Api;

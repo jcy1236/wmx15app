@@ -109,3 +109,7 @@ EXPORTS
     ; EC_Network_Api - Config
     ecGetMasterConfigFilename         @260
     ecSetMasterConfigFilename         @261
+
+    ; EC_Network_Api - Raw Register Read/Write
+    ecRawWrite                        @270
+    ecRawRead                         @271

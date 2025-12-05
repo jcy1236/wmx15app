@@ -243,6 +243,13 @@ ECBROKER_API long __stdcall ecClearHotConnectAbortionFlag(ECDEV dev);
 ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHAR* filename, int bufferSize);
 ECBROKER_API long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHAR* filename);
 
+//=============================================================================
+// Raw Register Read/Write APIs
+//=============================================================================
+
+ECBROKER_API long __stdcall ecRawWrite(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data);
+ECBROKER_API long __stdcall ecRawRead(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data);
+
 #ifdef __cplusplus
 }
 #endif

@@ -180,6 +180,42 @@ namespace ExtMotion2 {
         return 0;
     }
 
+    WMXAPIFUNC ExtMotion2::StartJerkCoordinatedPos(CoordinatedPosBlockExt2* mpos_block)
+    {
+        if (!wmxlib || !mpos_block) return -1;
+
+        wmx3Api::AdvancedMotion* advMotion = wmxlib->GetAdvancedMotion();
+        if (!advMotion) return -1;
+
+        // Multi-axis block: call StartCoordinatedPos for each axis in the block
+        for (int i = 0; i < mpos_block->axisCount && i < 64; i++) {
+            CoordinatedPosBlockExt2Ind& blk = mpos_block->pos_block[i];
+
+            // Clamp ratio to valid range [0, 1]
+            double jerkAccRatio = blk.jerkAccRatio;
+            double jerkDecRatio = blk.jerkDecRatio;
+            if (jerkAccRatio < 0) jerkAccRatio = 0;
+            if (jerkAccRatio > 1) jerkAccRatio = 1;
+            if (jerkDecRatio < 0) jerkDecRatio = 0;
+            if (jerkDecRatio > 1) jerkDecRatio = 1;
+
+            wmx3Api::AdvMotion::CoordinatedPosCommand coordCmd;
+            coordCmd.posCommand.axis = blk.axis;
+            coordCmd.posCommand.target = blk.target;
+            coordCmd.posCommand.profile = wmx3Api::Profile::SetupJerkRatio(
+                blk.velocity, blk.acc, blk.dec,
+                jerkAccRatio, jerkDecRatio,
+                blk.startingVelocity, blk.endVelocity);
+            coordCmd.axis2 = blk.axis2;
+            coordCmd.axis2Target = blk.axis2target;
+            coordCmd.axis2SmoothRatio = blk.axis2smoothRatio;
+
+            long ret = advMotion->advMotion->StartCoordinatedPos(&coordCmd);
+            if (ret != 0) return ret;
+        }
+        return 0;
+    }
+
     WMXAPIFUNC ExtMotion2::StartJerkLinIntPos(IntBlockExt2* mpos_block)
     {
         if (!wmxlib || !mpos_block) return -1;

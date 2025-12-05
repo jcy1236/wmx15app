@@ -398,11 +398,11 @@ namespace wmxAPI
         public:
             Home() {}
 
-            WMXAPIFUNC StartHome(short axis)
+            WMXAPIFUNC StartHome(int axis)
             {
                 return WMXBroker_Home_StartHome(axis);
             }
-            WMXAPIFUNC StartHome(short firstAxis, short lastAxis)
+            WMXAPIFUNC StartHome(int firstAxis, int lastAxis)
             {
                 return WMXBroker_Home_StartHomeRange(firstAxis, lastAxis);
             }
@@ -595,6 +595,11 @@ namespace wmxAPI
             WMXAPIFUNC StartJerkPos(PosBlockExt2* mpos_block)
             {
                 return WMXBroker_ExtMotion2_StartJerkPosBlock(mpos_block);
+            }
+            // Block-based coordinated position command
+            WMXAPIFUNC StartJerkCoordinatedPos(CoordinatedPosBlockExt2* mpos_block)
+            {
+                return WMXBroker_ExtMotion2_StartJerkCoordinatedPosBlock(mpos_block);
             }
             // Linear interpolation with jerk
             WMXAPIFUNC StartJerkLinIntPos(IntBlockExt2* mpos_block)

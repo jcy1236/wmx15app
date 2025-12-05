@@ -45,6 +45,9 @@ namespace ExtMotion2 {
         // Block-based StartJerkPos (multi-axis)
         WMXAPIFUNC StartJerkPos(PosBlockExt2* mpos_block);
 
+        // Block-based coordinated position command
+        WMXAPIFUNC StartJerkCoordinatedPos(CoordinatedPosBlockExt2* mpos_block);
+
         // Linear interpolation with jerk
         WMXAPIFUNC StartJerkLinIntPos(IntBlockExt2* mpos_block);
     };

@@ -658,7 +658,7 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_AxisControl_GetVelFeedback(sh
 // Home APIs (common namespace)
 //=============================================================================
 
-extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(short axis)
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(int axis)
 {
     if (g_wmxlib == nullptr || g_wmxlib->Home == nullptr) {
         return -1;
@@ -666,7 +666,7 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHome(short axis)
     return g_wmxlib->Home->StartHome(axis);
 }
 
-extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeRange(short firstAxis, short lastAxis)
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeRange(int firstAxis, int lastAxis)
 {
     if (g_wmxlib == nullptr || g_wmxlib->Home == nullptr) {
         return -1;
@@ -1073,6 +1073,14 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPosBlock(
         return -1;
     }
     return g_wmxlib->ExtMotion2->StartJerkPos(mpos_block);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkCoordinatedPosBlock(CoordinatedPosBlockExt2* mpos_block)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtMotion2->StartJerkCoordinatedPos(mpos_block);
 }
 
 extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkLinIntPos(IntBlockExt2* mpos_block)

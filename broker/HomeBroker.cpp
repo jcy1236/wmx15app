@@ -18,7 +18,7 @@ namespace home {
     {
     }
 
-    WMXAPIFUNC Home::StartHome(short axis)
+    WMXAPIFUNC Home::StartHome(int axis)
     {
         if (!wmxlib) return -1;
 
@@ -28,7 +28,7 @@ namespace home {
         return coreMotion->home->StartHome(axis);
     }
 
-    WMXAPIFUNC Home::StartHome(short firstAxis, short lastAxis)
+    WMXAPIFUNC Home::StartHome(int firstAxis, int lastAxis)
     {
         if (!wmxlib) return -1;
 

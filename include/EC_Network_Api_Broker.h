@@ -263,6 +263,32 @@ ECBROKER_CAPI long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHAR* filenam
  */
 ECBROKER_CAPI long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHAR* filename);
 
+//=============================================================================
+// Raw Register Read/Write APIs
+//=============================================================================
+
+/**
+ * Write data to slave register.
+ * @param dev device descriptor
+ * @param location location of the slave (negative value for position)
+ * @param address register address
+ * @param size size of data to write
+ * @param data pointer to data buffer
+ * @return Result of the API call
+ */
+ECBROKER_CAPI long __stdcall ecRawWrite(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data);
+
+/**
+ * Read data from slave register.
+ * @param dev device descriptor
+ * @param location location of the slave (negative value for position)
+ * @param address register address
+ * @param size size of data to read
+ * @param data pointer to data buffer
+ * @return Result of the API call
+ */
+ECBROKER_CAPI long __stdcall ecRawRead(ECDEV dev, int location, unsigned short address, unsigned int size, unsigned char* data);
+
 #ifdef __cplusplus
 }
 #endif
