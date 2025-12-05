@@ -155,5 +155,22 @@ namespace home {
         return 0;
     }
 
+    WMXAPIFUNC Home::StartHome(WMX_AXIS_SELECTION* axis_selection)
+    {
+        if (!wmxlib || !axis_selection) return -1;
+
+        wmx3Api::CoreMotion* coreMotion = wmxlib->GetCoreMotion();
+        if (!coreMotion) return -1;
+
+        // Convert WMX 1.5 WMX_AXIS_SELECTION to WMX3 AxisSelection
+        wmx3Api::AxisSelection wmx3AxisSel;
+        wmx3AxisSel.axisCount = axis_selection->axisCount;
+        for (int i = 0; i < axis_selection->axisCount && i < 64; i++) {
+            wmx3AxisSel.axis[i] = axis_selection->axis[i];
+        }
+
+        return coreMotion->home->StartHome(&wmx3AxisSel);
+    }
+
 } // namespace home
 } // namespace wmxAPI

@@ -38,6 +38,9 @@ namespace home {
 
         // Home data
         WMXAPIFUNC GetHomeData(WMX_HOME_DATA* pHomeData);
+
+        // AxisSelection based homing
+        WMXAPIFUNC StartHome(WMX_AXIS_SELECTION* axis_selection);
     };
 
 } // namespace home

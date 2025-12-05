@@ -67,5 +67,26 @@ namespace ExtList2 {
         return NOT_IMPLEMENTED;
     }
 
+    WMXAPIFUNC ExtList2::ListJerkPos(unsigned int channel, short axis, WMX_PROFILE_TYPE profile,
+        double target, double velocity, double acc, double dec,
+        double jerkAccRatio, double jerkDecRatio,
+        double startingVelocity, double endVelocity)
+    {
+        // WMX3 does not have List API - return not implemented
+        return NOT_IMPLEMENTED;
+    }
+
+    WMXAPIFUNC ExtList2::ListJerkPos(unsigned int channel, PosBlockListExt2* mpos_block)
+    {
+        // WMX3 does not have List API - return not implemented
+        return NOT_IMPLEMENTED;
+    }
+
+    WMXAPIFUNC ExtList2::ListJerkCoordinatedPos(unsigned int channel, CoordinatedPosBlockListExt2* mpos_block)
+    {
+        // WMX3 does not have List API - return not implemented
+        return NOT_IMPLEMENTED;
+    }
+
 } // namespace ExtList2
 } // namespace wmxAPI

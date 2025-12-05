@@ -87,6 +87,92 @@ typedef struct {
     double maxMotorSpeed;
 } WMX_AXIS_PARAM;
 
+//////////////////////////////////////////////////////////////////////////
+// Motion Block Structures for ExtMotion2 and ExtList2
+//////////////////////////////////////////////////////////////////////////
+
+#ifndef MAX_ALLAXES
+#define MAX_ALLAXES 64
+#endif
+
+#ifndef POSBLOCKEXT2_DEFINED
+#define POSBLOCKEXT2_DEFINED
+
+// PosBlockExt2 - extMotion2 any profile positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+} PosBlockExt2Ind, *PPosBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    PosBlockExt2Ind pos_block[MAX_ALLAXES];
+} PosBlockExt2, *PPosBlockExt2;
+
+// IntBlockExt2 - extMotion2 any profile simple interpolation
+typedef struct {
+    short axis;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+} IntBlockExt2Ind, *PIntBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    WMX_PROFILE_TYPE profile;
+    double compJerkAccRatio;
+    double compJerkDecRatio;
+    IntBlockExt2Ind pos_block[MAX_ALLAXES];
+} IntBlockExt2, *PIntBlockExt2;
+
+// PosBlockListExt2 - extList2 positioning
+typedef struct {
+    WMX_PROFILE_TYPE profile;
+    short axis;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+} PosBlockListExt2Ind, *PPosBlockListExt2Ind;
+typedef struct {
+    short axisCount;
+    PosBlockListExt2Ind pos_block[MAX_ALLAXES];
+} PosBlockListExt2, *PPosBlockListExt2;
+
+// CoordinatedPosBlockListExt2 - extList2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockListExt2Ind, *PCoordinatedPosBlockListExt2Ind;
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockListExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockListExt2, *PCoordinatedPosBlockListExt2;
+
+#endif // POSBLOCKEXT2_DEFINED
+
 // Forward declarations for WMX3
 namespace wmx3Api {
     class WMX3Api;

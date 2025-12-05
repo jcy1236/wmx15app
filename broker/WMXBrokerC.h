@@ -29,6 +29,92 @@ typedef struct {
 
 #endif // WMX_HOME_DATA_DEFINED
 
+//////////////////////////////////////////////////////////////////////////
+// Motion Block Structures for ExtMotion2 and ExtList2
+//////////////////////////////////////////////////////////////////////////
+
+#ifndef MAX_ALLAXES
+#define MAX_ALLAXES 64
+#endif
+
+#ifndef POSBLOCKEXT2_DEFINED
+#define POSBLOCKEXT2_DEFINED
+
+// PosBlockExt2 - extMotion2 any profile positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+} PosBlockExt2Ind, *PPosBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    PosBlockExt2Ind pos_block[MAX_ALLAXES];
+} PosBlockExt2, *PPosBlockExt2;
+
+// IntBlockExt2 - extMotion2 any profile simple interpolation
+typedef struct {
+    short axis;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+} IntBlockExt2Ind, *PIntBlockExt2Ind;
+typedef struct {
+    short axisCount;
+    WMX_PROFILE_TYPE profile;
+    double compJerkAccRatio;
+    double compJerkDecRatio;
+    IntBlockExt2Ind pos_block[MAX_ALLAXES];
+} IntBlockExt2, *PIntBlockExt2;
+
+// PosBlockListExt2 - extList2 positioning
+typedef struct {
+    WMX_PROFILE_TYPE profile;
+    short axis;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+} PosBlockListExt2Ind, *PPosBlockListExt2Ind;
+typedef struct {
+    short axisCount;
+    PosBlockListExt2Ind pos_block[MAX_ALLAXES];
+} PosBlockListExt2, *PPosBlockListExt2;
+
+// CoordinatedPosBlockListExt2 - extList2 coordinated positioning
+typedef struct {
+    short axis;
+    WMX_PROFILE_TYPE profile;
+    double target;
+    double velocity;
+    double acc;
+    double dec;
+    double jerkAccRatio;
+    double jerkDecRatio;
+    double startingVelocity;
+    double endVelocity;
+    short axis2;
+    double axis2target;
+    double axis2smoothRatio;
+} CoordinatedPosBlockListExt2Ind, *PCoordinatedPosBlockListExt2Ind;
+typedef struct {
+    short axisCount;
+    CoordinatedPosBlockListExt2Ind pos_block[MAX_ALLAXES];
+} CoordinatedPosBlockListExt2, *PCoordinatedPosBlockListExt2;
+
+#endif // POSBLOCKEXT2_DEFINED
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -234,6 +320,26 @@ WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StopTrq(short axis);
 WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StopTrqRange(short firstAxis, short lastAxis);
 WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampTimeTrq(short axis, double torque, unsigned int rampCycleTime);
 WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampRateTrq(short axis, double torque, double rampRate);
+
+//=============================================================================
+// ExtMotion2 Block APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPosBlock(PosBlockExt2* mpos_block);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkLinIntPos(IntBlockExt2* mpos_block);
+
+//=============================================================================
+// ExtList2 ListJerkPos APIs
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkPos(unsigned int channel, short axis, int profile,
+    double target, double velocity, double acc, double dec,
+    double jerkAccRatio, double jerkDecRatio, double startingVelocity, double endVelocity);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkPosBlock(unsigned int channel, PosBlockListExt2* mpos_block);
+WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkCoordinatedPosBlock(unsigned int channel, CoordinatedPosBlockListExt2* mpos_block);
+
+//=============================================================================
+// Home AxisSelection API
+//=============================================================================
+WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeAxisSelection(WMX_AXIS_SELECTION* axis_selection);
 
 #ifdef __cplusplus
 }

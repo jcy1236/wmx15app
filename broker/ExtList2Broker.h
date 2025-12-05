@@ -30,6 +30,18 @@ namespace ExtList2 {
         WMXAPIFUNC ListJerkCoordinatedPos(unsigned int channel, short axis, WMX_PROFILE_TYPE profile,
             double target, double velocity, double acc, double dec, double jerkAccRatio, double jerkDecRatio,
             double startingVelocity, double endVelocity, short axis2, double axis2target, double axis2smoothRatio);
+
+        // ListJerkPos - individual parameters
+        WMXAPIFUNC ListJerkPos(unsigned int channel, short axis, WMX_PROFILE_TYPE profile,
+            double target, double velocity, double acc, double dec,
+            double jerkAccRatio, double jerkDecRatio,
+            double startingVelocity, double endVelocity);
+
+        // ListJerkPos - block version
+        WMXAPIFUNC ListJerkPos(unsigned int channel, PosBlockListExt2* mpos_block);
+
+        // ListJerkCoordinatedPos - block version
+        WMXAPIFUNC ListJerkCoordinatedPos(unsigned int channel, CoordinatedPosBlockListExt2* mpos_block);
     };
 
 } // namespace ExtList2

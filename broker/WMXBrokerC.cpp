@@ -1062,3 +1062,66 @@ extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_TorqueControl_StartRampRateTr
     }
     return g_wmxlib->TorqueControl->StartRampRateTrq(axis, torque, rampRate);
 }
+
+//=============================================================================
+// ExtMotion2 Block APIs
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkPosBlock(PosBlockExt2* mpos_block)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtMotion2->StartJerkPos(mpos_block);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtMotion2_StartJerkLinIntPos(IntBlockExt2* mpos_block)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtMotion2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtMotion2->StartJerkLinIntPos(mpos_block);
+}
+
+//=============================================================================
+// ExtList2 ListJerkPos APIs
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkPos(unsigned int channel, short axis, int profile,
+    double target, double velocity, double acc, double dec,
+    double jerkAccRatio, double jerkDecRatio, double startingVelocity, double endVelocity)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtList2->ListJerkPos(channel, axis, static_cast<WMX_PROFILE_TYPE>(profile),
+        target, velocity, acc, dec, jerkAccRatio, jerkDecRatio, startingVelocity, endVelocity);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkPosBlock(unsigned int channel, PosBlockListExt2* mpos_block)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtList2->ListJerkPos(channel, mpos_block);
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_ExtList2_ListJerkCoordinatedPosBlock(unsigned int channel, CoordinatedPosBlockListExt2* mpos_block)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->ExtList2 == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->ExtList2->ListJerkCoordinatedPos(channel, mpos_block);
+}
+
+//=============================================================================
+// Home AxisSelection API
+//=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeAxisSelection(WMX_AXIS_SELECTION* axis_selection)
+{
+    if (g_wmxlib == nullptr || g_wmxlib->Home == nullptr) {
+        return -1;
+    }
+    return g_wmxlib->Home->StartHome(axis_selection);
+}

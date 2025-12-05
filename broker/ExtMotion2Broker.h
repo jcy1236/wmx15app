@@ -41,6 +41,12 @@ namespace ExtMotion2 {
             double jerkAccRatio, double jerkDecRatio,
             double startingVelocity, double endVelocity,
             short axis2, double axis2target, double axis2smoothRatio);
+
+        // Block-based StartJerkPos (multi-axis)
+        WMXAPIFUNC StartJerkPos(PosBlockExt2* mpos_block);
+
+        // Linear interpolation with jerk
+        WMXAPIFUNC StartJerkLinIntPos(IntBlockExt2* mpos_block);
     };
 
 } // namespace ExtMotion2
