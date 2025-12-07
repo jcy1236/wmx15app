@@ -13,132 +13,24 @@
 #include "wmxapi_def.h"
 
 //=============================================================================
-// WMX 1.5 Motion Block Structures (for API compatibility)
-// Note: These are only defined if not already defined by WMXBrokerC.h
+// WMX 1.5 Motion Block Structures
+// Note: All structures are defined in WMXBrokerC.h (included above)
+// The following structures are available:
+//   - PosBlockExt2, PosBlockExt2Ind
+//   - IntBlockExt2, IntBlockExt2Ind
+//   - PosBlockListExt2, PosBlockListExt2Ind
+//   - CoordinatedPosBlockListExt2, CoordinatedPosBlockListExt2Ind
+//   - CoordinatedPosBlockExt2, CoordinatedPosBlockExt2Ind
+//   - WMX_HOME_DATA, WMX_AXIS_HOME_DATA
 //=============================================================================
+
+// IntBlock2 is NOT in WMXBrokerC.h, define it here if needed
+#ifndef INTBLOCK2_DEFINED
+#define INTBLOCK2_DEFINED
 
 #ifndef MAX_ALLAXES
 #define MAX_ALLAXES 64
 #endif
-
-#ifndef COORDINATED_POSBLOCK_EXT2_DEFINED
-#define COORDINATED_POSBLOCK_EXT2_DEFINED
-
-// CoordinatedPosBlockExt2 - extMotion2 coordinated positioning
-typedef struct
-{
-    short axis;
-    WMX_PROFILE_TYPE profile;
-    double target;
-    double velocity;
-    double acc;
-    double dec;
-    double jerkAccRatio;
-    double jerkDecRatio;
-    double startingVelocity;
-    double endVelocity;
-    short axis2;
-    double axis2target;
-    double axis2smoothRatio;
-} CoordinatedPosBlockExt2Ind, *PCoordinatedPosBlockExt2Ind;
-
-typedef struct
-{
-    short axisCount;
-    CoordinatedPosBlockExt2Ind pos_block[MAX_ALLAXES];
-} CoordinatedPosBlockExt2, *PCoordinatedPosBlockExt2;
-
-#endif // COORDINATED_POSBLOCK_EXT2_DEFINED
-
-#ifndef POSBLOCKEXT2_DEFINED
-#define POSBLOCKEXT2_DEFINED
-
-// CoordinatedPosBlockListExt2 - extList2 coordinated positioning
-typedef struct
-{
-    short axis;
-    WMX_PROFILE_TYPE profile;
-    double target;
-    double velocity;
-    double acc;
-    double dec;
-    double jerkAccRatio;
-    double jerkDecRatio;
-    double startingVelocity;
-    double endVelocity;
-    short axis2;
-    double axis2target;
-    double axis2smoothRatio;
-} CoordinatedPosBlockListExt2Ind, *PCoordinatedPosBlockListExt2Ind;
-
-typedef struct
-{
-    short axisCount;
-    CoordinatedPosBlockListExt2Ind pos_block[MAX_ALLAXES];
-} CoordinatedPosBlockListExt2, *PCoordinatedPosBlockListExt2;
-
-// IntBlockExt2 - extMotion2 any profile simple interpolation
-typedef struct
-{
-    short axis;
-    double target;
-    double velocity;
-    double acc;
-    double dec;
-} IntBlockExt2Ind, *PIntBlockExt2Ind;
-typedef struct
-{
-    short axisCount;
-    WMX_PROFILE_TYPE profile;
-    double compJerkAccRatio;
-    double compJerkDecRatio;
-    IntBlockExt2Ind pos_block[MAX_ALLAXES];
-} IntBlockExt2, *PIntBlockExt2;
-
-// MPos block for any profile positioning
-typedef struct
-{
-    short axis;
-    WMX_PROFILE_TYPE profile;
-    double target;
-    double velocity;
-    double acc;
-    double dec;
-    double jerkAccRatio;
-    double jerkDecRatio;
-    double startingVelocity;
-    double endVelocity;
-} PosBlockExt2Ind, *PPosBlockExt2Ind;
-typedef struct
-{
-    short axisCount;
-    PosBlockExt2Ind pos_block[MAX_ALLAXES];
-} PosBlockExt2, *PPosBlockExt2;
-
-// PosBlockListExt2 - extList2 positioning
-typedef struct
-{
-    WMX_PROFILE_TYPE profile;
-    short axis;
-    double target;
-    double velocity;
-    double acc;
-    double dec;
-    double jerkAccRatio;
-    double jerkDecRatio;
-    double startingVelocity;
-    double endVelocity;
-} PosBlockListExt2Ind, *PPosBlockListExt2Ind;
-typedef struct
-{
-    short axisCount;
-    PosBlockListExt2Ind pos_block[MAX_ALLAXES];
-} PosBlockListExt2, *PPosBlockListExt2;
-
-#endif // POSBLOCKEXT2_DEFINED
-
-#ifndef INTBLOCK2_DEFINED
-#define INTBLOCK2_DEFINED
 
 // IntBlock2 - Trapezoidal profile composite vector interpolation
 typedef struct
