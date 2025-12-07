@@ -18,23 +18,38 @@
 static wmxAPI::WMXLIB* g_wmxlib = nullptr;
 
 //=============================================================================
+// Internal functions for WMXLIB instance management
+//=============================================================================
+
+// Sets g_wmxlib if not already set (first WMXLIB instance becomes global)
+void WMXBroker_SetGlobalInstance(wmxAPI::WMXLIB* instance)
+{
+    if (g_wmxlib == nullptr && instance != nullptr) {
+        g_wmxlib = instance;
+    }
+}
+
+// Clears g_wmxlib only if it matches the given instance
+void WMXBroker_ClearGlobalInstance(wmxAPI::WMXLIB* instance)
+{
+    if (g_wmxlib == instance) {
+        g_wmxlib = nullptr;
+    }
+}
+
+//=============================================================================
 // System APIs
 //=============================================================================
 
 extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_CreateDevice(TCHAR* path, int type)
 {
-    if (g_wmxlib != nullptr) {
-        // Device already created - close first
-        return -1;
+    // If g_wmxlib already exists (from new WMXLIB()), use it
+    if (g_wmxlib == nullptr) {
+        g_wmxlib = new wmxAPI::WMXLIB();
     }
 
-    g_wmxlib = new wmxAPI::WMXLIB();
     long result = g_wmxlib->CreateDevice(path, static_cast<PLTFRM_TYPE>(type));
-
-    if (result != 0) {
-        delete g_wmxlib;
-        g_wmxlib = nullptr;
-    }
+    // Note: Do not delete g_wmxlib on failure - user may have created it via new WMXLIB()
 
     return result;
 }

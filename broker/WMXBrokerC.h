@@ -372,4 +372,14 @@ WMXBROKER_CAPI long __stdcall WMXBroker_Home_StartHomeAxisSelection(WMX_AXIS_SEL
 }
 #endif
 
+//=============================================================================
+// Internal functions for WMXLIB instance management (C++ only)
+// These are NOT exported as C API - used internally by WMXBroker.cpp
+//=============================================================================
+#ifdef __cplusplus
+namespace wmxAPI { class WMXLIB; }
+void WMXBroker_SetGlobalInstance(wmxAPI::WMXLIB* instance);
+void WMXBroker_ClearGlobalInstance(wmxAPI::WMXLIB* instance);
+#endif
+
 #endif // WMXBROKER_C_H

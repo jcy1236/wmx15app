@@ -14,6 +14,7 @@
 #include "BasicVelocityBroker.h"
 #include "ExtVelocity2Broker.h"
 #include "TorqueControlBroker.h"
+#include "WMXBrokerC.h"  // For WMXBroker_SetGlobalInstance/ClearGlobalInstance
 #include <tchar.h>
 #include <cstdio>
 
@@ -41,6 +42,9 @@ namespace wmxAPI
 
         // Initialize initial output buffer
         memset(initialOut, 0, sizeof(initialOut));
+
+        // Register this instance as global (first instance becomes g_wmxlib)
+        WMXBroker_SetGlobalInstance(this);
     }
 
     WMXLIB::~WMXLIB()
@@ -54,6 +58,9 @@ namespace wmxAPI
         io = nullptr;
 
         // Motion namespaces are deleted in CloseDevice()
+
+        // Clear global instance if this was the registered one
+        WMXBroker_ClearGlobalInstance(this);
     }
 
     WMXAPIFUNC WMXLIB::CreateDevice(TCHAR *path, PLTFRM_TYPE type)
