@@ -719,6 +719,9 @@ namespace wmxAPI
 
         WMXLIB()
         {
+            // Initialize DLL internal g_wmxlib singleton
+            WMXBroker_Initialize();
+
             io = new common::Io(this);
             axisControl = new common::AxisControl();
             config = new common::Config();
@@ -756,6 +759,9 @@ namespace wmxAPI
             torqueControl = NULL;
             delete extList2;
             extList2 = NULL;
+
+            // Uninitialize DLL internal g_wmxlib singleton
+            WMXBroker_Uninitialize();
         }
 
         // System APIs

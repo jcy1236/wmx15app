@@ -16,30 +16,29 @@
 
 // Global singleton instance
 static wmxAPI::WMXLIB* g_wmxlib = nullptr;
-
-//=============================================================================
-// Internal functions for WMXLIB instance management
-//=============================================================================
-
-// Sets g_wmxlib if not already set (first WMXLIB instance becomes global)
-void WMXBroker_SetGlobalInstance(wmxAPI::WMXLIB* instance)
-{
-    if (g_wmxlib == nullptr && instance != nullptr) {
-        g_wmxlib = instance;
-    }
-}
-
-// Clears g_wmxlib only if it matches the given instance
-void WMXBroker_ClearGlobalInstance(wmxAPI::WMXLIB* instance)
-{
-    if (g_wmxlib == instance) {
-        g_wmxlib = nullptr;
-    }
-}
+static int g_refCount = 0;
 
 //=============================================================================
 // System APIs
 //=============================================================================
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Initialize(void)
+{
+    if (g_wmxlib == nullptr) {
+        g_wmxlib = new wmxAPI::WMXLIB();
+    }
+    g_refCount++;
+    return 0;
+}
+
+extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_Uninitialize(void)
+{
+    if (g_refCount > 0) {
+        g_refCount--;
+    }
+    // g_wmxlib is deleted in CloseDevice()
+    return 0;
+}
 
 extern "C" WMXBROKER_CAPI long __stdcall WMXBroker_CreateDevice(TCHAR* path, int type)
 {
