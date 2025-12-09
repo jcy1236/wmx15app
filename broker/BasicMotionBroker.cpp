@@ -6,7 +6,7 @@
 #include "CoreMotionApi.h"
 
 namespace wmxAPI {
-namespace BasicMotion {
+namespace basicMotion {
 
     BasicMotion::BasicMotion(WMXLIB* lib)
         : wmxlib(lib)

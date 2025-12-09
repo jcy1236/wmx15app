@@ -8,7 +8,7 @@
 #include "AdvancedMotionApi.h"
 
 namespace wmxAPI {
-namespace ExtMotion2 {
+namespace extMotion2 {
 
     ExtMotion2::ExtMotion2(WMXLIB* lib)
         : wmxlib(lib)

@@ -209,10 +209,10 @@ namespace wmx3Api {
 
 // Forward declarations for Motion namespaces (PascalCase to match WMX 1.5)
 namespace wmxAPI {
-namespace BasicMotion { class BasicMotion; }
-namespace ExtMotion1 { class ExtMotion1; }
-namespace ExtMotion2 { class ExtMotion2; }
-namespace ExtList2 { class ExtList2; }
+namespace basicMotion { class BasicMotion; }
+namespace extMotion1 { class ExtMotion1; }
+namespace extMotion2 { class ExtMotion2; }
+namespace extList2 { class ExtList2; }
 namespace axisControl { class AxisControl; }
 namespace home { class Home; }
 namespace config { class Config; }
@@ -301,18 +301,18 @@ namespace wmxAPI {
         common::Io* io;
 
         // Motion namespace instances (PascalCase to match WMX 1.5)
-        BasicMotion::BasicMotion* BasicMotion;
-        ExtMotion1::ExtMotion1* ExtMotion1;
-        ExtMotion2::ExtMotion2* ExtMotion2;
-        ExtList2::ExtList2* ExtList2;
+        basicMotion::BasicMotion* basicMotion;
+        extMotion1::ExtMotion1* extMotion1;
+        extMotion2::ExtMotion2* extMotion2;
+        extList2::ExtList2* extList2;
 
         // New namespace instances
-        axisControl::AxisControl* AxisControl;
-        home::Home* Home;
-        config::Config* Config;
-        basicVelocity::BasicVelocity* BasicVelocity;
-        extVelocity2::ExtVelocity2* ExtVelocity2;
-        torque::TorqueControl* TorqueControl;
+        axisControl::AxisControl* axisControl;
+        home::Home* home;
+        config::Config* config;
+        basicVelocity::BasicVelocity* basicVelocity;
+        extVelocity2::ExtVelocity2* extVelocity2;
+        torque::TorqueControl* torqueControl;
 
         // Error code
         WMX_API_ERROR_CODE lastError;

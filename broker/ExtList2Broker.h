@@ -8,7 +8,7 @@
 #include "WMXBroker.h"
 
 namespace wmxAPI {
-namespace ExtList2 {
+namespace extList2 {
 
     class WMXBROKER_API ExtList2 {
     private:

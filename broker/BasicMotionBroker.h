@@ -7,7 +7,7 @@
 #include "WMXBroker.h"
 
 namespace wmxAPI {
-namespace BasicMotion {
+namespace basicMotion {
 
     class WMXBROKER_API BasicMotion {
     private:

@@ -31,9 +31,9 @@ namespace wmxAPI
 
     WMXLIB::WMXLIB()
         : wmx3(nullptr), coreMotion(nullptr), advancedMotion(nullptr), wmx3Io(nullptr), isConnected(false)
-        , BasicMotion(nullptr), ExtMotion1(nullptr), ExtMotion2(nullptr), ExtList2(nullptr)
-        , AxisControl(nullptr), Home(nullptr), Config(nullptr)
-        , BasicVelocity(nullptr), ExtVelocity2(nullptr), TorqueControl(nullptr)
+        , basicMotion(nullptr), extMotion1(nullptr), extMotion2(nullptr), extList2(nullptr)
+        , axisControl(nullptr), home(nullptr), config(nullptr)
+        , basicVelocity(nullptr), extVelocity2(nullptr), torqueControl(nullptr)
         , lastError(WMX_API_ERROR_CODE())
     {
         // Create Io class instance
@@ -73,18 +73,18 @@ namespace wmxAPI
         wmx3Io = ctx->GetIo();
 
         // Create Motion namespace instances (owned by WMXLIB) - PascalCase
-        BasicMotion = new wmxAPI::BasicMotion::BasicMotion(this);
-        ExtMotion1 = new wmxAPI::ExtMotion1::ExtMotion1(this);
-        ExtMotion2 = new wmxAPI::ExtMotion2::ExtMotion2(this);
-        ExtList2 = new wmxAPI::ExtList2::ExtList2(this);
+        basicMotion = new wmxAPI::basicMotion::BasicMotion(this);
+        extMotion1 = new wmxAPI::extMotion1::ExtMotion1(this);
+        extMotion2 = new wmxAPI::extMotion2::ExtMotion2(this);
+        extList2 = new wmxAPI::extList2::ExtList2(this);
 
         // Create new namespace instances
-        AxisControl = new axisControl::AxisControl(this);
-        Home = new home::Home(this);
-        Config = new config::Config(this);
-        BasicVelocity = new basicVelocity::BasicVelocity(this);
-        ExtVelocity2 = new extVelocity2::ExtVelocity2(this);
-        TorqueControl = new torque::TorqueControl(this);
+        axisControl = new axisControl::AxisControl(this);
+        home = new home::Home(this);
+        config = new config::Config(this);
+        basicVelocity = new basicVelocity::BasicVelocity(this);
+        extVelocity2 = new extVelocity2::ExtVelocity2(this);
+        torqueControl = new torque::TorqueControl(this);
 
         isConnected = true;
         return 0;
@@ -93,65 +93,65 @@ namespace wmxAPI
     WMXAPIFUNC WMXLIB::CloseDevice()
     {
         // Delete new namespace instances
-        if (TorqueControl)
+        if (torqueControl)
         {
-            delete TorqueControl;
-            TorqueControl = nullptr;
+            delete torqueControl;
+            torqueControl = nullptr;
         }
 
-        if (ExtVelocity2)
+        if (extVelocity2)
         {
-            delete ExtVelocity2;
-            ExtVelocity2 = nullptr;
+            delete extVelocity2;
+            extVelocity2 = nullptr;
         }
 
-        if (BasicVelocity)
+        if (basicVelocity)
         {
-            delete BasicVelocity;
-            BasicVelocity = nullptr;
+            delete basicVelocity;
+            basicVelocity = nullptr;
         }
 
-        if (Config)
+        if (config)
         {
-            delete Config;
-            Config = nullptr;
+            delete config;
+            config = nullptr;
         }
 
-        if (Home)
+        if (home)
         {
-            delete Home;
-            Home = nullptr;
+            delete home;
+            home = nullptr;
         }
 
-        if (AxisControl)
+        if (axisControl)
         {
-            delete AxisControl;
-            AxisControl = nullptr;
+            delete axisControl;
+            axisControl = nullptr;
         }
 
         // Delete Motion namespace instances (owned by WMXLIB) - PascalCase
-        if (ExtList2)
+        if (extList2)
         {
-            delete ExtList2;
-            ExtList2 = nullptr;
+            delete extList2;
+            extList2 = nullptr;
         }
 
-        if (ExtMotion2)
+        if (extMotion2)
         {
-            delete ExtMotion2;
-            ExtMotion2 = nullptr;
+            delete extMotion2;
+            extMotion2 = nullptr;
         }
 
-        if (ExtMotion1)
+        if (extMotion1)
         {
-            delete ExtMotion1;
-            ExtMotion1 = nullptr;
+            delete extMotion1;
+            extMotion1 = nullptr;
         }
 
-        if (BasicMotion)
+        if (basicMotion)
         {
-            delete BasicMotion;
-            BasicMotion = nullptr;
+            delete basicMotion;
+            basicMotion = nullptr;
         }
 
         // Clear pointers to shared objects (do NOT delete - owned by WMX3ContextManager)

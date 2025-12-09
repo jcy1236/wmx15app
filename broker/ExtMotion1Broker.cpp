@@ -7,7 +7,7 @@
 #include "CoreMotionApi.h"
 
 namespace wmxAPI {
-namespace ExtMotion1 {
+namespace extMotion1 {
 
     ExtMotion1::ExtMotion1(WMXLIB* lib)
         : wmxlib(lib)
