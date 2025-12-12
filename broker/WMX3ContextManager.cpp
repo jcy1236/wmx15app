@@ -80,7 +80,9 @@ long WMX3ContextManager::CreateDeviceInternal()
         return ret;
     }
 
-    m_wmx3->SetDeviceName(_T("WMXBroker"));
+    // WMX3 SDK has overloads for const char* and const wchar_t*
+    // Use char* literal directly to avoid TCHAR ambiguity
+    m_wmx3->SetDeviceName("WMXBroker");
 
     // Create CoreMotion module
     m_coreMotion = new wmx3Api::CoreMotion(m_wmx3);

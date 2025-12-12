@@ -246,7 +246,13 @@ namespace wmxAPI
     {
         if (!wmx3)
             return -1;
+        // WMX3 SDK has overloads for const char* and const wchar_t*
+        // Use explicit cast to char* for MultiByte builds
+#ifdef UNICODE
         return wmx3->SetDeviceName(name);
+#else
+        return wmx3->SetDeviceName(static_cast<const char*>(name));
+#endif
     }
 
     WMXAPIFUNC WMXLIB::GetActiveDeviceList(WMX_ACT_DEV_LIST *list)
