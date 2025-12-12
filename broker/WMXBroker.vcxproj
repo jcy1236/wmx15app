@@ -65,7 +65,7 @@
       <PreprocessorDefinitions>_DEBUG;WMXBROKER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
-      <AdditionalIncludeDirectories>C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Common;C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -88,7 +88,7 @@
       <ConformanceMode>true</ConformanceMode>
       <!-- Legacy paths used when WMXVersion is not specified; overridden by props file when specified -->
       <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
-      <AdditionalIncludeDirectories Condition="'$(WMXVersion)'==''">C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(WMXVersion)'==''">$(SolutionDir)Common;C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

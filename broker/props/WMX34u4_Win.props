@@ -12,7 +12,7 @@
   <ItemDefinitionGroup>
     <ClCompile>
       <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
-      <AdditionalIncludeDirectories>$(WMX3_IncludeDir);$(WMX15_IncludeDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CommonIncludeDir);$(WMX3_IncludeDir);$(WMX15_IncludeDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WMX_VERSION_34U4_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>

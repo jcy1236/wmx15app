@@ -4,5 +4,6 @@
     <!-- Use MSBuildProjectDirectory\..\sdk for vcxproj direct builds -->
     <WMXBrokerRoot>$(MSBuildProjectDirectory)\..</WMXBrokerRoot>
     <WMX15_IncludeDir>$(WMXBrokerRoot)\sdk\WMX15\Include</WMX15_IncludeDir>
+    <CommonIncludeDir>$(WMXBrokerRoot)\Common</CommonIncludeDir>
   </PropertyGroup>
 </Project>
