@@ -1,13 +1,13 @@
-// WMXBrokerClient.h
+// WMXLIB_Sim.h
 // Header-only wrapper class for VS2012 compatibility
 // Provides wmxAPI::WMXLIB interface that internally calls C API
 //
 // Usage:
-//   Replace #include "WMXLIB.h" with #include "WMXBrokerClient.h"
+//   Replace #include "WMXLIB.h" with #include "WMXLIB_Sim.h"
 //   Link with WMXBroker.lib
 
-#ifndef WMXBROKER_CLIENT_H
-#define WMXBROKER_CLIENT_H
+#ifndef WMXLIB_SIM_H
+#define WMXLIB_SIM_H
 
 #include "WMXBrokerC.h"
 #include "wmxapi_def.h"
@@ -829,4 +829,4 @@ namespace wmxAPI
 
 } // namespace wmxAPI
 
-#endif // WMXBROKER_CLIENT_H
+#endif // WMXLIB_SIM_H

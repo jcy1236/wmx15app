@@ -4,7 +4,7 @@
 #include <windows.h>
 #include <tchar.h>
 //#include "WMXBroker.h"    // for c++
-#include "WMXBrokerClient.h"  // for vs2012 compatibility
+#include "WMXLIB_Sim.h"  // for vs2012 compatibility
 
 using namespace std;
 using namespace wmxAPI;

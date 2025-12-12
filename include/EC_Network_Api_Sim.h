@@ -1,13 +1,13 @@
-// EC_Network_Api_Broker.h
+// EC_Network_Api_Sim.h
 // Header-only wrapper for VS2012 compatibility
 // Provides EC_Network_Api interface that internally calls WMXBroker DLL
 //
 // Usage:
-//   Replace #include "EC_Network_Api.h" with #include "EC_Network_Api_Broker.h"
+//   Replace #include "EC_Network_Api.h" with #include "EC_Network_Api_Sim.h"
 //   Link with WMXBroker.lib
 
-#ifndef EC_NETWORK_API_BROKER_H
-#define EC_NETWORK_API_BROKER_H
+#ifndef EC_NETWORK_API_SIM_H
+#define EC_NETWORK_API_SIM_H
 
 #include <windows.h>
 #include <tchar.h>
@@ -293,4 +293,4 @@ ECBROKER_CAPI long __stdcall ecRawRead(ECDEV dev, int location, unsigned short a
 }
 #endif
 
-#endif // EC_NETWORK_API_BROKER_H
+#endif // EC_NETWORK_API_SIM_H
