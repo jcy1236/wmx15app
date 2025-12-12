@@ -1,12 +1,29 @@
 @echo off
-setlocal
+setlocal enabledelayedexpansion
 
-set MSBUILD="C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe"
+:: Find MSBuild using vswhere (works with VS 2017+)
+set VSWHERE="%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe"
+if not exist %VSWHERE% (
+    echo [ERROR] vswhere.exe not found. Please install Visual Studio 2017 or later.
+    exit /b 1
+)
+
+for /f "usebackq tokens=*" %%i in (`%VSWHERE% -latest -requires Microsoft.Component.MSBuild -find MSBuild\**\Bin\MSBuild.exe`) do (
+    set MSBUILD="%%i"
+)
+
+if not defined MSBUILD (
+    echo [ERROR] MSBuild not found. Please install Visual Studio with C++ build tools.
+    exit /b 1
+)
+
 set PROJECT=broker\WMXBroker.vcxproj
 
 echo ============================================
 echo WMXBroker Multi-Version Build Script
 echo ============================================
+echo.
+echo Using MSBuild: %MSBUILD%
 echo.
 
 :: Check if SDK folders have content
