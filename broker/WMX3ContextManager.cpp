@@ -6,8 +6,8 @@
 #include "CoreMotionApi.h"
 #include "AdvancedMotionApi.h"
 #include "IOApi.h"
-// Include WMX3's EcApi.h (not WMX1.5's) using full path to avoid conflict
-#include "C:/Program Files/SoftServo/WMX3/Include/EcApi.h"
+// Include WMX3's EcApi.h (WMX3 Include path has priority in AdditionalIncludeDirectories)
+#include "EcApi.h"
 
 #include <tchar.h>
 #include <cstdio>

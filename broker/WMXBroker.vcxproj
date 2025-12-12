@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- WMXVersion property for multi-version builds (default: empty for legacy build) -->
+  <PropertyGroup>
+    <WMXVersion Condition="'$(WMXVersion)'==''"></WMXVersion>
+  </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
       <Configuration>Debug</Configuration>
@@ -41,6 +45,8 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <!-- Import version-specific property sheet if WMXVersion is specified -->
+    <Import Project="props\$(WMXVersion).props" Condition="'$(WMXVersion)'!='' and Exists('props\$(WMXVersion).props')" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -48,8 +54,9 @@
     <IntDir>$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
+    <!-- OutDir/IntDir are overridden by props file when WMXVersion is specified -->
+    <OutDir Condition="'$(WMXVersion)'==''">$(SolutionDir)x64\$(Configuration)\</OutDir>
+    <IntDir Condition="'$(WMXVersion)'==''">$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -57,7 +64,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;WMXBROKER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\SoftServo\WMX1.5\Include;C:\Program Files\SoftServo\WMX3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
+      <AdditionalIncludeDirectories>C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -69,6 +77,7 @@
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
+  <!-- Release configuration: paths are overridden by property sheets when WMXVersion is specified -->
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -77,14 +86,17 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;WMXBROKER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Program Files\SoftServo\WMX1.5\Include;C:\Program Files\SoftServo\WMX3\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <!-- Legacy paths used when WMXVersion is not specified; overridden by props file when specified -->
+      <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
+      <AdditionalIncludeDirectories Condition="'$(WMXVersion)'==''">C:\Program Files\SoftServo\WMX3\Include;C:\Program Files\SoftServo\WMX1.5\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files\SoftServo\WMX3\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <!-- Legacy paths used when WMXVersion is not specified; overridden by props file when specified -->
+      <AdditionalLibraryDirectories Condition="'$(WMXVersion)'==''">C:\Program Files\SoftServo\WMX3\Lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;AdvancedMotionApi.lib;IOApi.lib;EcApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>

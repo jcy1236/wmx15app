@@ -5,8 +5,8 @@
 #include "EcDeviceManager.h"
 #include "WMX3ContextManager.h"
 #include "WMX3Api.h"
-// Include WMX3's EcApi.h (not WMX1.5's) using full path to avoid conflict
-#include "C:/Program Files/SoftServo/WMX3/Include/EcApi.h"
+// Include WMX3's EcApi.h (WMX3 Include path has priority in AdditionalIncludeDirectories)
+#include "EcApi.h"
 #include <cstring>
 
 // Helper macro to get shared Ecat instance

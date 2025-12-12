@@ -4,6 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## 빌드 명령어
 
+### 기본 빌드 (테스트 앱 포함)
 ```bash
 # Release 빌드
 "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" wmx15app.sln -p:Configuration=Release -p:Platform=x64
@@ -12,7 +13,24 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 "C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" wmx15app.sln -p:Configuration=Release -p:Platform=x64 -t:Rebuild
 ```
 
-빌드 결과물: `x64\Release\WMXBroker.dll`, `x64\Release\WMXBroker.lib`
+### 다중 버전 빌드 (WMXBroker만)
+```bash
+# 전체 버전 빌드
+build_all.bat
+
+# 특정 버전 빌드
+"C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Current\Bin\MSBuild.exe" broker\WMXBroker.vcxproj -p:Configuration=Release -p:Platform=x64 -p:WMXVersion=WMX34u4_Win
+```
+
+**지원 버전** (WMXVersion 파라미터):
+- `WMX34u4_Win` - WMX 3.4u4 Windows
+- `WMX34u4_RTX` - WMX 3.4u4 RTX
+- `WMX36u1_Win` - WMX 3.6u1 Windows
+- `WMX36u1_RTX` - WMX 3.6u1 RTX
+
+### 빌드 결과물
+- 기본: `x64\Release\WMXBroker.dll`
+- 다중 버전: `x64\Release_<버전>\WMXBroker.dll` (예: `x64\Release_WMX34u4_Win\`)
 
 ## 프로젝트 개요
 
@@ -58,11 +76,23 @@ wmxAPI::WMXLIB (WMX 1.5 호환 인터페이스)
 
 ## 라이브러리 의존성
 
-### 빌드 시 참조
+### 빌드 시 참조 (다중 버전 빌드)
+SDK 파일은 `sdk/` 폴더에 위치합니다. 자세한 내용은 `sdk/README.md` 참조.
+
+```
+sdk/
+├── WMX15/Include/           # WMX 1.5 타입 정의 (공통)
+├── WMX34u4_Win/Include,Lib/ # WMX 3.4u4 Windows
+├── WMX34u4_RTX/Include,Lib/ # WMX 3.4u4 RTX
+├── WMX36u1_Win/Include,Lib/ # WMX 3.6u1 Windows
+└── WMX36u1_RTX/Include,Lib/ # WMX 3.6u1 RTX
+```
+
+### 빌드 시 참조 (레거시/기본 빌드)
 - WMX 1.5 Header: `C:\Program Files\SoftServo\WMX1.5\Include` (타입 정의만 사용)
 - WMX3 Header: `C:\Program Files\SoftServo\WMX3\Include`
 - WMX3 Library: `C:\Program Files\SoftServo\WMX3\Lib`
 
 ### 링커 설정
-- 필수 라이브러리: WMX3Api.lib, CoreMotionApi.lib, IOApi.lib, IMDll.lib
+- 필수 라이브러리: WMX3Api.lib, CoreMotionApi.lib, AdvancedMotionApi.lib, IOApi.lib, EcApi.lib, IMDll.lib
 - DelayLoad: IMDll.dll

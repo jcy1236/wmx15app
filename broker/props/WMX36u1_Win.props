@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="WMX_Common.props" />
+  <PropertyGroup Label="UserMacros">
+    <WMX3_IncludeDir>$(WMXBrokerRoot)\sdk\WMX36u1_Win\Include</WMX3_IncludeDir>
+    <WMX3_LibDir>$(WMXBrokerRoot)\sdk\WMX36u1_Win\Lib</WMX3_LibDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OutDir>$(WMXBrokerRoot)\x64\Release_WMX36u1_Win\</OutDir>
+    <IntDir>$(Configuration)_WMX36u1_Win\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
+      <AdditionalIncludeDirectories>$(WMX3_IncludeDir);$(WMX15_IncludeDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WMX_VERSION_36U1_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(WMX3_LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
