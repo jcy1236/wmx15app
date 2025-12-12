@@ -19,15 +19,11 @@ WMX3Api::SetDeviceName(wchar_t *)
 - 컴파일러가 어떤 오버로드를 선택할지 모호성 발생
 
 ## 해결책
-WMX3 API 호출 시 명시적으로 `char*` 타입 사용
+`#ifdef UNICODE` 분기를 사용하여 Unicode/MultiByte 모두 지원
 
 ### 수정 파일
 1. **broker/WMXBroker.cpp** - `WMXLIB::SetDeviceName()`
    ```cpp
-   // 기존
-   return wmx3->SetDeviceName(name);
-
-   // 수정
    #ifdef UNICODE
        return wmx3->SetDeviceName(name);
    #else
@@ -37,13 +33,15 @@ WMX3 API 호출 시 명시적으로 `char*` 타입 사용
 
 2. **broker/WMX3ContextManager.cpp** - `CreateDeviceInternal()`
    ```cpp
-   // 기존
-   m_wmx3->SetDeviceName(_T("WMXBroker"));
-
-   // 수정
-   m_wmx3->SetDeviceName("WMXBroker");
+   #ifdef UNICODE
+       m_wmx3->SetDeviceName(L"WMXBroker");
+   #else
+       m_wmx3->SetDeviceName("WMXBroker");
+   #endif
    ```
 
 ## 결론
-- TCHAR 대신 명시적 타입 사용으로 오버로드 모호성 해결
-- MultiByte/Unicode 빌드 모두 지원
+- `#ifdef UNICODE` 분기로 오버로드 모호성 해결
+- Unicode 프로젝트: `wchar_t*` 오버로드 호출
+- MultiByte 프로젝트: `char*` 오버로드 호출
+- 두 환경 모두 컴파일 및 동작 정상

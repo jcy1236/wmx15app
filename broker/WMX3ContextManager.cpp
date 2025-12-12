@@ -81,8 +81,12 @@ long WMX3ContextManager::CreateDeviceInternal()
     }
 
     // WMX3 SDK has overloads for const char* and const wchar_t*
-    // Use char* literal directly to avoid TCHAR ambiguity
+    // Use explicit type to avoid TCHAR ambiguity
+#ifdef UNICODE
+    m_wmx3->SetDeviceName(L"WMXBroker");
+#else
     m_wmx3->SetDeviceName("WMXBroker");
+#endif
 
     // Create CoreMotion module
     m_coreMotion = new wmx3Api::CoreMotion(m_wmx3);
