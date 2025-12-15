@@ -557,8 +557,15 @@ extern "C" ECBROKER_API long __stdcall ecDownloadSDO(ECDEV dev, int configuredId
     unsigned int errCode = 0;
     wmx3Api::ecApi::EcSdoType::T wmx3SdoType = ConvertSdoType(sdoType);
 
+    // WMX3.4: SdoDownload has 8 parameters (no 'complete' parameter)
+    // WMX3.6: SdoDownload has 9 parameters (with 'complete' parameter)
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
     long ret = ecat->SdoDownload(configuredId, index, subIndex,
         wmx3SdoType, length, data, &errCode, 0);
+#else
+    long ret = ecat->SdoDownload(configuredId, index, subIndex,
+        wmx3SdoType, length, data, &errCode, 0, FALSE);
+#endif
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
@@ -589,8 +596,15 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
     unsigned int errCode = 0;
     wmx3Api::ecApi::EcSdoType::T wmx3SdoType = ConvertSdoType(sdoType);
 
+    // WMX3.4: SdoUpload has 8 parameters (no 'complete' parameter)
+    // WMX3.6: SdoUpload has 9 parameters (with 'complete' parameter)
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
     long ret = ecat->SdoUpload(configuredId, index, subIndex,
         wmx3SdoType, length, data, &actualSize, &errCode, 0);
+#else
+    long ret = ecat->SdoUpload(configuredId, index, subIndex,
+        wmx3SdoType, length, data, &actualSize, &errCode, 0, FALSE);
+#endif
     if (ret != 0) {
         ctx->lastError = ret;
         return EC_FAIL;
