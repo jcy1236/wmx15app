@@ -148,3 +148,64 @@ C++ 기본값이 헤더에 있어도, **라이브러리(.lib)에 export된 함�
 
 ### 빌드 결과
 4개 버전 모두 빌드 성공
+
+---
+
+## 추가 수정: Visual Studio Batch Build 구성 추가
+
+### 문제점
+Visual Studio Batch Build에서 WMX3.4 빌드가 실패했습니다.
+
+### 원인
+- 기존 빌드 시스템은 MSBuild 명령줄에서 `/p:WMXVersion=WMX34u4_Win`을 전달하는 방식
+- Visual Studio Batch Build는 이 property를 전달할 수 없음
+- 솔루션에 `Release_WMX34u4_Win|x64` 같은 별도 구성이 없었음
+
+### 해결책
+솔루션(.sln)과 프로젝트(.vcxproj)에 4개의 새 구성 추가:
+- `Release_WMX34u4_Win|x64`
+- `Release_WMX34u4_RTX|x64`
+- `Release_WMX36u1_Win|x64`
+- `Release_WMX36u1_RTX|x64`
+
+### 수정된 파일
+
+#### 1. wmx15app.sln
+```
+GlobalSection(SolutionConfigurationPlatforms) = preSolution
+    ...
+    Release_WMX34u4_RTX|x64 = Release_WMX34u4_RTX|x64
+    Release_WMX34u4_Win|x64 = Release_WMX34u4_Win|x64
+    Release_WMX36u1_RTX|x64 = Release_WMX36u1_RTX|x64
+    Release_WMX36u1_Win|x64 = Release_WMX36u1_Win|x64
+EndGlobalSection
+```
+
+#### 2. broker/WMXBroker.vcxproj
+- ProjectConfiguration 항목 4개 추가
+- Configuration PropertyGroup 4개 추가 (Unicode CharacterSet)
+- PropertySheets ImportGroup 4개 추가 (각 .props 파일 import)
+- ItemDefinitionGroup 4개 추가 (Release 설정 기반)
+
+### 빌드 방법
+
+#### 명령줄 빌드 (기존 방식 계속 지원)
+```batch
+MSBuild broker\WMXBroker.vcxproj /p:Configuration=Release /p:Platform=x64 /p:WMXVersion=WMX34u4_Win
+```
+
+#### Visual Studio Batch Build (새로 추가)
+1. Build → Batch Build 메뉴
+2. 원하는 구성 선택:
+   - `Release_WMX34u4_Win|x64`
+   - `Release_WMX34u4_RTX|x64`
+   - `Release_WMX36u1_Win|x64`
+   - `Release_WMX36u1_RTX|x64`
+3. Build 또는 Rebuild 클릭
+
+### 빌드 결과
+4개 버전 모두 빌드 성공:
+- `x64/Release_WMX34u4_Win/WMXBroker.dll` (139,264 bytes)
+- `x64/Release_WMX34u4_RTX/WMXBroker.dll` (139,264 bytes)
+- `x64/Release_WMX36u1_Win/WMXBroker.dll` (144,896 bytes)
+- `x64/Release_WMX36u1_RTX/WMXBroker.dll` (144,896 bytes)
