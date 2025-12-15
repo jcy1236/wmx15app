@@ -277,41 +277,6 @@ def uintp_frompointer(t):
     return _WMX3ApiPython.uintp_frompointer(t)
 uintp_frompointer = _WMX3ApiPython.uintp_frompointer
 
-class ushortp(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ushortp, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ushortp, name)
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ushortp()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ushortp
-    __del__ = lambda self: None
-
-    def assign(self, value):
-        return _WMX3ApiPython.ushortp_assign(self, value)
-
-    def value(self):
-        return _WMX3ApiPython.ushortp_value(self)
-
-    def cast(self):
-        return _WMX3ApiPython.ushortp_cast(self)
-    if _newclass:
-        frompointer = staticmethod(_WMX3ApiPython.ushortp_frompointer)
-    else:
-        frompointer = _WMX3ApiPython.ushortp_frompointer
-ushortp_swigregister = _WMX3ApiPython.ushortp_swigregister
-ushortp_swigregister(ushortp)
-
-def ushortp_frompointer(t):
-    return _WMX3ApiPython.ushortp_frompointer(t)
-ushortp_frompointer = _WMX3ApiPython.ushortp_frompointer
-
 class doublep(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, doublep, name, value)
@@ -438,19 +403,13 @@ class constants(_object):
     maxDevices = _WMX3ApiPython.constants_maxDevices
     maxInterrupts = _WMX3ApiPython.constants_maxInterrupts
     maxEventInterpolationAxes = _WMX3ApiPython.constants_maxEventInterpolationAxes
-    maxLogOutputDataSize = _WMX3ApiPython.constants_maxLogOutputDataSize
     maxFlightRecorderBufferSize = _WMX3ApiPython.constants_maxFlightRecorderBufferSize
-    maxInPosChannel = _WMX3ApiPython.constants_maxInPosChannel
     maxSyncGroup = _WMX3ApiPython.constants_maxSyncGroup
     maxTriggerEvents = _WMX3ApiPython.constants_maxTriggerEvents
     maxProfileUnsignedInput = _WMX3ApiPython.constants_maxProfileUnsignedInput
-    maxPvtAppendPoints = _WMX3ApiPython.constants_maxPvtAppendPoints
-    maxPvtInterpolateAppendPoints = _WMX3ApiPython.constants_maxPvtInterpolateAppendPoints
-    maxPvtInterpolateAxes = _WMX3ApiPython.constants_maxPvtInterpolateAxes
+    maxIinPosChannel = _WMX3ApiPython.constants_maxIinPosChannel
     maxIoLogAddressSize = _WMX3ApiPython.constants_maxIoLogAddressSize
     maxIoLogFormatSize = _WMX3ApiPython.constants_maxIoLogFormatSize
-    maxLogOutputIoInputByteSize = _WMX3ApiPython.constants_maxLogOutputIoInputByteSize
-    maxLogOutputIoOutputByteSize = _WMX3ApiPython.constants_maxLogOutputIoOutputByteSize
     maxLogBufferSize = _WMX3ApiPython.constants_maxLogBufferSize
     maxLogBufferSampleSize = _WMX3ApiPython.constants_maxLogBufferSampleSize
     maxLogChannel = _WMX3ApiPython.constants_maxLogChannel
@@ -473,10 +432,8 @@ class constants(_object):
     maxApiBufferErrorLog = _WMX3ApiPython.constants_maxApiBufferErrorLog
     maxDefaultApiBufferSize = _WMX3ApiPython.constants_maxDefaultApiBufferSize
     maxPitchErrorCompPoints = _WMX3ApiPython.constants_maxPitchErrorCompPoints
-    maxPitchErrorCompFreePositionRangeMultiplier = _WMX3ApiPython.constants_maxPitchErrorCompFreePositionRangeMultiplier
     max2dPitchErrorCompPoints = _WMX3ApiPython.constants_max2dPitchErrorCompPoints
     max2dPitchErrorCompChannel = _WMX3ApiPython.constants_max2dPitchErrorCompChannel
-    max2dPitchErrorCompFreePositionRangeMultiplier = _WMX3ApiPython.constants_max2dPitchErrorCompFreePositionRangeMultiplier
     maxSizeSet2dPitchErrorCompValue = _WMX3ApiPython.constants_maxSizeSet2dPitchErrorCompValue
     maxEvents = _WMX3ApiPython.constants_maxEvents
     maxBitArray = _WMX3ApiPython.constants_maxBitArray
@@ -493,6 +450,9 @@ class constants(_object):
     maxEventConfigureOfModuleDataSize = _WMX3ApiPython.constants_maxEventConfigureOfModuleDataSize
     maxSplineDimensions = _WMX3ApiPython.constants_maxSplineDimensions
     maxSplineChannel = _WMX3ApiPython.constants_maxSplineChannel
+    maxPvtAppendPoints = _WMX3ApiPython.constants_maxPvtAppendPoints
+    maxPvtInterpolateAppendPoints = _WMX3ApiPython.constants_maxPvtInterpolateAppendPoints
+    maxPvtInterpolateAxes = _WMX3ApiPython.constants_maxPvtInterpolateAxes
     maxPathInterpolateAppendPoints = _WMX3ApiPython.constants_maxPathInterpolateAppendPoints
     maxPathInterpolateOutputs = _WMX3ApiPython.constants_maxPathInterpolateOutputs
     maxPathInterpolateDimensions = _WMX3ApiPython.constants_maxPathInterpolateDimensions
@@ -503,32 +463,12 @@ class constants(_object):
     maxPathIntplLookaheadAppendPoints = _WMX3ApiPython.constants_maxPathIntplLookaheadAppendPoints
     maxPathIntplLookaheadChannel = _WMX3ApiPython.constants_maxPathIntplLookaheadChannel
     maxPathIntplLookaheadOutputPerSegment = _WMX3ApiPython.constants_maxPathIntplLookaheadOutputPerSegment
-    maxPathIntplLookaheadSmoothingCycles = _WMX3ApiPython.constants_maxPathIntplLookaheadSmoothingCycles
-    maxPathIntplLookaheadAuxiliaryAxes = _WMX3ApiPython.constants_maxPathIntplLookaheadAuxiliaryAxes
     maxEcamPoints = _WMX3ApiPython.constants_maxEcamPoints
     maxEcamChannel = _WMX3ApiPython.constants_maxEcamChannel
     maxUserMemoryBytes = _WMX3ApiPython.constants_maxUserMemoryBytes
     maxUserMemoryReadWriteBytes = _WMX3ApiPython.constants_maxUserMemoryReadWriteBytes
     maxUserMemoryLogAddressSize = _WMX3ApiPython.constants_maxUserMemoryLogAddressSize
     maxUserMemoryLogFormatSize = _WMX3ApiPython.constants_maxUserMemoryLogFormatSize
-    maxLogOutputMDataByteSize = _WMX3ApiPython.constants_maxLogOutputMDataByteSize
-    maxMasters = _WMX3ApiPython.constants_maxMasters
-    maxSlaves = _WMX3ApiPython.constants_maxSlaves
-    maxSlaveAxes = _WMX3ApiPython.constants_maxSlaveAxes
-    maxEniFilePathLen = _WMX3ApiPython.constants_maxEniFilePathLen
-    maxFoEFilePathLen = _WMX3ApiPython.constants_maxFoEFilePathLen
-    maxFoEFileNameLen = _WMX3ApiPython.constants_maxFoEFileNameLen
-    maxSdoInfoNameLen = _WMX3ApiPython.constants_maxSdoInfoNameLen
-    maxSdoInfoODListSize = _WMX3ApiPython.constants_maxSdoInfoODListSize
-    maxSdoInfoEDListSize = _WMX3ApiPython.constants_maxSdoInfoEDListSize
-    maxLogPdoSize = _WMX3ApiPython.constants_maxLogPdoSize
-    maxLogPdoDataSize = _WMX3ApiPython.constants_maxLogPdoDataSize
-    maxMappedRxPdo = _WMX3ApiPython.constants_maxMappedRxPdo
-    maxMappedTxPdo = _WMX3ApiPython.constants_maxMappedTxPdo
-    maxCCLinkMasters = _WMX3ApiPython.constants_maxCCLinkMasters
-    maxCCLinkSlaves = _WMX3ApiPython.constants_maxCCLinkSlaves
-    maxCCLinkSlaveAxes = _WMX3ApiPython.constants_maxCCLinkSlaveAxes
-    maxCCLinkTslt = _WMX3ApiPython.constants_maxCCLinkTslt
 
     def __init__(self):
         this = _WMX3ApiPython.new_constants()
@@ -788,7 +728,6 @@ class ModuleId(_object):
     RtexPlatform = _WMX3ApiPython.ModuleId_RtexPlatform
     MIIIPlatform = _WMX3ApiPython.ModuleId_MIIIPlatform
     CCLinkPlatform = _WMX3ApiPython.ModuleId_CCLinkPlatform
-    M4Platform = _WMX3ApiPython.ModuleId_M4Platform
     CoreMotion = _WMX3ApiPython.ModuleId_CoreMotion
     Log = _WMX3ApiPython.ModuleId_Log
     APIBuffer = _WMX3ApiPython.ModuleId_APIBuffer
@@ -1341,12 +1280,6 @@ class AIOFormat(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, AIOFormat, name)
     __repr__ = _swig_repr
-
-    def SetData(self, aioFormat):
-        return _WMX3ApiPython.AIOFormat_SetData(self, aioFormat)
-
-    def GetData(self, aioFormat):
-        return _WMX3ApiPython.AIOFormat_GetData(self, aioFormat)
     __swig_setmethods__["byte"] = _WMX3ApiPython.AIOFormat_byte_set
     __swig_getmethods__["byte"] = _WMX3ApiPython.AIOFormat_byte_get
     if _newclass:
@@ -1377,9 +1310,6 @@ class IOAddress(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, IOAddress, name)
     __repr__ = _swig_repr
-
-    def SetData(self, ioAddress):
-        return _WMX3ApiPython.IOAddress_SetData(self, ioAddress)
 
     def GetData(self, ioAddress):
         return _WMX3ApiPython.IOAddress_GetData(self, ioAddress)
@@ -1433,9 +1363,6 @@ class MAddress(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, MAddress, name)
     __repr__ = _swig_repr
-
-    def SetData(self, mAddress):
-        return _WMX3ApiPython.MAddress_SetData(self, mAddress)
 
     def GetData(self, mAddress):
         return _WMX3ApiPython.MAddress_GetData(self, mAddress)
@@ -2010,57 +1937,13 @@ class LogInput(_object):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.LogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.LogInput_GetLogInput(self)
     __swig_destroy__ = _WMX3ApiPython.delete_LogInput
     __del__ = lambda self: None
 LogInput_swigregister = _WMX3ApiPython.LogInput_swigregister
 LogInput_swigregister(LogInput)
 
-class LogOutput(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, LogOutput, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, LogOutput, name)
-
-    def __init__(self, *args, **kwargs):
-        raise AttributeError("No constructor defined - class is abstract")
-    __repr__ = _swig_repr
-    __swig_setmethods__["count"] = _WMX3ApiPython.LogOutput_count_set
-    __swig_getmethods__["count"] = _WMX3ApiPython.LogOutput_count_get
-    if _newclass:
-        count = _swig_property(_WMX3ApiPython.LogOutput_count_get, _WMX3ApiPython.LogOutput_count_set)
-    __swig_setmethods__["overflowFlag"] = _WMX3ApiPython.LogOutput_overflowFlag_set
-    __swig_getmethods__["overflowFlag"] = _WMX3ApiPython.LogOutput_overflowFlag_get
-    if _newclass:
-        overflowFlag = _swig_property(_WMX3ApiPython.LogOutput_overflowFlag_get, _WMX3ApiPython.LogOutput_overflowFlag_set)
-    __swig_setmethods__["cycleCounter"] = _WMX3ApiPython.LogOutput_cycleCounter_set
-    __swig_getmethods__["cycleCounter"] = _WMX3ApiPython.LogOutput_cycleCounter_get
-    if _newclass:
-        cycleCounter = _swig_property(_WMX3ApiPython.LogOutput_cycleCounter_get, _WMX3ApiPython.LogOutput_cycleCounter_set)
-
-    def SetCycleCounter(self, index, value):
-        return _WMX3ApiPython.LogOutput_SetCycleCounter(self, index, value)
-
-    def GetCycleCounter(self, index):
-        return _WMX3ApiPython.LogOutput_GetCycleCounter(self, index)
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.LogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.LogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.LogOutput_SetLogOutput(self, src)
-    __swig_destroy__ = _WMX3ApiPython.delete_LogOutput
-    __del__ = lambda self: None
-LogOutput_swigregister = _WMX3ApiPython.LogOutput_swigregister
-LogOutput_swigregister(LogOutput)
-
 class WMX3Api(_object):
-    """WMX3Engine.rtdll Ver.3.5.0.0 is required to use."""
+    """WMX3Engine.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, WMX3Api, name, value)
@@ -2069,7 +1952,7 @@ class WMX3Api(_object):
     __repr__ = _swig_repr
 
     def __init__(self):
-        """WMX3Engine.rtdll Ver.3.5.0.0 is required to use."""
+        """WMX3Engine.rtdll Ver.3.4.3.0 is required to use."""
         this = _WMX3ApiPython.new_WMX3Api()
         try:
             self.this.append(this)
@@ -2292,12 +2175,12 @@ def WMX3Api_GetIMDllVersion():
     return _WMX3ApiPython.WMX3Api_GetIMDllVersion()
 WMX3Api_GetIMDllVersion = _WMX3ApiPython.WMX3Api_GetIMDllVersion
 
-def WMX3Api_PrintToFile(*args):
-    return _WMX3ApiPython.WMX3Api_PrintToFile(*args)
+def WMX3Api_PrintToFile(filePath, format):
+    return _WMX3ApiPython.WMX3Api_PrintToFile(filePath, format)
 WMX3Api_PrintToFile = _WMX3ApiPython.WMX3Api_PrintToFile
 
-def WMX3Api_PrintToFileIfExist(*args):
-    return _WMX3ApiPython.WMX3Api_PrintToFileIfExist(*args)
+def WMX3Api_PrintToFileIfExist(filePath, format):
+    return _WMX3ApiPython.WMX3Api_PrintToFileIfExist(filePath, format)
 WMX3Api_PrintToFileIfExist = _WMX3ApiPython.WMX3Api_PrintToFileIfExist
 
 def WMX3Api_GetStdOutStr():
@@ -2454,8 +2337,6 @@ class CoreMotionErrorCode(ErrorCode):
     TouchProbeDetectionUnsupported = _WMX3ApiPython.CoreMotionErrorCode_TouchProbeDetectionUnsupported
     HomeSwitchDetectionUnsupported = _WMX3ApiPython.CoreMotionErrorCode_HomeSwitchDetectionUnsupported
     LimitSwitchDetectionUnsupported = _WMX3ApiPython.CoreMotionErrorCode_LimitSwitchDetectionUnsupported
-    PointTimeOutOfRange = _WMX3ApiPython.CoreMotionErrorCode_PointTimeOutOfRange
-    PointTimeNotIncreasing = _WMX3ApiPython.CoreMotionErrorCode_PointTimeNotIncreasing
 
     def __init__(self):
         this = _WMX3ApiPython.new_CoreMotionErrorCode()
@@ -2474,19 +2355,6 @@ class CoreMotionAxisLogInput(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionAxisLogInput, name)
     __repr__ = _swig_repr
-
-    def SetData(self, pCoreMotionAxisLogInput):
-        return _WMX3ApiPython.CoreMotionAxisLogInput_SetData(self, pCoreMotionAxisLogInput)
-
-    def GetData(self, pCoreMotionAxisLogInput):
-        return _WMX3ApiPython.CoreMotionAxisLogInput_GetData(self, pCoreMotionAxisLogInput)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CoreMotionAxisLogInput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
     __swig_setmethods__["servoOn"] = _WMX3ApiPython.CoreMotionAxisLogInput_servoOn_set
     __swig_getmethods__["servoOn"] = _WMX3ApiPython.CoreMotionAxisLogInput_servoOn_get
     if _newclass:
@@ -2495,18 +2363,6 @@ class CoreMotionAxisLogInput(_object):
     __swig_getmethods__["servoOffline"] = _WMX3ApiPython.CoreMotionAxisLogInput_servoOffline_get
     if _newclass:
         servoOffline = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_servoOffline_get, _WMX3ApiPython.CoreMotionAxisLogInput_servoOffline_set)
-    __swig_setmethods__["ampAlarm"] = _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarm_set
-    __swig_getmethods__["ampAlarm"] = _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarm_get
-    if _newclass:
-        ampAlarm = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_ampAlarm_get, _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarm_set)
-    __swig_setmethods__["ampAlarmCode"] = _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarmCode_set
-    __swig_getmethods__["ampAlarmCode"] = _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarmCode_get
-    if _newclass:
-        ampAlarmCode = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_ampAlarmCode_get, _WMX3ApiPython.CoreMotionAxisLogInput_ampAlarmCode_set)
-    __swig_setmethods__["followingErrorAlarm"] = _WMX3ApiPython.CoreMotionAxisLogInput_followingErrorAlarm_set
-    __swig_getmethods__["followingErrorAlarm"] = _WMX3ApiPython.CoreMotionAxisLogInput_followingErrorAlarm_get
-    if _newclass:
-        followingErrorAlarm = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_followingErrorAlarm_get, _WMX3ApiPython.CoreMotionAxisLogInput_followingErrorAlarm_set)
     __swig_setmethods__["commandPos"] = _WMX3ApiPython.CoreMotionAxisLogInput_commandPos_set
     __swig_getmethods__["commandPos"] = _WMX3ApiPython.CoreMotionAxisLogInput_commandPos_get
     if _newclass:
@@ -2575,10 +2431,6 @@ class CoreMotionAxisLogInput(_object):
     __swig_getmethods__["homeSwitch"] = _WMX3ApiPython.CoreMotionAxisLogInput_homeSwitch_get
     if _newclass:
         homeSwitch = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_homeSwitch_get, _WMX3ApiPython.CoreMotionAxisLogInput_homeSwitch_set)
-    __swig_setmethods__["homeDone"] = _WMX3ApiPython.CoreMotionAxisLogInput_homeDone_set
-    __swig_getmethods__["homeDone"] = _WMX3ApiPython.CoreMotionAxisLogInput_homeDone_get
-    if _newclass:
-        homeDone = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_homeDone_get, _WMX3ApiPython.CoreMotionAxisLogInput_homeDone_set)
     __swig_setmethods__["homeState"] = _WMX3ApiPython.CoreMotionAxisLogInput_homeState_set
     __swig_getmethods__["homeState"] = _WMX3ApiPython.CoreMotionAxisLogInput_homeState_get
     if _newclass:
@@ -2623,30 +2475,6 @@ class CoreMotionAxisLogInput(_object):
     __swig_getmethods__["negativeLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_negativeLS_get
     if _newclass:
         negativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_negativeLS_get, _WMX3ApiPython.CoreMotionAxisLogInput_negativeLS_set)
-    __swig_setmethods__["nearPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_nearPositiveLS_set
-    __swig_getmethods__["nearPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_nearPositiveLS_get
-    if _newclass:
-        nearPositiveLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_nearPositiveLS_get, _WMX3ApiPython.CoreMotionAxisLogInput_nearPositiveLS_set)
-    __swig_setmethods__["nearNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_nearNegativeLS_set
-    __swig_getmethods__["nearNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_nearNegativeLS_get
-    if _newclass:
-        nearNegativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_nearNegativeLS_get, _WMX3ApiPython.CoreMotionAxisLogInput_nearNegativeLS_set)
-    __swig_setmethods__["externalPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_externalPositiveLS_set
-    __swig_getmethods__["externalPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_externalPositiveLS_get
-    if _newclass:
-        externalPositiveLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_externalPositiveLS_get, _WMX3ApiPython.CoreMotionAxisLogInput_externalPositiveLS_set)
-    __swig_setmethods__["externalNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_externalNegativeLS_set
-    __swig_getmethods__["externalNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogInput_externalNegativeLS_get
-    if _newclass:
-        externalNegativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_externalNegativeLS_get, _WMX3ApiPython.CoreMotionAxisLogInput_externalNegativeLS_set)
-    __swig_setmethods__["positiveSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogInput_positiveSoftLimit_set
-    __swig_getmethods__["positiveSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogInput_positiveSoftLimit_get
-    if _newclass:
-        positiveSoftLimit = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_positiveSoftLimit_get, _WMX3ApiPython.CoreMotionAxisLogInput_positiveSoftLimit_set)
-    __swig_setmethods__["negativeSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogInput_negativeSoftLimit_set
-    __swig_getmethods__["negativeSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogInput_negativeSoftLimit_get
-    if _newclass:
-        negativeSoftLimit = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_negativeSoftLimit_get, _WMX3ApiPython.CoreMotionAxisLogInput_negativeSoftLimit_set)
     __swig_setmethods__["opState"] = _WMX3ApiPython.CoreMotionAxisLogInput_opState_set
     __swig_getmethods__["opState"] = _WMX3ApiPython.CoreMotionAxisLogInput_opState_get
     if _newclass:
@@ -2663,14 +2491,13 @@ class CoreMotionAxisLogInput(_object):
     __swig_getmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogInput_userOffsetFeedbackPos_get
     if _newclass:
         userOffsetFeedbackPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_userOffsetFeedbackPos_get, _WMX3ApiPython.CoreMotionAxisLogInput_userOffsetFeedbackPos_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_axisCommandMode_get, _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandMode_set)
-    __swig_setmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandModeFeedback_set
-    __swig_getmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandModeFeedback_get
-    if _newclass:
-        axisCommandModeFeedback = _swig_property(_WMX3ApiPython.CoreMotionAxisLogInput_axisCommandModeFeedback_get, _WMX3ApiPython.CoreMotionAxisLogInput_axisCommandModeFeedback_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_CoreMotionAxisLogInput()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
     __swig_destroy__ = _WMX3ApiPython.delete_CoreMotionAxisLogInput
     __del__ = lambda self: None
 CoreMotionAxisLogInput_swigregister = _WMX3ApiPython.CoreMotionAxisLogInput_swigregister
@@ -2687,12 +2514,6 @@ class CoreMotionLogInput(LogInput):
     __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionLogInput, name)
     __repr__ = _swig_repr
 
-    def SetData(self, pCoreMotionLogInput):
-        return _WMX3ApiPython.CoreMotionLogInput_SetData(self, pCoreMotionLogInput)
-
-    def GetData(self, pCoreMotionLogInput):
-        return _WMX3ApiPython.CoreMotionLogInput_GetData(self, pCoreMotionLogInput)
-
     def __init__(self):
         this = _WMX3ApiPython.new_CoreMotionLogInput()
         try:
@@ -2708,9 +2529,6 @@ class CoreMotionLogInput(LogInput):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.CoreMotionLogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.CoreMotionLogInput_GetLogInput(self)
     __swig_setmethods__["axisSelection"] = _WMX3ApiPython.CoreMotionLogInput_axisSelection_set
     __swig_getmethods__["axisSelection"] = _WMX3ApiPython.CoreMotionLogInput_axisSelection_get
     if _newclass:
@@ -2723,255 +2541,6 @@ class CoreMotionLogInput(LogInput):
     __del__ = lambda self: None
 CoreMotionLogInput_swigregister = _WMX3ApiPython.CoreMotionLogInput_swigregister
 CoreMotionLogInput_swigregister(CoreMotionLogInput)
-
-class CoreMotionAxisLogOutput(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionAxisLogOutput, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionAxisLogOutput, name)
-    __repr__ = _swig_repr
-
-    def SetData(self, pCoreMotionAxisLogOutput):
-        return _WMX3ApiPython.CoreMotionAxisLogOutput_SetData(self, pCoreMotionAxisLogOutput)
-
-    def GetData(self, pCoreMotionAxisLogOutput):
-        return _WMX3ApiPython.CoreMotionAxisLogOutput_GetData(self, pCoreMotionAxisLogOutput)
-    __swig_setmethods__["servoOn"] = _WMX3ApiPython.CoreMotionAxisLogOutput_servoOn_set
-    __swig_getmethods__["servoOn"] = _WMX3ApiPython.CoreMotionAxisLogOutput_servoOn_get
-    if _newclass:
-        servoOn = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_servoOn_get, _WMX3ApiPython.CoreMotionAxisLogOutput_servoOn_set)
-    __swig_setmethods__["servoOffline"] = _WMX3ApiPython.CoreMotionAxisLogOutput_servoOffline_set
-    __swig_getmethods__["servoOffline"] = _WMX3ApiPython.CoreMotionAxisLogOutput_servoOffline_get
-    if _newclass:
-        servoOffline = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_servoOffline_get, _WMX3ApiPython.CoreMotionAxisLogOutput_servoOffline_set)
-    __swig_setmethods__["ampAlarm"] = _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarm_set
-    __swig_getmethods__["ampAlarm"] = _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarm_get
-    if _newclass:
-        ampAlarm = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarm_get, _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarm_set)
-    __swig_setmethods__["ampAlarmCode"] = _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarmCode_set
-    __swig_getmethods__["ampAlarmCode"] = _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarmCode_get
-    if _newclass:
-        ampAlarmCode = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarmCode_get, _WMX3ApiPython.CoreMotionAxisLogOutput_ampAlarmCode_set)
-    __swig_setmethods__["followingErrorAlarm"] = _WMX3ApiPython.CoreMotionAxisLogOutput_followingErrorAlarm_set
-    __swig_getmethods__["followingErrorAlarm"] = _WMX3ApiPython.CoreMotionAxisLogOutput_followingErrorAlarm_get
-    if _newclass:
-        followingErrorAlarm = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_followingErrorAlarm_get, _WMX3ApiPython.CoreMotionAxisLogOutput_followingErrorAlarm_set)
-    __swig_setmethods__["commandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandPos_set
-    __swig_getmethods__["commandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandPos_get
-    if _newclass:
-        commandPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_commandPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_commandPos_set)
-    __swig_setmethods__["feedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackPos_set
-    __swig_getmethods__["feedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackPos_get
-    if _newclass:
-        feedbackPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_feedbackPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackPos_set)
-    __swig_setmethods__["compCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_compCommandPos_set
-    __swig_getmethods__["compCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_compCommandPos_get
-    if _newclass:
-        compCommandPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_compCommandPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_compCommandPos_set)
-    __swig_setmethods__["compFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_compFeedbackPos_set
-    __swig_getmethods__["compFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_compFeedbackPos_get
-    if _newclass:
-        compFeedbackPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_compFeedbackPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_compFeedbackPos_set)
-    __swig_setmethods__["encoderCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandPos_set
-    __swig_getmethods__["encoderCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandPos_get
-    if _newclass:
-        encoderCommandPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandPos_set)
-    __swig_setmethods__["encoderFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackPos_set
-    __swig_getmethods__["encoderFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackPos_get
-    if _newclass:
-        encoderFeedbackPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackPos_set)
-    __swig_setmethods__["commandVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandVelocity_set
-    __swig_getmethods__["commandVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandVelocity_get
-    if _newclass:
-        commandVelocity = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_commandVelocity_get, _WMX3ApiPython.CoreMotionAxisLogOutput_commandVelocity_set)
-    __swig_setmethods__["feedbackVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackVelocity_set
-    __swig_getmethods__["feedbackVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackVelocity_get
-    if _newclass:
-        feedbackVelocity = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_feedbackVelocity_get, _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackVelocity_set)
-    __swig_setmethods__["encoderCommandVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandVelocity_set
-    __swig_getmethods__["encoderCommandVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandVelocity_get
-    if _newclass:
-        encoderCommandVelocity = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandVelocity_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandVelocity_set)
-    __swig_setmethods__["encoderFeedbackVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackVelocity_set
-    __swig_getmethods__["encoderFeedbackVelocity"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackVelocity_get
-    if _newclass:
-        encoderFeedbackVelocity = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackVelocity_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackVelocity_set)
-    __swig_setmethods__["commandTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandTrq_set
-    __swig_getmethods__["commandTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandTrq_get
-    if _newclass:
-        commandTrq = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_commandTrq_get, _WMX3ApiPython.CoreMotionAxisLogOutput_commandTrq_set)
-    __swig_setmethods__["feedbackTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackTrq_set
-    __swig_getmethods__["feedbackTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackTrq_get
-    if _newclass:
-        feedbackTrq = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_feedbackTrq_get, _WMX3ApiPython.CoreMotionAxisLogOutput_feedbackTrq_set)
-    __swig_setmethods__["encoderCommandTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandTrq_set
-    __swig_getmethods__["encoderCommandTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandTrq_get
-    if _newclass:
-        encoderCommandTrq = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandTrq_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderCommandTrq_set)
-    __swig_setmethods__["encoderFeedbackTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackTrq_set
-    __swig_getmethods__["encoderFeedbackTrq"] = _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackTrq_get
-    if _newclass:
-        encoderFeedbackTrq = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackTrq_get, _WMX3ApiPython.CoreMotionAxisLogOutput_encoderFeedbackTrq_set)
-    __swig_setmethods__["followingError"] = _WMX3ApiPython.CoreMotionAxisLogOutput_followingError_set
-    __swig_getmethods__["followingError"] = _WMX3ApiPython.CoreMotionAxisLogOutput_followingError_get
-    if _newclass:
-        followingError = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_followingError_get, _WMX3ApiPython.CoreMotionAxisLogOutput_followingError_set)
-    __swig_setmethods__["homeOffset"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeOffset_set
-    __swig_getmethods__["homeOffset"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeOffset_get
-    if _newclass:
-        homeOffset = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_homeOffset_get, _WMX3ApiPython.CoreMotionAxisLogOutput_homeOffset_set)
-    __swig_setmethods__["homeSwitch"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeSwitch_set
-    __swig_getmethods__["homeSwitch"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeSwitch_get
-    if _newclass:
-        homeSwitch = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_homeSwitch_get, _WMX3ApiPython.CoreMotionAxisLogOutput_homeSwitch_set)
-    __swig_setmethods__["homeDone"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeDone_set
-    __swig_getmethods__["homeDone"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeDone_get
-    if _newclass:
-        homeDone = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_homeDone_get, _WMX3ApiPython.CoreMotionAxisLogOutput_homeDone_set)
-    __swig_setmethods__["homeState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeState_set
-    __swig_getmethods__["homeState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_homeState_get
-    if _newclass:
-        homeState = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_homeState_get, _WMX3ApiPython.CoreMotionAxisLogOutput_homeState_set)
-    __swig_setmethods__["inPosFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag_set
-    __swig_getmethods__["inPosFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag_get
-    if _newclass:
-        inPosFlag = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag_get, _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag_set)
-    __swig_setmethods__["inPosFlag2"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag2_set
-    __swig_getmethods__["inPosFlag2"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag2_get
-    if _newclass:
-        inPosFlag2 = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag2_get, _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag2_set)
-    __swig_setmethods__["inPosFlag3"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag3_set
-    __swig_getmethods__["inPosFlag3"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag3_get
-    if _newclass:
-        inPosFlag3 = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag3_get, _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag3_set)
-    __swig_setmethods__["inPosFlag4"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag4_set
-    __swig_getmethods__["inPosFlag4"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag4_get
-    if _newclass:
-        inPosFlag4 = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag4_get, _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag4_set)
-    __swig_setmethods__["inPosFlag5"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag5_set
-    __swig_getmethods__["inPosFlag5"] = _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag5_get
-    if _newclass:
-        inPosFlag5 = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag5_get, _WMX3ApiPython.CoreMotionAxisLogOutput_inPosFlag5_set)
-    __swig_setmethods__["commandDistributionEndFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandDistributionEndFlag_set
-    __swig_getmethods__["commandDistributionEndFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_commandDistributionEndFlag_get
-    if _newclass:
-        commandDistributionEndFlag = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_commandDistributionEndFlag_get, _WMX3ApiPython.CoreMotionAxisLogOutput_commandDistributionEndFlag_set)
-    __swig_setmethods__["posSetFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_posSetFlag_set
-    __swig_getmethods__["posSetFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_posSetFlag_get
-    if _newclass:
-        posSetFlag = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_posSetFlag_get, _WMX3ApiPython.CoreMotionAxisLogOutput_posSetFlag_set)
-    __swig_setmethods__["delayedPosSetFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_delayedPosSetFlag_set
-    __swig_getmethods__["delayedPosSetFlag"] = _WMX3ApiPython.CoreMotionAxisLogOutput_delayedPosSetFlag_get
-    if _newclass:
-        delayedPosSetFlag = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_delayedPosSetFlag_get, _WMX3ApiPython.CoreMotionAxisLogOutput_delayedPosSetFlag_set)
-    __swig_setmethods__["positiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_positiveLS_set
-    __swig_getmethods__["positiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_positiveLS_get
-    if _newclass:
-        positiveLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_positiveLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_positiveLS_set)
-    __swig_setmethods__["negativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_negativeLS_set
-    __swig_getmethods__["negativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_negativeLS_get
-    if _newclass:
-        negativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_negativeLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_negativeLS_set)
-    __swig_setmethods__["nearPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_nearPositiveLS_set
-    __swig_getmethods__["nearPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_nearPositiveLS_get
-    if _newclass:
-        nearPositiveLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_nearPositiveLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_nearPositiveLS_set)
-    __swig_setmethods__["nearNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_nearNegativeLS_set
-    __swig_getmethods__["nearNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_nearNegativeLS_get
-    if _newclass:
-        nearNegativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_nearNegativeLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_nearNegativeLS_set)
-    __swig_setmethods__["externalPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_externalPositiveLS_set
-    __swig_getmethods__["externalPositiveLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_externalPositiveLS_get
-    if _newclass:
-        externalPositiveLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_externalPositiveLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_externalPositiveLS_set)
-    __swig_setmethods__["externalNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_externalNegativeLS_set
-    __swig_getmethods__["externalNegativeLS"] = _WMX3ApiPython.CoreMotionAxisLogOutput_externalNegativeLS_get
-    if _newclass:
-        externalNegativeLS = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_externalNegativeLS_get, _WMX3ApiPython.CoreMotionAxisLogOutput_externalNegativeLS_set)
-    __swig_setmethods__["positiveSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogOutput_positiveSoftLimit_set
-    __swig_getmethods__["positiveSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogOutput_positiveSoftLimit_get
-    if _newclass:
-        positiveSoftLimit = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_positiveSoftLimit_get, _WMX3ApiPython.CoreMotionAxisLogOutput_positiveSoftLimit_set)
-    __swig_setmethods__["negativeSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogOutput_negativeSoftLimit_set
-    __swig_getmethods__["negativeSoftLimit"] = _WMX3ApiPython.CoreMotionAxisLogOutput_negativeSoftLimit_get
-    if _newclass:
-        negativeSoftLimit = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_negativeSoftLimit_get, _WMX3ApiPython.CoreMotionAxisLogOutput_negativeSoftLimit_set)
-    __swig_setmethods__["opState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_opState_set
-    __swig_getmethods__["opState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_opState_get
-    if _newclass:
-        opState = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_opState_get, _WMX3ApiPython.CoreMotionAxisLogOutput_opState_set)
-    __swig_setmethods__["detailOpState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_detailOpState_set
-    __swig_getmethods__["detailOpState"] = _WMX3ApiPython.CoreMotionAxisLogOutput_detailOpState_get
-    if _newclass:
-        detailOpState = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_detailOpState_get, _WMX3ApiPython.CoreMotionAxisLogOutput_detailOpState_set)
-    __swig_setmethods__["userOffsetCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetCommandPos_set
-    __swig_getmethods__["userOffsetCommandPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetCommandPos_get
-    if _newclass:
-        userOffsetCommandPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetCommandPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetCommandPos_set)
-    __swig_setmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetFeedbackPos_set
-    __swig_getmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetFeedbackPos_get
-    if _newclass:
-        userOffsetFeedbackPos = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetFeedbackPos_get, _WMX3ApiPython.CoreMotionAxisLogOutput_userOffsetFeedbackPos_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandMode_get, _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandMode_set)
-    __swig_setmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandModeFeedback_set
-    __swig_getmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandModeFeedback_get
-    if _newclass:
-        axisCommandModeFeedback = _swig_property(_WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandModeFeedback_get, _WMX3ApiPython.CoreMotionAxisLogOutput_axisCommandModeFeedback_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CoreMotionAxisLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CoreMotionAxisLogOutput
-    __del__ = lambda self: None
-CoreMotionAxisLogOutput_swigregister = _WMX3ApiPython.CoreMotionAxisLogOutput_swigregister
-CoreMotionAxisLogOutput_swigregister(CoreMotionAxisLogOutput)
-
-class CoreMotionLogOutput(LogOutput):
-    __swig_setmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionLogOutput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionLogOutput, name)
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CoreMotionLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.CoreMotionLogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.CoreMotionLogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.CoreMotionLogOutput_SetLogOutput(self, src)
-    __swig_setmethods__["axisData"] = _WMX3ApiPython.CoreMotionLogOutput_axisData_set
-    __swig_getmethods__["axisData"] = _WMX3ApiPython.CoreMotionLogOutput_axisData_get
-    if _newclass:
-        axisData = _swig_property(_WMX3ApiPython.CoreMotionLogOutput_axisData_get, _WMX3ApiPython.CoreMotionLogOutput_axisData_set)
-
-    def SetAxisData(self, index1, index2, value):
-        return _WMX3ApiPython.CoreMotionLogOutput_SetAxisData(self, index1, index2, value)
-
-    def GetAxisData(self, index1, index2):
-        return _WMX3ApiPython.CoreMotionLogOutput_GetAxisData(self, index1, index2)
-    __swig_destroy__ = _WMX3ApiPython.delete_CoreMotionLogOutput
-    __del__ = lambda self: None
-CoreMotionLogOutput_swigregister = _WMX3ApiPython.CoreMotionLogOutput_swigregister
-CoreMotionLogOutput_swigregister(CoreMotionLogOutput)
 
 class BaseCoreMotionEventInputFunctionArguments_Pos(_object):
     __swig_setmethods__ = {}
@@ -3339,40 +2908,6 @@ class CoreMotionEventInputFunctionArguments_OpState(_object):
 CoreMotionEventInputFunctionArguments_OpState_swigregister = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_OpState_swigregister
 CoreMotionEventInputFunctionArguments_OpState_swigregister(CoreMotionEventInputFunctionArguments_OpState)
 
-class CoreMotionEventInputFunctionArguments_AxisCmdMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionEventInputFunctionArguments_AxisCmdMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionEventInputFunctionArguments_AxisCmdMode, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axis_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axis_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axisCommandMode_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_axisCommandMode_set)
-    __swig_setmethods__["useFeedback"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_useFeedback_set
-    __swig_getmethods__["useFeedback"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_useFeedback_get
-    if _newclass:
-        useFeedback = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_useFeedback_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_useFeedback_set)
-    __swig_setmethods__["invert"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_invert_set
-    __swig_getmethods__["invert"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_invert_get
-    if _newclass:
-        invert = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_invert_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_invert_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CoreMotionEventInputFunctionArguments_AxisCmdMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CoreMotionEventInputFunctionArguments_AxisCmdMode
-    __del__ = lambda self: None
-CoreMotionEventInputFunctionArguments_AxisCmdMode_swigregister = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_AxisCmdMode_swigregister
-CoreMotionEventInputFunctionArguments_AxisCmdMode_swigregister(CoreMotionEventInputFunctionArguments_AxisCmdMode)
-
 class CoreMotionEventInputFunctionArguments_InPos(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionEventInputFunctionArguments_InPos, name, value)
@@ -3651,40 +3186,6 @@ class CoreMotionEventInputFunctionArguments_DistanceToTarget(_object):
 CoreMotionEventInputFunctionArguments_DistanceToTarget_swigregister = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_DistanceToTarget_swigregister
 CoreMotionEventInputFunctionArguments_DistanceToTarget_swigregister(CoreMotionEventInputFunctionArguments_DistanceToTarget)
 
-class CoreMotionEventInputFunctionArguments_GreaterPositionError(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionEventInputFunctionArguments_GreaterPositionError, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CoreMotionEventInputFunctionArguments_GreaterPositionError, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_axis_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_axis_set)
-    __swig_setmethods__["invert"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_invert_set
-    __swig_getmethods__["invert"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_invert_get
-    if _newclass:
-        invert = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_invert_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_invert_set)
-    __swig_setmethods__["posError"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_posError_set
-    __swig_getmethods__["posError"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_posError_get
-    if _newclass:
-        posError = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_posError_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_posError_set)
-    __swig_setmethods__["useActualFollowingError"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_set
-    __swig_getmethods__["useActualFollowingError"] = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_get
-    if _newclass:
-        useActualFollowingError = _swig_property(_WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_get, _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CoreMotionEventInputFunctionArguments_GreaterPositionError()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CoreMotionEventInputFunctionArguments_GreaterPositionError
-    __del__ = lambda self: None
-CoreMotionEventInputFunctionArguments_GreaterPositionError_swigregister = _WMX3ApiPython.CoreMotionEventInputFunctionArguments_GreaterPositionError_swigregister
-CoreMotionEventInputFunctionArguments_GreaterPositionError_swigregister(CoreMotionEventInputFunctionArguments_GreaterPositionError)
-
 class CoreMotionEventInputType(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotionEventInputType, name, value)
@@ -3701,7 +3202,6 @@ class CoreMotionEventInputType(_object):
     GreaterTrq = _WMX3ApiPython.CoreMotionEventInputType_GreaterTrq
     LessTrq = _WMX3ApiPython.CoreMotionEventInputType_LessTrq
     OpState = _WMX3ApiPython.CoreMotionEventInputType_OpState
-    AxisCmdMode = _WMX3ApiPython.CoreMotionEventInputType_AxisCmdMode
     InPos = _WMX3ApiPython.CoreMotionEventInputType_InPos
     PosSET = _WMX3ApiPython.CoreMotionEventInputType_PosSET
     DelayedPosSET = _WMX3ApiPython.CoreMotionEventInputType_DelayedPosSET
@@ -3711,7 +3211,6 @@ class CoreMotionEventInputType(_object):
     CompletedTime = _WMX3ApiPython.CoreMotionEventInputType_CompletedTime
     CompletedDistance = _WMX3ApiPython.CoreMotionEventInputType_CompletedDistance
     DistanceToTarget = _WMX3ApiPython.CoreMotionEventInputType_DistanceToTarget
-    GreaterPositionError = _WMX3ApiPython.CoreMotionEventInputType_GreaterPositionError
 
     def __init__(self):
         this = _WMX3ApiPython.new_CoreMotionEventInputType()
@@ -3750,10 +3249,10 @@ class CoreMotionEventInput(EventInput):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.CoreMotionEventInput_SetInputData(self, moduleId, data, dataSize)
-    __swig_setmethods__["inputFunction"] = _WMX3ApiPython.CoreMotionEventInput_inputFunction_set
-    __swig_getmethods__["inputFunction"] = _WMX3ApiPython.CoreMotionEventInput_inputFunction_get
+    __swig_setmethods__["type"] = _WMX3ApiPython.CoreMotionEventInput_type_set
+    __swig_getmethods__["type"] = _WMX3ApiPython.CoreMotionEventInput_type_get
     if _newclass:
-        inputFunction = _swig_property(_WMX3ApiPython.CoreMotionEventInput_inputFunction_get, _WMX3ApiPython.CoreMotionEventInput_inputFunction_set)
+        type = _swig_property(_WMX3ApiPython.CoreMotionEventInput_type_get, _WMX3ApiPython.CoreMotionEventInput_type_set)
     __swig_setmethods__["equalPos"] = _WMX3ApiPython.CoreMotionEventInput_equalPos_set
     __swig_getmethods__["equalPos"] = _WMX3ApiPython.CoreMotionEventInput_equalPos_get
     if _newclass:
@@ -3794,10 +3293,6 @@ class CoreMotionEventInput(EventInput):
     __swig_getmethods__["opState"] = _WMX3ApiPython.CoreMotionEventInput_opState_get
     if _newclass:
         opState = _swig_property(_WMX3ApiPython.CoreMotionEventInput_opState_get, _WMX3ApiPython.CoreMotionEventInput_opState_set)
-    __swig_setmethods__["axisCmdMode"] = _WMX3ApiPython.CoreMotionEventInput_axisCmdMode_set
-    __swig_getmethods__["axisCmdMode"] = _WMX3ApiPython.CoreMotionEventInput_axisCmdMode_get
-    if _newclass:
-        axisCmdMode = _swig_property(_WMX3ApiPython.CoreMotionEventInput_axisCmdMode_get, _WMX3ApiPython.CoreMotionEventInput_axisCmdMode_set)
     __swig_setmethods__["inPos"] = _WMX3ApiPython.CoreMotionEventInput_inPos_set
     __swig_getmethods__["inPos"] = _WMX3ApiPython.CoreMotionEventInput_inPos_get
     if _newclass:
@@ -4931,10 +4426,6 @@ class CoreMotionAxisStatus(_object):
     __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.CoreMotionAxisStatus_axisCommandMode_get
     if _newclass:
         axisCommandMode = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_axisCommandMode_get, _WMX3ApiPython.CoreMotionAxisStatus_axisCommandMode_set)
-    __swig_setmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisStatus_axisCommandModeFeedback_set
-    __swig_getmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.CoreMotionAxisStatus_axisCommandModeFeedback_get
-    if _newclass:
-        axisCommandModeFeedback = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_axisCommandModeFeedback_get, _WMX3ApiPython.CoreMotionAxisStatus_axisCommandModeFeedback_set)
     __swig_setmethods__["axisSyncMode"] = _WMX3ApiPython.CoreMotionAxisStatus_axisSyncMode_set
     __swig_getmethods__["axisSyncMode"] = _WMX3ApiPython.CoreMotionAxisStatus_axisSyncMode_get
     if _newclass:
@@ -4959,18 +4450,10 @@ class CoreMotionAxisStatus(_object):
     __swig_getmethods__["commandReady"] = _WMX3ApiPython.CoreMotionAxisStatus_commandReady_get
     if _newclass:
         commandReady = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_commandReady_get, _WMX3ApiPython.CoreMotionAxisStatus_commandReady_set)
-    __swig_setmethods__["waitingForTrigger"] = _WMX3ApiPython.CoreMotionAxisStatus_waitingForTrigger_set
-    __swig_getmethods__["waitingForTrigger"] = _WMX3ApiPython.CoreMotionAxisStatus_waitingForTrigger_get
-    if _newclass:
-        waitingForTrigger = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_waitingForTrigger_get, _WMX3ApiPython.CoreMotionAxisStatus_waitingForTrigger_set)
     __swig_setmethods__["motionPaused"] = _WMX3ApiPython.CoreMotionAxisStatus_motionPaused_set
     __swig_getmethods__["motionPaused"] = _WMX3ApiPython.CoreMotionAxisStatus_motionPaused_get
     if _newclass:
         motionPaused = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_motionPaused_get, _WMX3ApiPython.CoreMotionAxisStatus_motionPaused_set)
-    __swig_setmethods__["motionComplete"] = _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_set
-    __swig_getmethods__["motionComplete"] = _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_get
-    if _newclass:
-        motionComplete = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_motionComplete_get, _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_set)
     __swig_setmethods__["profileTotalMilliseconds"] = _WMX3ApiPython.CoreMotionAxisStatus_profileTotalMilliseconds_set
     __swig_getmethods__["profileTotalMilliseconds"] = _WMX3ApiPython.CoreMotionAxisStatus_profileTotalMilliseconds_get
     if _newclass:
@@ -5135,10 +4618,10 @@ class CoreMotionAxisStatus(_object):
     __swig_getmethods__["singleTurnCounter"] = _WMX3ApiPython.CoreMotionAxisStatus_singleTurnCounter_get
     if _newclass:
         singleTurnCounter = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_singleTurnCounter_get, _WMX3ApiPython.CoreMotionAxisStatus_singleTurnCounter_set)
-    __swig_setmethods__["userOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userOffset_set
-    __swig_getmethods__["userOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userOffset_get
+    __swig_setmethods__["motionComplete"] = _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_set
+    __swig_getmethods__["motionComplete"] = _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_get
     if _newclass:
-        userOffset = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_userOffset_get, _WMX3ApiPython.CoreMotionAxisStatus_userOffset_set)
+        motionComplete = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_motionComplete_get, _WMX3ApiPython.CoreMotionAxisStatus_motionComplete_set)
     __swig_setmethods__["userOffsetPosCmd"] = _WMX3ApiPython.CoreMotionAxisStatus_userOffsetPosCmd_set
     __swig_getmethods__["userOffsetPosCmd"] = _WMX3ApiPython.CoreMotionAxisStatus_userOffsetPosCmd_get
     if _newclass:
@@ -5147,50 +4630,6 @@ class CoreMotionAxisStatus(_object):
     __swig_getmethods__["userOffsetActualPos"] = _WMX3ApiPython.CoreMotionAxisStatus_userOffsetActualPos_get
     if _newclass:
         userOffsetActualPos = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_userOffsetActualPos_get, _WMX3ApiPython.CoreMotionAxisStatus_userOffsetActualPos_set)
-    __swig_setmethods__["userVelocityOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userVelocityOffset_set
-    __swig_getmethods__["userVelocityOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userVelocityOffset_get
-    if _newclass:
-        userVelocityOffset = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_userVelocityOffset_get, _WMX3ApiPython.CoreMotionAxisStatus_userVelocityOffset_set)
-    __swig_setmethods__["userTorqueOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userTorqueOffset_set
-    __swig_getmethods__["userTorqueOffset"] = _WMX3ApiPython.CoreMotionAxisStatus_userTorqueOffset_get
-    if _newclass:
-        userTorqueOffset = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_userTorqueOffset_get, _WMX3ApiPython.CoreMotionAxisStatus_userTorqueOffset_set)
-    __swig_setmethods__["vibrationPosMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMin_set
-    __swig_getmethods__["vibrationPosMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMin_get
-    if _newclass:
-        vibrationPosMin = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMin_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMin_set)
-    __swig_setmethods__["vibrationPosMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMax_set
-    __swig_getmethods__["vibrationPosMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMax_get
-    if _newclass:
-        vibrationPosMax = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMax_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosMax_set)
-    __swig_setmethods__["vibrationPosAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosAvg_set
-    __swig_getmethods__["vibrationPosAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosAvg_get
-    if _newclass:
-        vibrationPosAvg = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationPosAvg_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationPosAvg_set)
-    __swig_setmethods__["vibrationVelMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMin_set
-    __swig_getmethods__["vibrationVelMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMin_get
-    if _newclass:
-        vibrationVelMin = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMin_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMin_set)
-    __swig_setmethods__["vibrationVelMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMax_set
-    __swig_getmethods__["vibrationVelMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMax_get
-    if _newclass:
-        vibrationVelMax = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMax_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelMax_set)
-    __swig_setmethods__["vibrationVelAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelAvg_set
-    __swig_getmethods__["vibrationVelAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelAvg_get
-    if _newclass:
-        vibrationVelAvg = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationVelAvg_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationVelAvg_set)
-    __swig_setmethods__["vibrationTrqMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMin_set
-    __swig_getmethods__["vibrationTrqMin"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMin_get
-    if _newclass:
-        vibrationTrqMin = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMin_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMin_set)
-    __swig_setmethods__["vibrationTrqMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMax_set
-    __swig_getmethods__["vibrationTrqMax"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMax_get
-    if _newclass:
-        vibrationTrqMax = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMax_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqMax_set)
-    __swig_setmethods__["vibrationTrqAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqAvg_set
-    __swig_getmethods__["vibrationTrqAvg"] = _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqAvg_get
-    if _newclass:
-        vibrationTrqAvg = _swig_property(_WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqAvg_get, _WMX3ApiPython.CoreMotionAxisStatus_vibrationTrqAvg_set)
 
     def __init__(self):
         this = _WMX3ApiPython.new_CoreMotionAxisStatus()
@@ -5350,8 +4789,6 @@ class TriggerEventInputFunction(_object):
     StaggeredTimeCompletion = _WMX3ApiPython.TriggerEventInputFunction_StaggeredTimeCompletion
     StaggeredDistanceCompletion = _WMX3ApiPython.TriggerEventInputFunction_StaggeredDistanceCompletion
     DistanceToTarget = _WMX3ApiPython.TriggerEventInputFunction_DistanceToTarget
-    AxisIdle = _WMX3ApiPython.TriggerEventInputFunction_AxisIdle
-    GreaterPositionError = _WMX3ApiPython.TriggerEventInputFunction_GreaterPositionError
 
     def __init__(self):
         this = _WMX3ApiPython.new_TriggerEventInputFunction()
@@ -6706,66 +6143,6 @@ class TriggerEventInputFunctionArguments_DistanceToTarget(_object):
 TriggerEventInputFunctionArguments_DistanceToTarget_swigregister = _WMX3ApiPython.TriggerEventInputFunctionArguments_DistanceToTarget_swigregister
 TriggerEventInputFunctionArguments_DistanceToTarget_swigregister(TriggerEventInputFunctionArguments_DistanceToTarget)
 
-class TriggerEventInputFunctionArguments_AxisIdle(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, TriggerEventInputFunctionArguments_AxisIdle, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, TriggerEventInputFunctionArguments_AxisIdle, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_axis_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_axis_set)
-    __swig_setmethods__["invert"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_invert_set
-    __swig_getmethods__["invert"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_invert_get
-    if _newclass:
-        invert = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_invert_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_invert_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_TriggerEventInputFunctionArguments_AxisIdle()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_TriggerEventInputFunctionArguments_AxisIdle
-    __del__ = lambda self: None
-TriggerEventInputFunctionArguments_AxisIdle_swigregister = _WMX3ApiPython.TriggerEventInputFunctionArguments_AxisIdle_swigregister
-TriggerEventInputFunctionArguments_AxisIdle_swigregister(TriggerEventInputFunctionArguments_AxisIdle)
-
-class TriggerEventInputFunctionArguments_GreaterPositionError(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, TriggerEventInputFunctionArguments_GreaterPositionError, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, TriggerEventInputFunctionArguments_GreaterPositionError, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_axis_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_axis_set)
-    __swig_setmethods__["invert"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_invert_set
-    __swig_getmethods__["invert"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_invert_get
-    if _newclass:
-        invert = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_invert_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_invert_set)
-    __swig_setmethods__["posError"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_posError_set
-    __swig_getmethods__["posError"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_posError_get
-    if _newclass:
-        posError = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_posError_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_posError_set)
-    __swig_setmethods__["useActualFollowingError"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_set
-    __swig_getmethods__["useActualFollowingError"] = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_get
-    if _newclass:
-        useActualFollowingError = _swig_property(_WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_get, _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_useActualFollowingError_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_TriggerEventInputFunctionArguments_GreaterPositionError()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_TriggerEventInputFunctionArguments_GreaterPositionError
-    __del__ = lambda self: None
-TriggerEventInputFunctionArguments_GreaterPositionError_swigregister = _WMX3ApiPython.TriggerEventInputFunctionArguments_GreaterPositionError_swigregister
-TriggerEventInputFunctionArguments_GreaterPositionError_swigregister(TriggerEventInputFunctionArguments_GreaterPositionError)
-
 class TriggerEventOutputFunctionArguments_TriggerMotion(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, TriggerEventOutputFunctionArguments_TriggerMotion, name, value)
@@ -8092,532 +7469,6 @@ class Motion_WaitCondition(_object):
 Motion_WaitCondition_swigregister = _WMX3ApiPython.Motion_WaitCondition_swigregister
 Motion_WaitCondition_swigregister(Motion_WaitCondition)
 
-class Motion_PVTPoint(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PVTPoint, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PVTPoint, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPVTPoint):
-        return _WMX3ApiPython.Motion_PVTPoint_GetData(self, pPVTPoint)
-    __swig_setmethods__["pos"] = _WMX3ApiPython.Motion_PVTPoint_pos_set
-    __swig_getmethods__["pos"] = _WMX3ApiPython.Motion_PVTPoint_pos_get
-    if _newclass:
-        pos = _swig_property(_WMX3ApiPython.Motion_PVTPoint_pos_get, _WMX3ApiPython.Motion_PVTPoint_pos_set)
-    __swig_setmethods__["velocity"] = _WMX3ApiPython.Motion_PVTPoint_velocity_set
-    __swig_getmethods__["velocity"] = _WMX3ApiPython.Motion_PVTPoint_velocity_get
-    if _newclass:
-        velocity = _swig_property(_WMX3ApiPython.Motion_PVTPoint_velocity_get, _WMX3ApiPython.Motion_PVTPoint_velocity_set)
-    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_PVTPoint_timeMilliseconds_set
-    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_PVTPoint_timeMilliseconds_get
-    if _newclass:
-        timeMilliseconds = _swig_property(_WMX3ApiPython.Motion_PVTPoint_timeMilliseconds_get, _WMX3ApiPython.Motion_PVTPoint_timeMilliseconds_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PVTPoint()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PVTPoint
-    __del__ = lambda self: None
-Motion_PVTPoint_swigregister = _WMX3ApiPython.Motion_PVTPoint_swigregister
-Motion_PVTPoint_swigregister(Motion_PVTPoint)
-
-class Motion_PVTCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PVTCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PVTCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPVTCommand):
-        return _WMX3ApiPython.Motion_PVTCommand_GetData(self, pPVTCommand)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_PVTCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_PVTCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_PVTCommand_axis_get, _WMX3ApiPython.Motion_PVTCommand_axis_set)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PVTCommand_pointCount_get, _WMX3ApiPython.Motion_PVTCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PVTCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PVTCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PVTCommand_points_get, _WMX3ApiPython.Motion_PVTCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_PVTCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_PVTCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PVTCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PVTCommand
-    __del__ = lambda self: None
-Motion_PVTCommand_swigregister = _WMX3ApiPython.Motion_PVTCommand_swigregister
-Motion_PVTCommand_swigregister(Motion_PVTCommand)
-
-class Motion_PVTAdditionalCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PVTAdditionalCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PVTAdditionalCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPVTCommand):
-        return _WMX3ApiPython.Motion_PVTAdditionalCommand_GetData(self, pPVTCommand)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTAdditionalCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTAdditionalCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PVTAdditionalCommand_pointCount_get, _WMX3ApiPython.Motion_PVTAdditionalCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PVTAdditionalCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PVTAdditionalCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PVTAdditionalCommand_points_get, _WMX3ApiPython.Motion_PVTAdditionalCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_PVTAdditionalCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_PVTAdditionalCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PVTAdditionalCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PVTAdditionalCommand
-    __del__ = lambda self: None
-Motion_PVTAdditionalCommand_swigregister = _WMX3ApiPython.Motion_PVTAdditionalCommand_swigregister
-Motion_PVTAdditionalCommand_swigregister(Motion_PVTAdditionalCommand)
-
-class Motion_PVTIntplCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PVTIntplCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PVTIntplCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPVTIntplCommand):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_GetData(self, pPVTIntplCommand)
-    __swig_setmethods__["axisCount"] = _WMX3ApiPython.Motion_PVTIntplCommand_axisCount_set
-    __swig_getmethods__["axisCount"] = _WMX3ApiPython.Motion_PVTIntplCommand_axisCount_get
-    if _newclass:
-        axisCount = _swig_property(_WMX3ApiPython.Motion_PVTIntplCommand_axisCount_get, _WMX3ApiPython.Motion_PVTIntplCommand_axisCount_set)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_PVTIntplCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_PVTIntplCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_PVTIntplCommand_axis_get, _WMX3ApiPython.Motion_PVTIntplCommand_axis_set)
-
-    def SetAxis(self, index, value):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_SetAxis(self, index, value)
-
-    def GetAxis(self, index):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_GetAxis(self, index)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTIntplCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTIntplCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PVTIntplCommand_pointCount_get, _WMX3ApiPython.Motion_PVTIntplCommand_pointCount_set)
-
-    def SetPointCount(self, index, value):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_SetPointCount(self, index, value)
-
-    def GetPointCount(self, index):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_GetPointCount(self, index)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PVTIntplCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PVTIntplCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PVTIntplCommand_points_get, _WMX3ApiPython.Motion_PVTIntplCommand_points_set)
-
-    def SetPoints(self, index1, index2, value):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_SetPoints(self, index1, index2, value)
-
-    def GetPoints(self, index1, index2):
-        return _WMX3ApiPython.Motion_PVTIntplCommand_GetPoints(self, index1, index2)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PVTIntplCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PVTIntplCommand
-    __del__ = lambda self: None
-Motion_PVTIntplCommand_swigregister = _WMX3ApiPython.Motion_PVTIntplCommand_swigregister
-Motion_PVTIntplCommand_swigregister(Motion_PVTIntplCommand)
-
-class Motion_PVTIntplAdditionalCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PVTIntplAdditionalCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PVTIntplAdditionalCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPVTIntplCommand):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_GetData(self, pPVTIntplCommand)
-    __swig_setmethods__["axisCount"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axisCount_set
-    __swig_getmethods__["axisCount"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axisCount_get
-    if _newclass:
-        axisCount = _swig_property(_WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axisCount_get, _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axisCount_set)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axis_get, _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_axis_set)
-
-    def SetAxis(self, index, value):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_SetAxis(self, index, value)
-
-    def GetAxis(self, index):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_GetAxis(self, index)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PVTIntplAdditionalCommand_pointCount_get, _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_pointCount_set)
-
-    def SetPointCount(self, index, value):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_SetPointCount(self, index, value)
-
-    def GetPointCount(self, index):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_GetPointCount(self, index)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PVTIntplAdditionalCommand_points_get, _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_points_set)
-
-    def SetPoints(self, index1, index2, value):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_SetPoints(self, index1, index2, value)
-
-    def GetPoints(self, index1, index2):
-        return _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_GetPoints(self, index1, index2)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PVTIntplAdditionalCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PVTIntplAdditionalCommand
-    __del__ = lambda self: None
-Motion_PVTIntplAdditionalCommand_swigregister = _WMX3ApiPython.Motion_PVTIntplAdditionalCommand_swigregister
-Motion_PVTIntplAdditionalCommand_swigregister(Motion_PVTIntplAdditionalCommand)
-
-class Motion_PTPoint(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PTPoint, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PTPoint, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPTPoint):
-        return _WMX3ApiPython.Motion_PTPoint_GetData(self, pPTPoint)
-    __swig_setmethods__["pos"] = _WMX3ApiPython.Motion_PTPoint_pos_set
-    __swig_getmethods__["pos"] = _WMX3ApiPython.Motion_PTPoint_pos_get
-    if _newclass:
-        pos = _swig_property(_WMX3ApiPython.Motion_PTPoint_pos_get, _WMX3ApiPython.Motion_PTPoint_pos_set)
-    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_PTPoint_timeMilliseconds_set
-    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_PTPoint_timeMilliseconds_get
-    if _newclass:
-        timeMilliseconds = _swig_property(_WMX3ApiPython.Motion_PTPoint_timeMilliseconds_get, _WMX3ApiPython.Motion_PTPoint_timeMilliseconds_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PTPoint()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PTPoint
-    __del__ = lambda self: None
-Motion_PTPoint_swigregister = _WMX3ApiPython.Motion_PTPoint_swigregister
-Motion_PTPoint_swigregister(Motion_PTPoint)
-
-class Motion_PTCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PTCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PTCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPTCommand):
-        return _WMX3ApiPython.Motion_PTCommand_GetData(self, pPTCommand)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_PTCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_PTCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_PTCommand_axis_get, _WMX3ApiPython.Motion_PTCommand_axis_set)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PTCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PTCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PTCommand_pointCount_get, _WMX3ApiPython.Motion_PTCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PTCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PTCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PTCommand_points_get, _WMX3ApiPython.Motion_PTCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_PTCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_PTCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PTCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PTCommand
-    __del__ = lambda self: None
-Motion_PTCommand_swigregister = _WMX3ApiPython.Motion_PTCommand_swigregister
-Motion_PTCommand_swigregister(Motion_PTCommand)
-
-class Motion_PTAdditionalCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_PTAdditionalCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_PTAdditionalCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pPTCommand):
-        return _WMX3ApiPython.Motion_PTAdditionalCommand_GetData(self, pPTCommand)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_PTAdditionalCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_PTAdditionalCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_PTAdditionalCommand_pointCount_get, _WMX3ApiPython.Motion_PTAdditionalCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_PTAdditionalCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_PTAdditionalCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_PTAdditionalCommand_points_get, _WMX3ApiPython.Motion_PTAdditionalCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_PTAdditionalCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_PTAdditionalCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_PTAdditionalCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_PTAdditionalCommand
-    __del__ = lambda self: None
-Motion_PTAdditionalCommand_swigregister = _WMX3ApiPython.Motion_PTAdditionalCommand_swigregister
-Motion_PTAdditionalCommand_swigregister(Motion_PTAdditionalCommand)
-
-class Motion_VTPoint(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_VTPoint, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_VTPoint, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pVTPoint):
-        return _WMX3ApiPython.Motion_VTPoint_GetData(self, pVTPoint)
-    __swig_setmethods__["velocity"] = _WMX3ApiPython.Motion_VTPoint_velocity_set
-    __swig_getmethods__["velocity"] = _WMX3ApiPython.Motion_VTPoint_velocity_get
-    if _newclass:
-        velocity = _swig_property(_WMX3ApiPython.Motion_VTPoint_velocity_get, _WMX3ApiPython.Motion_VTPoint_velocity_set)
-    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_VTPoint_timeMilliseconds_set
-    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_VTPoint_timeMilliseconds_get
-    if _newclass:
-        timeMilliseconds = _swig_property(_WMX3ApiPython.Motion_VTPoint_timeMilliseconds_get, _WMX3ApiPython.Motion_VTPoint_timeMilliseconds_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_VTPoint()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_VTPoint
-    __del__ = lambda self: None
-Motion_VTPoint_swigregister = _WMX3ApiPython.Motion_VTPoint_swigregister
-Motion_VTPoint_swigregister(Motion_VTPoint)
-
-class Motion_VTCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_VTCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_VTCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pVTCommand):
-        return _WMX3ApiPython.Motion_VTCommand_GetData(self, pVTCommand)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_VTCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_VTCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_VTCommand_axis_get, _WMX3ApiPython.Motion_VTCommand_axis_set)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_VTCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_VTCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_VTCommand_pointCount_get, _WMX3ApiPython.Motion_VTCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_VTCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_VTCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_VTCommand_points_get, _WMX3ApiPython.Motion_VTCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_VTCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_VTCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_VTCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_VTCommand
-    __del__ = lambda self: None
-Motion_VTCommand_swigregister = _WMX3ApiPython.Motion_VTCommand_swigregister
-Motion_VTCommand_swigregister(Motion_VTCommand)
-
-class Motion_VTAdditionalCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_VTAdditionalCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_VTAdditionalCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pVTCommand):
-        return _WMX3ApiPython.Motion_VTAdditionalCommand_GetData(self, pVTCommand)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_VTAdditionalCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_VTAdditionalCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_VTAdditionalCommand_pointCount_get, _WMX3ApiPython.Motion_VTAdditionalCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_VTAdditionalCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_VTAdditionalCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_VTAdditionalCommand_points_get, _WMX3ApiPython.Motion_VTAdditionalCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_VTAdditionalCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_VTAdditionalCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_VTAdditionalCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_VTAdditionalCommand
-    __del__ = lambda self: None
-Motion_VTAdditionalCommand_swigregister = _WMX3ApiPython.Motion_VTAdditionalCommand_swigregister
-Motion_VTAdditionalCommand_swigregister(Motion_VTAdditionalCommand)
-
-class Motion_ATPoint(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_ATPoint, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_ATPoint, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pATPoint):
-        return _WMX3ApiPython.Motion_ATPoint_GetData(self, pATPoint)
-    __swig_setmethods__["acc"] = _WMX3ApiPython.Motion_ATPoint_acc_set
-    __swig_getmethods__["acc"] = _WMX3ApiPython.Motion_ATPoint_acc_get
-    if _newclass:
-        acc = _swig_property(_WMX3ApiPython.Motion_ATPoint_acc_get, _WMX3ApiPython.Motion_ATPoint_acc_set)
-    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_ATPoint_timeMilliseconds_set
-    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.Motion_ATPoint_timeMilliseconds_get
-    if _newclass:
-        timeMilliseconds = _swig_property(_WMX3ApiPython.Motion_ATPoint_timeMilliseconds_get, _WMX3ApiPython.Motion_ATPoint_timeMilliseconds_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_ATPoint()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_ATPoint
-    __del__ = lambda self: None
-Motion_ATPoint_swigregister = _WMX3ApiPython.Motion_ATPoint_swigregister
-Motion_ATPoint_swigregister(Motion_ATPoint)
-
-class Motion_ATCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_ATCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_ATCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pATCommand):
-        return _WMX3ApiPython.Motion_ATCommand_GetData(self, pATCommand)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.Motion_ATCommand_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.Motion_ATCommand_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.Motion_ATCommand_axis_get, _WMX3ApiPython.Motion_ATCommand_axis_set)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_ATCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_ATCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_ATCommand_pointCount_get, _WMX3ApiPython.Motion_ATCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_ATCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_ATCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_ATCommand_points_get, _WMX3ApiPython.Motion_ATCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_ATCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_ATCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_ATCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_ATCommand
-    __del__ = lambda self: None
-Motion_ATCommand_swigregister = _WMX3ApiPython.Motion_ATCommand_swigregister
-Motion_ATCommand_swigregister(Motion_ATCommand)
-
-class Motion_ATAdditionalCommand(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Motion_ATAdditionalCommand, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Motion_ATAdditionalCommand, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pATCommand):
-        return _WMX3ApiPython.Motion_ATAdditionalCommand_GetData(self, pATCommand)
-    __swig_setmethods__["pointCount"] = _WMX3ApiPython.Motion_ATAdditionalCommand_pointCount_set
-    __swig_getmethods__["pointCount"] = _WMX3ApiPython.Motion_ATAdditionalCommand_pointCount_get
-    if _newclass:
-        pointCount = _swig_property(_WMX3ApiPython.Motion_ATAdditionalCommand_pointCount_get, _WMX3ApiPython.Motion_ATAdditionalCommand_pointCount_set)
-    __swig_setmethods__["points"] = _WMX3ApiPython.Motion_ATAdditionalCommand_points_set
-    __swig_getmethods__["points"] = _WMX3ApiPython.Motion_ATAdditionalCommand_points_get
-    if _newclass:
-        points = _swig_property(_WMX3ApiPython.Motion_ATAdditionalCommand_points_get, _WMX3ApiPython.Motion_ATAdditionalCommand_points_set)
-
-    def SetPoints(self, index, value):
-        return _WMX3ApiPython.Motion_ATAdditionalCommand_SetPoints(self, index, value)
-
-    def GetPoints(self, index):
-        return _WMX3ApiPython.Motion_ATAdditionalCommand_GetPoints(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_Motion_ATAdditionalCommand()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Motion_ATAdditionalCommand
-    __del__ = lambda self: None
-Motion_ATAdditionalCommand_swigregister = _WMX3ApiPython.Motion_ATAdditionalCommand_swigregister
-Motion_ATAdditionalCommand_swigregister(Motion_ATAdditionalCommand)
-
 class Motion(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Motion, name, value)
@@ -8967,33 +7818,6 @@ class Motion(_object):
 
     def SimulateTimeAtDist_LinearIntpl(self, pSimulateLinearIntplCommand, specificDistance, pMoveTimeMilliseconds, pRemainTimeMilliseconds, pTotalTimeMilliseconds):
         return _WMX3ApiPython.Motion_SimulateTimeAtDist_LinearIntpl(self, pSimulateLinearIntplCommand, specificDistance, pMoveTimeMilliseconds, pRemainTimeMilliseconds, pTotalTimeMilliseconds)
-
-    def CreatePVTBuffer(self, axis, points):
-        return _WMX3ApiPython.Motion_CreatePVTBuffer(self, axis, points)
-
-    def FreePVTBuffer(self, axis):
-        return _WMX3ApiPython.Motion_FreePVTBuffer(self, axis)
-
-    def GetPVTBufferPoints(self, axis, pPoints):
-        return _WMX3ApiPython.Motion_GetPVTBufferPoints(self, axis, pPoints)
-
-    def GetPVTBytesPerPoint(self, pBytes):
-        return _WMX3ApiPython.Motion_GetPVTBytesPerPoint(self, pBytes)
-
-    def StartPVT(self, *args):
-        return _WMX3ApiPython.Motion_StartPVT(self, *args)
-
-    def StartPVT_Intpl(self, *args):
-        return _WMX3ApiPython.Motion_StartPVT_Intpl(self, *args)
-
-    def StartPT(self, *args):
-        return _WMX3ApiPython.Motion_StartPT(self, *args)
-
-    def StartVT(self, *args):
-        return _WMX3ApiPython.Motion_StartVT(self, *args)
-
-    def StartAT(self, *args):
-        return _WMX3ApiPython.Motion_StartAT(self, *args)
 Motion_swigregister = _WMX3ApiPython.Motion_swigregister
 Motion_swigregister(Motion)
 
@@ -9017,10 +7841,6 @@ class Home_AxisHomeData(_object):
     __swig_getmethods__["distLStoZPulse"] = _WMX3ApiPython.Home_AxisHomeData_distLStoZPulse_get
     if _newclass:
         distLStoZPulse = _swig_property(_WMX3ApiPython.Home_AxisHomeData_distLStoZPulse_get, _WMX3ApiPython.Home_AxisHomeData_distLStoZPulse_set)
-    __swig_setmethods__["distMechanicalEndToZPulse"] = _WMX3ApiPython.Home_AxisHomeData_distMechanicalEndToZPulse_set
-    __swig_getmethods__["distMechanicalEndToZPulse"] = _WMX3ApiPython.Home_AxisHomeData_distMechanicalEndToZPulse_get
-    if _newclass:
-        distMechanicalEndToZPulse = _swig_property(_WMX3ApiPython.Home_AxisHomeData_distMechanicalEndToZPulse_get, _WMX3ApiPython.Home_AxisHomeData_distMechanicalEndToZPulse_set)
     __swig_setmethods__["latchedZPulseEncoder"] = _WMX3ApiPython.Home_AxisHomeData_latchedZPulseEncoder_set
     __swig_getmethods__["latchedZPulseEncoder"] = _WMX3ApiPython.Home_AxisHomeData_latchedZPulseEncoder_get
     if _newclass:
@@ -9492,35 +8312,11 @@ class Torque(_object):
     def StartPosToTrq_TriggerEvents(self, *args):
         return _WMX3ApiPython.Torque_StartPosToTrq_TriggerEvents(self, *args)
 
-    def StartPosToRampTimeTrq(self, pTrqCommand, rampCycleTime, pTrigger):
-        return _WMX3ApiPython.Torque_StartPosToRampTimeTrq(self, pTrqCommand, rampCycleTime, pTrigger)
-
-    def StartPosToRampTimeTrq_TriggerEvents(self, pTrqCommand, rampCycleTime, pTriggerEvents):
-        return _WMX3ApiPython.Torque_StartPosToRampTimeTrq_TriggerEvents(self, pTrqCommand, rampCycleTime, pTriggerEvents)
-
-    def StartPosToRampRateTrq(self, pTrqCommand, rampRate, pTrigger):
-        return _WMX3ApiPython.Torque_StartPosToRampRateTrq(self, pTrqCommand, rampRate, pTrigger)
-
-    def StartPosToRampRateTrq_TriggerEvents(self, pTrqCommand, rampRate, pTriggerEvents):
-        return _WMX3ApiPython.Torque_StartPosToRampRateTrq_TriggerEvents(self, pTrqCommand, rampRate, pTriggerEvents)
-
     def StartVelToTrq(self, *args):
         return _WMX3ApiPython.Torque_StartVelToTrq(self, *args)
 
     def StartVelToTrq_TriggerEvents(self, *args):
         return _WMX3ApiPython.Torque_StartVelToTrq_TriggerEvents(self, *args)
-
-    def StartVelToRampTimeTrq(self, pTrqCommand, rampCycleTime, pTrigger):
-        return _WMX3ApiPython.Torque_StartVelToRampTimeTrq(self, pTrqCommand, rampCycleTime, pTrigger)
-
-    def StartVelToRampTimeTrq_TriggerEvents(self, pTrqCommand, rampCycleTime, pTriggerEvents):
-        return _WMX3ApiPython.Torque_StartVelToRampTimeTrq_TriggerEvents(self, pTrqCommand, rampCycleTime, pTriggerEvents)
-
-    def StartVelToRampRateTrq(self, pTrqCommand, rampRate, pTrigger):
-        return _WMX3ApiPython.Torque_StartVelToRampRateTrq(self, pTrqCommand, rampRate, pTrigger)
-
-    def StartVelToRampRateTrq_TriggerEvents(self, pTrqCommand, rampRate, pTriggerEvents):
-        return _WMX3ApiPython.Torque_StartVelToRampRateTrq_TriggerEvents(self, pTrqCommand, rampRate, pTriggerEvents)
 Torque_swigregister = _WMX3ApiPython.Torque_swigregister
 Torque_swigregister(Torque)
 
@@ -11319,7 +10115,7 @@ class Config(_object):
 
 
     def SetMotionParam(self, axis, pParam):
-        pParamError = Config_MotionParam()
+        pParamError = Config_HomeParam()
         ret = _WMX3ApiPython.Config_SetMotionParam(self, axis, pParam, pParamError)
         return ret, pParamError
 
@@ -11406,7 +10202,7 @@ class Config(_object):
 
 
     def GetEmergencyStopParam(self):
-        pParam = Config_EmergencyStopParam()
+        pParam = EmergencyStopParam()
         ret = _WMX3ApiPython.Config_GetEmergencyStopParam(self, pParam)
         return ret, pParam
 
@@ -11493,8 +10289,8 @@ class Config(_object):
 
     def ImportAndSetAll(self, pPath):
         pParamError = Config_SystemParam()
-        pParam = Config_AxisParam()
-        ret = _WMX3ApiPython.Config_ImportAndSetAll(self, pPath, pParamError, pParam)
+        pParamError = Config_AxisParam()
+        ret = _WMX3ApiPython.Config_ImportAndSetAll(self, pPath, pParamError, pParamError)
         return ret, pParamError, pParamError
 
 
@@ -11502,7 +10298,7 @@ Config_swigregister = _WMX3ApiPython.Config_swigregister
 Config_swigregister(Config)
 
 class CoreMotion(_object):
-    """CoreMotion.rtdll Ver.3.5.0.0 is required to use."""
+    """CoreMotion.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, CoreMotion, name, value)
@@ -11512,8 +10308,8 @@ class CoreMotion(_object):
 
     def __init__(self, *args):
         """
-        CoreMotion.rtdll Ver.3.5.0.0 is required to use.
-        CoreMotion.rtdll Ver.3.5.0.0 is required to use.
+        CoreMotion.rtdll Ver.3.4.3.0 is required to use.
+        CoreMotion.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_CoreMotion(*args)
         try:
@@ -11547,12 +10343,6 @@ class CoreMotion(_object):
         return ret, status
 
 
-
-    def ClearVibrationStatus(self, axis):
-        return _WMX3ApiPython.CoreMotion_ClearVibrationStatus(self, axis)
-
-    def ClearVibrationStatus_AxisSel(self, pAxisSelection):
-        return _WMX3ApiPython.CoreMotion_ClearVibrationStatus_AxisSel(self, pAxisSelection)
 
     def ExecEStop(self, level):
         return _WMX3ApiPython.CoreMotion_ExecEStop(self, level)
@@ -11643,12 +10433,6 @@ class IoLogInput(LogInput):
     __getattr__ = lambda self, name: _swig_getattr(self, IoLogInput, name)
     __repr__ = _swig_repr
 
-    def SetData(self, pIoLogInput):
-        return _WMX3ApiPython.IoLogInput_SetData(self, pIoLogInput)
-
-    def GetData(self, pIoLogInput):
-        return _WMX3ApiPython.IoLogInput_GetData(self, pIoLogInput)
-
     def __init__(self):
         this = _WMX3ApiPython.new_IoLogInput()
         try:
@@ -11664,9 +10448,6 @@ class IoLogInput(LogInput):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.IoLogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.IoLogInput_GetLogInput(self)
     __swig_setmethods__["inputIOAddress"] = _WMX3ApiPython.IoLogInput_inputIOAddress_set
     __swig_getmethods__["inputIOAddress"] = _WMX3ApiPython.IoLogInput_inputIOAddress_get
     if _newclass:
@@ -11727,57 +10508,6 @@ class IoLogInput(LogInput):
     __del__ = lambda self: None
 IoLogInput_swigregister = _WMX3ApiPython.IoLogInput_swigregister
 IoLogInput_swigregister(IoLogInput)
-
-class IoLogOutput(LogOutput):
-    __swig_setmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, IoLogOutput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, IoLogOutput, name)
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_IoLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.IoLogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.IoLogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.IoLogOutput_SetLogOutput(self, src)
-    __swig_setmethods__["input"] = _WMX3ApiPython.IoLogOutput_input_set
-    __swig_getmethods__["input"] = _WMX3ApiPython.IoLogOutput_input_get
-    if _newclass:
-        input = _swig_property(_WMX3ApiPython.IoLogOutput_input_get, _WMX3ApiPython.IoLogOutput_input_set)
-
-    def SetInput(self, index1, index2, value):
-        return _WMX3ApiPython.IoLogOutput_SetInput(self, index1, index2, value)
-
-    def GetInput(self, index1, index2):
-        return _WMX3ApiPython.IoLogOutput_GetInput(self, index1, index2)
-    __swig_setmethods__["output"] = _WMX3ApiPython.IoLogOutput_output_set
-    __swig_getmethods__["output"] = _WMX3ApiPython.IoLogOutput_output_get
-    if _newclass:
-        output = _swig_property(_WMX3ApiPython.IoLogOutput_output_get, _WMX3ApiPython.IoLogOutput_output_set)
-
-    def SetOutput(self, index1, index2, value):
-        return _WMX3ApiPython.IoLogOutput_SetOutput(self, index1, index2, value)
-
-    def GetOutput(self, index1, index2):
-        return _WMX3ApiPython.IoLogOutput_GetOutput(self, index1, index2)
-    __swig_destroy__ = _WMX3ApiPython.delete_IoLogOutput
-    __del__ = lambda self: None
-IoLogOutput_swigregister = _WMX3ApiPython.IoLogOutput_swigregister
-IoLogOutput_swigregister(IoLogOutput)
 
 class BaseIoEventInputFunctionArguments_IOSingle(_object):
     __swig_setmethods__ = {}
@@ -13635,86 +12365,6 @@ class LogOptions(_object):
     __swig_getmethods__["detailOpState"] = _WMX3ApiPython.LogOptions_detailOpState_get
     if _newclass:
         detailOpState = _swig_property(_WMX3ApiPython.LogOptions_detailOpState_get, _WMX3ApiPython.LogOptions_detailOpState_set)
-    __swig_setmethods__["userOffsetCommandPos"] = _WMX3ApiPython.LogOptions_userOffsetCommandPos_set
-    __swig_getmethods__["userOffsetCommandPos"] = _WMX3ApiPython.LogOptions_userOffsetCommandPos_get
-    if _newclass:
-        userOffsetCommandPos = _swig_property(_WMX3ApiPython.LogOptions_userOffsetCommandPos_get, _WMX3ApiPython.LogOptions_userOffsetCommandPos_set)
-    __swig_setmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_set
-    __swig_getmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_get
-    if _newclass:
-        userOffsetFeedbackPos = _swig_property(_WMX3ApiPython.LogOptions_userOffsetFeedbackPos_get, _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.LogOptions_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.LogOptions_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.LogOptions_axisCommandMode_get, _WMX3ApiPython.LogOptions_axisCommandMode_set)
-    __swig_setmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.LogOptions_axisCommandModeFeedback_set
-    __swig_getmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.LogOptions_axisCommandModeFeedback_get
-    if _newclass:
-        axisCommandModeFeedback = _swig_property(_WMX3ApiPython.LogOptions_axisCommandModeFeedback_get, _WMX3ApiPython.LogOptions_axisCommandModeFeedback_set)
-    __swig_setmethods__["followingErrorAlarm"] = _WMX3ApiPython.LogOptions_followingErrorAlarm_set
-    __swig_getmethods__["followingErrorAlarm"] = _WMX3ApiPython.LogOptions_followingErrorAlarm_get
-    if _newclass:
-        followingErrorAlarm = _swig_property(_WMX3ApiPython.LogOptions_followingErrorAlarm_get, _WMX3ApiPython.LogOptions_followingErrorAlarm_set)
-    __swig_setmethods__["ampAlarm"] = _WMX3ApiPython.LogOptions_ampAlarm_set
-    __swig_getmethods__["ampAlarm"] = _WMX3ApiPython.LogOptions_ampAlarm_get
-    if _newclass:
-        ampAlarm = _swig_property(_WMX3ApiPython.LogOptions_ampAlarm_get, _WMX3ApiPython.LogOptions_ampAlarm_set)
-    __swig_setmethods__["ampAlarmCode"] = _WMX3ApiPython.LogOptions_ampAlarmCode_set
-    __swig_getmethods__["ampAlarmCode"] = _WMX3ApiPython.LogOptions_ampAlarmCode_get
-    if _newclass:
-        ampAlarmCode = _swig_property(_WMX3ApiPython.LogOptions_ampAlarmCode_get, _WMX3ApiPython.LogOptions_ampAlarmCode_set)
-    __swig_setmethods__["servoOn"] = _WMX3ApiPython.LogOptions_servoOn_set
-    __swig_getmethods__["servoOn"] = _WMX3ApiPython.LogOptions_servoOn_get
-    if _newclass:
-        servoOn = _swig_property(_WMX3ApiPython.LogOptions_servoOn_get, _WMX3ApiPython.LogOptions_servoOn_set)
-    __swig_setmethods__["servoOffline"] = _WMX3ApiPython.LogOptions_servoOffline_set
-    __swig_getmethods__["servoOffline"] = _WMX3ApiPython.LogOptions_servoOffline_get
-    if _newclass:
-        servoOffline = _swig_property(_WMX3ApiPython.LogOptions_servoOffline_get, _WMX3ApiPython.LogOptions_servoOffline_set)
-    __swig_setmethods__["positiveLS"] = _WMX3ApiPython.LogOptions_positiveLS_set
-    __swig_getmethods__["positiveLS"] = _WMX3ApiPython.LogOptions_positiveLS_get
-    if _newclass:
-        positiveLS = _swig_property(_WMX3ApiPython.LogOptions_positiveLS_get, _WMX3ApiPython.LogOptions_positiveLS_set)
-    __swig_setmethods__["negativeLS"] = _WMX3ApiPython.LogOptions_negativeLS_set
-    __swig_getmethods__["negativeLS"] = _WMX3ApiPython.LogOptions_negativeLS_get
-    if _newclass:
-        negativeLS = _swig_property(_WMX3ApiPython.LogOptions_negativeLS_get, _WMX3ApiPython.LogOptions_negativeLS_set)
-    __swig_setmethods__["nearPositiveLS"] = _WMX3ApiPython.LogOptions_nearPositiveLS_set
-    __swig_getmethods__["nearPositiveLS"] = _WMX3ApiPython.LogOptions_nearPositiveLS_get
-    if _newclass:
-        nearPositiveLS = _swig_property(_WMX3ApiPython.LogOptions_nearPositiveLS_get, _WMX3ApiPython.LogOptions_nearPositiveLS_set)
-    __swig_setmethods__["nearNegativeLS"] = _WMX3ApiPython.LogOptions_nearNegativeLS_set
-    __swig_getmethods__["nearNegativeLS"] = _WMX3ApiPython.LogOptions_nearNegativeLS_get
-    if _newclass:
-        nearNegativeLS = _swig_property(_WMX3ApiPython.LogOptions_nearNegativeLS_get, _WMX3ApiPython.LogOptions_nearNegativeLS_set)
-    __swig_setmethods__["externalPositiveLS"] = _WMX3ApiPython.LogOptions_externalPositiveLS_set
-    __swig_getmethods__["externalPositiveLS"] = _WMX3ApiPython.LogOptions_externalPositiveLS_get
-    if _newclass:
-        externalPositiveLS = _swig_property(_WMX3ApiPython.LogOptions_externalPositiveLS_get, _WMX3ApiPython.LogOptions_externalPositiveLS_set)
-    __swig_setmethods__["externalNegativeLS"] = _WMX3ApiPython.LogOptions_externalNegativeLS_set
-    __swig_getmethods__["externalNegativeLS"] = _WMX3ApiPython.LogOptions_externalNegativeLS_get
-    if _newclass:
-        externalNegativeLS = _swig_property(_WMX3ApiPython.LogOptions_externalNegativeLS_get, _WMX3ApiPython.LogOptions_externalNegativeLS_set)
-    __swig_setmethods__["positiveSoftLimit"] = _WMX3ApiPython.LogOptions_positiveSoftLimit_set
-    __swig_getmethods__["positiveSoftLimit"] = _WMX3ApiPython.LogOptions_positiveSoftLimit_get
-    if _newclass:
-        positiveSoftLimit = _swig_property(_WMX3ApiPython.LogOptions_positiveSoftLimit_get, _WMX3ApiPython.LogOptions_positiveSoftLimit_set)
-    __swig_setmethods__["negativeSoftLimit"] = _WMX3ApiPython.LogOptions_negativeSoftLimit_set
-    __swig_getmethods__["negativeSoftLimit"] = _WMX3ApiPython.LogOptions_negativeSoftLimit_get
-    if _newclass:
-        negativeSoftLimit = _swig_property(_WMX3ApiPython.LogOptions_negativeSoftLimit_get, _WMX3ApiPython.LogOptions_negativeSoftLimit_set)
-    __swig_setmethods__["homeState"] = _WMX3ApiPython.LogOptions_homeState_set
-    __swig_getmethods__["homeState"] = _WMX3ApiPython.LogOptions_homeState_get
-    if _newclass:
-        homeState = _swig_property(_WMX3ApiPython.LogOptions_homeState_get, _WMX3ApiPython.LogOptions_homeState_set)
-    __swig_setmethods__["homeSwitch"] = _WMX3ApiPython.LogOptions_homeSwitch_set
-    __swig_getmethods__["homeSwitch"] = _WMX3ApiPython.LogOptions_homeSwitch_get
-    if _newclass:
-        homeSwitch = _swig_property(_WMX3ApiPython.LogOptions_homeSwitch_get, _WMX3ApiPython.LogOptions_homeSwitch_set)
-    __swig_setmethods__["homeDone"] = _WMX3ApiPython.LogOptions_homeDone_set
-    __swig_getmethods__["homeDone"] = _WMX3ApiPython.LogOptions_homeDone_get
-    if _newclass:
-        homeDone = _swig_property(_WMX3ApiPython.LogOptions_homeDone_get, _WMX3ApiPython.LogOptions_homeDone_set)
     __swig_setmethods__["triggerOnCommandChange"] = _WMX3ApiPython.LogOptions_triggerOnCommandChange_set
     __swig_getmethods__["triggerOnCommandChange"] = _WMX3ApiPython.LogOptions_triggerOnCommandChange_get
     if _newclass:
@@ -13727,6 +12377,14 @@ class LogOptions(_object):
     __swig_getmethods__["triggerEventID"] = _WMX3ApiPython.LogOptions_triggerEventID_get
     if _newclass:
         triggerEventID = _swig_property(_WMX3ApiPython.LogOptions_triggerEventID_get, _WMX3ApiPython.LogOptions_triggerEventID_set)
+    __swig_setmethods__["userOffsetCommandPos"] = _WMX3ApiPython.LogOptions_userOffsetCommandPos_set
+    __swig_getmethods__["userOffsetCommandPos"] = _WMX3ApiPython.LogOptions_userOffsetCommandPos_get
+    if _newclass:
+        userOffsetCommandPos = _swig_property(_WMX3ApiPython.LogOptions_userOffsetCommandPos_get, _WMX3ApiPython.LogOptions_userOffsetCommandPos_set)
+    __swig_setmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_set
+    __swig_getmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_get
+    if _newclass:
+        userOffsetFeedbackPos = _swig_property(_WMX3ApiPython.LogOptions_userOffsetFeedbackPos_get, _WMX3ApiPython.LogOptions_userOffsetFeedbackPos_set)
 
     def __init__(self):
         this = _WMX3ApiPython.new_LogOptions()
@@ -13981,14 +12639,6 @@ class MemoryLogAxisData(_object):
     __swig_getmethods__["userOffsetFeedbackPos"] = _WMX3ApiPython.MemoryLogAxisData_userOffsetFeedbackPos_get
     if _newclass:
         userOffsetFeedbackPos = _swig_property(_WMX3ApiPython.MemoryLogAxisData_userOffsetFeedbackPos_get, _WMX3ApiPython.MemoryLogAxisData_userOffsetFeedbackPos_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.MemoryLogAxisData_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.MemoryLogAxisData_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.MemoryLogAxisData_axisCommandMode_get, _WMX3ApiPython.MemoryLogAxisData_axisCommandMode_set)
-    __swig_setmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.MemoryLogAxisData_axisCommandModeFeedback_set
-    __swig_getmethods__["axisCommandModeFeedback"] = _WMX3ApiPython.MemoryLogAxisData_axisCommandModeFeedback_get
-    if _newclass:
-        axisCommandModeFeedback = _swig_property(_WMX3ApiPython.MemoryLogAxisData_axisCommandModeFeedback_get, _WMX3ApiPython.MemoryLogAxisData_axisCommandModeFeedback_set)
 
     def __init__(self):
         this = _WMX3ApiPython.new_MemoryLogAxisData()
@@ -14551,12 +13201,6 @@ class LogApiLogInput(LogInput):
     __getattr__ = lambda self, name: _swig_getattr(self, LogApiLogInput, name)
     __repr__ = _swig_repr
 
-    def SetData(self, pLogApiLogInput):
-        return _WMX3ApiPython.LogApiLogInput_SetData(self, pLogApiLogInput)
-
-    def GetData(self, pLogApiLogInput):
-        return _WMX3ApiPython.LogApiLogInput_GetData(self, pLogApiLogInput)
-
     def __init__(self, *args):
         this = _WMX3ApiPython.new_LogApiLogInput(*args)
         try:
@@ -14576,75 +13220,10 @@ class LogApiLogInput(LogInput):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.LogApiLogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.LogApiLogInput_GetLogInput(self)
     __swig_destroy__ = _WMX3ApiPython.delete_LogApiLogInput
     __del__ = lambda self: None
 LogApiLogInput_swigregister = _WMX3ApiPython.LogApiLogInput_swigregister
 LogApiLogInput_swigregister(LogApiLogInput)
-
-class LogApiLogOutput(LogOutput):
-    __swig_setmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, LogApiLogOutput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, LogApiLogOutput, name)
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_LogApiLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.LogApiLogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.LogApiLogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.LogApiLogOutput_SetLogOutput(self, src)
-    __swig_destroy__ = _WMX3ApiPython.delete_LogApiLogOutput
-    __del__ = lambda self: None
-LogApiLogOutput_swigregister = _WMX3ApiPython.LogApiLogOutput_swigregister
-LogApiLogOutput_swigregister(LogApiLogOutput)
-
-class LogOutputs(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, LogOutputs, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, LogOutputs, name)
-    __repr__ = _swig_repr
-
-    def __init__(self, size):
-        this = _WMX3ApiPython.new_LogOutputs(size)
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_LogOutputs
-    __del__ = lambda self: None
-    __swig_setmethods__["ppOutput"] = _WMX3ApiPython.LogOutputs_ppOutput_set
-    __swig_getmethods__["ppOutput"] = _WMX3ApiPython.LogOutputs_ppOutput_get
-    if _newclass:
-        ppOutput = _swig_property(_WMX3ApiPython.LogOutputs_ppOutput_get, _WMX3ApiPython.LogOutputs_ppOutput_set)
-
-    def GetSize(self):
-        return _WMX3ApiPython.LogOutputs_GetSize(self)
-
-    def SetPpOutput(self, index, pOutput):
-        return _WMX3ApiPython.LogOutputs_SetPpOutput(self, index, pOutput)
-
-    def GetPpOutput(self, index):
-        return _WMX3ApiPython.LogOutputs_GetPpOutput(self, index)
-LogOutputs_swigregister = _WMX3ApiPython.LogOutputs_swigregister
-LogOutputs_swigregister(LogOutputs)
 
 class LogType(_object):
     __swig_setmethods__ = {}
@@ -14652,8 +13231,8 @@ class LogType(_object):
     __swig_getmethods__ = {}
     __getattr__ = lambda self, name: _swig_getattr(self, LogType, name)
     __repr__ = _swig_repr
-    Log = _WMX3ApiPython.LogType_Log
-    MemoryLog = _WMX3ApiPython.LogType_MemoryLog
+    Command = _WMX3ApiPython.LogType_Command
+    Response = _WMX3ApiPython.LogType_Response
 
     def __init__(self):
         this = _WMX3ApiPython.new_LogType()
@@ -14665,26 +13244,6 @@ class LogType(_object):
     __del__ = lambda self: None
 LogType_swigregister = _WMX3ApiPython.LogType_swigregister
 LogType_swigregister(LogType)
-
-class ApiLogType(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiLogType, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ApiLogType, name)
-    __repr__ = _swig_repr
-    Command = _WMX3ApiPython.ApiLogType_Command
-    Response = _WMX3ApiPython.ApiLogType_Response
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ApiLogType()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ApiLogType
-    __del__ = lambda self: None
-ApiLogType_swigregister = _WMX3ApiPython.ApiLogType_swigregister
-ApiLogType_swigregister(ApiLogType)
 
 class ApiLogInfo(_object):
     __swig_setmethods__ = {}
@@ -14734,10 +13293,6 @@ class ApiLogInfo(_object):
     __swig_getmethods__["logId"] = _WMX3ApiPython.ApiLogInfo_logId_get
     if _newclass:
         logId = _swig_property(_WMX3ApiPython.ApiLogInfo_logId_get, _WMX3ApiPython.ApiLogInfo_logId_set)
-    __swig_setmethods__["timestamp"] = _WMX3ApiPython.ApiLogInfo_timestamp_set
-    __swig_getmethods__["timestamp"] = _WMX3ApiPython.ApiLogInfo_timestamp_get
-    if _newclass:
-        timestamp = _swig_property(_WMX3ApiPython.ApiLogInfo_timestamp_get, _WMX3ApiPython.ApiLogInfo_timestamp_set)
 
     def __init__(self):
         this = _WMX3ApiPython.new_ApiLogInfo()
@@ -14770,32 +13325,14 @@ class ApiLogOptions(_object):
     __swig_getmethods__["deviceExcluded"] = _WMX3ApiPython.ApiLogOptions_deviceExcluded_get
     if _newclass:
         deviceExcluded = _swig_property(_WMX3ApiPython.ApiLogOptions_deviceExcluded_get, _WMX3ApiPython.ApiLogOptions_deviceExcluded_set)
-
-    def SetDeviceExcluded(self, index, value):
-        return _WMX3ApiPython.ApiLogOptions_SetDeviceExcluded(self, index, value)
-
-    def GetDeviceExcluded(self, index):
-        return _WMX3ApiPython.ApiLogOptions_GetDeviceExcluded(self, index)
     __swig_setmethods__["moduleExcluded"] = _WMX3ApiPython.ApiLogOptions_moduleExcluded_set
     __swig_getmethods__["moduleExcluded"] = _WMX3ApiPython.ApiLogOptions_moduleExcluded_get
     if _newclass:
         moduleExcluded = _swig_property(_WMX3ApiPython.ApiLogOptions_moduleExcluded_get, _WMX3ApiPython.ApiLogOptions_moduleExcluded_set)
-
-    def SetModuleExcluded(self, index, value):
-        return _WMX3ApiPython.ApiLogOptions_SetModuleExcluded(self, index, value)
-
-    def GetModuleExcluded(self, index):
-        return _WMX3ApiPython.ApiLogOptions_GetModuleExcluded(self, index)
     __swig_setmethods__["moduleResp"] = _WMX3ApiPython.ApiLogOptions_moduleResp_set
     __swig_getmethods__["moduleResp"] = _WMX3ApiPython.ApiLogOptions_moduleResp_get
     if _newclass:
         moduleResp = _swig_property(_WMX3ApiPython.ApiLogOptions_moduleResp_get, _WMX3ApiPython.ApiLogOptions_moduleResp_set)
-
-    def SetModuleResp(self, index, value):
-        return _WMX3ApiPython.ApiLogOptions_SetModuleResp(self, index, value)
-
-    def GetModuleResp(self, index):
-        return _WMX3ApiPython.ApiLogOptions_GetModuleResp(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_ApiLogOptions()
@@ -14872,7 +13409,7 @@ ApiLogStatus_swigregister = _WMX3ApiPython.ApiLogStatus_swigregister
 ApiLogStatus_swigregister(ApiLogStatus)
 
 class Log(_object):
-    """Log.rtdll Ver.3.5.0.0 is required to use."""
+    """Log.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Log, name, value)
@@ -14882,8 +13419,8 @@ class Log(_object):
 
     def __init__(self, *args):
         """
-        Log.rtdll Ver.3.5.0.0 is required to use.
-        Log.rtdll Ver.3.5.0.0 is required to use.
+        Log.rtdll Ver.3.4.3.0 is required to use.
+        Log.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_Log(*args)
         try:
@@ -14900,10 +13437,6 @@ class Log(_object):
         ApiLogToString = staticmethod(_WMX3ApiPython.Log_ApiLogToString)
     else:
         ApiLogToString = _WMX3ApiPython.Log_ApiLogToString
-    if _newclass:
-        TimestampToString = staticmethod(_WMX3ApiPython.Log_TimestampToString)
-    else:
-        TimestampToString = _WMX3ApiPython.Log_TimestampToString
     if _newclass:
         GetLibVersion = staticmethod(_WMX3ApiPython.Log_GetLibVersion)
     else:
@@ -14985,41 +13518,6 @@ class Log(_object):
     def CloseMemoryLogBuffer(self, channel):
         return _WMX3ApiPython.Log_CloseMemoryLogBuffer(self, channel)
 
-    def SetMemoryLog_LogInput(self, channel, input):
-        return _WMX3ApiPython.Log_SetMemoryLog_LogInput(self, channel, input)
-
-    def SetMemoryLogOption(self, channel, pOption):
-        return _WMX3ApiPython.Log_SetMemoryLogOption(self, channel, pOption)
-
-    def GetMemoryLogOption(self, channel):
-        dataPtr = MemoryLogOptions()
-        ret = _WMX3ApiPython.Log_GetMemoryLogOption(self, channel, dataPtr)
-        return ret, dataPtr
-
-
-
-    def StartMemoryLog(self, channel):
-        return _WMX3ApiPython.Log_StartMemoryLog(self, channel)
-
-    def StopMemoryLog(self, channel):
-        return _WMX3ApiPython.Log_StopMemoryLog(self, channel)
-
-    def ResetMemoryLog(self, channel):
-        return _WMX3ApiPython.Log_ResetMemoryLog(self, channel)
-
-    def GetMemoryLogStatus(self, channel):
-        dataPtr = MemoryLogStatus()
-        ret = _WMX3ApiPython.Log_GetMemoryLogStatus(self, channel, dataPtr)
-        return ret, dataPtr
-
-
-
-    def GetMemoryLogData_LogOutput(self, channel, pOutput):
-        return _WMX3ApiPython.Log_GetMemoryLogData_LogOutput(self, channel, pOutput)
-
-    def GetMemoryLogData_LogOutputs(self, channel, pOutputs):
-        return _WMX3ApiPython.Log_GetMemoryLogData_LogOutputs(self, channel, pOutputs)
-
     def SetMemoryLog(self, channel, pAxisSelection, pOption):
         return _WMX3ApiPython.Log_SetMemoryLog(self, channel, pAxisSelection, pOption)
 
@@ -15028,6 +13526,19 @@ class Log(_object):
 
     def SetMemoryMLog(self, channel, pMAddress, size):
         return _WMX3ApiPython.Log_SetMemoryMLog(self, channel, pMAddress, size)
+
+    def StartMemoryLog(self, channel):
+        return _WMX3ApiPython.Log_StartMemoryLog(self, channel)
+
+    def StopMemoryLog(self, channel):
+        return _WMX3ApiPython.Log_StopMemoryLog(self, channel)
+
+    def GetMemoryLogStatus(self, channel):
+        dataPtr = MemoryLogStatus()
+        ret = _WMX3ApiPython.Log_GetMemoryLogStatus(self, channel, dataPtr)
+        return ret, dataPtr
+
+
 
     def GetMemoryLogData(self, channel):
         dataPtr = MemoryLogData()
@@ -15101,10 +13612,6 @@ def Log_ApiLogToString(pLogData, logDataSize):
     return _WMX3ApiPython.Log_ApiLogToString(pLogData, logDataSize)
 Log_ApiLogToString = _WMX3ApiPython.Log_ApiLogToString
 
-def Log_TimestampToString(timestamp):
-    return _WMX3ApiPython.Log_TimestampToString(timestamp)
-Log_TimestampToString = _WMX3ApiPython.Log_TimestampToString
-
 def Log_GetLibVersion():
     return _WMX3ApiPython.Log_GetLibVersion()
 Log_GetLibVersion = _WMX3ApiPython.Log_GetLibVersion
@@ -15152,8 +13659,6 @@ class ApiBufferConditionType(_object):
     UserMemory = _WMX3ApiPython.ApiBufferConditionType_UserMemory
     Event = _WMX3ApiPython.ApiBufferConditionType_Event
     MinimumTrq = _WMX3ApiPython.ApiBufferConditionType_MinimumTrq
-    OpState = _WMX3ApiPython.ApiBufferConditionType_OpState
-    AxisCmdMode = _WMX3ApiPython.ApiBufferConditionType_AxisCmdMode
     InPos = _WMX3ApiPython.ApiBufferConditionType_InPos
     PosSET = _WMX3ApiPython.ApiBufferConditionType_PosSET
     DelayedPosSET = _WMX3ApiPython.ApiBufferConditionType_DelayedPosSET
@@ -15335,6 +13840,28 @@ class ApiBufferConditionArguments_UserMemory(_object):
 ApiBufferConditionArguments_UserMemory_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_UserMemory_swigregister
 ApiBufferConditionArguments_UserMemory_swigregister(ApiBufferConditionArguments_UserMemory)
 
+class ApiBufferConditionArguments_Event(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_Event, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_Event, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["eventID"] = _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_set
+    __swig_getmethods__["eventID"] = _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_get
+    if _newclass:
+        eventID = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_get, _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_ApiBufferConditionArguments_Event()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_Event
+    __del__ = lambda self: None
+ApiBufferConditionArguments_Event_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_Event_swigregister
+ApiBufferConditionArguments_Event_swigregister(ApiBufferConditionArguments_Event)
+
 class ApiBufferConditionArguments_MinimumTrq(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_MinimumTrq, name, value)
@@ -15360,62 +13887,6 @@ class ApiBufferConditionArguments_MinimumTrq(_object):
     __del__ = lambda self: None
 ApiBufferConditionArguments_MinimumTrq_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_MinimumTrq_swigregister
 ApiBufferConditionArguments_MinimumTrq_swigregister(ApiBufferConditionArguments_MinimumTrq)
-
-class ApiBufferConditionArguments_OpState(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_OpState, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_OpState, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_OpState_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_OpState_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_OpState_axis_get, _WMX3ApiPython.ApiBufferConditionArguments_OpState_axis_set)
-    __swig_setmethods__["opState"] = _WMX3ApiPython.ApiBufferConditionArguments_OpState_opState_set
-    __swig_getmethods__["opState"] = _WMX3ApiPython.ApiBufferConditionArguments_OpState_opState_get
-    if _newclass:
-        opState = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_OpState_opState_get, _WMX3ApiPython.ApiBufferConditionArguments_OpState_opState_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ApiBufferConditionArguments_OpState()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_OpState
-    __del__ = lambda self: None
-ApiBufferConditionArguments_OpState_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_OpState_swigregister
-ApiBufferConditionArguments_OpState_swigregister(ApiBufferConditionArguments_OpState)
-
-class ApiBufferConditionArguments_AxisCmdMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_AxisCmdMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_AxisCmdMode, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axis_get, _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axis_set)
-    __swig_setmethods__["axisCommandMode"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axisCommandMode_set
-    __swig_getmethods__["axisCommandMode"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axisCommandMode_get
-    if _newclass:
-        axisCommandMode = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axisCommandMode_get, _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_axisCommandMode_set)
-    __swig_setmethods__["useFeedback"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_useFeedback_set
-    __swig_getmethods__["useFeedback"] = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_useFeedback_get
-    if _newclass:
-        useFeedback = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_useFeedback_get, _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_useFeedback_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ApiBufferConditionArguments_AxisCmdMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_AxisCmdMode
-    __del__ = lambda self: None
-ApiBufferConditionArguments_AxisCmdMode_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_AxisCmdMode_swigregister
-ApiBufferConditionArguments_AxisCmdMode_swigregister(ApiBufferConditionArguments_AxisCmdMode)
 
 class ApiBufferConditionArguments_InPos(_object):
     __swig_setmethods__ = {}
@@ -15613,6 +14084,28 @@ class ApiBufferConditionArguments_CompletedDistance(_object):
 ApiBufferConditionArguments_CompletedDistance_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_CompletedDistance_swigregister
 ApiBufferConditionArguments_CompletedDistance_swigregister(ApiBufferConditionArguments_CompletedDistance)
 
+class ApiBufferConditionArguments_DecelerationStarted(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_DecelerationStarted, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_DecelerationStarted, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_get, _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_ApiBufferConditionArguments_DecelerationStarted()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_DecelerationStarted
+    __del__ = lambda self: None
+ApiBufferConditionArguments_DecelerationStarted_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_swigregister
+ApiBufferConditionArguments_DecelerationStarted_swigregister(ApiBufferConditionArguments_DecelerationStarted)
+
 class ApiBufferConditionArguments_DistanceToTarget(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_DistanceToTarget, name, value)
@@ -15638,28 +14131,6 @@ class ApiBufferConditionArguments_DistanceToTarget(_object):
     __del__ = lambda self: None
 ApiBufferConditionArguments_DistanceToTarget_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_DistanceToTarget_swigregister
 ApiBufferConditionArguments_DistanceToTarget_swigregister(ApiBufferConditionArguments_DistanceToTarget)
-
-class ApiBufferConditionArguments_DecelerationStarted(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_DecelerationStarted, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_DecelerationStarted, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_get, _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_axis_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ApiBufferConditionArguments_DecelerationStarted()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_DecelerationStarted
-    __del__ = lambda self: None
-ApiBufferConditionArguments_DecelerationStarted_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_DecelerationStarted_swigregister
-ApiBufferConditionArguments_DecelerationStarted_swigregister(ApiBufferConditionArguments_DecelerationStarted)
 
 class ApiBufferConditionArguments_AxisIdle(_object):
     __swig_setmethods__ = {}
@@ -15737,28 +14208,6 @@ class ApiBufferConditionArguments_MotionStartedOverrideReady(_object):
 ApiBufferConditionArguments_MotionStartedOverrideReady_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_MotionStartedOverrideReady_swigregister
 ApiBufferConditionArguments_MotionStartedOverrideReady_swigregister(ApiBufferConditionArguments_MotionStartedOverrideReady)
 
-class ApiBufferConditionArguments_Event(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferConditionArguments_Event, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, ApiBufferConditionArguments_Event, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["eventID"] = _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_set
-    __swig_getmethods__["eventID"] = _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_get
-    if _newclass:
-        eventID = _swig_property(_WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_get, _WMX3ApiPython.ApiBufferConditionArguments_Event_eventID_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_ApiBufferConditionArguments_Event()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_ApiBufferConditionArguments_Event
-    __del__ = lambda self: None
-ApiBufferConditionArguments_Event_swigregister = _WMX3ApiPython.ApiBufferConditionArguments_Event_swigregister
-ApiBufferConditionArguments_Event_swigregister(ApiBufferConditionArguments_Event)
-
 class ApiBufferCondition(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBufferCondition, name, value)
@@ -15795,18 +14244,14 @@ class ApiBufferCondition(_object):
     __swig_getmethods__["arg_userMemory"] = _WMX3ApiPython.ApiBufferCondition_arg_userMemory_get
     if _newclass:
         arg_userMemory = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_userMemory_get, _WMX3ApiPython.ApiBufferCondition_arg_userMemory_set)
+    __swig_setmethods__["arg_event"] = _WMX3ApiPython.ApiBufferCondition_arg_event_set
+    __swig_getmethods__["arg_event"] = _WMX3ApiPython.ApiBufferCondition_arg_event_get
+    if _newclass:
+        arg_event = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_event_get, _WMX3ApiPython.ApiBufferCondition_arg_event_set)
     __swig_setmethods__["arg_minimumTrq"] = _WMX3ApiPython.ApiBufferCondition_arg_minimumTrq_set
     __swig_getmethods__["arg_minimumTrq"] = _WMX3ApiPython.ApiBufferCondition_arg_minimumTrq_get
     if _newclass:
         arg_minimumTrq = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_minimumTrq_get, _WMX3ApiPython.ApiBufferCondition_arg_minimumTrq_set)
-    __swig_setmethods__["arg_opState"] = _WMX3ApiPython.ApiBufferCondition_arg_opState_set
-    __swig_getmethods__["arg_opState"] = _WMX3ApiPython.ApiBufferCondition_arg_opState_get
-    if _newclass:
-        arg_opState = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_opState_get, _WMX3ApiPython.ApiBufferCondition_arg_opState_set)
-    __swig_setmethods__["arg_axisCmdMode"] = _WMX3ApiPython.ApiBufferCondition_arg_axisCmdMode_set
-    __swig_getmethods__["arg_axisCmdMode"] = _WMX3ApiPython.ApiBufferCondition_arg_axisCmdMode_get
-    if _newclass:
-        arg_axisCmdMode = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_axisCmdMode_get, _WMX3ApiPython.ApiBufferCondition_arg_axisCmdMode_set)
     __swig_setmethods__["arg_inPos"] = _WMX3ApiPython.ApiBufferCondition_arg_inPos_set
     __swig_getmethods__["arg_inPos"] = _WMX3ApiPython.ApiBufferCondition_arg_inPos_get
     if _newclass:
@@ -15839,10 +14284,6 @@ class ApiBufferCondition(_object):
     __swig_getmethods__["arg_completedDistance"] = _WMX3ApiPython.ApiBufferCondition_arg_completedDistance_get
     if _newclass:
         arg_completedDistance = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_completedDistance_get, _WMX3ApiPython.ApiBufferCondition_arg_completedDistance_set)
-    __swig_setmethods__["arg_distanceToTarget"] = _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_set
-    __swig_getmethods__["arg_distanceToTarget"] = _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_get
-    if _newclass:
-        arg_distanceToTarget = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_get, _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_set)
     __swig_setmethods__["arg_decelerationStarted"] = _WMX3ApiPython.ApiBufferCondition_arg_decelerationStarted_set
     __swig_getmethods__["arg_decelerationStarted"] = _WMX3ApiPython.ApiBufferCondition_arg_decelerationStarted_get
     if _newclass:
@@ -15859,10 +14300,10 @@ class ApiBufferCondition(_object):
     __swig_getmethods__["arg_motionStartedOverrideReady"] = _WMX3ApiPython.ApiBufferCondition_arg_motionStartedOverrideReady_get
     if _newclass:
         arg_motionStartedOverrideReady = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_motionStartedOverrideReady_get, _WMX3ApiPython.ApiBufferCondition_arg_motionStartedOverrideReady_set)
-    __swig_setmethods__["arg_event"] = _WMX3ApiPython.ApiBufferCondition_arg_event_set
-    __swig_getmethods__["arg_event"] = _WMX3ApiPython.ApiBufferCondition_arg_event_get
+    __swig_setmethods__["arg_distanceToTarget"] = _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_set
+    __swig_getmethods__["arg_distanceToTarget"] = _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_get
     if _newclass:
-        arg_event = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_event_get, _WMX3ApiPython.ApiBufferCondition_arg_event_set)
+        arg_distanceToTarget = _swig_property(_WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_get, _WMX3ApiPython.ApiBufferCondition_arg_distanceToTarget_set)
 
     def __init__(self):
         this = _WMX3ApiPython.new_ApiBufferCondition()
@@ -16165,7 +14606,7 @@ ApiBufferEventOutput_swigregister = _WMX3ApiPython.ApiBufferEventOutput_swigregi
 ApiBufferEventOutput_swigregister(ApiBufferEventOutput)
 
 class ApiBuffer(_object):
-    """ApiBuffer.rtdll Ver.3.5.0.0 is required to use."""
+    """ApiBuffer.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, ApiBuffer, name, value)
@@ -16175,8 +14616,8 @@ class ApiBuffer(_object):
 
     def __init__(self, *args):
         """
-        ApiBuffer.rtdll Ver.3.5.0.0 is required to use.
-        ApiBuffer.rtdll Ver.3.5.0.0 is required to use.
+        ApiBuffer.rtdll Ver.3.4.3.0 is required to use.
+        ApiBuffer.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_ApiBuffer(*args)
         try:
@@ -16563,7 +15004,7 @@ CyclicBufferMultiAxisStatus_swigregister = _WMX3ApiPython.CyclicBufferMultiAxisS
 CyclicBufferMultiAxisStatus_swigregister(CyclicBufferMultiAxisStatus)
 
 class CyclicBuffer(_object):
-    """CyclicBuffer.rtdll Ver.3.5.0.0 is required to use."""
+    """CyclicBuffer.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, CyclicBuffer, name, value)
@@ -16573,8 +15014,8 @@ class CyclicBuffer(_object):
 
     def __init__(self, *args):
         """
-        CyclicBuffer.rtdll Ver.3.5.0.0 is required to use.
-        CyclicBuffer.rtdll Ver.3.5.0.0 is required to use.
+        CyclicBuffer.rtdll Ver.3.4.3.0 is required to use.
+        CyclicBuffer.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_CyclicBuffer(*args)
         try:
@@ -16602,11 +15043,11 @@ class CyclicBuffer(_object):
     def GetVersion(self):
         return _WMX3ApiPython.CyclicBuffer_GetVersion(self)
 
-    def OpenCyclicBuffer(self, axis, numOfCycles):
-        return _WMX3ApiPython.CyclicBuffer_OpenCyclicBuffer(self, axis, numOfCycles)
+    def OpenCyclicBuffer(self, *args):
+        return _WMX3ApiPython.CyclicBuffer_OpenCyclicBuffer(self, *args)
 
-    def OpenCyclicBuffer_AxisSel(self, pAxisSelection, numOfCycles):
-        return _WMX3ApiPython.CyclicBuffer_OpenCyclicBuffer_AxisSel(self, pAxisSelection, numOfCycles)
+    def OpenCyclicBuffer_AxisSel(self, *args):
+        return _WMX3ApiPython.CyclicBuffer_OpenCyclicBuffer_AxisSel(self, *args)
 
     def CloseCyclicBuffer(self, axis):
         return _WMX3ApiPython.CyclicBuffer_CloseCyclicBuffer(self, axis)
@@ -16679,12 +15120,6 @@ class CompensationErrorCode(ErrorCode):
     PitchOriginIndexOutOfRange = _WMX3ApiPython.CompensationErrorCode_PitchOriginIndexOutOfRange
     PitchIntervalOutOfRange = _WMX3ApiPython.CompensationErrorCode_PitchIntervalOutOfRange
     EdgeDropoffDistanceOutOfRange = _WMX3ApiPython.CompensationErrorCode_EdgeDropoffDistanceOutOfRange
-    CompensationAxisNotPosMode = _WMX3ApiPython.CompensationErrorCode_CompensationAxisNotPosMode
-    ReferenceAxisNotPosMode = _WMX3ApiPython.CompensationErrorCode_ReferenceAxisNotPosMode
-    NotUsingPitchIntervalMode = _WMX3ApiPython.CompensationErrorCode_NotUsingPitchIntervalMode
-    NotUsingFreePositionMode = _WMX3ApiPython.CompensationErrorCode_NotUsingFreePositionMode
-    PitchPositionRangeTooLarge = _WMX3ApiPython.CompensationErrorCode_PitchPositionRangeTooLarge
-    PitchPositionNotInAscendingOrder = _WMX3ApiPython.CompensationErrorCode_PitchPositionNotInAscendingOrder
 
     def __init__(self):
         this = _WMX3ApiPython.new_CompensationErrorCode()
@@ -16846,66 +15281,6 @@ class PitchErrorCompensationData(_object):
 PitchErrorCompensationData_swigregister = _WMX3ApiPython.PitchErrorCompensationData_swigregister
 PitchErrorCompensationData_swigregister(PitchErrorCompensationData)
 
-class PitchErrorCompensationFreePositionData(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, PitchErrorCompensationFreePositionData, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, PitchErrorCompensationFreePositionData, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, pitchErrorCompensationFreePositionData):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_GetData(self, pitchErrorCompensationFreePositionData)
-
-    def SetData(self, pitchErrorCompensationFreePositionData):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_SetData(self, pitchErrorCompensationFreePositionData)
-    __swig_setmethods__["enable"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_enable_set
-    __swig_getmethods__["enable"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_enable_get
-    if _newclass:
-        enable = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_enable_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_enable_set)
-    __swig_setmethods__["pitchPosition"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchPosition_set
-    __swig_getmethods__["pitchPosition"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchPosition_get
-    if _newclass:
-        pitchPosition = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchPosition_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchPosition_set)
-
-    def SetPitchPosition(self, index, value):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_SetPitchPosition(self, index, value)
-
-    def GetPitchPosition(self, index):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_GetPitchPosition(self, index)
-    __swig_setmethods__["pitchCount"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCount_set
-    __swig_getmethods__["pitchCount"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCount_get
-    if _newclass:
-        pitchCount = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCount_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCount_set)
-    __swig_setmethods__["pitchCompensationValue"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCompensationValue_set
-    __swig_getmethods__["pitchCompensationValue"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCompensationValue_get
-    if _newclass:
-        pitchCompensationValue = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCompensationValue_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_pitchCompensationValue_set)
-
-    def SetPitchCompensationValue(self, index, value):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_SetPitchCompensationValue(self, index, value)
-
-    def GetPitchCompensationValue(self, index):
-        return _WMX3ApiPython.PitchErrorCompensationFreePositionData_GetPitchCompensationValue(self, index)
-    __swig_setmethods__["edgeDropoffDistance"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_edgeDropoffDistance_set
-    __swig_getmethods__["edgeDropoffDistance"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_edgeDropoffDistance_get
-    if _newclass:
-        edgeDropoffDistance = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_edgeDropoffDistance_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_edgeDropoffDistance_set)
-    __swig_setmethods__["options"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_options_set
-    __swig_getmethods__["options"] = _WMX3ApiPython.PitchErrorCompensationFreePositionData_options_get
-    if _newclass:
-        options = _swig_property(_WMX3ApiPython.PitchErrorCompensationFreePositionData_options_get, _WMX3ApiPython.PitchErrorCompensationFreePositionData_options_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_PitchErrorCompensationFreePositionData()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_PitchErrorCompensationFreePositionData
-    __del__ = lambda self: None
-PitchErrorCompensationFreePositionData_swigregister = _WMX3ApiPython.PitchErrorCompensationFreePositionData_swigregister
-PitchErrorCompensationFreePositionData_swigregister(PitchErrorCompensationFreePositionData)
-
 class TwoDPitchErrorCompensationData(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, TwoDPitchErrorCompensationData, name, value)
@@ -17012,92 +15387,6 @@ class TwoDPitchErrorCompensationData(_object):
 TwoDPitchErrorCompensationData_swigregister = _WMX3ApiPython.TwoDPitchErrorCompensationData_swigregister
 TwoDPitchErrorCompensationData_swigregister(TwoDPitchErrorCompensationData)
 
-class TwoDPitchErrorCompensationFreePositionData(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, TwoDPitchErrorCompensationFreePositionData, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, TwoDPitchErrorCompensationFreePositionData, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, twoDPitchErrorCompensationData):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetData(self, twoDPitchErrorCompensationData)
-
-    def SetData(self, twoDPitchErrorCompensationData):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetData(self, twoDPitchErrorCompensationData)
-    __swig_setmethods__["enable"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_enable_set
-    __swig_getmethods__["enable"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_enable_get
-    if _newclass:
-        enable = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_enable_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_enable_set)
-    __swig_setmethods__["axis"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_axis_set
-    __swig_getmethods__["axis"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_axis_get
-    if _newclass:
-        axis = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_axis_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_axis_set)
-    __swig_setmethods__["referenceAxis"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_referenceAxis_set
-    __swig_getmethods__["referenceAxis"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_referenceAxis_get
-    if _newclass:
-        referenceAxis = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_referenceAxis_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_referenceAxis_set)
-
-    def SetReferenceAxis(self, index, value):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetReferenceAxis(self, index, value)
-
-    def GetReferenceAxis(self, index):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetReferenceAxis(self, index)
-    __swig_setmethods__["pitchPosition"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchPosition_set
-    __swig_getmethods__["pitchPosition"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchPosition_get
-    if _newclass:
-        pitchPosition = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchPosition_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchPosition_set)
-
-    def SetPitchPosition(self, index1, index2, value):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetPitchPosition(self, index1, index2, value)
-
-    def GetPitchPosition(self, index1, index2):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetPitchPosition(self, index1, index2)
-    __swig_setmethods__["pitchCount"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCount_set
-    __swig_getmethods__["pitchCount"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCount_get
-    if _newclass:
-        pitchCount = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCount_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCount_set)
-
-    def SetPitchCount(self, index, value):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetPitchCount(self, index, value)
-
-    def GetPitchCount(self, index):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetPitchCount(self, index)
-    __swig_setmethods__["edgeDropoffDistance"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_edgeDropoffDistance_set
-    __swig_getmethods__["edgeDropoffDistance"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_edgeDropoffDistance_get
-    if _newclass:
-        edgeDropoffDistance = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_edgeDropoffDistance_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_edgeDropoffDistance_set)
-
-    def SetEdgeDropoffDistance(self, index, value):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetEdgeDropoffDistance(self, index, value)
-
-    def GetEdgeDropoffDistance(self, index):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetEdgeDropoffDistance(self, index)
-    __swig_setmethods__["pitchCompensationValue"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCompensationValue_set
-    __swig_getmethods__["pitchCompensationValue"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCompensationValue_get
-    if _newclass:
-        pitchCompensationValue = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCompensationValue_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_pitchCompensationValue_set)
-
-    def SetPitchCompensationValue(self, index1, index2, value):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_SetPitchCompensationValue(self, index1, index2, value)
-
-    def GetPitchCompensationValue(self, index1, index2):
-        return _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_GetPitchCompensationValue(self, index1, index2)
-    __swig_setmethods__["options"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_options_set
-    __swig_getmethods__["options"] = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_options_get
-    if _newclass:
-        options = _swig_property(_WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_options_get, _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_options_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_TwoDPitchErrorCompensationFreePositionData()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_TwoDPitchErrorCompensationFreePositionData
-    __del__ = lambda self: None
-TwoDPitchErrorCompensationFreePositionData_swigregister = _WMX3ApiPython.TwoDPitchErrorCompensationFreePositionData_swigregister
-TwoDPitchErrorCompensationFreePositionData_swigregister(TwoDPitchErrorCompensationFreePositionData)
-
 class BacklashCompensationData(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, BacklashCompensationData, name, value)
@@ -17147,7 +15436,7 @@ BacklashCompensationData_swigregister = _WMX3ApiPython.BacklashCompensationData_
 BacklashCompensationData_swigregister(BacklashCompensationData)
 
 class Compensation(_object):
-    """Compensation.rtdll Ver.3.5.0.0 is required to use."""
+    """Compensation.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, Compensation, name, value)
@@ -17157,8 +15446,8 @@ class Compensation(_object):
 
     def __init__(self, *args):
         """
-        Compensation.rtdll Ver.3.5.0.0 is required to use.
-        Compensation.rtdll Ver.3.5.0.0 is required to use.
+        Compensation.rtdll Ver.3.4.3.0 is required to use.
+        Compensation.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_Compensation(*args)
         try:
@@ -17189,18 +15478,12 @@ class Compensation(_object):
     def SetPitchErrorCompensation(self, axis, pitchErrCompData):
         return _WMX3ApiPython.Compensation_SetPitchErrorCompensation(self, axis, pitchErrCompData)
 
-    def SetPitchErrorCompensation_FreePosition(self, axis, pitchErrCompData):
-        return _WMX3ApiPython.Compensation_SetPitchErrorCompensation_FreePosition(self, axis, pitchErrCompData)
-
     def GetPitchErrorCompensation(self, axis):
         pitchErrCompData = PitchErrorCompensationData()
         ret = _WMX3ApiPython.Compensation_GetPitchErrorCompensation(self, axis, pitchErrCompData)
         return ret, pitchErrCompData
 
 
-
-    def GetPitchErrorCompensation_FreePosition(self, axis, pitchErrCompData):
-        return _WMX3ApiPython.Compensation_GetPitchErrorCompensation_FreePosition(self, axis, pitchErrCompData)
 
     def EnablePitchErrorCompensation(self, axis):
         return _WMX3ApiPython.Compensation_EnablePitchErrorCompensation(self, axis)
@@ -17218,18 +15501,12 @@ class Compensation(_object):
     def Set2DPitchErrorCompensation(self, channel, pitchErrCompData2D):
         return _WMX3ApiPython.Compensation_Set2DPitchErrorCompensation(self, channel, pitchErrCompData2D)
 
-    def Set2DPitchErrorCompensation_FreePosition(self, channel, pitchErrCompData2D):
-        return _WMX3ApiPython.Compensation_Set2DPitchErrorCompensation_FreePosition(self, channel, pitchErrCompData2D)
-
     def Get2DPitchErrorCompensation(self, channel):
         pitchErrCompData2D = TwoDPitchErrorCompensationData()
         ret = _WMX3ApiPython.Compensation_Get2DPitchErrorCompensation(self, channel, pitchErrCompData2D)
         return ret, pitchErrCompData2D
 
 
-
-    def Get2DPitchErrorCompensation_FreePosition(self, channel, pitchErrCompData2D):
-        return _WMX3ApiPython.Compensation_Get2DPitchErrorCompensation_FreePosition(self, channel, pitchErrCompData2D)
 
     def Enable2DPitchErrorCompensation(self, channel):
         return _WMX3ApiPython.Compensation_Enable2DPitchErrorCompensation(self, channel)
@@ -21686,6 +19963,8 @@ class AdvancedMotionErrorCode(ErrorCode):
     DancerControlIntegralTimeOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_DancerControlIntegralTimeOutOfRange
     DancerControlInputMinMaxDifferenceOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_DancerControlInputMinMaxDifferenceOutOfRange
     FirstPointTimeNotZero = _WMX3ApiPython.AdvancedMotionErrorCode_FirstPointTimeNotZero
+    PointTimeOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_PointTimeOutOfRange
+    PointTimeNotIncreasing = _WMX3ApiPython.AdvancedMotionErrorCode_PointTimeNotIncreasing
     SmoothRatioOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_SmoothRatioOutOfRange
     TwoLinkMotionTypeOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_TwoLinkMotionTypeOutOfRange
     OutputIOAddressOutOfRange = _WMX3ApiPython.AdvancedMotionErrorCode_OutputIOAddressOutOfRange
@@ -21956,6 +20235,532 @@ class AdvMotion_VelAccLimitedSplineCommand(_object):
     __del__ = lambda self: None
 AdvMotion_VelAccLimitedSplineCommand_swigregister = _WMX3ApiPython.AdvMotion_VelAccLimitedSplineCommand_swigregister
 AdvMotion_VelAccLimitedSplineCommand_swigregister(AdvMotion_VelAccLimitedSplineCommand)
+
+class AdvMotion_PVTPoint(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PVTPoint, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PVTPoint, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPVTPoint):
+        return _WMX3ApiPython.AdvMotion_PVTPoint_GetData(self, pPVTPoint)
+    __swig_setmethods__["pos"] = _WMX3ApiPython.AdvMotion_PVTPoint_pos_set
+    __swig_getmethods__["pos"] = _WMX3ApiPython.AdvMotion_PVTPoint_pos_get
+    if _newclass:
+        pos = _swig_property(_WMX3ApiPython.AdvMotion_PVTPoint_pos_get, _WMX3ApiPython.AdvMotion_PVTPoint_pos_set)
+    __swig_setmethods__["velocity"] = _WMX3ApiPython.AdvMotion_PVTPoint_velocity_set
+    __swig_getmethods__["velocity"] = _WMX3ApiPython.AdvMotion_PVTPoint_velocity_get
+    if _newclass:
+        velocity = _swig_property(_WMX3ApiPython.AdvMotion_PVTPoint_velocity_get, _WMX3ApiPython.AdvMotion_PVTPoint_velocity_set)
+    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_PVTPoint_timeMilliseconds_set
+    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_PVTPoint_timeMilliseconds_get
+    if _newclass:
+        timeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_PVTPoint_timeMilliseconds_get, _WMX3ApiPython.AdvMotion_PVTPoint_timeMilliseconds_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PVTPoint()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PVTPoint
+    __del__ = lambda self: None
+AdvMotion_PVTPoint_swigregister = _WMX3ApiPython.AdvMotion_PVTPoint_swigregister
+AdvMotion_PVTPoint_swigregister(AdvMotion_PVTPoint)
+
+class AdvMotion_PVTCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PVTCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PVTCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPVTCommand):
+        return _WMX3ApiPython.AdvMotion_PVTCommand_GetData(self, pPVTCommand)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_PVTCommand_axis_get, _WMX3ApiPython.AdvMotion_PVTCommand_axis_set)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PVTCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PVTCommand_points_get, _WMX3ApiPython.AdvMotion_PVTCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PVTCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PVTCommand
+    __del__ = lambda self: None
+AdvMotion_PVTCommand_swigregister = _WMX3ApiPython.AdvMotion_PVTCommand_swigregister
+AdvMotion_PVTCommand_swigregister(AdvMotion_PVTCommand)
+
+class AdvMotion_PVTAdditionalCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PVTAdditionalCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PVTAdditionalCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPVTCommand):
+        return _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_GetData(self, pPVTCommand)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTAdditionalCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PVTAdditionalCommand_points_get, _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PVTAdditionalCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PVTAdditionalCommand
+    __del__ = lambda self: None
+AdvMotion_PVTAdditionalCommand_swigregister = _WMX3ApiPython.AdvMotion_PVTAdditionalCommand_swigregister
+AdvMotion_PVTAdditionalCommand_swigregister(AdvMotion_PVTAdditionalCommand)
+
+class AdvMotion_PVTIntplCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PVTIntplCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PVTIntplCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPVTIntplCommand):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_GetData(self, pPVTIntplCommand)
+    __swig_setmethods__["axisCount"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_axisCount_set
+    __swig_getmethods__["axisCount"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_axisCount_get
+    if _newclass:
+        axisCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplCommand_axisCount_get, _WMX3ApiPython.AdvMotion_PVTIntplCommand_axisCount_set)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplCommand_axis_get, _WMX3ApiPython.AdvMotion_PVTIntplCommand_axis_set)
+
+    def SetAxis(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_SetAxis(self, index, value)
+
+    def GetAxis(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_GetAxis(self, index)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PVTIntplCommand_pointCount_set)
+
+    def SetPointCount(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_SetPointCount(self, index, value)
+
+    def GetPointCount(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_GetPointCount(self, index)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTIntplCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplCommand_points_get, _WMX3ApiPython.AdvMotion_PVTIntplCommand_points_set)
+
+    def SetPoints(self, index1, index2, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_SetPoints(self, index1, index2, value)
+
+    def GetPoints(self, index1, index2):
+        return _WMX3ApiPython.AdvMotion_PVTIntplCommand_GetPoints(self, index1, index2)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PVTIntplCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PVTIntplCommand
+    __del__ = lambda self: None
+AdvMotion_PVTIntplCommand_swigregister = _WMX3ApiPython.AdvMotion_PVTIntplCommand_swigregister
+AdvMotion_PVTIntplCommand_swigregister(AdvMotion_PVTIntplCommand)
+
+class AdvMotion_PVTIntplAdditionalCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PVTIntplAdditionalCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PVTIntplAdditionalCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPVTIntplCommand):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_GetData(self, pPVTIntplCommand)
+    __swig_setmethods__["axisCount"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axisCount_set
+    __swig_getmethods__["axisCount"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axisCount_get
+    if _newclass:
+        axisCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axisCount_get, _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axisCount_set)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axis_get, _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_axis_set)
+
+    def SetAxis(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_SetAxis(self, index, value)
+
+    def GetAxis(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_GetAxis(self, index)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_pointCount_set)
+
+    def SetPointCount(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_SetPointCount(self, index, value)
+
+    def GetPointCount(self, index):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_GetPointCount(self, index)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_points_get, _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_points_set)
+
+    def SetPoints(self, index1, index2, value):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_SetPoints(self, index1, index2, value)
+
+    def GetPoints(self, index1, index2):
+        return _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_GetPoints(self, index1, index2)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PVTIntplAdditionalCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PVTIntplAdditionalCommand
+    __del__ = lambda self: None
+AdvMotion_PVTIntplAdditionalCommand_swigregister = _WMX3ApiPython.AdvMotion_PVTIntplAdditionalCommand_swigregister
+AdvMotion_PVTIntplAdditionalCommand_swigregister(AdvMotion_PVTIntplAdditionalCommand)
+
+class AdvMotion_PTPoint(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PTPoint, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PTPoint, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPTPoint):
+        return _WMX3ApiPython.AdvMotion_PTPoint_GetData(self, pPTPoint)
+    __swig_setmethods__["pos"] = _WMX3ApiPython.AdvMotion_PTPoint_pos_set
+    __swig_getmethods__["pos"] = _WMX3ApiPython.AdvMotion_PTPoint_pos_get
+    if _newclass:
+        pos = _swig_property(_WMX3ApiPython.AdvMotion_PTPoint_pos_get, _WMX3ApiPython.AdvMotion_PTPoint_pos_set)
+    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_PTPoint_timeMilliseconds_set
+    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_PTPoint_timeMilliseconds_get
+    if _newclass:
+        timeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_PTPoint_timeMilliseconds_get, _WMX3ApiPython.AdvMotion_PTPoint_timeMilliseconds_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PTPoint()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PTPoint
+    __del__ = lambda self: None
+AdvMotion_PTPoint_swigregister = _WMX3ApiPython.AdvMotion_PTPoint_swigregister
+AdvMotion_PTPoint_swigregister(AdvMotion_PTPoint)
+
+class AdvMotion_PTCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PTCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PTCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPTCommand):
+        return _WMX3ApiPython.AdvMotion_PTCommand_GetData(self, pPTCommand)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_PTCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_PTCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_PTCommand_axis_get, _WMX3ApiPython.AdvMotion_PTCommand_axis_set)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PTCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PTCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PTCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PTCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PTCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PTCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PTCommand_points_get, _WMX3ApiPython.AdvMotion_PTCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PTCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_PTCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PTCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PTCommand
+    __del__ = lambda self: None
+AdvMotion_PTCommand_swigregister = _WMX3ApiPython.AdvMotion_PTCommand_swigregister
+AdvMotion_PTCommand_swigregister(AdvMotion_PTCommand)
+
+class AdvMotion_PTAdditionalCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PTAdditionalCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PTAdditionalCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pPTCommand):
+        return _WMX3ApiPython.AdvMotion_PTAdditionalCommand_GetData(self, pPTCommand)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PTAdditionalCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_PTAdditionalCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_PTAdditionalCommand_pointCount_get, _WMX3ApiPython.AdvMotion_PTAdditionalCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_PTAdditionalCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_PTAdditionalCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_PTAdditionalCommand_points_get, _WMX3ApiPython.AdvMotion_PTAdditionalCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PTAdditionalCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_PTAdditionalCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PTAdditionalCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PTAdditionalCommand
+    __del__ = lambda self: None
+AdvMotion_PTAdditionalCommand_swigregister = _WMX3ApiPython.AdvMotion_PTAdditionalCommand_swigregister
+AdvMotion_PTAdditionalCommand_swigregister(AdvMotion_PTAdditionalCommand)
+
+class AdvMotion_VTPoint(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_VTPoint, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_VTPoint, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pVTPoint):
+        return _WMX3ApiPython.AdvMotion_VTPoint_GetData(self, pVTPoint)
+    __swig_setmethods__["velocity"] = _WMX3ApiPython.AdvMotion_VTPoint_velocity_set
+    __swig_getmethods__["velocity"] = _WMX3ApiPython.AdvMotion_VTPoint_velocity_get
+    if _newclass:
+        velocity = _swig_property(_WMX3ApiPython.AdvMotion_VTPoint_velocity_get, _WMX3ApiPython.AdvMotion_VTPoint_velocity_set)
+    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_VTPoint_timeMilliseconds_set
+    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_VTPoint_timeMilliseconds_get
+    if _newclass:
+        timeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_VTPoint_timeMilliseconds_get, _WMX3ApiPython.AdvMotion_VTPoint_timeMilliseconds_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_VTPoint()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_VTPoint
+    __del__ = lambda self: None
+AdvMotion_VTPoint_swigregister = _WMX3ApiPython.AdvMotion_VTPoint_swigregister
+AdvMotion_VTPoint_swigregister(AdvMotion_VTPoint)
+
+class AdvMotion_VTCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_VTCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_VTCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pVTCommand):
+        return _WMX3ApiPython.AdvMotion_VTCommand_GetData(self, pVTCommand)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_VTCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_VTCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_VTCommand_axis_get, _WMX3ApiPython.AdvMotion_VTCommand_axis_set)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_VTCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_VTCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_VTCommand_pointCount_get, _WMX3ApiPython.AdvMotion_VTCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_VTCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_VTCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_VTCommand_points_get, _WMX3ApiPython.AdvMotion_VTCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_VTCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_VTCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_VTCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_VTCommand
+    __del__ = lambda self: None
+AdvMotion_VTCommand_swigregister = _WMX3ApiPython.AdvMotion_VTCommand_swigregister
+AdvMotion_VTCommand_swigregister(AdvMotion_VTCommand)
+
+class AdvMotion_VTAdditionalCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_VTAdditionalCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_VTAdditionalCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pVTCommand):
+        return _WMX3ApiPython.AdvMotion_VTAdditionalCommand_GetData(self, pVTCommand)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_VTAdditionalCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_VTAdditionalCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_VTAdditionalCommand_pointCount_get, _WMX3ApiPython.AdvMotion_VTAdditionalCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_VTAdditionalCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_VTAdditionalCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_VTAdditionalCommand_points_get, _WMX3ApiPython.AdvMotion_VTAdditionalCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_VTAdditionalCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_VTAdditionalCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_VTAdditionalCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_VTAdditionalCommand
+    __del__ = lambda self: None
+AdvMotion_VTAdditionalCommand_swigregister = _WMX3ApiPython.AdvMotion_VTAdditionalCommand_swigregister
+AdvMotion_VTAdditionalCommand_swigregister(AdvMotion_VTAdditionalCommand)
+
+class AdvMotion_ATPoint(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_ATPoint, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_ATPoint, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pATPoint):
+        return _WMX3ApiPython.AdvMotion_ATPoint_GetData(self, pATPoint)
+    __swig_setmethods__["acc"] = _WMX3ApiPython.AdvMotion_ATPoint_acc_set
+    __swig_getmethods__["acc"] = _WMX3ApiPython.AdvMotion_ATPoint_acc_get
+    if _newclass:
+        acc = _swig_property(_WMX3ApiPython.AdvMotion_ATPoint_acc_get, _WMX3ApiPython.AdvMotion_ATPoint_acc_set)
+    __swig_setmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_ATPoint_timeMilliseconds_set
+    __swig_getmethods__["timeMilliseconds"] = _WMX3ApiPython.AdvMotion_ATPoint_timeMilliseconds_get
+    if _newclass:
+        timeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_ATPoint_timeMilliseconds_get, _WMX3ApiPython.AdvMotion_ATPoint_timeMilliseconds_set)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_ATPoint()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_ATPoint
+    __del__ = lambda self: None
+AdvMotion_ATPoint_swigregister = _WMX3ApiPython.AdvMotion_ATPoint_swigregister
+AdvMotion_ATPoint_swigregister(AdvMotion_ATPoint)
+
+class AdvMotion_ATCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_ATCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_ATCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pATCommand):
+        return _WMX3ApiPython.AdvMotion_ATCommand_GetData(self, pATCommand)
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_ATCommand_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_ATCommand_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_ATCommand_axis_get, _WMX3ApiPython.AdvMotion_ATCommand_axis_set)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_ATCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_ATCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_ATCommand_pointCount_get, _WMX3ApiPython.AdvMotion_ATCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_ATCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_ATCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_ATCommand_points_get, _WMX3ApiPython.AdvMotion_ATCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_ATCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_ATCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_ATCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_ATCommand
+    __del__ = lambda self: None
+AdvMotion_ATCommand_swigregister = _WMX3ApiPython.AdvMotion_ATCommand_swigregister
+AdvMotion_ATCommand_swigregister(AdvMotion_ATCommand)
+
+class AdvMotion_ATAdditionalCommand(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_ATAdditionalCommand, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_ATAdditionalCommand, name)
+    __repr__ = _swig_repr
+
+    def GetData(self, pATCommand):
+        return _WMX3ApiPython.AdvMotion_ATAdditionalCommand_GetData(self, pATCommand)
+    __swig_setmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_ATAdditionalCommand_pointCount_set
+    __swig_getmethods__["pointCount"] = _WMX3ApiPython.AdvMotion_ATAdditionalCommand_pointCount_get
+    if _newclass:
+        pointCount = _swig_property(_WMX3ApiPython.AdvMotion_ATAdditionalCommand_pointCount_get, _WMX3ApiPython.AdvMotion_ATAdditionalCommand_pointCount_set)
+    __swig_setmethods__["points"] = _WMX3ApiPython.AdvMotion_ATAdditionalCommand_points_set
+    __swig_getmethods__["points"] = _WMX3ApiPython.AdvMotion_ATAdditionalCommand_points_get
+    if _newclass:
+        points = _swig_property(_WMX3ApiPython.AdvMotion_ATAdditionalCommand_points_get, _WMX3ApiPython.AdvMotion_ATAdditionalCommand_points_set)
+
+    def SetPoints(self, index, value):
+        return _WMX3ApiPython.AdvMotion_ATAdditionalCommand_SetPoints(self, index, value)
+
+    def GetPoints(self, index):
+        return _WMX3ApiPython.AdvMotion_ATAdditionalCommand_GetPoints(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_ATAdditionalCommand()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_ATAdditionalCommand
+    __del__ = lambda self: None
+AdvMotion_ATAdditionalCommand_swigregister = _WMX3ApiPython.AdvMotion_ATAdditionalCommand_swigregister
+AdvMotion_ATAdditionalCommand_swigregister(AdvMotion_ATAdditionalCommand)
 
 class AdvMotion_PathIntplSegmentType(_object):
     __swig_setmethods__ = {}
@@ -22960,6 +21765,26 @@ class AdvMotion_PathIntplWithRotationStatus(_object):
 AdvMotion_PathIntplWithRotationStatus_swigregister = _WMX3ApiPython.AdvMotion_PathIntplWithRotationStatus_swigregister
 AdvMotion_PathIntplWithRotationStatus_swigregister(AdvMotion_PathIntplWithRotationStatus)
 
+class AdvMotion_PathIntplLookaheadProfileType(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PathIntplLookaheadProfileType, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PathIntplLookaheadProfileType, name)
+    __repr__ = _swig_repr
+    Trapezoidal = _WMX3ApiPython.AdvMotion_PathIntplLookaheadProfileType_Trapezoidal
+    SCurve = _WMX3ApiPython.AdvMotion_PathIntplLookaheadProfileType_SCurve
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadProfileType()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PathIntplLookaheadProfileType
+    __del__ = lambda self: None
+AdvMotion_PathIntplLookaheadProfileType_swigregister = _WMX3ApiPython.AdvMotion_PathIntplLookaheadProfileType_swigregister
+AdvMotion_PathIntplLookaheadProfileType_swigregister(AdvMotion_PathIntplLookaheadProfileType)
+
 class AdvMotion_PathIntplLookaheadSegmentType(_object):
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PathIntplLookaheadSegmentType, name, value)
@@ -22973,6 +21798,7 @@ class AdvMotion_PathIntplLookaheadSegmentType(_object):
     LengthAndEndCircular = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_LengthAndEndCircular
     RadiusAndEndCircular = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_RadiusAndEndCircular
     ThroughAndEnd3DCircular = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_ThroughAndEnd3DCircular
+    ThroughAndEnd3DCircularWithAuxiliary = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_ThroughAndEnd3DCircularWithAuxiliary
     Sleep = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_Sleep
     SetOutputBit = _WMX3ApiPython.AdvMotion_PathIntplLookaheadSegmentType_SetOutputBit
 
@@ -23087,30 +21913,6 @@ class AdvMotion_PathIntplLookaheadConfiguration(_object):
     __swig_getmethods__["stopOnEmptyBuffer"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_stopOnEmptyBuffer_get
     if _newclass:
         stopOnEmptyBuffer = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_stopOnEmptyBuffer_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_stopOnEmptyBuffer_set)
-    __swig_setmethods__["setSmoothingTime"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_setSmoothingTime_set
-    __swig_getmethods__["setSmoothingTime"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_setSmoothingTime_get
-    if _newclass:
-        setSmoothingTime = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_setSmoothingTime_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_setSmoothingTime_set)
-    __swig_setmethods__["firstSmoothingTimeMilliseconds"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_firstSmoothingTimeMilliseconds_set
-    __swig_getmethods__["firstSmoothingTimeMilliseconds"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_firstSmoothingTimeMilliseconds_get
-    if _newclass:
-        firstSmoothingTimeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_firstSmoothingTimeMilliseconds_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_firstSmoothingTimeMilliseconds_set)
-
-    def SetFirstSmoothingTimeMilliseconds(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_SetFirstSmoothingTimeMilliseconds(self, index, value)
-
-    def GetFirstSmoothingTimeMilliseconds(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_GetFirstSmoothingTimeMilliseconds(self, index)
-    __swig_setmethods__["secondSmoothingTimeMilliseconds"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_secondSmoothingTimeMilliseconds_set
-    __swig_getmethods__["secondSmoothingTimeMilliseconds"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_secondSmoothingTimeMilliseconds_get
-    if _newclass:
-        secondSmoothingTimeMilliseconds = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_secondSmoothingTimeMilliseconds_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_secondSmoothingTimeMilliseconds_set)
-
-    def SetSecondSmoothingTimeMilliseconds(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_SetSecondSmoothingTimeMilliseconds(self, index, value)
-
-    def GetSecondSmoothingTimeMilliseconds(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadConfiguration_GetSecondSmoothingTimeMilliseconds(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadConfiguration()
@@ -23153,42 +21955,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_linear(_object):
 
     def GetTarget(self, index):
         return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_GetTarget(self, index)
-    __swig_setmethods__["smoothRadius"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_smoothRadius_set
-    __swig_getmethods__["smoothRadius"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_smoothRadius_get
-    if _newclass:
-        smoothRadius = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_smoothRadius_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_smoothRadius_set)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_linear_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_linear()
@@ -23235,38 +22001,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular(_obj
     __swig_getmethods__["clockwise"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_clockwise_get
     if _newclass:
         clockwise = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_clockwise_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_clockwise_set)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndLengthCircular()
@@ -23319,38 +22053,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular(_object
     __swig_getmethods__["clockwise"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_clockwise_get
     if _newclass:
         clockwise = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_clockwise_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_clockwise_set)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_centerAndEndCircular()
@@ -23399,38 +22101,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular(_objec
 
     def GetEndPos(self, index):
         return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_GetEndPos(self, index)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEndCircular()
@@ -23477,38 +22147,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular(_object
     __swig_getmethods__["clockwise"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_clockwise_get
     if _newclass:
         clockwise = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_clockwise_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_clockwise_set)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_lengthAndEndCircular()
@@ -23555,38 +22193,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular(_object
     __swig_getmethods__["clockwise"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_clockwise_get
     if _newclass:
         clockwise = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_clockwise_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_clockwise_set)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_radiusAndEndCircular()
@@ -23635,38 +22241,6 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular(_obj
 
     def GetEndPos(self, index):
         return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_GetEndPos(self, index)
-    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_setSegmentCompositeVel_set
-    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_setSegmentCompositeVel_get
-    if _newclass:
-        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_setSegmentCompositeVel_set)
-    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_segmentCompositeVel_set
-    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_segmentCompositeVel_get
-    if _newclass:
-        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_segmentCompositeVel_set)
-    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxisCount_set
-    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxisCount_get
-    if _newclass:
-        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxisCount_set)
-    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxis_set
-    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxis_get
-    if _newclass:
-        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryAxis_set)
-
-    def SetAuxiliaryAxis(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_SetAuxiliaryAxis(self, index, value)
-
-    def GetAuxiliaryAxis(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_GetAuxiliaryAxis(self, index)
-    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryTarget_set
-    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryTarget_get
-    if _newclass:
-        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_auxiliaryTarget_set)
-
-    def SetAuxiliaryTarget(self, index, value):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_SetAuxiliaryTarget(self, index, value)
-
-    def GetAuxiliaryTarget(self, index):
-        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_GetAuxiliaryTarget(self, index)
 
     def __init__(self):
         this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular()
@@ -23678,6 +22252,78 @@ class AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular(_obj
     __del__ = lambda self: None
 AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_swigregister = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_swigregister
 AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular_swigregister(AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircular)
+
+class AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary(_object):
+    __swig_setmethods__ = {}
+    __setattr__ = lambda self, name, value: _swig_setattr(self, AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary, name, value)
+    __swig_getmethods__ = {}
+    __getattr__ = lambda self, name: _swig_getattr(self, AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary, name)
+    __repr__ = _swig_repr
+    __swig_setmethods__["axis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_axis_set
+    __swig_getmethods__["axis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_axis_get
+    if _newclass:
+        axis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_axis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_axis_set)
+
+    def SetAxis(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_SetAxis(self, index, value)
+
+    def GetAxis(self, index):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_GetAxis(self, index)
+    __swig_setmethods__["throughPos"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_throughPos_set
+    __swig_getmethods__["throughPos"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_throughPos_get
+    if _newclass:
+        throughPos = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_throughPos_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_throughPos_set)
+
+    def SetThroughPos(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_SetThroughPos(self, index, value)
+
+    def GetThroughPos(self, index):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_GetThroughPos(self, index)
+    __swig_setmethods__["endPos"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_endPos_set
+    __swig_getmethods__["endPos"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_endPos_get
+    if _newclass:
+        endPos = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_endPos_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_endPos_set)
+
+    def SetEndPos(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_SetEndPos(self, index, value)
+
+    def GetEndPos(self, index):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_GetEndPos(self, index)
+    __swig_setmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxisCount_set
+    __swig_getmethods__["auxiliaryAxisCount"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxisCount_get
+    if _newclass:
+        auxiliaryAxisCount = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxisCount_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxisCount_set)
+    __swig_setmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxis_set
+    __swig_getmethods__["auxiliaryAxis"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxis_get
+    if _newclass:
+        auxiliaryAxis = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxis_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryAxis_set)
+
+    def SetAuxiliaryAxis(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_SetAuxiliaryAxis(self, index, value)
+
+    def GetAuxiliaryAxis(self, index):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_GetAuxiliaryAxis(self, index)
+    __swig_setmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryTarget_set
+    __swig_getmethods__["auxiliaryTarget"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryTarget_get
+    if _newclass:
+        auxiliaryTarget = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryTarget_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_auxiliaryTarget_set)
+
+    def SetAuxiliaryTarget(self, index, value):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_SetAuxiliaryTarget(self, index, value)
+
+    def GetAuxiliaryTarget(self, index):
+        return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_GetAuxiliaryTarget(self, index)
+
+    def __init__(self):
+        this = _WMX3ApiPython.new_AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary()
+        try:
+            self.this.append(this)
+        except __builtin__.Exception:
+            self.this = this
+    __swig_destroy__ = _WMX3ApiPython.delete_AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary
+    __del__ = lambda self: None
+AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_swigregister = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_swigregister
+AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary_swigregister(AdvMotion_PathIntplLookaheadCommandPoint_Data_throughAndEnd3DCircularWithAuxiliary)
 
 class AdvMotion_PathIntplLookaheadCommandPoint_Data_sleep(_object):
     __swig_setmethods__ = {}
@@ -23753,6 +22399,18 @@ class AdvMotion_PathIntplLookaheadCommandPoint(_object):
     __swig_getmethods__["type"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_type_get
     if _newclass:
         type = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_type_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_type_set)
+    __swig_setmethods__["smoothRadius"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_smoothRadius_set
+    __swig_getmethods__["smoothRadius"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_smoothRadius_get
+    if _newclass:
+        smoothRadius = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_smoothRadius_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_smoothRadius_set)
+    __swig_setmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_setSegmentCompositeVel_set
+    __swig_getmethods__["setSegmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_setSegmentCompositeVel_get
+    if _newclass:
+        setSegmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_setSegmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_setSegmentCompositeVel_set)
+    __swig_setmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_segmentCompositeVel_set
+    __swig_getmethods__["segmentCompositeVel"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_segmentCompositeVel_get
+    if _newclass:
+        segmentCompositeVel = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_segmentCompositeVel_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_segmentCompositeVel_set)
 
     def GetData(self, pPathIntplLookaheadCommandPoint):
         return _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_GetData(self, pPathIntplLookaheadCommandPoint)
@@ -23784,6 +22442,10 @@ class AdvMotion_PathIntplLookaheadCommandPoint(_object):
     __swig_getmethods__["throughAndEnd3DCircular"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircular_get
     if _newclass:
         throughAndEnd3DCircular = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircular_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircular_set)
+    __swig_setmethods__["throughAndEnd3DCircularWithAuxiliary"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircularWithAuxiliary_set
+    __swig_getmethods__["throughAndEnd3DCircularWithAuxiliary"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircularWithAuxiliary_get
+    if _newclass:
+        throughAndEnd3DCircularWithAuxiliary = _swig_property(_WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircularWithAuxiliary_get, _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_throughAndEnd3DCircularWithAuxiliary_set)
     __swig_setmethods__["sleep"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_sleep_set
     __swig_getmethods__["sleep"] = _WMX3ApiPython.AdvMotion_PathIntplLookaheadCommandPoint_sleep_get
     if _newclass:
@@ -24513,6 +23175,41 @@ class AdvMotion(_object):
     def StartCBSplineMov_VelAccLimited(self, channel, pSplineCommand, numPoints, pPoint):
         return _WMX3ApiPython.AdvMotion_StartCBSplineMov_VelAccLimited(self, channel, pSplineCommand, numPoints, pPoint)
 
+    def CreatePVTBuffer(self, axis, points):
+        return _WMX3ApiPython.AdvMotion_CreatePVTBuffer(self, axis, points)
+
+    def FreePVTBuffer(self, axis):
+        return _WMX3ApiPython.AdvMotion_FreePVTBuffer(self, axis)
+
+    def GetPVTBufferPoints(self, axis):
+        pPoints = uintp()
+        ret = _WMX3ApiPython.AdvMotion_GetPVTBufferPoints(self, axis, pPoints)
+        return ret, pPoints.value()
+
+
+
+    def GetPVTBytesPerPoint(self):
+        pBytes = uintp()
+        ret = _WMX3ApiPython.AdvMotion_GetPVTBytesPerPoint(self, pBytes)
+        return ret, pBytes.value()
+
+
+
+    def StartPVT(self, *args):
+        return _WMX3ApiPython.AdvMotion_StartPVT(self, *args)
+
+    def StartPVT_Intpl(self, *args):
+        return _WMX3ApiPython.AdvMotion_StartPVT_Intpl(self, *args)
+
+    def StartPT(self, *args):
+        return _WMX3ApiPython.AdvMotion_StartPT(self, *args)
+
+    def StartVT(self, *args):
+        return _WMX3ApiPython.AdvMotion_StartVT(self, *args)
+
+    def StartAT(self, *args):
+        return _WMX3ApiPython.AdvMotion_StartAT(self, *args)
+
     def CreatePathIntplBuffer(self, axis, points):
         return _WMX3ApiPython.AdvMotion_CreatePathIntplBuffer(self, axis, points)
 
@@ -25186,7 +23883,7 @@ AdvSync_swigregister = _WMX3ApiPython.AdvSync_swigregister
 AdvSync_swigregister(AdvSync)
 
 class AdvancedMotion(_object):
-    """AdvancedMotion.rtdll Ver.3.5.0.0 is required to use."""
+    """AdvancedMotion.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, AdvancedMotion, name, value)
@@ -25196,8 +23893,8 @@ class AdvancedMotion(_object):
 
     def __init__(self, *args):
         """
-        AdvancedMotion.rtdll Ver.3.5.0.0 is required to use.
-        AdvancedMotion.rtdll Ver.3.5.0.0 is required to use.
+        AdvancedMotion.rtdll Ver.3.4.3.0 is required to use.
+        AdvancedMotion.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_AdvancedMotion(*args)
         try:
@@ -25889,12 +24586,6 @@ class UserMemoryLogInput(LogInput):
     __getattr__ = lambda self, name: _swig_getattr(self, UserMemoryLogInput, name)
     __repr__ = _swig_repr
 
-    def SetData(self, pUserMemoryLogInput):
-        return _WMX3ApiPython.UserMemoryLogInput_SetData(self, pUserMemoryLogInput)
-
-    def GetData(self, pUserMemoryLogInput):
-        return _WMX3ApiPython.UserMemoryLogInput_GetData(self, pUserMemoryLogInput)
-
     def __init__(self):
         this = _WMX3ApiPython.new_UserMemoryLogInput()
         try:
@@ -25910,9 +24601,6 @@ class UserMemoryLogInput(LogInput):
 
     def SetInputData(self, moduleId, data, dataSize):
         return _WMX3ApiPython.UserMemoryLogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.UserMemoryLogInput_GetLogInput(self)
     __swig_setmethods__["mAddress"] = _WMX3ApiPython.UserMemoryLogInput_mAddress_set
     __swig_getmethods__["mAddress"] = _WMX3ApiPython.UserMemoryLogInput_mAddress_get
     if _newclass:
@@ -25946,49 +24634,8 @@ class UserMemoryLogInput(LogInput):
 UserMemoryLogInput_swigregister = _WMX3ApiPython.UserMemoryLogInput_swigregister
 UserMemoryLogInput_swigregister(UserMemoryLogInput)
 
-class UserMemoryLogOutput(LogOutput):
-    __swig_setmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, UserMemoryLogOutput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, UserMemoryLogOutput, name)
-    __repr__ = _swig_repr
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_UserMemoryLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.UserMemoryLogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.UserMemoryLogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.UserMemoryLogOutput_SetLogOutput(self, src)
-    __swig_setmethods__["data"] = _WMX3ApiPython.UserMemoryLogOutput_data_set
-    __swig_getmethods__["data"] = _WMX3ApiPython.UserMemoryLogOutput_data_get
-    if _newclass:
-        data = _swig_property(_WMX3ApiPython.UserMemoryLogOutput_data_get, _WMX3ApiPython.UserMemoryLogOutput_data_set)
-
-    def SetData(self, index1, index2, value):
-        return _WMX3ApiPython.UserMemoryLogOutput_SetData(self, index1, index2, value)
-
-    def GetData(self, index1, index2):
-        return _WMX3ApiPython.UserMemoryLogOutput_GetData(self, index1, index2)
-    __swig_destroy__ = _WMX3ApiPython.delete_UserMemoryLogOutput
-    __del__ = lambda self: None
-UserMemoryLogOutput_swigregister = _WMX3ApiPython.UserMemoryLogOutput_swigregister
-UserMemoryLogOutput_swigregister(UserMemoryLogOutput)
-
 class UserMemory(_object):
-    """UserMemory.rtdll Ver.3.5.0.0 is required to use."""
+    """UserMemory.rtdll Ver.3.4.3.0 is required to use."""
 
     __swig_setmethods__ = {}
     __setattr__ = lambda self, name, value: _swig_setattr(self, UserMemory, name, value)
@@ -25998,8 +24645,8 @@ class UserMemory(_object):
 
     def __init__(self, *args):
         """
-        UserMemory.rtdll Ver.3.5.0.0 is required to use.
-        UserMemory.rtdll Ver.3.5.0.0 is required to use.
+        UserMemory.rtdll Ver.3.4.3.0 is required to use.
+        UserMemory.rtdll Ver.3.4.3.0 is required to use.
         """
         this = _WMX3ApiPython.new_UserMemory(*args)
         try:
@@ -26286,3184 +24933,6 @@ UserMemory_ApiLogToString = _WMX3ApiPython.UserMemory_ApiLogToString
 def UserMemory_GetLibVersion():
     return _WMX3ApiPython.UserMemory_GetLibVersion()
 UserMemory_GetLibVersion = _WMX3ApiPython.UserMemory_GetLibVersion
-
-class EcStateMachine(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcStateMachine, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcStateMachine, name)
-    __repr__ = _swig_repr
-    PyNone = _WMX3ApiPython.EcStateMachine_PyNone
-    Init = _WMX3ApiPython.EcStateMachine_Init
-    Preop = _WMX3ApiPython.EcStateMachine_Preop
-    Boot = _WMX3ApiPython.EcStateMachine_Boot
-    Safeop = _WMX3ApiPython.EcStateMachine_Safeop
-    Op = _WMX3ApiPython.EcStateMachine_Op
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcStateMachine()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcStateMachine
-    __del__ = lambda self: None
-EcStateMachine_swigregister = _WMX3ApiPython.EcStateMachine_swigregister
-EcStateMachine_swigregister(EcStateMachine)
-
-class EcSdoType(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSdoType, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSdoType, name)
-    __repr__ = _swig_repr
-    Expedited = _WMX3ApiPython.EcSdoType_Expedited
-    Normal = _WMX3ApiPython.EcSdoType_Normal
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSdoType()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSdoType
-    __del__ = lambda self: None
-EcSdoType_swigregister = _WMX3ApiPython.EcSdoType_swigregister
-EcSdoType_swigregister(EcSdoType)
-
-class EcObjectDescriptionListType(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcObjectDescriptionListType, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcObjectDescriptionListType, name)
-    __repr__ = _swig_repr
-    Len = _WMX3ApiPython.EcObjectDescriptionListType_Len
-    AllObjects = _WMX3ApiPython.EcObjectDescriptionListType_AllObjects
-    RxPdo = _WMX3ApiPython.EcObjectDescriptionListType_RxPdo
-    TxPdo = _WMX3ApiPython.EcObjectDescriptionListType_TxPdo
-    DevReplacement = _WMX3ApiPython.EcObjectDescriptionListType_DevReplacement
-    Startup = _WMX3ApiPython.EcObjectDescriptionListType_Startup
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcObjectDescriptionListType()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcObjectDescriptionListType
-    __del__ = lambda self: None
-EcObjectDescriptionListType_swigregister = _WMX3ApiPython.EcObjectDescriptionListType_swigregister
-EcObjectDescriptionListType_swigregister(EcObjectDescriptionListType)
-
-class EcHotconnectState(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcHotconnectState, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcHotconnectState, name)
-    __repr__ = _swig_repr
-    Idle = _WMX3ApiPython.EcHotconnectState_Idle
-    Running = _WMX3ApiPython.EcHotconnectState_Running
-    Abort = _WMX3ApiPython.EcHotconnectState_Abort
-    Unknown = _WMX3ApiPython.EcHotconnectState_Unknown
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcHotconnectState()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcHotconnectState
-    __del__ = lambda self: None
-EcHotconnectState_swigregister = _WMX3ApiPython.EcHotconnectState_swigregister
-EcHotconnectState_swigregister(EcHotconnectState)
-
-class EcHotconnectAbortCode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcHotconnectAbortCode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcHotconnectAbortCode, name)
-    __repr__ = _swig_repr
-    PyNone = _WMX3ApiPython.EcHotconnectAbortCode_PyNone
-    PortOpenError = _WMX3ApiPython.EcHotconnectAbortCode_PortOpenError
-    Timeout = _WMX3ApiPython.EcHotconnectAbortCode_Timeout
-    ScanNetworkFailed = _WMX3ApiPython.EcHotconnectAbortCode_ScanNetworkFailed
-    ApplyNewTopologyError = _WMX3ApiPython.EcHotconnectAbortCode_ApplyNewTopologyError
-    InitNewSlavesError = _WMX3ApiPython.EcHotconnectAbortCode_InitNewSlavesError
-    RecalculateDcError = _WMX3ApiPython.EcHotconnectAbortCode_RecalculateDcError
-    ClearDLEventError = _WMX3ApiPython.EcHotconnectAbortCode_ClearDLEventError
-    Unknown = _WMX3ApiPython.EcHotconnectAbortCode_Unknown
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcHotconnectAbortCode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcHotconnectAbortCode
-    __del__ = lambda self: None
-EcHotconnectAbortCode_swigregister = _WMX3ApiPython.EcHotconnectAbortCode_swigregister
-EcHotconnectAbortCode_swigregister(EcHotconnectAbortCode)
-
-class EcOperationMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcOperationMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcOperationMode, name)
-    __repr__ = _swig_repr
-    NONE = _WMX3ApiPython.EcOperationMode_NONE
-    PP = _WMX3ApiPython.EcOperationMode_PP
-    VL = _WMX3ApiPython.EcOperationMode_VL
-    PV = _WMX3ApiPython.EcOperationMode_PV
-    TQ = _WMX3ApiPython.EcOperationMode_TQ
-    HM = _WMX3ApiPython.EcOperationMode_HM
-    IP = _WMX3ApiPython.EcOperationMode_IP
-    CSP = _WMX3ApiPython.EcOperationMode_CSP
-    CSV = _WMX3ApiPython.EcOperationMode_CSV
-    CST = _WMX3ApiPython.EcOperationMode_CST
-    CSTCA = _WMX3ApiPython.EcOperationMode_CSTCA
-    Unknown = _WMX3ApiPython.EcOperationMode_Unknown
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcOperationMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcOperationMode
-    __del__ = lambda self: None
-EcOperationMode_swigregister = _WMX3ApiPython.EcOperationMode_swigregister
-EcOperationMode_swigregister(EcOperationMode)
-
-class EcMasterMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMasterMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMasterMode, name)
-    __repr__ = _swig_repr
-    CyclicMode = _WMX3ApiPython.EcMasterMode_CyclicMode
-    PPMode = _WMX3ApiPython.EcMasterMode_PPMode
-    MonitorMode = _WMX3ApiPython.EcMasterMode_MonitorMode
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMasterMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMasterMode
-    __del__ = lambda self: None
-EcMasterMode_swigregister = _WMX3ApiPython.EcMasterMode_swigregister
-EcMasterMode_swigregister(EcMasterMode)
-
-class EcErrorCode(ErrorCode):
-    __swig_setmethods__ = {}
-    for _s in [ErrorCode]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcErrorCode, name, value)
-    __swig_getmethods__ = {}
-    for _s in [ErrorCode]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, EcErrorCode, name)
-    __repr__ = _swig_repr
-    EcError = _WMX3ApiPython.EcErrorCode_EcError
-    ScanNetworkFailed = _WMX3ApiPython.EcErrorCode_ScanNetworkFailed
-    HotconnectFailed = _WMX3ApiPython.EcErrorCode_HotconnectFailed
-    SharedMemoryNull = _WMX3ApiPython.EcErrorCode_SharedMemoryNull
-    SlaveStateChangeError = _WMX3ApiPython.EcErrorCode_SlaveStateChangeError
-    SlaveStateBelowPreop = _WMX3ApiPython.EcErrorCode_SlaveStateBelowPreop
-    SlaveInvalidAddressingMode = _WMX3ApiPython.EcErrorCode_SlaveInvalidAddressingMode
-    SlaveInEmergencyState = _WMX3ApiPython.EcErrorCode_SlaveInEmergencyState
-    SlaveMailboxInUse = _WMX3ApiPython.EcErrorCode_SlaveMailboxInUse
-    SlaveSdoDownloadError = _WMX3ApiPython.EcErrorCode_SlaveSdoDownloadError
-    SlaveSdoUploadError = _WMX3ApiPython.EcErrorCode_SlaveSdoUploadError
-    SlaveSdoInfoGetODListError = _WMX3ApiPython.EcErrorCode_SlaveSdoInfoGetODListError
-    SlaveSdoInfoGetODError = _WMX3ApiPython.EcErrorCode_SlaveSdoInfoGetODError
-    SlaveSdoInfoGetEDError = _WMX3ApiPython.EcErrorCode_SlaveSdoInfoGetEDError
-    SlaveActualSizeLargerThanBufferSize = _WMX3ApiPython.EcErrorCode_SlaveActualSizeLargerThanBufferSize
-    SlaveRegWriteError = _WMX3ApiPython.EcErrorCode_SlaveRegWriteError
-    SlaveRegReadError = _WMX3ApiPython.EcErrorCode_SlaveRegReadError
-    SlaveSIIWriteError = _WMX3ApiPython.EcErrorCode_SlaveSIIWriteError
-    SlaveSIIWriteFailedToSetChecksum = _WMX3ApiPython.EcErrorCode_SlaveSIIWriteFailedToSetChecksum
-    SlaveSIIReadError = _WMX3ApiPython.EcErrorCode_SlaveSIIReadError
-    SlavePdoReadWriteNotAllowed = _WMX3ApiPython.EcErrorCode_SlavePdoReadWriteNotAllowed
-    SlavePdoReadWriteTimeout = _WMX3ApiPython.EcErrorCode_SlavePdoReadWriteTimeout
-    SlavePdoNotMapped = _WMX3ApiPython.EcErrorCode_SlavePdoNotMapped
-    SlaveTxPdoWriteNotAllowed = _WMX3ApiPython.EcErrorCode_SlaveTxPdoWriteNotAllowed
-    SlaveFoENotInBootState = _WMX3ApiPython.EcErrorCode_SlaveFoENotInBootState
-    SlaveFoEFileOpenError = _WMX3ApiPython.EcErrorCode_SlaveFoEFileOpenError
-    SlaveFoEReadError = _WMX3ApiPython.EcErrorCode_SlaveFoEReadError
-    SlaveFoEWriteError = _WMX3ApiPython.EcErrorCode_SlaveFoEWriteError
-    SlaveFoEFilePathTooLong = _WMX3ApiPython.EcErrorCode_SlaveFoEFilePathTooLong
-    SlaveFoEFileNameTooLong = _WMX3ApiPython.EcErrorCode_SlaveFoEFileNameTooLong
-    SlaveAoEReadError = _WMX3ApiPython.EcErrorCode_SlaveAoEReadError
-    SlaveAoEWriteError = _WMX3ApiPython.EcErrorCode_SlaveAoEWriteError
-    SlaveSoEReadError = _WMX3ApiPython.EcErrorCode_SlaveSoEReadError
-    SlaveSoEWriteError = _WMX3ApiPython.EcErrorCode_SlaveSoEWriteError
-    SlaveVoEReadError = _WMX3ApiPython.EcErrorCode_SlaveVoEReadError
-    SlaveVoEWriteError = _WMX3ApiPython.EcErrorCode_SlaveVoEWriteError
-    AxisNotServoOn = _WMX3ApiPython.EcErrorCode_AxisNotServoOn
-    NotInPPMode = _WMX3ApiPython.EcErrorCode_NotInPPMode
-    NotInHMMode = _WMX3ApiPython.EcErrorCode_NotInHMMode
-    NotInPVMode = _WMX3ApiPython.EcErrorCode_NotInPVMode
-    NotInTQMode = _WMX3ApiPython.EcErrorCode_NotInTQMode
-    PdoNotMapped = _WMX3ApiPython.EcErrorCode_PdoNotMapped
-    SlaveNotSupportVirtualSerial = _WMX3ApiPython.EcErrorCode_SlaveNotSupportVirtualSerial
-    OpenComFailed = _WMX3ApiPython.EcErrorCode_OpenComFailed
-    CreateComProcessThreadFailed = _WMX3ApiPython.EcErrorCode_CreateComProcessThreadFailed
-    NotInMonitorMode = _WMX3ApiPython.EcErrorCode_NotInMonitorMode
-    VirtualSlaveNotEnabled = _WMX3ApiPython.EcErrorCode_VirtualSlaveNotEnabled
-    OtherOperationIsRunning = _WMX3ApiPython.EcErrorCode_OtherOperationIsRunning
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcErrorCode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcErrorCode
-    __del__ = lambda self: None
-EcErrorCode_swigregister = _WMX3ApiPython.EcErrorCode_swigregister
-EcErrorCode_swigregister(EcErrorCode)
-
-class EcLogInputPdo_DataType(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogInputPdo_DataType, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogInputPdo_DataType, name)
-    __repr__ = _swig_repr
-    Signed = _WMX3ApiPython.EcLogInputPdo_DataType_Signed
-    Unsigned = _WMX3ApiPython.EcLogInputPdo_DataType_Unsigned
-    Hexadecimal = _WMX3ApiPython.EcLogInputPdo_DataType_Hexadecimal
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogInputPdo_DataType()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogInputPdo_DataType
-    __del__ = lambda self: None
-EcLogInputPdo_DataType_swigregister = _WMX3ApiPython.EcLogInputPdo_DataType_swigregister
-EcLogInputPdo_DataType_swigregister(EcLogInputPdo_DataType)
-
-class EcLogInputPdo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogInputPdo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogInputPdo, name)
-    __repr__ = _swig_repr
-
-    def SetData(self, ecLogInputPdo):
-        return _WMX3ApiPython.EcLogInputPdo_SetData(self, ecLogInputPdo)
-
-    def GetData(self, ecLogInputPdo):
-        return _WMX3ApiPython.EcLogInputPdo_GetData(self, ecLogInputPdo)
-    __swig_setmethods__["slaveId"] = _WMX3ApiPython.EcLogInputPdo_slaveId_set
-    __swig_getmethods__["slaveId"] = _WMX3ApiPython.EcLogInputPdo_slaveId_get
-    if _newclass:
-        slaveId = _swig_property(_WMX3ApiPython.EcLogInputPdo_slaveId_get, _WMX3ApiPython.EcLogInputPdo_slaveId_set)
-    __swig_setmethods__["type"] = _WMX3ApiPython.EcLogInputPdo_type_set
-    __swig_getmethods__["type"] = _WMX3ApiPython.EcLogInputPdo_type_get
-    if _newclass:
-        type = _swig_property(_WMX3ApiPython.EcLogInputPdo_type_get, _WMX3ApiPython.EcLogInputPdo_type_set)
-    __swig_setmethods__["index"] = _WMX3ApiPython.EcLogInputPdo_index_set
-    __swig_getmethods__["index"] = _WMX3ApiPython.EcLogInputPdo_index_get
-    if _newclass:
-        index = _swig_property(_WMX3ApiPython.EcLogInputPdo_index_get, _WMX3ApiPython.EcLogInputPdo_index_set)
-    __swig_setmethods__["subIndex"] = _WMX3ApiPython.EcLogInputPdo_subIndex_set
-    __swig_getmethods__["subIndex"] = _WMX3ApiPython.EcLogInputPdo_subIndex_get
-    if _newclass:
-        subIndex = _swig_property(_WMX3ApiPython.EcLogInputPdo_subIndex_get, _WMX3ApiPython.EcLogInputPdo_subIndex_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogInputPdo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogInputPdo
-    __del__ = lambda self: None
-EcLogInputPdo_swigregister = _WMX3ApiPython.EcLogInputPdo_swigregister
-EcLogInputPdo_swigregister(EcLogInputPdo)
-
-class EcLogInput(LogInput):
-    __swig_setmethods__ = {}
-    for _s in [LogInput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogInput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogInput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogInput, name)
-    __repr__ = _swig_repr
-
-    def SetData(self, ecLogInput):
-        return _WMX3ApiPython.EcLogInput_SetData(self, ecLogInput)
-
-    def GetData(self, ecLogInput):
-        return _WMX3ApiPython.EcLogInput_GetData(self, ecLogInput)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogInput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.EcLogInput_GetModuleId(self)
-
-    def GetInputData(self, buff, buffSize, dataSize):
-        return _WMX3ApiPython.EcLogInput_GetInputData(self, buff, buffSize, dataSize)
-
-    def SetInputData(self, moduleId, data, dataSize):
-        return _WMX3ApiPython.EcLogInput_SetInputData(self, moduleId, data, dataSize)
-
-    def GetLogInput(self):
-        return _WMX3ApiPython.EcLogInput_GetLogInput(self)
-    __swig_setmethods__["masterId"] = _WMX3ApiPython.EcLogInput_masterId_set
-    __swig_getmethods__["masterId"] = _WMX3ApiPython.EcLogInput_masterId_get
-    if _newclass:
-        masterId = _swig_property(_WMX3ApiPython.EcLogInput_masterId_get, _WMX3ApiPython.EcLogInput_masterId_set)
-    __swig_setmethods__["numOfPdo"] = _WMX3ApiPython.EcLogInput_numOfPdo_set
-    __swig_getmethods__["numOfPdo"] = _WMX3ApiPython.EcLogInput_numOfPdo_get
-    if _newclass:
-        numOfPdo = _swig_property(_WMX3ApiPython.EcLogInput_numOfPdo_get, _WMX3ApiPython.EcLogInput_numOfPdo_set)
-    __swig_setmethods__["pdo"] = _WMX3ApiPython.EcLogInput_pdo_set
-    __swig_getmethods__["pdo"] = _WMX3ApiPython.EcLogInput_pdo_get
-    if _newclass:
-        pdo = _swig_property(_WMX3ApiPython.EcLogInput_pdo_get, _WMX3ApiPython.EcLogInput_pdo_set)
-
-    def SetPdo(self, index, value):
-        return _WMX3ApiPython.EcLogInput_SetPdo(self, index, value)
-
-    def GetPdo(self, index):
-        return _WMX3ApiPython.EcLogInput_GetPdo(self, index)
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogInput
-    __del__ = lambda self: None
-EcLogInput_swigregister = _WMX3ApiPython.EcLogInput_swigregister
-EcLogInput_swigregister(EcLogInput)
-
-class EcLogOutputPdo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogOutputPdo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogOutputPdo, name)
-    __repr__ = _swig_repr
-
-    def SetThisData(self, ecLogOutputPdo):
-        return _WMX3ApiPython.EcLogOutputPdo_SetThisData(self, ecLogOutputPdo)
-
-    def GetThisData(self, ecLogOutputPdo):
-        return _WMX3ApiPython.EcLogOutputPdo_GetThisData(self, ecLogOutputPdo)
-    __swig_setmethods__["slaveId"] = _WMX3ApiPython.EcLogOutputPdo_slaveId_set
-    __swig_getmethods__["slaveId"] = _WMX3ApiPython.EcLogOutputPdo_slaveId_get
-    if _newclass:
-        slaveId = _swig_property(_WMX3ApiPython.EcLogOutputPdo_slaveId_get, _WMX3ApiPython.EcLogOutputPdo_slaveId_set)
-    __swig_setmethods__["index"] = _WMX3ApiPython.EcLogOutputPdo_index_set
-    __swig_getmethods__["index"] = _WMX3ApiPython.EcLogOutputPdo_index_get
-    if _newclass:
-        index = _swig_property(_WMX3ApiPython.EcLogOutputPdo_index_get, _WMX3ApiPython.EcLogOutputPdo_index_set)
-    __swig_setmethods__["subIndex"] = _WMX3ApiPython.EcLogOutputPdo_subIndex_set
-    __swig_getmethods__["subIndex"] = _WMX3ApiPython.EcLogOutputPdo_subIndex_get
-    if _newclass:
-        subIndex = _swig_property(_WMX3ApiPython.EcLogOutputPdo_subIndex_get, _WMX3ApiPython.EcLogOutputPdo_subIndex_set)
-    __swig_setmethods__["length"] = _WMX3ApiPython.EcLogOutputPdo_length_set
-    __swig_getmethods__["length"] = _WMX3ApiPython.EcLogOutputPdo_length_get
-    if _newclass:
-        length = _swig_property(_WMX3ApiPython.EcLogOutputPdo_length_get, _WMX3ApiPython.EcLogOutputPdo_length_set)
-    __swig_setmethods__["data"] = _WMX3ApiPython.EcLogOutputPdo_data_set
-    __swig_getmethods__["data"] = _WMX3ApiPython.EcLogOutputPdo_data_get
-    if _newclass:
-        data = _swig_property(_WMX3ApiPython.EcLogOutputPdo_data_get, _WMX3ApiPython.EcLogOutputPdo_data_set)
-
-    def SetData(self, index, value):
-        return _WMX3ApiPython.EcLogOutputPdo_SetData(self, index, value)
-
-    def GetData(self, index):
-        return _WMX3ApiPython.EcLogOutputPdo_GetData(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogOutputPdo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogOutputPdo
-    __del__ = lambda self: None
-EcLogOutputPdo_swigregister = _WMX3ApiPython.EcLogOutputPdo_swigregister
-EcLogOutputPdo_swigregister(EcLogOutputPdo)
-
-class EcLogOutputData(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogOutputData, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogOutputData, name)
-    __repr__ = _swig_repr
-
-    def SetData(self, ecLogOutputData):
-        return _WMX3ApiPython.EcLogOutputData_SetData(self, ecLogOutputData)
-
-    def GetData(self, ecLogOutputData):
-        return _WMX3ApiPython.EcLogOutputData_GetData(self, ecLogOutputData)
-    __swig_setmethods__["masterId"] = _WMX3ApiPython.EcLogOutputData_masterId_set
-    __swig_getmethods__["masterId"] = _WMX3ApiPython.EcLogOutputData_masterId_get
-    if _newclass:
-        masterId = _swig_property(_WMX3ApiPython.EcLogOutputData_masterId_get, _WMX3ApiPython.EcLogOutputData_masterId_set)
-    __swig_setmethods__["numOfPdo"] = _WMX3ApiPython.EcLogOutputData_numOfPdo_set
-    __swig_getmethods__["numOfPdo"] = _WMX3ApiPython.EcLogOutputData_numOfPdo_get
-    if _newclass:
-        numOfPdo = _swig_property(_WMX3ApiPython.EcLogOutputData_numOfPdo_get, _WMX3ApiPython.EcLogOutputData_numOfPdo_set)
-    __swig_setmethods__["pdo"] = _WMX3ApiPython.EcLogOutputData_pdo_set
-    __swig_getmethods__["pdo"] = _WMX3ApiPython.EcLogOutputData_pdo_get
-    if _newclass:
-        pdo = _swig_property(_WMX3ApiPython.EcLogOutputData_pdo_get, _WMX3ApiPython.EcLogOutputData_pdo_set)
-
-    def SetPdo(self, index, value):
-        return _WMX3ApiPython.EcLogOutputData_SetPdo(self, index, value)
-
-    def GetPdo(self, index):
-        return _WMX3ApiPython.EcLogOutputData_GetPdo(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogOutputData()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogOutputData
-    __del__ = lambda self: None
-EcLogOutputData_swigregister = _WMX3ApiPython.EcLogOutputData_swigregister
-EcLogOutputData_swigregister(EcLogOutputData)
-
-class EcLogOutput(LogOutput):
-    __swig_setmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcLogOutput, name, value)
-    __swig_getmethods__ = {}
-    for _s in [LogOutput]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, EcLogOutput, name)
-    __repr__ = _swig_repr
-
-    def SetData(self, ecLogOutput):
-        return _WMX3ApiPython.EcLogOutput_SetData(self, ecLogOutput)
-
-    def GetData(self, ecLogOutput):
-        return _WMX3ApiPython.EcLogOutput_GetData(self, ecLogOutput)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcLogOutput()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-
-    def GetModuleId(self):
-        return _WMX3ApiPython.EcLogOutput_GetModuleId(self)
-
-    def GetLogOutput(self):
-        return _WMX3ApiPython.EcLogOutput_GetLogOutput(self)
-
-    def SetLogOutput(self, src):
-        return _WMX3ApiPython.EcLogOutput_SetLogOutput(self, src)
-    __swig_setmethods__["ecData"] = _WMX3ApiPython.EcLogOutput_ecData_set
-    __swig_getmethods__["ecData"] = _WMX3ApiPython.EcLogOutput_ecData_get
-    if _newclass:
-        ecData = _swig_property(_WMX3ApiPython.EcLogOutput_ecData_get, _WMX3ApiPython.EcLogOutput_ecData_set)
-
-    def SetEcData(self, index, value):
-        return _WMX3ApiPython.EcLogOutput_SetEcData(self, index, value)
-
-    def GetEcData(self, index):
-        return _WMX3ApiPython.EcLogOutput_GetEcData(self, index)
-    __swig_destroy__ = _WMX3ApiPython.delete_EcLogOutput
-    __del__ = lambda self: None
-EcLogOutput_swigregister = _WMX3ApiPython.EcLogOutput_swigregister
-EcLogOutput_swigregister(EcLogOutput)
-
-class EcAoESender(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcAoESender, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcAoESender, name)
-    __repr__ = _swig_repr
-    __swig_setmethods__["senderNetId"] = _WMX3ApiPython.EcAoESender_senderNetId_set
-    __swig_getmethods__["senderNetId"] = _WMX3ApiPython.EcAoESender_senderNetId_get
-    if _newclass:
-        senderNetId = _swig_property(_WMX3ApiPython.EcAoESender_senderNetId_get, _WMX3ApiPython.EcAoESender_senderNetId_set)
-
-    def SetSenderNetId(self, index, value):
-        return _WMX3ApiPython.EcAoESender_SetSenderNetId(self, index, value)
-
-    def GetSenderNetId(self, index):
-        return _WMX3ApiPython.EcAoESender_GetSenderNetId(self, index)
-    __swig_setmethods__["senderPort"] = _WMX3ApiPython.EcAoESender_senderPort_set
-    __swig_getmethods__["senderPort"] = _WMX3ApiPython.EcAoESender_senderPort_get
-    if _newclass:
-        senderPort = _swig_property(_WMX3ApiPython.EcAoESender_senderPort_get, _WMX3ApiPython.EcAoESender_senderPort_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcAoESender()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcAoESender
-    __del__ = lambda self: None
-EcAoESender_swigregister = _WMX3ApiPython.EcAoESender_swigregister
-EcAoESender_swigregister(EcAoESender)
-
-class EcSlaveSdoInfoObjectDescription(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveSdoInfoObjectDescription, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveSdoInfoObjectDescription, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveSdoInfoObjectDescription):
-        return _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_GetData(self, ecSlaveSdoInfoObjectDescription)
-    __swig_setmethods__["index"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_index_set
-    __swig_getmethods__["index"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_index_get
-    if _newclass:
-        index = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescription_index_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_index_set)
-    __swig_setmethods__["dataType"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_dataType_set
-    __swig_getmethods__["dataType"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_dataType_get
-    if _newclass:
-        dataType = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescription_dataType_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_dataType_set)
-    __swig_setmethods__["maxSubIndex"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_maxSubIndex_set
-    __swig_getmethods__["maxSubIndex"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_maxSubIndex_get
-    if _newclass:
-        maxSubIndex = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescription_maxSubIndex_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_maxSubIndex_set)
-    __swig_setmethods__["objectCode"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_objectCode_set
-    __swig_getmethods__["objectCode"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_objectCode_get
-    if _newclass:
-        objectCode = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescription_objectCode_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_objectCode_set)
-    __swig_setmethods__["name"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_name_set
-    __swig_getmethods__["name"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_name_get
-    if _newclass:
-        name = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescription_name_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_name_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveSdoInfoObjectDescription()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveSdoInfoObjectDescription
-    __del__ = lambda self: None
-EcSlaveSdoInfoObjectDescription_swigregister = _WMX3ApiPython.EcSlaveSdoInfoObjectDescription_swigregister
-EcSlaveSdoInfoObjectDescription_swigregister(EcSlaveSdoInfoObjectDescription)
-
-class EcSlaveSdoInfoObjectDescriptionList(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveSdoInfoObjectDescriptionList, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveSdoInfoObjectDescriptionList, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveSdoInfoObjectDescriptionList):
-        return _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_GetData(self, ecSlaveSdoInfoObjectDescriptionList)
-    __swig_setmethods__["num"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_num_set
-    __swig_getmethods__["num"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_num_get
-    if _newclass:
-        num = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_num_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_num_set)
-    __swig_setmethods__["objects"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_objects_set
-    __swig_getmethods__["objects"] = _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_objects_get
-    if _newclass:
-        objects = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_objects_get, _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_objects_set)
-
-    def SetObjects(self, index, value):
-        return _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_SetObjects(self, index, value)
-
-    def GetObjects(self, index):
-        return _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_GetObjects(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveSdoInfoObjectDescriptionList()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveSdoInfoObjectDescriptionList
-    __del__ = lambda self: None
-EcSlaveSdoInfoObjectDescriptionList_swigregister = _WMX3ApiPython.EcSlaveSdoInfoObjectDescriptionList_swigregister
-EcSlaveSdoInfoObjectDescriptionList_swigregister(EcSlaveSdoInfoObjectDescriptionList)
-
-class EcSlaveSdoInfoEntryDescription(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveSdoInfoEntryDescription, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveSdoInfoEntryDescription, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveSdoInfoEntryDescription):
-        return _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_GetData(self, ecSlaveSdoInfoEntryDescription)
-    __swig_setmethods__["index"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_index_set
-    __swig_getmethods__["index"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_index_get
-    if _newclass:
-        index = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_index_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_index_set)
-    __swig_setmethods__["subIndex"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_subIndex_set
-    __swig_getmethods__["subIndex"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_subIndex_get
-    if _newclass:
-        subIndex = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_subIndex_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_subIndex_set)
-    __swig_setmethods__["valueInfo"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_valueInfo_set
-    __swig_getmethods__["valueInfo"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_valueInfo_get
-    if _newclass:
-        valueInfo = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_valueInfo_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_valueInfo_set)
-    __swig_setmethods__["dataType"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_dataType_set
-    __swig_getmethods__["dataType"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_dataType_get
-    if _newclass:
-        dataType = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_dataType_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_dataType_set)
-    __swig_setmethods__["bitLen"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_bitLen_set
-    __swig_getmethods__["bitLen"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_bitLen_get
-    if _newclass:
-        bitLen = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_bitLen_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_bitLen_set)
-    __swig_setmethods__["objectAccess"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_objectAccess_set
-    __swig_getmethods__["objectAccess"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_objectAccess_get
-    if _newclass:
-        objectAccess = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_objectAccess_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_objectAccess_set)
-    __swig_setmethods__["unitType"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_unitType_set
-    __swig_getmethods__["unitType"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_unitType_get
-    if _newclass:
-        unitType = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_unitType_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_unitType_set)
-    __swig_setmethods__["defaultValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_defaultValue_set
-    __swig_getmethods__["defaultValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_defaultValue_get
-    if _newclass:
-        defaultValue = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_defaultValue_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_defaultValue_set)
-    __swig_setmethods__["minimumValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_minimumValue_set
-    __swig_getmethods__["minimumValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_minimumValue_get
-    if _newclass:
-        minimumValue = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_minimumValue_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_minimumValue_set)
-    __swig_setmethods__["maximumValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_maximumValue_set
-    __swig_getmethods__["maximumValue"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_maximumValue_get
-    if _newclass:
-        maximumValue = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_maximumValue_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_maximumValue_set)
-    __swig_setmethods__["name"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_name_set
-    __swig_getmethods__["name"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_name_get
-    if _newclass:
-        name = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescription_name_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_name_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveSdoInfoEntryDescription()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveSdoInfoEntryDescription
-    __del__ = lambda self: None
-EcSlaveSdoInfoEntryDescription_swigregister = _WMX3ApiPython.EcSlaveSdoInfoEntryDescription_swigregister
-EcSlaveSdoInfoEntryDescription_swigregister(EcSlaveSdoInfoEntryDescription)
-
-class EcSlaveSdoInfoEntryDescriptionList(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveSdoInfoEntryDescriptionList, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveSdoInfoEntryDescriptionList, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveSdoInfoEntryDescriptionList):
-        return _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_GetData(self, ecSlaveSdoInfoEntryDescriptionList)
-    __swig_setmethods__["num"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_num_set
-    __swig_getmethods__["num"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_num_get
-    if _newclass:
-        num = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_num_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_num_set)
-    __swig_setmethods__["entry"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_entry_set
-    __swig_getmethods__["entry"] = _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_entry_get
-    if _newclass:
-        entry = _swig_property(_WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_entry_get, _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_entry_set)
-
-    def SetEntry(self, index, value):
-        return _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_SetEntry(self, index, value)
-
-    def GetEntry(self, index):
-        return _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_GetEntry(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveSdoInfoEntryDescriptionList()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveSdoInfoEntryDescriptionList
-    __del__ = lambda self: None
-EcSlaveSdoInfoEntryDescriptionList_swigregister = _WMX3ApiPython.EcSlaveSdoInfoEntryDescriptionList_swigregister
-EcSlaveSdoInfoEntryDescriptionList_swigregister(EcSlaveSdoInfoEntryDescriptionList)
-
-class EcSlavePdo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlavePdo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlavePdo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlavePdo):
-        return _WMX3ApiPython.EcSlavePdo_GetData(self, ecSlavePdo)
-
-    def SetData(self, ecSlavePdo):
-        return _WMX3ApiPython.EcSlavePdo_SetData(self, ecSlavePdo)
-    __swig_setmethods__["enable"] = _WMX3ApiPython.EcSlavePdo_enable_set
-    __swig_getmethods__["enable"] = _WMX3ApiPython.EcSlavePdo_enable_get
-    if _newclass:
-        enable = _swig_property(_WMX3ApiPython.EcSlavePdo_enable_get, _WMX3ApiPython.EcSlavePdo_enable_set)
-    __swig_setmethods__["size"] = _WMX3ApiPython.EcSlavePdo_size_set
-    __swig_getmethods__["size"] = _WMX3ApiPython.EcSlavePdo_size_get
-    if _newclass:
-        size = _swig_property(_WMX3ApiPython.EcSlavePdo_size_get, _WMX3ApiPython.EcSlavePdo_size_set)
-    __swig_setmethods__["offset"] = _WMX3ApiPython.EcSlavePdo_offset_set
-    __swig_getmethods__["offset"] = _WMX3ApiPython.EcSlavePdo_offset_get
-    if _newclass:
-        offset = _swig_property(_WMX3ApiPython.EcSlavePdo_offset_get, _WMX3ApiPython.EcSlavePdo_offset_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlavePdo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlavePdo
-    __del__ = lambda self: None
-EcSlavePdo_swigregister = _WMX3ApiPython.EcSlavePdo_swigregister
-EcSlavePdo_swigregister(EcSlavePdo)
-
-class EcSlavePdoInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlavePdoInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlavePdoInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlavePdoInfo):
-        return _WMX3ApiPython.EcSlavePdoInfo_GetData(self, ecSlavePdoInfo)
-
-    def SetData(self, ecSlavePdoInfo):
-        return _WMX3ApiPython.EcSlavePdoInfo_SetData(self, ecSlavePdoInfo)
-    __swig_setmethods__["statusWord"] = _WMX3ApiPython.EcSlavePdoInfo_statusWord_set
-    __swig_getmethods__["statusWord"] = _WMX3ApiPython.EcSlavePdoInfo_statusWord_get
-    if _newclass:
-        statusWord = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_statusWord_get, _WMX3ApiPython.EcSlavePdoInfo_statusWord_set)
-    __swig_setmethods__["modesOfOperationDisplay"] = _WMX3ApiPython.EcSlavePdoInfo_modesOfOperationDisplay_set
-    __swig_getmethods__["modesOfOperationDisplay"] = _WMX3ApiPython.EcSlavePdoInfo_modesOfOperationDisplay_get
-    if _newclass:
-        modesOfOperationDisplay = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_modesOfOperationDisplay_get, _WMX3ApiPython.EcSlavePdoInfo_modesOfOperationDisplay_set)
-    __swig_setmethods__["positionActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_positionActualValue_set
-    __swig_getmethods__["positionActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_positionActualValue_get
-    if _newclass:
-        positionActualValue = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_positionActualValue_get, _WMX3ApiPython.EcSlavePdoInfo_positionActualValue_set)
-    __swig_setmethods__["velocityActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_velocityActualValue_set
-    __swig_getmethods__["velocityActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_velocityActualValue_get
-    if _newclass:
-        velocityActualValue = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_velocityActualValue_get, _WMX3ApiPython.EcSlavePdoInfo_velocityActualValue_set)
-    __swig_setmethods__["torqueActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_torqueActualValue_set
-    __swig_getmethods__["torqueActualValue"] = _WMX3ApiPython.EcSlavePdoInfo_torqueActualValue_get
-    if _newclass:
-        torqueActualValue = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_torqueActualValue_get, _WMX3ApiPython.EcSlavePdoInfo_torqueActualValue_set)
-    __swig_setmethods__["errorCode"] = _WMX3ApiPython.EcSlavePdoInfo_errorCode_set
-    __swig_getmethods__["errorCode"] = _WMX3ApiPython.EcSlavePdoInfo_errorCode_get
-    if _newclass:
-        errorCode = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_errorCode_get, _WMX3ApiPython.EcSlavePdoInfo_errorCode_set)
-    __swig_setmethods__["touchProbeStatus"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbeStatus_set
-    __swig_getmethods__["touchProbeStatus"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbeStatus_get
-    if _newclass:
-        touchProbeStatus = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_touchProbeStatus_get, _WMX3ApiPython.EcSlavePdoInfo_touchProbeStatus_set)
-    __swig_setmethods__["touchProbePositionPos1"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos1_set
-    __swig_getmethods__["touchProbePositionPos1"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos1_get
-    if _newclass:
-        touchProbePositionPos1 = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos1_get, _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos1_set)
-    __swig_setmethods__["touchProbePositionPos2"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos2_set
-    __swig_getmethods__["touchProbePositionPos2"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos2_get
-    if _newclass:
-        touchProbePositionPos2 = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos2_get, _WMX3ApiPython.EcSlavePdoInfo_touchProbePositionPos2_set)
-    __swig_setmethods__["followingError"] = _WMX3ApiPython.EcSlavePdoInfo_followingError_set
-    __swig_getmethods__["followingError"] = _WMX3ApiPython.EcSlavePdoInfo_followingError_get
-    if _newclass:
-        followingError = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_followingError_get, _WMX3ApiPython.EcSlavePdoInfo_followingError_set)
-    __swig_setmethods__["digitalInput"] = _WMX3ApiPython.EcSlavePdoInfo_digitalInput_set
-    __swig_getmethods__["digitalInput"] = _WMX3ApiPython.EcSlavePdoInfo_digitalInput_get
-    if _newclass:
-        digitalInput = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_digitalInput_get, _WMX3ApiPython.EcSlavePdoInfo_digitalInput_set)
-    __swig_setmethods__["controlWord"] = _WMX3ApiPython.EcSlavePdoInfo_controlWord_set
-    __swig_getmethods__["controlWord"] = _WMX3ApiPython.EcSlavePdoInfo_controlWord_get
-    if _newclass:
-        controlWord = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_controlWord_get, _WMX3ApiPython.EcSlavePdoInfo_controlWord_set)
-    __swig_setmethods__["modesOfOperation"] = _WMX3ApiPython.EcSlavePdoInfo_modesOfOperation_set
-    __swig_getmethods__["modesOfOperation"] = _WMX3ApiPython.EcSlavePdoInfo_modesOfOperation_get
-    if _newclass:
-        modesOfOperation = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_modesOfOperation_get, _WMX3ApiPython.EcSlavePdoInfo_modesOfOperation_set)
-    __swig_setmethods__["targetPosition"] = _WMX3ApiPython.EcSlavePdoInfo_targetPosition_set
-    __swig_getmethods__["targetPosition"] = _WMX3ApiPython.EcSlavePdoInfo_targetPosition_get
-    if _newclass:
-        targetPosition = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_targetPosition_get, _WMX3ApiPython.EcSlavePdoInfo_targetPosition_set)
-    __swig_setmethods__["targetVelocity"] = _WMX3ApiPython.EcSlavePdoInfo_targetVelocity_set
-    __swig_getmethods__["targetVelocity"] = _WMX3ApiPython.EcSlavePdoInfo_targetVelocity_get
-    if _newclass:
-        targetVelocity = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_targetVelocity_get, _WMX3ApiPython.EcSlavePdoInfo_targetVelocity_set)
-    __swig_setmethods__["targetTorque"] = _WMX3ApiPython.EcSlavePdoInfo_targetTorque_set
-    __swig_getmethods__["targetTorque"] = _WMX3ApiPython.EcSlavePdoInfo_targetTorque_get
-    if _newclass:
-        targetTorque = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_targetTorque_get, _WMX3ApiPython.EcSlavePdoInfo_targetTorque_set)
-    __swig_setmethods__["maxTorque"] = _WMX3ApiPython.EcSlavePdoInfo_maxTorque_set
-    __swig_getmethods__["maxTorque"] = _WMX3ApiPython.EcSlavePdoInfo_maxTorque_get
-    if _newclass:
-        maxTorque = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_maxTorque_get, _WMX3ApiPython.EcSlavePdoInfo_maxTorque_set)
-    __swig_setmethods__["positiveTorqueLimit"] = _WMX3ApiPython.EcSlavePdoInfo_positiveTorqueLimit_set
-    __swig_getmethods__["positiveTorqueLimit"] = _WMX3ApiPython.EcSlavePdoInfo_positiveTorqueLimit_get
-    if _newclass:
-        positiveTorqueLimit = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_positiveTorqueLimit_get, _WMX3ApiPython.EcSlavePdoInfo_positiveTorqueLimit_set)
-    __swig_setmethods__["negativeTorqueLimit"] = _WMX3ApiPython.EcSlavePdoInfo_negativeTorqueLimit_set
-    __swig_getmethods__["negativeTorqueLimit"] = _WMX3ApiPython.EcSlavePdoInfo_negativeTorqueLimit_get
-    if _newclass:
-        negativeTorqueLimit = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_negativeTorqueLimit_get, _WMX3ApiPython.EcSlavePdoInfo_negativeTorqueLimit_set)
-    __swig_setmethods__["touchProbeFunction"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbeFunction_set
-    __swig_getmethods__["touchProbeFunction"] = _WMX3ApiPython.EcSlavePdoInfo_touchProbeFunction_get
-    if _newclass:
-        touchProbeFunction = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_touchProbeFunction_get, _WMX3ApiPython.EcSlavePdoInfo_touchProbeFunction_set)
-    __swig_setmethods__["velocityOffset"] = _WMX3ApiPython.EcSlavePdoInfo_velocityOffset_set
-    __swig_getmethods__["velocityOffset"] = _WMX3ApiPython.EcSlavePdoInfo_velocityOffset_get
-    if _newclass:
-        velocityOffset = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_velocityOffset_get, _WMX3ApiPython.EcSlavePdoInfo_velocityOffset_set)
-    __swig_setmethods__["torqueOffset"] = _WMX3ApiPython.EcSlavePdoInfo_torqueOffset_set
-    __swig_getmethods__["torqueOffset"] = _WMX3ApiPython.EcSlavePdoInfo_torqueOffset_get
-    if _newclass:
-        torqueOffset = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_torqueOffset_get, _WMX3ApiPython.EcSlavePdoInfo_torqueOffset_set)
-    __swig_setmethods__["maxMotorSpeed"] = _WMX3ApiPython.EcSlavePdoInfo_maxMotorSpeed_set
-    __swig_getmethods__["maxMotorSpeed"] = _WMX3ApiPython.EcSlavePdoInfo_maxMotorSpeed_get
-    if _newclass:
-        maxMotorSpeed = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_maxMotorSpeed_get, _WMX3ApiPython.EcSlavePdoInfo_maxMotorSpeed_set)
-    __swig_setmethods__["digitalOutput"] = _WMX3ApiPython.EcSlavePdoInfo_digitalOutput_set
-    __swig_getmethods__["digitalOutput"] = _WMX3ApiPython.EcSlavePdoInfo_digitalOutput_get
-    if _newclass:
-        digitalOutput = _swig_property(_WMX3ApiPython.EcSlavePdoInfo_digitalOutput_get, _WMX3ApiPython.EcSlavePdoInfo_digitalOutput_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlavePdoInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlavePdoInfo
-    __del__ = lambda self: None
-EcSlavePdoInfo_swigregister = _WMX3ApiPython.EcSlavePdoInfo_swigregister
-EcSlavePdoInfo_swigregister(EcSlavePdoInfo)
-
-class EcSlaveAxisInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveAxisInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveAxisInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveAxisInfo):
-        return _WMX3ApiPython.EcSlaveAxisInfo_GetData(self, ecSlaveAxisInfo)
-
-    def SetData(self, ecSlaveAxisInfo):
-        return _WMX3ApiPython.EcSlaveAxisInfo_SetData(self, ecSlaveAxisInfo)
-    __swig_setmethods__["axisIndex"] = _WMX3ApiPython.EcSlaveAxisInfo_axisIndex_set
-    __swig_getmethods__["axisIndex"] = _WMX3ApiPython.EcSlaveAxisInfo_axisIndex_get
-    if _newclass:
-        axisIndex = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_axisIndex_get, _WMX3ApiPython.EcSlaveAxisInfo_axisIndex_set)
-    __swig_setmethods__["digitalInputAddr"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalInputAddr_set
-    __swig_getmethods__["digitalInputAddr"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalInputAddr_get
-    if _newclass:
-        digitalInputAddr = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_digitalInputAddr_get, _WMX3ApiPython.EcSlaveAxisInfo_digitalInputAddr_set)
-    __swig_setmethods__["digitalInputSize"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalInputSize_set
-    __swig_getmethods__["digitalInputSize"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalInputSize_get
-    if _newclass:
-        digitalInputSize = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_digitalInputSize_get, _WMX3ApiPython.EcSlaveAxisInfo_digitalInputSize_set)
-    __swig_setmethods__["digitalOutputAddr"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputAddr_set
-    __swig_getmethods__["digitalOutputAddr"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputAddr_get
-    if _newclass:
-        digitalOutputAddr = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_digitalOutputAddr_get, _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputAddr_set)
-    __swig_setmethods__["digitalOutputSize"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputSize_set
-    __swig_getmethods__["digitalOutputSize"] = _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputSize_get
-    if _newclass:
-        digitalOutputSize = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_digitalOutputSize_get, _WMX3ApiPython.EcSlaveAxisInfo_digitalOutputSize_set)
-    __swig_setmethods__["pdoInfo"] = _WMX3ApiPython.EcSlaveAxisInfo_pdoInfo_set
-    __swig_getmethods__["pdoInfo"] = _WMX3ApiPython.EcSlaveAxisInfo_pdoInfo_get
-    if _newclass:
-        pdoInfo = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_pdoInfo_get, _WMX3ApiPython.EcSlaveAxisInfo_pdoInfo_set)
-    __swig_setmethods__["operationMode"] = _WMX3ApiPython.EcSlaveAxisInfo_operationMode_set
-    __swig_getmethods__["operationMode"] = _WMX3ApiPython.EcSlaveAxisInfo_operationMode_get
-    if _newclass:
-        operationMode = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_operationMode_get, _WMX3ApiPython.EcSlaveAxisInfo_operationMode_set)
-    __swig_setmethods__["targetReached"] = _WMX3ApiPython.EcSlaveAxisInfo_targetReached_set
-    __swig_getmethods__["targetReached"] = _WMX3ApiPython.EcSlaveAxisInfo_targetReached_get
-    if _newclass:
-        targetReached = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_targetReached_get, _WMX3ApiPython.EcSlaveAxisInfo_targetReached_set)
-    __swig_setmethods__["followingError"] = _WMX3ApiPython.EcSlaveAxisInfo_followingError_set
-    __swig_getmethods__["followingError"] = _WMX3ApiPython.EcSlaveAxisInfo_followingError_get
-    if _newclass:
-        followingError = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_followingError_get, _WMX3ApiPython.EcSlaveAxisInfo_followingError_set)
-    __swig_setmethods__["homingError"] = _WMX3ApiPython.EcSlaveAxisInfo_homingError_set
-    __swig_getmethods__["homingError"] = _WMX3ApiPython.EcSlaveAxisInfo_homingError_get
-    if _newclass:
-        homingError = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_homingError_get, _WMX3ApiPython.EcSlaveAxisInfo_homingError_set)
-    __swig_setmethods__["homingAttained"] = _WMX3ApiPython.EcSlaveAxisInfo_homingAttained_set
-    __swig_getmethods__["homingAttained"] = _WMX3ApiPython.EcSlaveAxisInfo_homingAttained_get
-    if _newclass:
-        homingAttained = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_homingAttained_get, _WMX3ApiPython.EcSlaveAxisInfo_homingAttained_set)
-    __swig_setmethods__["halt"] = _WMX3ApiPython.EcSlaveAxisInfo_halt_set
-    __swig_getmethods__["halt"] = _WMX3ApiPython.EcSlaveAxisInfo_halt_get
-    if _newclass:
-        halt = _swig_property(_WMX3ApiPython.EcSlaveAxisInfo_halt_get, _WMX3ApiPython.EcSlaveAxisInfo_halt_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveAxisInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveAxisInfo
-    __del__ = lambda self: None
-EcSlaveAxisInfo_swigregister = _WMX3ApiPython.EcSlaveAxisInfo_swigregister
-EcSlaveAxisInfo_swigregister(EcSlaveAxisInfo)
-
-class EcSlaveInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcSlaveInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcSlaveInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecSlaveInfo):
-        return _WMX3ApiPython.EcSlaveInfo_GetData(self, ecSlaveInfo)
-
-    def SetData(self, ecSlaveInfo):
-        return _WMX3ApiPython.EcSlaveInfo_SetData(self, ecSlaveInfo)
-    __swig_setmethods__["id"] = _WMX3ApiPython.EcSlaveInfo_id_set
-    __swig_getmethods__["id"] = _WMX3ApiPython.EcSlaveInfo_id_get
-    if _newclass:
-        id = _swig_property(_WMX3ApiPython.EcSlaveInfo_id_get, _WMX3ApiPython.EcSlaveInfo_id_set)
-    __swig_setmethods__["position"] = _WMX3ApiPython.EcSlaveInfo_position_set
-    __swig_getmethods__["position"] = _WMX3ApiPython.EcSlaveInfo_position_get
-    if _newclass:
-        position = _swig_property(_WMX3ApiPython.EcSlaveInfo_position_get, _WMX3ApiPython.EcSlaveInfo_position_set)
-    __swig_setmethods__["address"] = _WMX3ApiPython.EcSlaveInfo_address_set
-    __swig_getmethods__["address"] = _WMX3ApiPython.EcSlaveInfo_address_get
-    if _newclass:
-        address = _swig_property(_WMX3ApiPython.EcSlaveInfo_address_get, _WMX3ApiPython.EcSlaveInfo_address_set)
-    __swig_setmethods__["vendorId"] = _WMX3ApiPython.EcSlaveInfo_vendorId_set
-    __swig_getmethods__["vendorId"] = _WMX3ApiPython.EcSlaveInfo_vendorId_get
-    if _newclass:
-        vendorId = _swig_property(_WMX3ApiPython.EcSlaveInfo_vendorId_get, _WMX3ApiPython.EcSlaveInfo_vendorId_set)
-    __swig_setmethods__["productCode"] = _WMX3ApiPython.EcSlaveInfo_productCode_set
-    __swig_getmethods__["productCode"] = _WMX3ApiPython.EcSlaveInfo_productCode_get
-    if _newclass:
-        productCode = _swig_property(_WMX3ApiPython.EcSlaveInfo_productCode_get, _WMX3ApiPython.EcSlaveInfo_productCode_set)
-    __swig_setmethods__["revisionNo"] = _WMX3ApiPython.EcSlaveInfo_revisionNo_set
-    __swig_getmethods__["revisionNo"] = _WMX3ApiPython.EcSlaveInfo_revisionNo_get
-    if _newclass:
-        revisionNo = _swig_property(_WMX3ApiPython.EcSlaveInfo_revisionNo_get, _WMX3ApiPython.EcSlaveInfo_revisionNo_set)
-    __swig_setmethods__["serialNo"] = _WMX3ApiPython.EcSlaveInfo_serialNo_set
-    __swig_getmethods__["serialNo"] = _WMX3ApiPython.EcSlaveInfo_serialNo_get
-    if _newclass:
-        serialNo = _swig_property(_WMX3ApiPython.EcSlaveInfo_serialNo_get, _WMX3ApiPython.EcSlaveInfo_serialNo_set)
-    __swig_setmethods__["alias"] = _WMX3ApiPython.EcSlaveInfo_alias_set
-    __swig_getmethods__["alias"] = _WMX3ApiPython.EcSlaveInfo_alias_get
-    if _newclass:
-        alias = _swig_property(_WMX3ApiPython.EcSlaveInfo_alias_get, _WMX3ApiPython.EcSlaveInfo_alias_set)
-    __swig_setmethods__["numOfAxes"] = _WMX3ApiPython.EcSlaveInfo_numOfAxes_set
-    __swig_getmethods__["numOfAxes"] = _WMX3ApiPython.EcSlaveInfo_numOfAxes_get
-    if _newclass:
-        numOfAxes = _swig_property(_WMX3ApiPython.EcSlaveInfo_numOfAxes_get, _WMX3ApiPython.EcSlaveInfo_numOfAxes_set)
-    __swig_setmethods__["axisInfo"] = _WMX3ApiPython.EcSlaveInfo_axisInfo_set
-    __swig_getmethods__["axisInfo"] = _WMX3ApiPython.EcSlaveInfo_axisInfo_get
-    if _newclass:
-        axisInfo = _swig_property(_WMX3ApiPython.EcSlaveInfo_axisInfo_get, _WMX3ApiPython.EcSlaveInfo_axisInfo_set)
-
-    def SetAxisInfo(self, index, value):
-        return _WMX3ApiPython.EcSlaveInfo_SetAxisInfo(self, index, value)
-
-    def GetAxisInfo(self, index):
-        return _WMX3ApiPython.EcSlaveInfo_GetAxisInfo(self, index)
-    __swig_setmethods__["state"] = _WMX3ApiPython.EcSlaveInfo_state_set
-    __swig_getmethods__["state"] = _WMX3ApiPython.EcSlaveInfo_state_get
-    if _newclass:
-        state = _swig_property(_WMX3ApiPython.EcSlaveInfo_state_get, _WMX3ApiPython.EcSlaveInfo_state_set)
-    __swig_setmethods__["alStatusCode"] = _WMX3ApiPython.EcSlaveInfo_alStatusCode_set
-    __swig_getmethods__["alStatusCode"] = _WMX3ApiPython.EcSlaveInfo_alStatusCode_get
-    if _newclass:
-        alStatusCode = _swig_property(_WMX3ApiPython.EcSlaveInfo_alStatusCode_get, _WMX3ApiPython.EcSlaveInfo_alStatusCode_set)
-    __swig_setmethods__["offline"] = _WMX3ApiPython.EcSlaveInfo_offline_set
-    __swig_getmethods__["offline"] = _WMX3ApiPython.EcSlaveInfo_offline_get
-    if _newclass:
-        offline = _swig_property(_WMX3ApiPython.EcSlaveInfo_offline_get, _WMX3ApiPython.EcSlaveInfo_offline_set)
-    __swig_setmethods__["inaccessible"] = _WMX3ApiPython.EcSlaveInfo_inaccessible_set
-    __swig_getmethods__["inaccessible"] = _WMX3ApiPython.EcSlaveInfo_inaccessible_get
-    if _newclass:
-        inaccessible = _swig_property(_WMX3ApiPython.EcSlaveInfo_inaccessible_get, _WMX3ApiPython.EcSlaveInfo_inaccessible_set)
-    __swig_setmethods__["newSlave"] = _WMX3ApiPython.EcSlaveInfo_newSlave_set
-    __swig_getmethods__["newSlave"] = _WMX3ApiPython.EcSlaveInfo_newSlave_get
-    if _newclass:
-        newSlave = _swig_property(_WMX3ApiPython.EcSlaveInfo_newSlave_get, _WMX3ApiPython.EcSlaveInfo_newSlave_set)
-    __swig_setmethods__["reverseSlave"] = _WMX3ApiPython.EcSlaveInfo_reverseSlave_set
-    __swig_getmethods__["reverseSlave"] = _WMX3ApiPython.EcSlaveInfo_reverseSlave_get
-    if _newclass:
-        reverseSlave = _swig_property(_WMX3ApiPython.EcSlaveInfo_reverseSlave_get, _WMX3ApiPython.EcSlaveInfo_reverseSlave_set)
-    __swig_setmethods__["dcSupport"] = _WMX3ApiPython.EcSlaveInfo_dcSupport_set
-    __swig_getmethods__["dcSupport"] = _WMX3ApiPython.EcSlaveInfo_dcSupport_get
-    if _newclass:
-        dcSupport = _swig_property(_WMX3ApiPython.EcSlaveInfo_dcSupport_get, _WMX3ApiPython.EcSlaveInfo_dcSupport_set)
-    __swig_setmethods__["dcWidth"] = _WMX3ApiPython.EcSlaveInfo_dcWidth_set
-    __swig_getmethods__["dcWidth"] = _WMX3ApiPython.EcSlaveInfo_dcWidth_get
-    if _newclass:
-        dcWidth = _swig_property(_WMX3ApiPython.EcSlaveInfo_dcWidth_get, _WMX3ApiPython.EcSlaveInfo_dcWidth_set)
-    __swig_setmethods__["portState"] = _WMX3ApiPython.EcSlaveInfo_portState_set
-    __swig_getmethods__["portState"] = _WMX3ApiPython.EcSlaveInfo_portState_get
-    if _newclass:
-        portState = _swig_property(_WMX3ApiPython.EcSlaveInfo_portState_get, _WMX3ApiPython.EcSlaveInfo_portState_set)
-
-    def SetPortState(self, index, value):
-        return _WMX3ApiPython.EcSlaveInfo_SetPortState(self, index, value)
-
-    def GetPortState(self, index):
-        return _WMX3ApiPython.EcSlaveInfo_GetPortState(self, index)
-    __swig_setmethods__["neighbor"] = _WMX3ApiPython.EcSlaveInfo_neighbor_set
-    __swig_getmethods__["neighbor"] = _WMX3ApiPython.EcSlaveInfo_neighbor_get
-    if _newclass:
-        neighbor = _swig_property(_WMX3ApiPython.EcSlaveInfo_neighbor_get, _WMX3ApiPython.EcSlaveInfo_neighbor_set)
-
-    def SetNeighbor(self, index, value):
-        return _WMX3ApiPython.EcSlaveInfo_SetNeighbor(self, index, value)
-
-    def GetNeighbor(self, index):
-        return _WMX3ApiPython.EcSlaveInfo_GetNeighbor(self, index)
-    __swig_setmethods__["propagaDelay"] = _WMX3ApiPython.EcSlaveInfo_propagaDelay_set
-    __swig_getmethods__["propagaDelay"] = _WMX3ApiPython.EcSlaveInfo_propagaDelay_get
-    if _newclass:
-        propagaDelay = _swig_property(_WMX3ApiPython.EcSlaveInfo_propagaDelay_get, _WMX3ApiPython.EcSlaveInfo_propagaDelay_set)
-    __swig_setmethods__["systemTime"] = _WMX3ApiPython.EcSlaveInfo_systemTime_set
-    __swig_getmethods__["systemTime"] = _WMX3ApiPython.EcSlaveInfo_systemTime_get
-    if _newclass:
-        systemTime = _swig_property(_WMX3ApiPython.EcSlaveInfo_systemTime_get, _WMX3ApiPython.EcSlaveInfo_systemTime_set)
-    __swig_setmethods__["systemTimeOffset"] = _WMX3ApiPython.EcSlaveInfo_systemTimeOffset_set
-    __swig_getmethods__["systemTimeOffset"] = _WMX3ApiPython.EcSlaveInfo_systemTimeOffset_get
-    if _newclass:
-        systemTimeOffset = _swig_property(_WMX3ApiPython.EcSlaveInfo_systemTimeOffset_get, _WMX3ApiPython.EcSlaveInfo_systemTimeOffset_set)
-    __swig_setmethods__["startTime"] = _WMX3ApiPython.EcSlaveInfo_startTime_set
-    __swig_getmethods__["startTime"] = _WMX3ApiPython.EcSlaveInfo_startTime_get
-    if _newclass:
-        startTime = _swig_property(_WMX3ApiPython.EcSlaveInfo_startTime_get, _WMX3ApiPython.EcSlaveInfo_startTime_set)
-    __swig_setmethods__["inputAddr"] = _WMX3ApiPython.EcSlaveInfo_inputAddr_set
-    __swig_getmethods__["inputAddr"] = _WMX3ApiPython.EcSlaveInfo_inputAddr_get
-    if _newclass:
-        inputAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_inputAddr_get, _WMX3ApiPython.EcSlaveInfo_inputAddr_set)
-    __swig_setmethods__["inputSize"] = _WMX3ApiPython.EcSlaveInfo_inputSize_set
-    __swig_getmethods__["inputSize"] = _WMX3ApiPython.EcSlaveInfo_inputSize_get
-    if _newclass:
-        inputSize = _swig_property(_WMX3ApiPython.EcSlaveInfo_inputSize_get, _WMX3ApiPython.EcSlaveInfo_inputSize_set)
-    __swig_setmethods__["outputAddr"] = _WMX3ApiPython.EcSlaveInfo_outputAddr_set
-    __swig_getmethods__["outputAddr"] = _WMX3ApiPython.EcSlaveInfo_outputAddr_get
-    if _newclass:
-        outputAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_outputAddr_get, _WMX3ApiPython.EcSlaveInfo_outputAddr_set)
-    __swig_setmethods__["outputSize"] = _WMX3ApiPython.EcSlaveInfo_outputSize_set
-    __swig_getmethods__["outputSize"] = _WMX3ApiPython.EcSlaveInfo_outputSize_get
-    if _newclass:
-        outputSize = _swig_property(_WMX3ApiPython.EcSlaveInfo_outputSize_get, _WMX3ApiPython.EcSlaveInfo_outputSize_set)
-    __swig_setmethods__["rxLogicAddr"] = _WMX3ApiPython.EcSlaveInfo_rxLogicAddr_set
-    __swig_getmethods__["rxLogicAddr"] = _WMX3ApiPython.EcSlaveInfo_rxLogicAddr_get
-    if _newclass:
-        rxLogicAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_rxLogicAddr_get, _WMX3ApiPython.EcSlaveInfo_rxLogicAddr_set)
-    __swig_setmethods__["rxPhyAddr"] = _WMX3ApiPython.EcSlaveInfo_rxPhyAddr_set
-    __swig_getmethods__["rxPhyAddr"] = _WMX3ApiPython.EcSlaveInfo_rxPhyAddr_get
-    if _newclass:
-        rxPhyAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_rxPhyAddr_get, _WMX3ApiPython.EcSlaveInfo_rxPhyAddr_set)
-    __swig_setmethods__["rxSize"] = _WMX3ApiPython.EcSlaveInfo_rxSize_set
-    __swig_getmethods__["rxSize"] = _WMX3ApiPython.EcSlaveInfo_rxSize_get
-    if _newclass:
-        rxSize = _swig_property(_WMX3ApiPython.EcSlaveInfo_rxSize_get, _WMX3ApiPython.EcSlaveInfo_rxSize_set)
-    __swig_setmethods__["txLogicAddr"] = _WMX3ApiPython.EcSlaveInfo_txLogicAddr_set
-    __swig_getmethods__["txLogicAddr"] = _WMX3ApiPython.EcSlaveInfo_txLogicAddr_get
-    if _newclass:
-        txLogicAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_txLogicAddr_get, _WMX3ApiPython.EcSlaveInfo_txLogicAddr_set)
-    __swig_setmethods__["txPhyAddr"] = _WMX3ApiPython.EcSlaveInfo_txPhyAddr_set
-    __swig_getmethods__["txPhyAddr"] = _WMX3ApiPython.EcSlaveInfo_txPhyAddr_get
-    if _newclass:
-        txPhyAddr = _swig_property(_WMX3ApiPython.EcSlaveInfo_txPhyAddr_get, _WMX3ApiPython.EcSlaveInfo_txPhyAddr_set)
-    __swig_setmethods__["txSize"] = _WMX3ApiPython.EcSlaveInfo_txSize_set
-    __swig_getmethods__["txSize"] = _WMX3ApiPython.EcSlaveInfo_txSize_get
-    if _newclass:
-        txSize = _swig_property(_WMX3ApiPython.EcSlaveInfo_txSize_get, _WMX3ApiPython.EcSlaveInfo_txSize_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcSlaveInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcSlaveInfo
-    __del__ = lambda self: None
-EcSlaveInfo_swigregister = _WMX3ApiPython.EcSlaveInfo_swigregister
-EcSlaveInfo_swigregister(EcSlaveInfo)
-
-class EcMasterStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMasterStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMasterStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMasterStatisticsInfo):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetData(self, ecMasterStatisticsInfo)
-
-    def SetData(self, ecMasterStatisticsInfo):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetData(self, ecMasterStatisticsInfo)
-    __swig_setmethods__["commPeriod"] = _WMX3ApiPython.EcMasterStatisticsInfo_commPeriod_set
-    __swig_getmethods__["commPeriod"] = _WMX3ApiPython.EcMasterStatisticsInfo_commPeriod_get
-    if _newclass:
-        commPeriod = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_commPeriod_get, _WMX3ApiPython.EcMasterStatisticsInfo_commPeriod_set)
-    __swig_setmethods__["cycleCounter"] = _WMX3ApiPython.EcMasterStatisticsInfo_cycleCounter_set
-    __swig_getmethods__["cycleCounter"] = _WMX3ApiPython.EcMasterStatisticsInfo_cycleCounter_get
-    if _newclass:
-        cycleCounter = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_cycleCounter_get, _WMX3ApiPython.EcMasterStatisticsInfo_cycleCounter_set)
-    __swig_setmethods__["interruptIntervalCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_interruptIntervalCount_set
-    __swig_getmethods__["interruptIntervalCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_interruptIntervalCount_get
-    if _newclass:
-        interruptIntervalCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_interruptIntervalCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_interruptIntervalCount_set)
-
-    def SetInterruptIntervalCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetInterruptIntervalCount(self, index, value)
-
-    def GetInterruptIntervalCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetInterruptIntervalCount(self, index)
-    __swig_setmethods__["cycleProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_cycleProcessTimeCount_set
-    __swig_getmethods__["cycleProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_cycleProcessTimeCount_get
-    if _newclass:
-        cycleProcessTimeCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_cycleProcessTimeCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_cycleProcessTimeCount_set)
-
-    def SetCycleProcessTimeCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetCycleProcessTimeCount(self, index, value)
-
-    def GetCycleProcessTimeCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetCycleProcessTimeCount(self, index)
-    __swig_setmethods__["processTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_processTimeCount_set
-    __swig_getmethods__["processTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_processTimeCount_get
-    if _newclass:
-        processTimeCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_processTimeCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_processTimeCount_set)
-
-    def SetProcessTimeCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetProcessTimeCount(self, index, value)
-
-    def GetProcessTimeCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetProcessTimeCount(self, index)
-    __swig_setmethods__["commandProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_commandProcessTimeCount_set
-    __swig_getmethods__["commandProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_commandProcessTimeCount_get
-    if _newclass:
-        commandProcessTimeCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_commandProcessTimeCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_commandProcessTimeCount_set)
-
-    def SetCommandProcessTimeCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetCommandProcessTimeCount(self, index, value)
-
-    def GetCommandProcessTimeCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetCommandProcessTimeCount(self, index)
-    __swig_setmethods__["feedbackProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_feedbackProcessTimeCount_set
-    __swig_getmethods__["feedbackProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_feedbackProcessTimeCount_get
-    if _newclass:
-        feedbackProcessTimeCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_feedbackProcessTimeCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_feedbackProcessTimeCount_set)
-
-    def SetFeedbackProcessTimeCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetFeedbackProcessTimeCount(self, index, value)
-
-    def GetFeedbackProcessTimeCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetFeedbackProcessTimeCount(self, index)
-    __swig_setmethods__["communicateProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_communicateProcessTimeCount_set
-    __swig_getmethods__["communicateProcessTimeCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_communicateProcessTimeCount_get
-    if _newclass:
-        communicateProcessTimeCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_communicateProcessTimeCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_communicateProcessTimeCount_set)
-
-    def SetCommunicateProcessTimeCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetCommunicateProcessTimeCount(self, index, value)
-
-    def GetCommunicateProcessTimeCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetCommunicateProcessTimeCount(self, index)
-    __swig_setmethods__["dcDiffCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_dcDiffCount_set
-    __swig_getmethods__["dcDiffCount"] = _WMX3ApiPython.EcMasterStatisticsInfo_dcDiffCount_get
-    if _newclass:
-        dcDiffCount = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_dcDiffCount_get, _WMX3ApiPython.EcMasterStatisticsInfo_dcDiffCount_set)
-
-    def SetDcDiffCount(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetDcDiffCount(self, index, value)
-
-    def GetDcDiffCount(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetDcDiffCount(self, index)
-    __swig_setmethods__["txDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_txDelay_set
-    __swig_getmethods__["txDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_txDelay_get
-    if _newclass:
-        txDelay = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_txDelay_get, _WMX3ApiPython.EcMasterStatisticsInfo_txDelay_set)
-    __swig_setmethods__["minTxDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_minTxDelay_set
-    __swig_getmethods__["minTxDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_minTxDelay_get
-    if _newclass:
-        minTxDelay = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_minTxDelay_get, _WMX3ApiPython.EcMasterStatisticsInfo_minTxDelay_set)
-    __swig_setmethods__["maxTxDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxTxDelay_set
-    __swig_getmethods__["maxTxDelay"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxTxDelay_get
-    if _newclass:
-        maxTxDelay = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_maxTxDelay_get, _WMX3ApiPython.EcMasterStatisticsInfo_maxTxDelay_set)
-    __swig_setmethods__["packetLoss"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetLoss_set
-    __swig_getmethods__["packetLoss"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetLoss_get
-    if _newclass:
-        packetLoss = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_packetLoss_get, _WMX3ApiPython.EcMasterStatisticsInfo_packetLoss_set)
-    __swig_setmethods__["packetTimeout"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeout_set
-    __swig_getmethods__["packetTimeout"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeout_get
-    if _newclass:
-        packetTimeout = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_packetTimeout_get, _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeout_set)
-    __swig_setmethods__["packetLossMode"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetLossMode_set
-    __swig_getmethods__["packetLossMode"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetLossMode_get
-    if _newclass:
-        packetLossMode = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_packetLossMode_get, _WMX3ApiPython.EcMasterStatisticsInfo_packetLossMode_set)
-
-    def SetPacketLossMode(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetPacketLossMode(self, index, value)
-
-    def GetPacketLossMode(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetPacketLossMode(self, index)
-    __swig_setmethods__["packetTimeoutMode"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeoutMode_set
-    __swig_getmethods__["packetTimeoutMode"] = _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeoutMode_get
-    if _newclass:
-        packetTimeoutMode = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_packetTimeoutMode_get, _WMX3ApiPython.EcMasterStatisticsInfo_packetTimeoutMode_set)
-
-    def SetPacketTimeoutMode(self, index, value):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_SetPacketTimeoutMode(self, index, value)
-
-    def GetPacketTimeoutMode(self, index):
-        return _WMX3ApiPython.EcMasterStatisticsInfo_GetPacketTimeoutMode(self, index)
-    __swig_setmethods__["minRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_minRefClockInterval_set
-    __swig_getmethods__["minRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_minRefClockInterval_get
-    if _newclass:
-        minRefClockInterval = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_minRefClockInterval_get, _WMX3ApiPython.EcMasterStatisticsInfo_minRefClockInterval_set)
-    __swig_setmethods__["maxRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxRefClockInterval_set
-    __swig_getmethods__["maxRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxRefClockInterval_get
-    if _newclass:
-        maxRefClockInterval = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_maxRefClockInterval_get, _WMX3ApiPython.EcMasterStatisticsInfo_maxRefClockInterval_set)
-    __swig_setmethods__["avgRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_avgRefClockInterval_set
-    __swig_getmethods__["avgRefClockInterval"] = _WMX3ApiPython.EcMasterStatisticsInfo_avgRefClockInterval_get
-    if _newclass:
-        avgRefClockInterval = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_avgRefClockInterval_get, _WMX3ApiPython.EcMasterStatisticsInfo_avgRefClockInterval_set)
-    __swig_setmethods__["curRefClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_curRefClock_set
-    __swig_getmethods__["curRefClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_curRefClock_get
-    if _newclass:
-        curRefClock = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_curRefClock_get, _WMX3ApiPython.EcMasterStatisticsInfo_curRefClock_set)
-    __swig_setmethods__["nextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_nextDcClock_set
-    __swig_getmethods__["nextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_nextDcClock_get
-    if _newclass:
-        nextDcClock = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_nextDcClock_get, _WMX3ApiPython.EcMasterStatisticsInfo_nextDcClock_set)
-    __swig_setmethods__["diffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_diffFromNextDcClock_set
-    __swig_getmethods__["diffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_diffFromNextDcClock_get
-    if _newclass:
-        diffFromNextDcClock = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_diffFromNextDcClock_get, _WMX3ApiPython.EcMasterStatisticsInfo_diffFromNextDcClock_set)
-    __swig_setmethods__["minDiffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_minDiffFromNextDcClock_set
-    __swig_getmethods__["minDiffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_minDiffFromNextDcClock_get
-    if _newclass:
-        minDiffFromNextDcClock = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_minDiffFromNextDcClock_get, _WMX3ApiPython.EcMasterStatisticsInfo_minDiffFromNextDcClock_set)
-    __swig_setmethods__["maxDiffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxDiffFromNextDcClock_set
-    __swig_getmethods__["maxDiffFromNextDcClock"] = _WMX3ApiPython.EcMasterStatisticsInfo_maxDiffFromNextDcClock_get
-    if _newclass:
-        maxDiffFromNextDcClock = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_maxDiffFromNextDcClock_get, _WMX3ApiPython.EcMasterStatisticsInfo_maxDiffFromNextDcClock_set)
-    __swig_setmethods__["totalAxesNum"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalAxesNum_set
-    __swig_getmethods__["totalAxesNum"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalAxesNum_get
-    if _newclass:
-        totalAxesNum = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_totalAxesNum_get, _WMX3ApiPython.EcMasterStatisticsInfo_totalAxesNum_set)
-    __swig_setmethods__["totalRxPdoSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalRxPdoSize_set
-    __swig_getmethods__["totalRxPdoSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalRxPdoSize_get
-    if _newclass:
-        totalRxPdoSize = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_totalRxPdoSize_get, _WMX3ApiPython.EcMasterStatisticsInfo_totalRxPdoSize_set)
-    __swig_setmethods__["totalTxPdoSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalTxPdoSize_set
-    __swig_getmethods__["totalTxPdoSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalTxPdoSize_get
-    if _newclass:
-        totalTxPdoSize = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_totalTxPdoSize_get, _WMX3ApiPython.EcMasterStatisticsInfo_totalTxPdoSize_set)
-    __swig_setmethods__["totalInputSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalInputSize_set
-    __swig_getmethods__["totalInputSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalInputSize_get
-    if _newclass:
-        totalInputSize = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_totalInputSize_get, _WMX3ApiPython.EcMasterStatisticsInfo_totalInputSize_set)
-    __swig_setmethods__["totalOutputSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalOutputSize_set
-    __swig_getmethods__["totalOutputSize"] = _WMX3ApiPython.EcMasterStatisticsInfo_totalOutputSize_get
-    if _newclass:
-        totalOutputSize = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_totalOutputSize_get, _WMX3ApiPython.EcMasterStatisticsInfo_totalOutputSize_set)
-    __swig_setmethods__["overCycle"] = _WMX3ApiPython.EcMasterStatisticsInfo_overCycle_set
-    __swig_getmethods__["overCycle"] = _WMX3ApiPython.EcMasterStatisticsInfo_overCycle_get
-    if _newclass:
-        overCycle = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_overCycle_get, _WMX3ApiPython.EcMasterStatisticsInfo_overCycle_set)
-    __swig_setmethods__["ringNum"] = _WMX3ApiPython.EcMasterStatisticsInfo_ringNum_set
-    __swig_getmethods__["ringNum"] = _WMX3ApiPython.EcMasterStatisticsInfo_ringNum_get
-    if _newclass:
-        ringNum = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_ringNum_get, _WMX3ApiPython.EcMasterStatisticsInfo_ringNum_set)
-    __swig_setmethods__["numOfCyclicFrames"] = _WMX3ApiPython.EcMasterStatisticsInfo_numOfCyclicFrames_set
-    __swig_getmethods__["numOfCyclicFrames"] = _WMX3ApiPython.EcMasterStatisticsInfo_numOfCyclicFrames_get
-    if _newclass:
-        numOfCyclicFrames = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_numOfCyclicFrames_get, _WMX3ApiPython.EcMasterStatisticsInfo_numOfCyclicFrames_set)
-    __swig_setmethods__["hcState"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcState_set
-    __swig_getmethods__["hcState"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcState_get
-    if _newclass:
-        hcState = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_hcState_get, _WMX3ApiPython.EcMasterStatisticsInfo_hcState_set)
-    __swig_setmethods__["hcAbortCode"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcAbortCode_set
-    __swig_getmethods__["hcAbortCode"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcAbortCode_get
-    if _newclass:
-        hcAbortCode = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_hcAbortCode_get, _WMX3ApiPython.EcMasterStatisticsInfo_hcAbortCode_set)
-    __swig_setmethods__["hcErrorCode"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcErrorCode_set
-    __swig_getmethods__["hcErrorCode"] = _WMX3ApiPython.EcMasterStatisticsInfo_hcErrorCode_get
-    if _newclass:
-        hcErrorCode = _swig_property(_WMX3ApiPython.EcMasterStatisticsInfo_hcErrorCode_get, _WMX3ApiPython.EcMasterStatisticsInfo_hcErrorCode_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMasterStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMasterStatisticsInfo
-    __del__ = lambda self: None
-EcMasterStatisticsInfo_swigregister = _WMX3ApiPython.EcMasterStatisticsInfo_swigregister
-EcMasterStatisticsInfo_swigregister(EcMasterStatisticsInfo)
-
-class EcVirtualSlavePdo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcVirtualSlavePdo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcVirtualSlavePdo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecVirtualSlavePdo):
-        return _WMX3ApiPython.EcVirtualSlavePdo_GetData(self, ecVirtualSlavePdo)
-
-    def SetData(self, ecVirtualSlavePdo):
-        return _WMX3ApiPython.EcVirtualSlavePdo_SetData(self, ecVirtualSlavePdo)
-    __swig_setmethods__["index"] = _WMX3ApiPython.EcVirtualSlavePdo_index_set
-    __swig_getmethods__["index"] = _WMX3ApiPython.EcVirtualSlavePdo_index_get
-    if _newclass:
-        index = _swig_property(_WMX3ApiPython.EcVirtualSlavePdo_index_get, _WMX3ApiPython.EcVirtualSlavePdo_index_set)
-    __swig_setmethods__["subIndex"] = _WMX3ApiPython.EcVirtualSlavePdo_subIndex_set
-    __swig_getmethods__["subIndex"] = _WMX3ApiPython.EcVirtualSlavePdo_subIndex_get
-    if _newclass:
-        subIndex = _swig_property(_WMX3ApiPython.EcVirtualSlavePdo_subIndex_get, _WMX3ApiPython.EcVirtualSlavePdo_subIndex_set)
-    __swig_setmethods__["size"] = _WMX3ApiPython.EcVirtualSlavePdo_size_set
-    __swig_getmethods__["size"] = _WMX3ApiPython.EcVirtualSlavePdo_size_get
-    if _newclass:
-        size = _swig_property(_WMX3ApiPython.EcVirtualSlavePdo_size_get, _WMX3ApiPython.EcVirtualSlavePdo_size_set)
-    __swig_setmethods__["offset"] = _WMX3ApiPython.EcVirtualSlavePdo_offset_set
-    __swig_getmethods__["offset"] = _WMX3ApiPython.EcVirtualSlavePdo_offset_get
-    if _newclass:
-        offset = _swig_property(_WMX3ApiPython.EcVirtualSlavePdo_offset_get, _WMX3ApiPython.EcVirtualSlavePdo_offset_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcVirtualSlavePdo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcVirtualSlavePdo
-    __del__ = lambda self: None
-EcVirtualSlavePdo_swigregister = _WMX3ApiPython.EcVirtualSlavePdo_swigregister
-EcVirtualSlavePdo_swigregister(EcVirtualSlavePdo)
-
-class EcVirtualSlaveDcStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcVirtualSlaveDcStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcVirtualSlaveDcStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecVirtualSlaveDcStatisticsInfo):
-        return _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_GetData(self, ecVirtualSlaveDcStatisticsInfo)
-
-    def SetData(self, ecVirtualSlaveDcStatisticsInfo):
-        return _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_SetData(self, ecVirtualSlaveDcStatisticsInfo)
-    __swig_setmethods__["minRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minRefClockIntvl_set
-    __swig_getmethods__["minRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minRefClockIntvl_get
-    if _newclass:
-        minRefClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minRefClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minRefClockIntvl_set)
-    __swig_setmethods__["sysIntvlWhenMinRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_set
-    __swig_getmethods__["sysIntvlWhenMinRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_get
-    if _newclass:
-        sysIntvlWhenMinRefClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_set)
-    __swig_setmethods__["maxRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxRefClockIntvl_set
-    __swig_getmethods__["maxRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxRefClockIntvl_get
-    if _newclass:
-        maxRefClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxRefClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxRefClockIntvl_set)
-    __swig_setmethods__["sysIntvlWhenMaxRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_set
-    __swig_getmethods__["sysIntvlWhenMaxRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_get
-    if _newclass:
-        sysIntvlWhenMaxRefClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_set)
-    __swig_setmethods__["avgRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgRefClockIntvl_set
-    __swig_getmethods__["avgRefClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgRefClockIntvl_get
-    if _newclass:
-        avgRefClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgRefClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgRefClockIntvl_set)
-    __swig_setmethods__["minSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minSysClockIntvl_set
-    __swig_getmethods__["minSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minSysClockIntvl_get
-    if _newclass:
-        minSysClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minSysClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_minSysClockIntvl_set)
-    __swig_setmethods__["maxSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxSysClockIntvl_set
-    __swig_getmethods__["maxSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxSysClockIntvl_get
-    if _newclass:
-        maxSysClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxSysClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_maxSysClockIntvl_set)
-    __swig_setmethods__["avgSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgSysClockIntvl_set
-    __swig_getmethods__["avgSysClockIntvl"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgSysClockIntvl_get
-    if _newclass:
-        avgSysClockIntvl = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgSysClockIntvl_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_avgSysClockIntvl_set)
-    __swig_setmethods__["count"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_count_set
-    __swig_getmethods__["count"] = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_count_get
-    if _newclass:
-        count = _swig_property(_WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_count_get, _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_count_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcVirtualSlaveDcStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcVirtualSlaveDcStatisticsInfo
-    __del__ = lambda self: None
-EcVirtualSlaveDcStatisticsInfo_swigregister = _WMX3ApiPython.EcVirtualSlaveDcStatisticsInfo_swigregister
-EcVirtualSlaveDcStatisticsInfo_swigregister(EcVirtualSlaveDcStatisticsInfo)
-
-class EcVirtualSlaveStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcVirtualSlaveStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcVirtualSlaveStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecVirtualSlaveStatisticsInfo):
-        return _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_GetData(self, ecVirtualSlaveStatisticsInfo)
-
-    def SetData(self, ecVirtualSlaveStatisticsInfo):
-        return _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_SetData(self, ecVirtualSlaveStatisticsInfo)
-    __swig_setmethods__["dc"] = _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_dc_set
-    __swig_getmethods__["dc"] = _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_dc_get
-    if _newclass:
-        dc = _swig_property(_WMX3ApiPython.EcVirtualSlaveStatisticsInfo_dc_get, _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_dc_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcVirtualSlaveStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcVirtualSlaveStatisticsInfo
-    __del__ = lambda self: None
-EcVirtualSlaveStatisticsInfo_swigregister = _WMX3ApiPython.EcVirtualSlaveStatisticsInfo_swigregister
-EcVirtualSlaveStatisticsInfo_swigregister(EcVirtualSlaveStatisticsInfo)
-
-class EcVirtualSlaveInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcVirtualSlaveInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcVirtualSlaveInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecVirtualSlaveInfo):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_GetData(self, ecVirtualSlaveInfo)
-
-    def SetData(self, ecVirtualSlaveInfo):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_SetData(self, ecVirtualSlaveInfo)
-    __swig_setmethods__["state"] = _WMX3ApiPython.EcVirtualSlaveInfo_state_set
-    __swig_getmethods__["state"] = _WMX3ApiPython.EcVirtualSlaveInfo_state_get
-    if _newclass:
-        state = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_state_get, _WMX3ApiPython.EcVirtualSlaveInfo_state_set)
-    __swig_setmethods__["address"] = _WMX3ApiPython.EcVirtualSlaveInfo_address_set
-    __swig_getmethods__["address"] = _WMX3ApiPython.EcVirtualSlaveInfo_address_get
-    if _newclass:
-        address = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_address_get, _WMX3ApiPython.EcVirtualSlaveInfo_address_set)
-    __swig_setmethods__["enabled"] = _WMX3ApiPython.EcVirtualSlaveInfo_enabled_set
-    __swig_getmethods__["enabled"] = _WMX3ApiPython.EcVirtualSlaveInfo_enabled_get
-    if _newclass:
-        enabled = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_enabled_get, _WMX3ApiPython.EcVirtualSlaveInfo_enabled_set)
-    __swig_setmethods__["vendorId"] = _WMX3ApiPython.EcVirtualSlaveInfo_vendorId_set
-    __swig_getmethods__["vendorId"] = _WMX3ApiPython.EcVirtualSlaveInfo_vendorId_get
-    if _newclass:
-        vendorId = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_vendorId_get, _WMX3ApiPython.EcVirtualSlaveInfo_vendorId_set)
-    __swig_setmethods__["productCode"] = _WMX3ApiPython.EcVirtualSlaveInfo_productCode_set
-    __swig_getmethods__["productCode"] = _WMX3ApiPython.EcVirtualSlaveInfo_productCode_get
-    if _newclass:
-        productCode = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_productCode_get, _WMX3ApiPython.EcVirtualSlaveInfo_productCode_set)
-    __swig_setmethods__["revisionNo"] = _WMX3ApiPython.EcVirtualSlaveInfo_revisionNo_set
-    __swig_getmethods__["revisionNo"] = _WMX3ApiPython.EcVirtualSlaveInfo_revisionNo_get
-    if _newclass:
-        revisionNo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_revisionNo_get, _WMX3ApiPython.EcVirtualSlaveInfo_revisionNo_set)
-    __swig_setmethods__["serialNo"] = _WMX3ApiPython.EcVirtualSlaveInfo_serialNo_set
-    __swig_getmethods__["serialNo"] = _WMX3ApiPython.EcVirtualSlaveInfo_serialNo_get
-    if _newclass:
-        serialNo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_serialNo_get, _WMX3ApiPython.EcVirtualSlaveInfo_serialNo_set)
-    __swig_setmethods__["alias"] = _WMX3ApiPython.EcVirtualSlaveInfo_alias_set
-    __swig_getmethods__["alias"] = _WMX3ApiPython.EcVirtualSlaveInfo_alias_get
-    if _newclass:
-        alias = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_alias_get, _WMX3ApiPython.EcVirtualSlaveInfo_alias_set)
-    __swig_setmethods__["commPeriod"] = _WMX3ApiPython.EcVirtualSlaveInfo_commPeriod_set
-    __swig_getmethods__["commPeriod"] = _WMX3ApiPython.EcVirtualSlaveInfo_commPeriod_get
-    if _newclass:
-        commPeriod = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_commPeriod_get, _WMX3ApiPython.EcVirtualSlaveInfo_commPeriod_set)
-    __swig_setmethods__["numOfMappedRxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedRxPdo_set
-    __swig_getmethods__["numOfMappedRxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedRxPdo_get
-    if _newclass:
-        numOfMappedRxPdo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedRxPdo_get, _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedRxPdo_set)
-    __swig_setmethods__["mappedRxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_mappedRxPdo_set
-    __swig_getmethods__["mappedRxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_mappedRxPdo_get
-    if _newclass:
-        mappedRxPdo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_mappedRxPdo_get, _WMX3ApiPython.EcVirtualSlaveInfo_mappedRxPdo_set)
-
-    def SetMappedRxPdo(self, index, value):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_SetMappedRxPdo(self, index, value)
-
-    def GetMappedRxPdo(self, index):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_GetMappedRxPdo(self, index)
-    __swig_setmethods__["numOfMappedTxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedTxPdo_set
-    __swig_getmethods__["numOfMappedTxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedTxPdo_get
-    if _newclass:
-        numOfMappedTxPdo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedTxPdo_get, _WMX3ApiPython.EcVirtualSlaveInfo_numOfMappedTxPdo_set)
-    __swig_setmethods__["mappedTxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_mappedTxPdo_set
-    __swig_getmethods__["mappedTxPdo"] = _WMX3ApiPython.EcVirtualSlaveInfo_mappedTxPdo_get
-    if _newclass:
-        mappedTxPdo = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_mappedTxPdo_get, _WMX3ApiPython.EcVirtualSlaveInfo_mappedTxPdo_set)
-
-    def SetMappedTxPdo(self, index, value):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_SetMappedTxPdo(self, index, value)
-
-    def GetMappedTxPdo(self, index):
-        return _WMX3ApiPython.EcVirtualSlaveInfo_GetMappedTxPdo(self, index)
-    __swig_setmethods__["statistics"] = _WMX3ApiPython.EcVirtualSlaveInfo_statistics_set
-    __swig_getmethods__["statistics"] = _WMX3ApiPython.EcVirtualSlaveInfo_statistics_get
-    if _newclass:
-        statistics = _swig_property(_WMX3ApiPython.EcVirtualSlaveInfo_statistics_get, _WMX3ApiPython.EcVirtualSlaveInfo_statistics_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcVirtualSlaveInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcVirtualSlaveInfo
-    __del__ = lambda self: None
-EcVirtualSlaveInfo_swigregister = _WMX3ApiPython.EcVirtualSlaveInfo_swigregister
-EcVirtualSlaveInfo_swigregister(EcVirtualSlaveInfo)
-
-class EcMonitorDcStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMonitorDcStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMonitorDcStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMonitorDcStatisticsInfo):
-        return _WMX3ApiPython.EcMonitorDcStatisticsInfo_GetData(self, ecMonitorDcStatisticsInfo)
-
-    def SetData(self, ecMonitorDcStatisticsInfo):
-        return _WMX3ApiPython.EcMonitorDcStatisticsInfo_SetData(self, ecMonitorDcStatisticsInfo)
-    __swig_setmethods__["minRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_minRefClockIntvl_set
-    __swig_getmethods__["minRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_minRefClockIntvl_get
-    if _newclass:
-        minRefClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_minRefClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_minRefClockIntvl_set)
-    __swig_setmethods__["sysIntvlWhenMinRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_set
-    __swig_getmethods__["sysIntvlWhenMinRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_get
-    if _newclass:
-        sysIntvlWhenMinRefClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMinRefClockIntvl_set)
-    __swig_setmethods__["maxRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxRefClockIntvl_set
-    __swig_getmethods__["maxRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxRefClockIntvl_get
-    if _newclass:
-        maxRefClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_maxRefClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxRefClockIntvl_set)
-    __swig_setmethods__["sysIntvlWhenMaxRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_set
-    __swig_getmethods__["sysIntvlWhenMaxRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_get
-    if _newclass:
-        sysIntvlWhenMaxRefClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_sysIntvlWhenMaxRefClockIntvl_set)
-    __swig_setmethods__["avgRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgRefClockIntvl_set
-    __swig_getmethods__["avgRefClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgRefClockIntvl_get
-    if _newclass:
-        avgRefClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_avgRefClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgRefClockIntvl_set)
-    __swig_setmethods__["minSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_minSysClockIntvl_set
-    __swig_getmethods__["minSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_minSysClockIntvl_get
-    if _newclass:
-        minSysClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_minSysClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_minSysClockIntvl_set)
-    __swig_setmethods__["maxSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxSysClockIntvl_set
-    __swig_getmethods__["maxSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxSysClockIntvl_get
-    if _newclass:
-        maxSysClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_maxSysClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_maxSysClockIntvl_set)
-    __swig_setmethods__["avgSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgSysClockIntvl_set
-    __swig_getmethods__["avgSysClockIntvl"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgSysClockIntvl_get
-    if _newclass:
-        avgSysClockIntvl = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_avgSysClockIntvl_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_avgSysClockIntvl_set)
-    __swig_setmethods__["count"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_count_set
-    __swig_getmethods__["count"] = _WMX3ApiPython.EcMonitorDcStatisticsInfo_count_get
-    if _newclass:
-        count = _swig_property(_WMX3ApiPython.EcMonitorDcStatisticsInfo_count_get, _WMX3ApiPython.EcMonitorDcStatisticsInfo_count_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMonitorDcStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMonitorDcStatisticsInfo
-    __del__ = lambda self: None
-EcMonitorDcStatisticsInfo_swigregister = _WMX3ApiPython.EcMonitorDcStatisticsInfo_swigregister
-EcMonitorDcStatisticsInfo_swigregister(EcMonitorDcStatisticsInfo)
-
-class EcMonitorStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMonitorStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMonitorStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMonitorStatisticsInfo):
-        return _WMX3ApiPython.EcMonitorStatisticsInfo_GetData(self, ecMonitorStatisticsInfo)
-
-    def SetData(self, ecMonitorStatisticsInfo):
-        return _WMX3ApiPython.EcMonitorStatisticsInfo_SetData(self, ecMonitorStatisticsInfo)
-    __swig_setmethods__["dc"] = _WMX3ApiPython.EcMonitorStatisticsInfo_dc_set
-    __swig_getmethods__["dc"] = _WMX3ApiPython.EcMonitorStatisticsInfo_dc_get
-    if _newclass:
-        dc = _swig_property(_WMX3ApiPython.EcMonitorStatisticsInfo_dc_get, _WMX3ApiPython.EcMonitorStatisticsInfo_dc_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMonitorStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMonitorStatisticsInfo
-    __del__ = lambda self: None
-EcMonitorStatisticsInfo_swigregister = _WMX3ApiPython.EcMonitorStatisticsInfo_swigregister
-EcMonitorStatisticsInfo_swigregister(EcMonitorStatisticsInfo)
-
-class EcMonitorInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMonitorInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMonitorInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMonitorInfo):
-        return _WMX3ApiPython.EcMonitorInfo_GetData(self, ecMonitorInfo)
-
-    def SetData(self, ecMonitorInfo):
-        return _WMX3ApiPython.EcMonitorInfo_SetData(self, ecMonitorInfo)
-    __swig_setmethods__["enabled"] = _WMX3ApiPython.EcMonitorInfo_enabled_set
-    __swig_getmethods__["enabled"] = _WMX3ApiPython.EcMonitorInfo_enabled_get
-    if _newclass:
-        enabled = _swig_property(_WMX3ApiPython.EcMonitorInfo_enabled_get, _WMX3ApiPython.EcMonitorInfo_enabled_set)
-    __swig_setmethods__["id"] = _WMX3ApiPython.EcMonitorInfo_id_set
-    __swig_getmethods__["id"] = _WMX3ApiPython.EcMonitorInfo_id_get
-    if _newclass:
-        id = _swig_property(_WMX3ApiPython.EcMonitorInfo_id_get, _WMX3ApiPython.EcMonitorInfo_id_set)
-    __swig_setmethods__["commPeriod"] = _WMX3ApiPython.EcMonitorInfo_commPeriod_set
-    __swig_getmethods__["commPeriod"] = _WMX3ApiPython.EcMonitorInfo_commPeriod_get
-    if _newclass:
-        commPeriod = _swig_property(_WMX3ApiPython.EcMonitorInfo_commPeriod_get, _WMX3ApiPython.EcMonitorInfo_commPeriod_set)
-    __swig_setmethods__["numOfSlaves"] = _WMX3ApiPython.EcMonitorInfo_numOfSlaves_set
-    __swig_getmethods__["numOfSlaves"] = _WMX3ApiPython.EcMonitorInfo_numOfSlaves_get
-    if _newclass:
-        numOfSlaves = _swig_property(_WMX3ApiPython.EcMonitorInfo_numOfSlaves_get, _WMX3ApiPython.EcMonitorInfo_numOfSlaves_set)
-    __swig_setmethods__["position"] = _WMX3ApiPython.EcMonitorInfo_position_set
-    __swig_getmethods__["position"] = _WMX3ApiPython.EcMonitorInfo_position_get
-    if _newclass:
-        position = _swig_property(_WMX3ApiPython.EcMonitorInfo_position_get, _WMX3ApiPython.EcMonitorInfo_position_set)
-    __swig_setmethods__["statistics"] = _WMX3ApiPython.EcMonitorInfo_statistics_set
-    __swig_getmethods__["statistics"] = _WMX3ApiPython.EcMonitorInfo_statistics_get
-    if _newclass:
-        statistics = _swig_property(_WMX3ApiPython.EcMonitorInfo_statistics_get, _WMX3ApiPython.EcMonitorInfo_statistics_set)
-    __swig_setmethods__["virtualSlave"] = _WMX3ApiPython.EcMonitorInfo_virtualSlave_set
-    __swig_getmethods__["virtualSlave"] = _WMX3ApiPython.EcMonitorInfo_virtualSlave_get
-    if _newclass:
-        virtualSlave = _swig_property(_WMX3ApiPython.EcMonitorInfo_virtualSlave_get, _WMX3ApiPython.EcMonitorInfo_virtualSlave_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMonitorInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMonitorInfo
-    __del__ = lambda self: None
-EcMonitorInfo_swigregister = _WMX3ApiPython.EcMonitorInfo_swigregister
-EcMonitorInfo_swigregister(EcMonitorInfo)
-
-class EcMasterInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMasterInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMasterInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMasterInfo):
-        return _WMX3ApiPython.EcMasterInfo_GetData(self, ecMasterInfo)
-
-    def SetData(self, ecMasterInfo):
-        return _WMX3ApiPython.EcMasterInfo_SetData(self, ecMasterInfo)
-    __swig_setmethods__["id"] = _WMX3ApiPython.EcMasterInfo_id_set
-    __swig_getmethods__["id"] = _WMX3ApiPython.EcMasterInfo_id_get
-    if _newclass:
-        id = _swig_property(_WMX3ApiPython.EcMasterInfo_id_get, _WMX3ApiPython.EcMasterInfo_id_set)
-    __swig_setmethods__["state"] = _WMX3ApiPython.EcMasterInfo_state_set
-    __swig_getmethods__["state"] = _WMX3ApiPython.EcMasterInfo_state_get
-    if _newclass:
-        state = _swig_property(_WMX3ApiPython.EcMasterInfo_state_get, _WMX3ApiPython.EcMasterInfo_state_set)
-    __swig_setmethods__["mode"] = _WMX3ApiPython.EcMasterInfo_mode_set
-    __swig_getmethods__["mode"] = _WMX3ApiPython.EcMasterInfo_mode_get
-    if _newclass:
-        mode = _swig_property(_WMX3ApiPython.EcMasterInfo_mode_get, _WMX3ApiPython.EcMasterInfo_mode_set)
-    __swig_setmethods__["numOfSlaves"] = _WMX3ApiPython.EcMasterInfo_numOfSlaves_set
-    __swig_getmethods__["numOfSlaves"] = _WMX3ApiPython.EcMasterInfo_numOfSlaves_get
-    if _newclass:
-        numOfSlaves = _swig_property(_WMX3ApiPython.EcMasterInfo_numOfSlaves_get, _WMX3ApiPython.EcMasterInfo_numOfSlaves_set)
-    __swig_setmethods__["slaves"] = _WMX3ApiPython.EcMasterInfo_slaves_set
-    __swig_getmethods__["slaves"] = _WMX3ApiPython.EcMasterInfo_slaves_get
-    if _newclass:
-        slaves = _swig_property(_WMX3ApiPython.EcMasterInfo_slaves_get, _WMX3ApiPython.EcMasterInfo_slaves_set)
-
-    def SetSlaves(self, index, value):
-        return _WMX3ApiPython.EcMasterInfo_SetSlaves(self, index, value)
-
-    def GetSlaves(self, index):
-        return _WMX3ApiPython.EcMasterInfo_GetSlaves(self, index)
-    __swig_setmethods__["statisticsInfo"] = _WMX3ApiPython.EcMasterInfo_statisticsInfo_set
-    __swig_getmethods__["statisticsInfo"] = _WMX3ApiPython.EcMasterInfo_statisticsInfo_get
-    if _newclass:
-        statisticsInfo = _swig_property(_WMX3ApiPython.EcMasterInfo_statisticsInfo_get, _WMX3ApiPython.EcMasterInfo_statisticsInfo_set)
-
-    def GetOnlineSlaveCount(self):
-        return _WMX3ApiPython.EcMasterInfo_GetOnlineSlaveCount(self)
-
-    def GetOfflineSlaveCount(self):
-        return _WMX3ApiPython.EcMasterInfo_GetOfflineSlaveCount(self)
-
-    def GetInaccessibleSlaveCount(self):
-        return _WMX3ApiPython.EcMasterInfo_GetInaccessibleSlaveCount(self)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMasterInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMasterInfo
-    __del__ = lambda self: None
-EcMasterInfo_swigregister = _WMX3ApiPython.EcMasterInfo_swigregister
-EcMasterInfo_swigregister(EcMasterInfo)
-
-class EcMasterInfoList(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, EcMasterInfoList, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, EcMasterInfoList, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, ecMasterInfoList):
-        return _WMX3ApiPython.EcMasterInfoList_GetData(self, ecMasterInfoList)
-
-    def SetData(self, ecMasterInfoList):
-        return _WMX3ApiPython.EcMasterInfoList_SetData(self, ecMasterInfoList)
-    __swig_setmethods__["numOfMasters"] = _WMX3ApiPython.EcMasterInfoList_numOfMasters_set
-    __swig_getmethods__["numOfMasters"] = _WMX3ApiPython.EcMasterInfoList_numOfMasters_get
-    if _newclass:
-        numOfMasters = _swig_property(_WMX3ApiPython.EcMasterInfoList_numOfMasters_get, _WMX3ApiPython.EcMasterInfoList_numOfMasters_set)
-    __swig_setmethods__["masters"] = _WMX3ApiPython.EcMasterInfoList_masters_set
-    __swig_getmethods__["masters"] = _WMX3ApiPython.EcMasterInfoList_masters_get
-    if _newclass:
-        masters = _swig_property(_WMX3ApiPython.EcMasterInfoList_masters_get, _WMX3ApiPython.EcMasterInfoList_masters_set)
-
-    def SetMasters(self, index, value):
-        return _WMX3ApiPython.EcMasterInfoList_SetMasters(self, index, value)
-
-    def GetMasters(self, index):
-        return _WMX3ApiPython.EcMasterInfoList_GetMasters(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_EcMasterInfoList()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_EcMasterInfoList
-    __del__ = lambda self: None
-EcMasterInfoList_swigregister = _WMX3ApiPython.EcMasterInfoList_swigregister
-EcMasterInfoList_swigregister(EcMasterInfoList)
-
-class Ecat(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, Ecat, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, Ecat, name)
-    __repr__ = _swig_repr
-
-    def __init__(self, *args):
-        this = _WMX3ApiPython.new_Ecat(*args)
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_Ecat
-    __del__ = lambda self: None
-    if _newclass:
-        ErrorToString = staticmethod(_WMX3ApiPython.Ecat_ErrorToString)
-    else:
-        ErrorToString = _WMX3ApiPython.Ecat_ErrorToString
-    if _newclass:
-        GetLibVersion = staticmethod(_WMX3ApiPython.Ecat_GetLibVersion)
-    else:
-        GetLibVersion = _WMX3ApiPython.Ecat_GetLibVersion
-
-    def IsDeviceValid(self):
-        return _WMX3ApiPython.Ecat_IsDeviceValid(self)
-
-    def GetVersion(self):
-        return _WMX3ApiPython.Ecat_GetVersion(self)
-
-    def SetMonitorMode(self, enable):
-        return _WMX3ApiPython.Ecat_SetMonitorMode(self, enable)
-
-    def ScanNetwork(self):
-        return _WMX3ApiPython.Ecat_ScanNetwork(self)
-
-    def ChangeSlaveState(self, slaveId, state):
-        errorCode = intp()
-        ret = _WMX3ApiPython.Ecat_ChangeSlaveState(self, slaveId, state, errorCode)
-        return ret, errorCode.value()
-
-
-
-    def StartHotconnect(self):
-        return _WMX3ApiPython.Ecat_StartHotconnect(self)
-
-    def ResetMonitorStatisticsInfo(self):
-        return _WMX3ApiPython.Ecat_ResetMonitorStatisticsInfo(self)
-
-    def GetMasterInfo(self):
-        info = EcMasterInfo()
-        ret = _WMX3ApiPython.Ecat_GetMasterInfo(self, info)
-        return ret, info
-
-
-
-    def GetMasterMonitorInfo(self):
-        info = EcMonitorInfo()
-        ret = _WMX3ApiPython.Ecat_GetMasterMonitorInfo(self, info)
-        return ret, info
-
-
-
-    def SdoDownload(self, slaveId, index, subindex, sdoDataSize, sdoData):
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoDownload(self, slaveId, index, subindex, sdoDataSize, sdoData, errCode)
-        return ret, errCode.value()
-
-
-
-    def SdoDownload_WaitTime(self, slaveId, index, subindex, sdoDataSize, sdoData, waitTime):
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoDownload_WaitTime(self, slaveId, index, subindex, sdoDataSize, sdoData, errCode, waitTime)
-        return ret, errCode.value()
-
-
-
-    def SdoUpload(self, slaveId, index, subindex, sdoBuffSize):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoUpload(self, slaveId, index, subindex, sdoBuffSize, sdoBuffArray, actualSize, errCode)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoUpload_WaitTime(self, slaveId, index, subindex, sdoBuffSize, waitTime):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoUpload_WaitTime(self, slaveId, index, subindex, sdoBuffSize, sdoBuffArray, actualSize, errCode, waitTime)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoDownload_SdoType(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData):
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoDownload_SdoType(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData, errCode)
-        return ret, errCode.value()
-
-
-
-    def SdoDownload_SdoType_WaitTime(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData, waitTime):
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoDownload_SdoType_WaitTime(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData, errCode, waitTime)
-        return ret, errCode.value()
-
-
-
-    def SdoDownload_SdoType_WaitTime_Complete(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData, waitTime, complete):
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoDownload_SdoType_WaitTime_Complete(self, slaveId, index, subindex, sdoType, sdoDataSize, sdoData, errCode, waitTime, complete)
-        return ret, errCode.value()
-
-
-
-    def SdoUpload_SdoType(self, slaveId, index, subindex, sdoType, sdoBuffSize):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoUpload_SdoType(self, slaveId, index, subindex, sdoType, sdoBuffSize, sdoBuffArray, actualSize, errCode)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoUpload_SdoType_WaitTime(self, slaveId, index, subindex, sdoType, sdoBuffSize, waitTime):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoUpload_SdoType_WaitTime(self, slaveId, index, subindex, sdoType, sdoBuffSize, sdoBuffArray, actualSize, errCode, waitTime)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoUpload_SdoType_WaitTime_Complete(self, slaveId, index, subindex, sdoType, sdoBuffSize, waitTime, complete):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.Ecat_SdoUpload_SdoType_WaitTime_Complete(self, slaveId, index, subindex, sdoType, sdoBuffSize, sdoBuffArray, actualSize, errCode, waitTime, complete)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def TxPdoWrite(self, *args):
-        return _WMX3ApiPython.Ecat_TxPdoWrite(self, *args)
-
-    def ClearTxPdoWrite(self, slaveId, index, subindex):
-        return _WMX3ApiPython.Ecat_ClearTxPdoWrite(self, slaveId, index, subindex)
-
-    def PdoRead(self, slaveId, index, subindex, pdoBuffSize):
-        pdoBuffArray = uintArray(pdoBuffSize)
-        actualSize = uintp()
-        ret = _WMX3ApiPython.Ecat_PdoRead(self, slaveId, index, subindex, pdoBuffSize, pdoBuffArray, actualSize)
-
-        pdoBuff = []
-        for i in range(pdoBuffSize):
-            pdoBuff.append(pdoBuffArray[i])
-
-        return ret, pdoBuff, actualSize.value()
-
-
-
-    def SetAxisMode(self, slaveId, axisIndex, mode):
-        return _WMX3ApiPython.Ecat_SetAxisMode(self, slaveId, axisIndex, mode)
-
-    def StartAxisPP(self, *args):
-        return _WMX3ApiPython.Ecat_StartAxisPP(self, *args)
-
-    def StartAxisHM(self, slaveId, axisIndex, method, switchSpeed, zeroSpeed, hmAcc):
-        return _WMX3ApiPython.Ecat_StartAxisHM(self, slaveId, axisIndex, method, switchSpeed, zeroSpeed, hmAcc)
-
-    def HaltAxis(self, slaveId, axisIndex):
-        return _WMX3ApiPython.Ecat_HaltAxis(self, slaveId, axisIndex)
-
-    def HaltAxisRelease(self, slaveId, axisIndex):
-        return _WMX3ApiPython.Ecat_HaltAxisRelease(self, slaveId, axisIndex)
-
-    def VirtualSlaveTxPdoWrite(self, *args):
-        return _WMX3ApiPython.Ecat_VirtualSlaveTxPdoWrite(self, *args)
-
-    def VirtualSlaveClearTxPdoWrite(self, index, subindex):
-        return _WMX3ApiPython.Ecat_VirtualSlaveClearTxPdoWrite(self, index, subindex)
-
-    def VirtualSlavePdoRead(self, index, subindex, pdoBuffSize):
-        pdoBuffArray = uintArray(pdoBuffSize)
-        actualSize = uintp()
-        ret = _WMX3ApiPython.Ecat_VirtualSlavePdoRead(self, index, subindex, pdoBuffSize, pdoBuffArray, actualSize)
-
-        pdoBuff = []
-        for i in range(pdoBuffSize):
-            pdoBuff.append(pdoBuffArray[i])
-
-        return ret, pdoBuff, actualSize.value()
-
-
-
-    def SetMonitorMode_MasterId(self, masterId, enable):
-        return _WMX3ApiPython.Ecat_SetMonitorMode_MasterId(self, masterId, enable)
-
-    def ResetMonitorStatisticsInfo_MasterId(self, masterId):
-        return _WMX3ApiPython.Ecat_ResetMonitorStatisticsInfo_MasterId(self, masterId)
-
-    def SetUpdatePeriod(self, period):
-        return _WMX3ApiPython.Ecat_SetUpdatePeriod(self, period)
-
-    def GetMasterMonitorInfo_MasterId(self, masterId):
-        info = EcMonitorInfo()
-        ret = _WMX3ApiPython.Ecat_GetMasterMonitorInfo_MasterId(self, masterId, info)
-        return ret, info
-
-
-
-    def VirtualSlaveTxPdoWrite_MasterId(self, *args):
-        return _WMX3ApiPython.Ecat_VirtualSlaveTxPdoWrite_MasterId(self, *args)
-
-    def VirtualSlaveClearTxPdoWrite_MasterId(self, masterId, index, subindex):
-        return _WMX3ApiPython.Ecat_VirtualSlaveClearTxPdoWrite_MasterId(self, masterId, index, subindex)
-
-    def VirtualSlavePdoRead_MasterId(self, masterId, index, subindex, pdoBuffSize):
-        pdoBuffArray = uintArray(pdoBuffSize)
-        actualSize = uintp()
-        ret = _WMX3ApiPython.Ecat_VirtualSlavePdoRead_MasterId(self, masterId, index, subindex, pdoBuffSize, pdoBuffArray, actualSize)
-
-        pdoBuff = []
-        for i in range(pdoBuffSize):
-            pdoBuff.append(pdoBuffArray[i])
-
-        return ret, pdoBuff, actualSize.value()
-
-
-Ecat_swigregister = _WMX3ApiPython.Ecat_swigregister
-Ecat_swigregister(Ecat)
-
-def Ecat_ErrorToString(errCode):
-    return _WMX3ApiPython.Ecat_ErrorToString(errCode)
-Ecat_ErrorToString = _WMX3ApiPython.Ecat_ErrorToString
-
-def Ecat_GetLibVersion():
-    return _WMX3ApiPython.Ecat_GetLibVersion()
-Ecat_GetLibVersion = _WMX3ApiPython.Ecat_GetLibVersion
-
-class CCLinkErrorCode(ErrorCode):
-    __swig_setmethods__ = {}
-    for _s in [ErrorCode]:
-        __swig_setmethods__.update(getattr(_s, '__swig_setmethods__', {}))
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkErrorCode, name, value)
-    __swig_getmethods__ = {}
-    for _s in [ErrorCode]:
-        __swig_getmethods__.update(getattr(_s, '__swig_getmethods__', {}))
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkErrorCode, name)
-    __repr__ = _swig_repr
-    CCLinkError = _WMX3ApiPython.CCLinkErrorCode_CCLinkError
-    ScanNetworkFailed = _WMX3ApiPython.CCLinkErrorCode_ScanNetworkFailed
-    HotconnectFailed = _WMX3ApiPython.CCLinkErrorCode_HotconnectFailed
-    SharedMemoryNull = _WMX3ApiPython.CCLinkErrorCode_SharedMemoryNull
-    ActualSizeLargerThanBufferSize = _WMX3ApiPython.CCLinkErrorCode_ActualSizeLargerThanBufferSize
-    SlaveStateBelowPreOp = _WMX3ApiPython.CCLinkErrorCode_SlaveStateBelowPreOp
-    OtherSdoIsRunning = _WMX3ApiPython.CCLinkErrorCode_OtherSdoIsRunning
-    SdoTimeout = _WMX3ApiPython.CCLinkErrorCode_SdoTimeout
-    SdoDownloadFailed = _WMX3ApiPython.CCLinkErrorCode_SdoDownloadFailed
-    SdoUploadFailed = _WMX3ApiPython.CCLinkErrorCode_SdoUploadFailed
-    AxisNotServoOn = _WMX3ApiPython.CCLinkErrorCode_AxisNotServoOn
-    NotInPPMode = _WMX3ApiPython.CCLinkErrorCode_NotInPPMode
-    NotInHMMode = _WMX3ApiPython.CCLinkErrorCode_NotInHMMode
-    NotInPVMode = _WMX3ApiPython.CCLinkErrorCode_NotInPVMode
-    NotInTQMode = _WMX3ApiPython.CCLinkErrorCode_NotInTQMode
-    PdoNotMapped = _WMX3ApiPython.CCLinkErrorCode_PdoNotMapped
-    SlmpSendFailed = _WMX3ApiPython.CCLinkErrorCode_SlmpSendFailed
-    SlmpReceiveTimeout = _WMX3ApiPython.CCLinkErrorCode_SlmpReceiveTimeout
-    MarshalingObjectFailed = _WMX3ApiPython.CCLinkErrorCode_MarshalingObjectFailed
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkErrorCode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkErrorCode
-    __del__ = lambda self: None
-CCLinkErrorCode_swigregister = _WMX3ApiPython.CCLinkErrorCode_swigregister
-CCLinkErrorCode_swigregister(CCLinkErrorCode)
-
-class CCLinkMasterStateMachine(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkMasterStateMachine, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkMasterStateMachine, name)
-    __repr__ = _swig_repr
-    PyNone = _WMX3ApiPython.CCLinkMasterStateMachine_PyNone
-    Init = _WMX3ApiPython.CCLinkMasterStateMachine_Init
-    Start = _WMX3ApiPython.CCLinkMasterStateMachine_Start
-    Comm = _WMX3ApiPython.CCLinkMasterStateMachine_Comm
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkMasterStateMachine()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkMasterStateMachine
-    __del__ = lambda self: None
-CCLinkMasterStateMachine_swigregister = _WMX3ApiPython.CCLinkMasterStateMachine_swigregister
-CCLinkMasterStateMachine_swigregister(CCLinkMasterStateMachine)
-
-class CCLinkSlaveStateMachine(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlaveStateMachine, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlaveStateMachine, name)
-    __repr__ = _swig_repr
-    PyNone = _WMX3ApiPython.CCLinkSlaveStateMachine_PyNone
-    Init = _WMX3ApiPython.CCLinkSlaveStateMachine_Init
-    Preop = _WMX3ApiPython.CCLinkSlaveStateMachine_Preop
-    Boot = _WMX3ApiPython.CCLinkSlaveStateMachine_Boot
-    Safeop = _WMX3ApiPython.CCLinkSlaveStateMachine_Safeop
-    Op = _WMX3ApiPython.CCLinkSlaveStateMachine_Op
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlaveStateMachine()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlaveStateMachine
-    __del__ = lambda self: None
-CCLinkSlaveStateMachine_swigregister = _WMX3ApiPython.CCLinkSlaveStateMachine_swigregister
-CCLinkSlaveStateMachine_swigregister(CCLinkSlaveStateMachine)
-
-class CCLinkMasterMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkMasterMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkMasterMode, name)
-    __repr__ = _swig_repr
-    CyclicMode = _WMX3ApiPython.CCLinkMasterMode_CyclicMode
-    PPMode = _WMX3ApiPython.CCLinkMasterMode_PPMode
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkMasterMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkMasterMode
-    __del__ = lambda self: None
-CCLinkMasterMode_swigregister = _WMX3ApiPython.CCLinkMasterMode_swigregister
-CCLinkMasterMode_swigregister(CCLinkMasterMode)
-
-class CCLinkOperationMode(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkOperationMode, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkOperationMode, name)
-    __repr__ = _swig_repr
-    NONE = _WMX3ApiPython.CCLinkOperationMode_NONE
-    PP = _WMX3ApiPython.CCLinkOperationMode_PP
-    PV = _WMX3ApiPython.CCLinkOperationMode_PV
-    TQ = _WMX3ApiPython.CCLinkOperationMode_TQ
-    HM = _WMX3ApiPython.CCLinkOperationMode_HM
-    CSP = _WMX3ApiPython.CCLinkOperationMode_CSP
-    CSV = _WMX3ApiPython.CCLinkOperationMode_CSV
-    CST = _WMX3ApiPython.CCLinkOperationMode_CST
-    Unknown = _WMX3ApiPython.CCLinkOperationMode_Unknown
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkOperationMode()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkOperationMode
-    __del__ = lambda self: None
-CCLinkOperationMode_swigregister = _WMX3ApiPython.CCLinkOperationMode_swigregister
-CCLinkOperationMode_swigregister(CCLinkOperationMode)
-
-class CCLinkSdoType(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSdoType, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSdoType, name)
-    __repr__ = _swig_repr
-    Single = _WMX3ApiPython.CCLinkSdoType_Single
-    Block = _WMX3ApiPython.CCLinkSdoType_Block
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSdoType()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSdoType
-    __del__ = lambda self: None
-CCLinkSdoType_swigregister = _WMX3ApiPython.CCLinkSdoType_swigregister
-CCLinkSdoType_swigregister(CCLinkSdoType)
-
-class CCLinkSlavePdo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlavePdo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlavePdo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkSlavePdo):
-        return _WMX3ApiPython.CCLinkSlavePdo_GetData(self, cclinkSlavePdo)
-
-    def SetData(self, cclinkSlavePdo):
-        return _WMX3ApiPython.CCLinkSlavePdo_SetData(self, cclinkSlavePdo)
-    __swig_setmethods__["enable"] = _WMX3ApiPython.CCLinkSlavePdo_enable_set
-    __swig_getmethods__["enable"] = _WMX3ApiPython.CCLinkSlavePdo_enable_get
-    if _newclass:
-        enable = _swig_property(_WMX3ApiPython.CCLinkSlavePdo_enable_get, _WMX3ApiPython.CCLinkSlavePdo_enable_set)
-    __swig_setmethods__["size"] = _WMX3ApiPython.CCLinkSlavePdo_size_set
-    __swig_getmethods__["size"] = _WMX3ApiPython.CCLinkSlavePdo_size_get
-    if _newclass:
-        size = _swig_property(_WMX3ApiPython.CCLinkSlavePdo_size_get, _WMX3ApiPython.CCLinkSlavePdo_size_set)
-    __swig_setmethods__["offset"] = _WMX3ApiPython.CCLinkSlavePdo_offset_set
-    __swig_getmethods__["offset"] = _WMX3ApiPython.CCLinkSlavePdo_offset_get
-    if _newclass:
-        offset = _swig_property(_WMX3ApiPython.CCLinkSlavePdo_offset_get, _WMX3ApiPython.CCLinkSlavePdo_offset_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlavePdo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlavePdo
-    __del__ = lambda self: None
-CCLinkSlavePdo_swigregister = _WMX3ApiPython.CCLinkSlavePdo_swigregister
-CCLinkSlavePdo_swigregister(CCLinkSlavePdo)
-
-class CCLinkSlavePdoInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlavePdoInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlavePdoInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkSlavePdoInfo):
-        return _WMX3ApiPython.CCLinkSlavePdoInfo_GetData(self, cclinkSlavePdoInfo)
-
-    def SetData(self, cclinkSlavePdoInfo):
-        return _WMX3ApiPython.CCLinkSlavePdoInfo_SetData(self, cclinkSlavePdoInfo)
-    __swig_setmethods__["statusWord"] = _WMX3ApiPython.CCLinkSlavePdoInfo_statusWord_set
-    __swig_getmethods__["statusWord"] = _WMX3ApiPython.CCLinkSlavePdoInfo_statusWord_get
-    if _newclass:
-        statusWord = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_statusWord_get, _WMX3ApiPython.CCLinkSlavePdoInfo_statusWord_set)
-    __swig_setmethods__["modesOfOperationDisplay"] = _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperationDisplay_set
-    __swig_getmethods__["modesOfOperationDisplay"] = _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperationDisplay_get
-    if _newclass:
-        modesOfOperationDisplay = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperationDisplay_get, _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperationDisplay_set)
-    __swig_setmethods__["positionActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_positionActualValue_set
-    __swig_getmethods__["positionActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_positionActualValue_get
-    if _newclass:
-        positionActualValue = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_positionActualValue_get, _WMX3ApiPython.CCLinkSlavePdoInfo_positionActualValue_set)
-    __swig_setmethods__["velocityActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_velocityActualValue_set
-    __swig_getmethods__["velocityActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_velocityActualValue_get
-    if _newclass:
-        velocityActualValue = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_velocityActualValue_get, _WMX3ApiPython.CCLinkSlavePdoInfo_velocityActualValue_set)
-    __swig_setmethods__["torqueActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_torqueActualValue_set
-    __swig_getmethods__["torqueActualValue"] = _WMX3ApiPython.CCLinkSlavePdoInfo_torqueActualValue_get
-    if _newclass:
-        torqueActualValue = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_torqueActualValue_get, _WMX3ApiPython.CCLinkSlavePdoInfo_torqueActualValue_set)
-    __swig_setmethods__["errorCode"] = _WMX3ApiPython.CCLinkSlavePdoInfo_errorCode_set
-    __swig_getmethods__["errorCode"] = _WMX3ApiPython.CCLinkSlavePdoInfo_errorCode_get
-    if _newclass:
-        errorCode = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_errorCode_get, _WMX3ApiPython.CCLinkSlavePdoInfo_errorCode_set)
-    __swig_setmethods__["touchProbeStatus"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeStatus_set
-    __swig_getmethods__["touchProbeStatus"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeStatus_get
-    if _newclass:
-        touchProbeStatus = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeStatus_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeStatus_set)
-    __swig_setmethods__["touchProbePositionPos1"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos1_set
-    __swig_getmethods__["touchProbePositionPos1"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos1_get
-    if _newclass:
-        touchProbePositionPos1 = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos1_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos1_set)
-    __swig_setmethods__["touchProbePositionNeg1"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg1_set
-    __swig_getmethods__["touchProbePositionNeg1"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg1_get
-    if _newclass:
-        touchProbePositionNeg1 = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg1_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg1_set)
-    __swig_setmethods__["touchProbePositionPos2"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos2_set
-    __swig_getmethods__["touchProbePositionPos2"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos2_get
-    if _newclass:
-        touchProbePositionPos2 = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos2_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionPos2_set)
-    __swig_setmethods__["touchProbePositionNeg2"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg2_set
-    __swig_getmethods__["touchProbePositionNeg2"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg2_get
-    if _newclass:
-        touchProbePositionNeg2 = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg2_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbePositionNeg2_set)
-    __swig_setmethods__["followingError"] = _WMX3ApiPython.CCLinkSlavePdoInfo_followingError_set
-    __swig_getmethods__["followingError"] = _WMX3ApiPython.CCLinkSlavePdoInfo_followingError_get
-    if _newclass:
-        followingError = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_followingError_get, _WMX3ApiPython.CCLinkSlavePdoInfo_followingError_set)
-    __swig_setmethods__["digitalInput"] = _WMX3ApiPython.CCLinkSlavePdoInfo_digitalInput_set
-    __swig_getmethods__["digitalInput"] = _WMX3ApiPython.CCLinkSlavePdoInfo_digitalInput_get
-    if _newclass:
-        digitalInput = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_digitalInput_get, _WMX3ApiPython.CCLinkSlavePdoInfo_digitalInput_set)
-    __swig_setmethods__["watchDogUL"] = _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogUL_set
-    __swig_getmethods__["watchDogUL"] = _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogUL_get
-    if _newclass:
-        watchDogUL = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_watchDogUL_get, _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogUL_set)
-    __swig_setmethods__["controlWord"] = _WMX3ApiPython.CCLinkSlavePdoInfo_controlWord_set
-    __swig_getmethods__["controlWord"] = _WMX3ApiPython.CCLinkSlavePdoInfo_controlWord_get
-    if _newclass:
-        controlWord = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_controlWord_get, _WMX3ApiPython.CCLinkSlavePdoInfo_controlWord_set)
-    __swig_setmethods__["modesOfOperation"] = _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperation_set
-    __swig_getmethods__["modesOfOperation"] = _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperation_get
-    if _newclass:
-        modesOfOperation = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperation_get, _WMX3ApiPython.CCLinkSlavePdoInfo_modesOfOperation_set)
-    __swig_setmethods__["targetPosition"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetPosition_set
-    __swig_getmethods__["targetPosition"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetPosition_get
-    if _newclass:
-        targetPosition = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_targetPosition_get, _WMX3ApiPython.CCLinkSlavePdoInfo_targetPosition_set)
-    __swig_setmethods__["targetVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetVelocity_set
-    __swig_getmethods__["targetVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetVelocity_get
-    if _newclass:
-        targetVelocity = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_targetVelocity_get, _WMX3ApiPython.CCLinkSlavePdoInfo_targetVelocity_set)
-    __swig_setmethods__["targetTorque"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetTorque_set
-    __swig_getmethods__["targetTorque"] = _WMX3ApiPython.CCLinkSlavePdoInfo_targetTorque_get
-    if _newclass:
-        targetTorque = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_targetTorque_get, _WMX3ApiPython.CCLinkSlavePdoInfo_targetTorque_set)
-    __swig_setmethods__["profileVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileVelocity_set
-    __swig_getmethods__["profileVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileVelocity_get
-    if _newclass:
-        profileVelocity = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_profileVelocity_get, _WMX3ApiPython.CCLinkSlavePdoInfo_profileVelocity_set)
-    __swig_setmethods__["profileAcceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileAcceleration_set
-    __swig_getmethods__["profileAcceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileAcceleration_get
-    if _newclass:
-        profileAcceleration = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_profileAcceleration_get, _WMX3ApiPython.CCLinkSlavePdoInfo_profileAcceleration_set)
-    __swig_setmethods__["profileDeceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileDeceleration_set
-    __swig_getmethods__["profileDeceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_profileDeceleration_get
-    if _newclass:
-        profileDeceleration = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_profileDeceleration_get, _WMX3ApiPython.CCLinkSlavePdoInfo_profileDeceleration_set)
-    __swig_setmethods__["maxTorque"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxTorque_set
-    __swig_getmethods__["maxTorque"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxTorque_get
-    if _newclass:
-        maxTorque = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_maxTorque_get, _WMX3ApiPython.CCLinkSlavePdoInfo_maxTorque_set)
-    __swig_setmethods__["positiveTorqueLimit"] = _WMX3ApiPython.CCLinkSlavePdoInfo_positiveTorqueLimit_set
-    __swig_getmethods__["positiveTorqueLimit"] = _WMX3ApiPython.CCLinkSlavePdoInfo_positiveTorqueLimit_get
-    if _newclass:
-        positiveTorqueLimit = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_positiveTorqueLimit_get, _WMX3ApiPython.CCLinkSlavePdoInfo_positiveTorqueLimit_set)
-    __swig_setmethods__["negativeTorqueLimit"] = _WMX3ApiPython.CCLinkSlavePdoInfo_negativeTorqueLimit_set
-    __swig_getmethods__["negativeTorqueLimit"] = _WMX3ApiPython.CCLinkSlavePdoInfo_negativeTorqueLimit_get
-    if _newclass:
-        negativeTorqueLimit = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_negativeTorqueLimit_get, _WMX3ApiPython.CCLinkSlavePdoInfo_negativeTorqueLimit_set)
-    __swig_setmethods__["touchProbeFunction"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeFunction_set
-    __swig_getmethods__["touchProbeFunction"] = _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeFunction_get
-    if _newclass:
-        touchProbeFunction = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeFunction_get, _WMX3ApiPython.CCLinkSlavePdoInfo_touchProbeFunction_set)
-    __swig_setmethods__["maxProfileVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxProfileVelocity_set
-    __swig_getmethods__["maxProfileVelocity"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxProfileVelocity_get
-    if _newclass:
-        maxProfileVelocity = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_maxProfileVelocity_get, _WMX3ApiPython.CCLinkSlavePdoInfo_maxProfileVelocity_set)
-    __swig_setmethods__["velocityOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_velocityOffset_set
-    __swig_getmethods__["velocityOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_velocityOffset_get
-    if _newclass:
-        velocityOffset = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_velocityOffset_get, _WMX3ApiPython.CCLinkSlavePdoInfo_velocityOffset_set)
-    __swig_setmethods__["torqueOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_torqueOffset_set
-    __swig_getmethods__["torqueOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_torqueOffset_get
-    if _newclass:
-        torqueOffset = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_torqueOffset_get, _WMX3ApiPython.CCLinkSlavePdoInfo_torqueOffset_set)
-    __swig_setmethods__["maxMotorSpeed"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxMotorSpeed_set
-    __swig_getmethods__["maxMotorSpeed"] = _WMX3ApiPython.CCLinkSlavePdoInfo_maxMotorSpeed_get
-    if _newclass:
-        maxMotorSpeed = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_maxMotorSpeed_get, _WMX3ApiPython.CCLinkSlavePdoInfo_maxMotorSpeed_set)
-    __swig_setmethods__["digitalOutput"] = _WMX3ApiPython.CCLinkSlavePdoInfo_digitalOutput_set
-    __swig_getmethods__["digitalOutput"] = _WMX3ApiPython.CCLinkSlavePdoInfo_digitalOutput_get
-    if _newclass:
-        digitalOutput = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_digitalOutput_get, _WMX3ApiPython.CCLinkSlavePdoInfo_digitalOutput_set)
-    __swig_setmethods__["watchDogDL"] = _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogDL_set
-    __swig_getmethods__["watchDogDL"] = _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogDL_get
-    if _newclass:
-        watchDogDL = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_watchDogDL_get, _WMX3ApiPython.CCLinkSlavePdoInfo_watchDogDL_set)
-    __swig_setmethods__["homingMethod"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homingMethod_set
-    __swig_getmethods__["homingMethod"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homingMethod_get
-    if _newclass:
-        homingMethod = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_homingMethod_get, _WMX3ApiPython.CCLinkSlavePdoInfo_homingMethod_set)
-    __swig_setmethods__["speedduringSearchForSwitch"] = _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForSwitch_set
-    __swig_getmethods__["speedduringSearchForSwitch"] = _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForSwitch_get
-    if _newclass:
-        speedduringSearchForSwitch = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForSwitch_get, _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForSwitch_set)
-    __swig_setmethods__["speedduringSearchForZero"] = _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForZero_set
-    __swig_getmethods__["speedduringSearchForZero"] = _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForZero_get
-    if _newclass:
-        speedduringSearchForZero = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForZero_get, _WMX3ApiPython.CCLinkSlavePdoInfo_speedduringSearchForZero_set)
-    __swig_setmethods__["homingAcceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homingAcceleration_set
-    __swig_getmethods__["homingAcceleration"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homingAcceleration_get
-    if _newclass:
-        homingAcceleration = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_homingAcceleration_get, _WMX3ApiPython.CCLinkSlavePdoInfo_homingAcceleration_set)
-    __swig_setmethods__["homeOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homeOffset_set
-    __swig_getmethods__["homeOffset"] = _WMX3ApiPython.CCLinkSlavePdoInfo_homeOffset_get
-    if _newclass:
-        homeOffset = _swig_property(_WMX3ApiPython.CCLinkSlavePdoInfo_homeOffset_get, _WMX3ApiPython.CCLinkSlavePdoInfo_homeOffset_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlavePdoInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlavePdoInfo
-    __del__ = lambda self: None
-CCLinkSlavePdoInfo_swigregister = _WMX3ApiPython.CCLinkSlavePdoInfo_swigregister
-CCLinkSlavePdoInfo_swigregister(CCLinkSlavePdoInfo)
-
-class CCLinkSlaveAxisInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlaveAxisInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlaveAxisInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkSlaveAxisInfo):
-        return _WMX3ApiPython.CCLinkSlaveAxisInfo_GetData(self, cclinkSlaveAxisInfo)
-
-    def SetData(self, cclinkSlaveAxisInfo):
-        return _WMX3ApiPython.CCLinkSlaveAxisInfo_SetData(self, cclinkSlaveAxisInfo)
-    __swig_setmethods__["axisIndex"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_axisIndex_set
-    __swig_getmethods__["axisIndex"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_axisIndex_get
-    if _newclass:
-        axisIndex = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_axisIndex_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_axisIndex_set)
-    __swig_setmethods__["digitalIoInputAddr"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputAddr_set
-    __swig_getmethods__["digitalIoInputAddr"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputAddr_get
-    if _newclass:
-        digitalIoInputAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputAddr_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputAddr_set)
-    __swig_setmethods__["digitalIoInputSize"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputSize_set
-    __swig_getmethods__["digitalIoInputSize"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputSize_get
-    if _newclass:
-        digitalIoInputSize = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputSize_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoInputSize_set)
-    __swig_setmethods__["digitalIoOutputAddr"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputAddr_set
-    __swig_getmethods__["digitalIoOutputAddr"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputAddr_get
-    if _newclass:
-        digitalIoOutputAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputAddr_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputAddr_set)
-    __swig_setmethods__["digitalIoOutputSize"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputSize_set
-    __swig_getmethods__["digitalIoOutputSize"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputSize_get
-    if _newclass:
-        digitalIoOutputSize = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputSize_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_digitalIoOutputSize_set)
-    __swig_setmethods__["watchDogUL"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogUL_set
-    __swig_getmethods__["watchDogUL"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogUL_get
-    if _newclass:
-        watchDogUL = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogUL_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogUL_set)
-    __swig_setmethods__["watchDogDL"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogDL_set
-    __swig_getmethods__["watchDogDL"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogDL_get
-    if _newclass:
-        watchDogDL = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogDL_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_watchDogDL_set)
-    __swig_setmethods__["pdoInfo"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_pdoInfo_set
-    __swig_getmethods__["pdoInfo"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_pdoInfo_get
-    if _newclass:
-        pdoInfo = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_pdoInfo_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_pdoInfo_set)
-    __swig_setmethods__["operationMode"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_operationMode_set
-    __swig_getmethods__["operationMode"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_operationMode_get
-    if _newclass:
-        operationMode = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_operationMode_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_operationMode_set)
-    __swig_setmethods__["targetReached"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_targetReached_set
-    __swig_getmethods__["targetReached"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_targetReached_get
-    if _newclass:
-        targetReached = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_targetReached_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_targetReached_set)
-    __swig_setmethods__["followingError"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_followingError_set
-    __swig_getmethods__["followingError"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_followingError_get
-    if _newclass:
-        followingError = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_followingError_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_followingError_set)
-    __swig_setmethods__["homingError"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_homingError_set
-    __swig_getmethods__["homingError"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_homingError_get
-    if _newclass:
-        homingError = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_homingError_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_homingError_set)
-    __swig_setmethods__["homingAttained"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_homingAttained_set
-    __swig_getmethods__["homingAttained"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_homingAttained_get
-    if _newclass:
-        homingAttained = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_homingAttained_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_homingAttained_set)
-    __swig_setmethods__["halt"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_halt_set
-    __swig_getmethods__["halt"] = _WMX3ApiPython.CCLinkSlaveAxisInfo_halt_get
-    if _newclass:
-        halt = _swig_property(_WMX3ApiPython.CCLinkSlaveAxisInfo_halt_get, _WMX3ApiPython.CCLinkSlaveAxisInfo_halt_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlaveAxisInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlaveAxisInfo
-    __del__ = lambda self: None
-CCLinkSlaveAxisInfo_swigregister = _WMX3ApiPython.CCLinkSlaveAxisInfo_swigregister
-CCLinkSlaveAxisInfo_swigregister(CCLinkSlaveAxisInfo)
-
-class CCLinkSlavePduInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlavePduInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlavePduInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkSlavePduInfo):
-        return _WMX3ApiPython.CCLinkSlavePduInfo_GetData(self, cclinkSlavePduInfo)
-
-    def SetData(self, cclinkSlavePduInfo):
-        return _WMX3ApiPython.CCLinkSlavePduInfo_SetData(self, cclinkSlavePduInfo)
-    __swig_setmethods__["localAddr"] = _WMX3ApiPython.CCLinkSlavePduInfo_localAddr_set
-    __swig_getmethods__["localAddr"] = _WMX3ApiPython.CCLinkSlavePduInfo_localAddr_get
-    if _newclass:
-        localAddr = _swig_property(_WMX3ApiPython.CCLinkSlavePduInfo_localAddr_get, _WMX3ApiPython.CCLinkSlavePduInfo_localAddr_set)
-    __swig_setmethods__["remoteAddr"] = _WMX3ApiPython.CCLinkSlavePduInfo_remoteAddr_set
-    __swig_getmethods__["remoteAddr"] = _WMX3ApiPython.CCLinkSlavePduInfo_remoteAddr_get
-    if _newclass:
-        remoteAddr = _swig_property(_WMX3ApiPython.CCLinkSlavePduInfo_remoteAddr_get, _WMX3ApiPython.CCLinkSlavePduInfo_remoteAddr_set)
-    __swig_setmethods__["size"] = _WMX3ApiPython.CCLinkSlavePduInfo_size_set
-    __swig_getmethods__["size"] = _WMX3ApiPython.CCLinkSlavePduInfo_size_get
-    if _newclass:
-        size = _swig_property(_WMX3ApiPython.CCLinkSlavePduInfo_size_get, _WMX3ApiPython.CCLinkSlavePduInfo_size_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlavePduInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlavePduInfo
-    __del__ = lambda self: None
-CCLinkSlavePduInfo_swigregister = _WMX3ApiPython.CCLinkSlavePduInfo_swigregister
-CCLinkSlavePduInfo_swigregister(CCLinkSlavePduInfo)
-
-class CCLinkSlaveInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkSlaveInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkSlaveInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkSlaveInfo):
-        return _WMX3ApiPython.CCLinkSlaveInfo_GetData(self, cclinkSlaveInfo)
-
-    def SetData(self, cclinkSlaveInfo):
-        return _WMX3ApiPython.CCLinkSlaveInfo_SetData(self, cclinkSlaveInfo)
-    __swig_setmethods__["id"] = _WMX3ApiPython.CCLinkSlaveInfo_id_set
-    __swig_getmethods__["id"] = _WMX3ApiPython.CCLinkSlaveInfo_id_get
-    if _newclass:
-        id = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_id_get, _WMX3ApiPython.CCLinkSlaveInfo_id_set)
-    __swig_setmethods__["modelCode"] = _WMX3ApiPython.CCLinkSlaveInfo_modelCode_set
-    __swig_getmethods__["modelCode"] = _WMX3ApiPython.CCLinkSlaveInfo_modelCode_get
-    if _newclass:
-        modelCode = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_modelCode_get, _WMX3ApiPython.CCLinkSlaveInfo_modelCode_set)
-    __swig_setmethods__["ipAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_ipAddr_set
-    __swig_getmethods__["ipAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_ipAddr_get
-    if _newclass:
-        ipAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_ipAddr_get, _WMX3ApiPython.CCLinkSlaveInfo_ipAddr_set)
-
-    def SetIpAddr(self, index, value):
-        return _WMX3ApiPython.CCLinkSlaveInfo_SetIpAddr(self, index, value)
-
-    def GetIpAddr(self, index):
-        return _WMX3ApiPython.CCLinkSlaveInfo_GetIpAddr(self, index)
-    __swig_setmethods__["macAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_macAddr_set
-    __swig_getmethods__["macAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_macAddr_get
-    if _newclass:
-        macAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_macAddr_get, _WMX3ApiPython.CCLinkSlaveInfo_macAddr_set)
-
-    def SetMacAddr(self, index, value):
-        return _WMX3ApiPython.CCLinkSlaveInfo_SetMacAddr(self, index, value)
-
-    def GetMacAddr(self, index):
-        return _WMX3ApiPython.CCLinkSlaveInfo_GetMacAddr(self, index)
-    __swig_setmethods__["deviceType"] = _WMX3ApiPython.CCLinkSlaveInfo_deviceType_set
-    __swig_getmethods__["deviceType"] = _WMX3ApiPython.CCLinkSlaveInfo_deviceType_get
-    if _newclass:
-        deviceType = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_deviceType_get, _WMX3ApiPython.CCLinkSlaveInfo_deviceType_set)
-    __swig_setmethods__["deviceVer"] = _WMX3ApiPython.CCLinkSlaveInfo_deviceVer_set
-    __swig_getmethods__["deviceVer"] = _WMX3ApiPython.CCLinkSlaveInfo_deviceVer_get
-    if _newclass:
-        deviceVer = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_deviceVer_get, _WMX3ApiPython.CCLinkSlaveInfo_deviceVer_set)
-    __swig_setmethods__["exModelCode"] = _WMX3ApiPython.CCLinkSlaveInfo_exModelCode_set
-    __swig_getmethods__["exModelCode"] = _WMX3ApiPython.CCLinkSlaveInfo_exModelCode_get
-    if _newclass:
-        exModelCode = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_exModelCode_get, _WMX3ApiPython.CCLinkSlaveInfo_exModelCode_set)
-    __swig_setmethods__["vendorCode"] = _WMX3ApiPython.CCLinkSlaveInfo_vendorCode_set
-    __swig_getmethods__["vendorCode"] = _WMX3ApiPython.CCLinkSlaveInfo_vendorCode_get
-    if _newclass:
-        vendorCode = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_vendorCode_get, _WMX3ApiPython.CCLinkSlaveInfo_vendorCode_set)
-    __swig_setmethods__["offline"] = _WMX3ApiPython.CCLinkSlaveInfo_offline_set
-    __swig_getmethods__["offline"] = _WMX3ApiPython.CCLinkSlaveInfo_offline_get
-    if _newclass:
-        offline = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_offline_get, _WMX3ApiPython.CCLinkSlaveInfo_offline_set)
-    __swig_setmethods__["state"] = _WMX3ApiPython.CCLinkSlaveInfo_state_set
-    __swig_getmethods__["state"] = _WMX3ApiPython.CCLinkSlaveInfo_state_get
-    if _newclass:
-        state = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_state_get, _WMX3ApiPython.CCLinkSlaveInfo_state_set)
-    __swig_setmethods__["ctrlFlag"] = _WMX3ApiPython.CCLinkSlaveInfo_ctrlFlag_set
-    __swig_getmethods__["ctrlFlag"] = _WMX3ApiPython.CCLinkSlaveInfo_ctrlFlag_get
-    if _newclass:
-        ctrlFlag = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_ctrlFlag_get, _WMX3ApiPython.CCLinkSlaveInfo_ctrlFlag_set)
-    __swig_setmethods__["timingErr"] = _WMX3ApiPython.CCLinkSlaveInfo_timingErr_set
-    __swig_getmethods__["timingErr"] = _WMX3ApiPython.CCLinkSlaveInfo_timingErr_get
-    if _newclass:
-        timingErr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_timingErr_get, _WMX3ApiPython.CCLinkSlaveInfo_timingErr_set)
-    __swig_setmethods__["appStopped"] = _WMX3ApiPython.CCLinkSlaveInfo_appStopped_set
-    __swig_getmethods__["appStopped"] = _WMX3ApiPython.CCLinkSlaveInfo_appStopped_get
-    if _newclass:
-        appStopped = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_appStopped_get, _WMX3ApiPython.CCLinkSlaveInfo_appStopped_set)
-    __swig_setmethods__["appError"] = _WMX3ApiPython.CCLinkSlaveInfo_appError_set
-    __swig_getmethods__["appError"] = _WMX3ApiPython.CCLinkSlaveInfo_appError_get
-    if _newclass:
-        appError = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_appError_get, _WMX3ApiPython.CCLinkSlaveInfo_appError_set)
-    __swig_setmethods__["networkErr"] = _WMX3ApiPython.CCLinkSlaveInfo_networkErr_set
-    __swig_getmethods__["networkErr"] = _WMX3ApiPython.CCLinkSlaveInfo_networkErr_get
-    if _newclass:
-        networkErr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_networkErr_get, _WMX3ApiPython.CCLinkSlaveInfo_networkErr_set)
-    __swig_setmethods__["cycleDisable"] = _WMX3ApiPython.CCLinkSlaveInfo_cycleDisable_set
-    __swig_getmethods__["cycleDisable"] = _WMX3ApiPython.CCLinkSlaveInfo_cycleDisable_get
-    if _newclass:
-        cycleDisable = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_cycleDisable_get, _WMX3ApiPython.CCLinkSlaveInfo_cycleDisable_set)
-    __swig_setmethods__["disconnectEvt"] = _WMX3ApiPython.CCLinkSlaveInfo_disconnectEvt_set
-    __swig_getmethods__["disconnectEvt"] = _WMX3ApiPython.CCLinkSlaveInfo_disconnectEvt_get
-    if _newclass:
-        disconnectEvt = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_disconnectEvt_get, _WMX3ApiPython.CCLinkSlaveInfo_disconnectEvt_set)
-    __swig_setmethods__["wdtErr"] = _WMX3ApiPython.CCLinkSlaveInfo_wdtErr_set
-    __swig_getmethods__["wdtErr"] = _WMX3ApiPython.CCLinkSlaveInfo_wdtErr_get
-    if _newclass:
-        wdtErr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_wdtErr_get, _WMX3ApiPython.CCLinkSlaveInfo_wdtErr_set)
-    __swig_setmethods__["EMG"] = _WMX3ApiPython.CCLinkSlaveInfo_EMG_set
-    __swig_getmethods__["EMG"] = _WMX3ApiPython.CCLinkSlaveInfo_EMG_get
-    if _newclass:
-        EMG = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_EMG_get, _WMX3ApiPython.CCLinkSlaveInfo_EMG_set)
-    __swig_setmethods__["GOF"] = _WMX3ApiPython.CCLinkSlaveInfo_GOF_set
-    __swig_getmethods__["GOF"] = _WMX3ApiPython.CCLinkSlaveInfo_GOF_get
-    if _newclass:
-        GOF = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_GOF_get, _WMX3ApiPython.CCLinkSlaveInfo_GOF_set)
-    __swig_setmethods__["ALM"] = _WMX3ApiPython.CCLinkSlaveInfo_ALM_set
-    __swig_getmethods__["ALM"] = _WMX3ApiPython.CCLinkSlaveInfo_ALM_get
-    if _newclass:
-        ALM = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_ALM_get, _WMX3ApiPython.CCLinkSlaveInfo_ALM_set)
-    __swig_setmethods__["inPduBit"] = _WMX3ApiPython.CCLinkSlaveInfo_inPduBit_set
-    __swig_getmethods__["inPduBit"] = _WMX3ApiPython.CCLinkSlaveInfo_inPduBit_get
-    if _newclass:
-        inPduBit = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_inPduBit_get, _WMX3ApiPython.CCLinkSlaveInfo_inPduBit_set)
-    __swig_setmethods__["inPduWord"] = _WMX3ApiPython.CCLinkSlaveInfo_inPduWord_set
-    __swig_getmethods__["inPduWord"] = _WMX3ApiPython.CCLinkSlaveInfo_inPduWord_get
-    if _newclass:
-        inPduWord = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_inPduWord_get, _WMX3ApiPython.CCLinkSlaveInfo_inPduWord_set)
-    __swig_setmethods__["outPduBit"] = _WMX3ApiPython.CCLinkSlaveInfo_outPduBit_set
-    __swig_getmethods__["outPduBit"] = _WMX3ApiPython.CCLinkSlaveInfo_outPduBit_get
-    if _newclass:
-        outPduBit = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_outPduBit_get, _WMX3ApiPython.CCLinkSlaveInfo_outPduBit_set)
-    __swig_setmethods__["outPduWord"] = _WMX3ApiPython.CCLinkSlaveInfo_outPduWord_set
-    __swig_getmethods__["outPduWord"] = _WMX3ApiPython.CCLinkSlaveInfo_outPduWord_get
-    if _newclass:
-        outPduWord = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_outPduWord_get, _WMX3ApiPython.CCLinkSlaveInfo_outPduWord_set)
-    __swig_setmethods__["inputAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_inputAddr_set
-    __swig_getmethods__["inputAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_inputAddr_get
-    if _newclass:
-        inputAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_inputAddr_get, _WMX3ApiPython.CCLinkSlaveInfo_inputAddr_set)
-    __swig_setmethods__["inputSize"] = _WMX3ApiPython.CCLinkSlaveInfo_inputSize_set
-    __swig_getmethods__["inputSize"] = _WMX3ApiPython.CCLinkSlaveInfo_inputSize_get
-    if _newclass:
-        inputSize = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_inputSize_get, _WMX3ApiPython.CCLinkSlaveInfo_inputSize_set)
-    __swig_setmethods__["outputAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_outputAddr_set
-    __swig_getmethods__["outputAddr"] = _WMX3ApiPython.CCLinkSlaveInfo_outputAddr_get
-    if _newclass:
-        outputAddr = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_outputAddr_get, _WMX3ApiPython.CCLinkSlaveInfo_outputAddr_set)
-    __swig_setmethods__["outputSize"] = _WMX3ApiPython.CCLinkSlaveInfo_outputSize_set
-    __swig_getmethods__["outputSize"] = _WMX3ApiPython.CCLinkSlaveInfo_outputSize_get
-    if _newclass:
-        outputSize = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_outputSize_get, _WMX3ApiPython.CCLinkSlaveInfo_outputSize_set)
-    __swig_setmethods__["rxPdoSize"] = _WMX3ApiPython.CCLinkSlaveInfo_rxPdoSize_set
-    __swig_getmethods__["rxPdoSize"] = _WMX3ApiPython.CCLinkSlaveInfo_rxPdoSize_get
-    if _newclass:
-        rxPdoSize = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_rxPdoSize_get, _WMX3ApiPython.CCLinkSlaveInfo_rxPdoSize_set)
-    __swig_setmethods__["txPdoSize"] = _WMX3ApiPython.CCLinkSlaveInfo_txPdoSize_set
-    __swig_getmethods__["txPdoSize"] = _WMX3ApiPython.CCLinkSlaveInfo_txPdoSize_get
-    if _newclass:
-        txPdoSize = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_txPdoSize_get, _WMX3ApiPython.CCLinkSlaveInfo_txPdoSize_set)
-    __swig_setmethods__["packetTimeout"] = _WMX3ApiPython.CCLinkSlaveInfo_packetTimeout_set
-    __swig_getmethods__["packetTimeout"] = _WMX3ApiPython.CCLinkSlaveInfo_packetTimeout_get
-    if _newclass:
-        packetTimeout = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_packetTimeout_get, _WMX3ApiPython.CCLinkSlaveInfo_packetTimeout_set)
-    __swig_setmethods__["numOfAxes"] = _WMX3ApiPython.CCLinkSlaveInfo_numOfAxes_set
-    __swig_getmethods__["numOfAxes"] = _WMX3ApiPython.CCLinkSlaveInfo_numOfAxes_get
-    if _newclass:
-        numOfAxes = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_numOfAxes_get, _WMX3ApiPython.CCLinkSlaveInfo_numOfAxes_set)
-    __swig_setmethods__["axisInfo"] = _WMX3ApiPython.CCLinkSlaveInfo_axisInfo_set
-    __swig_getmethods__["axisInfo"] = _WMX3ApiPython.CCLinkSlaveInfo_axisInfo_get
-    if _newclass:
-        axisInfo = _swig_property(_WMX3ApiPython.CCLinkSlaveInfo_axisInfo_get, _WMX3ApiPython.CCLinkSlaveInfo_axisInfo_set)
-
-    def SetAxisInfo(self, index, value):
-        return _WMX3ApiPython.CCLinkSlaveInfo_SetAxisInfo(self, index, value)
-
-    def GetAxisInfo(self, index):
-        return _WMX3ApiPython.CCLinkSlaveInfo_GetAxisInfo(self, index)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkSlaveInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkSlaveInfo
-    __del__ = lambda self: None
-CCLinkSlaveInfo_swigregister = _WMX3ApiPython.CCLinkSlaveInfo_swigregister
-CCLinkSlaveInfo_swigregister(CCLinkSlaveInfo)
-
-class CCLinkStatisticsSyncInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkStatisticsSyncInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkStatisticsSyncInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkStatisticsSyncInfo):
-        return _WMX3ApiPython.CCLinkStatisticsSyncInfo_GetData(self, cclinkStatisticsSyncInfo)
-
-    def SetData(self, cclinkStatisticsSyncInfo):
-        return _WMX3ApiPython.CCLinkStatisticsSyncInfo_SetData(self, cclinkStatisticsSyncInfo)
-    __swig_setmethods__["intervalCount"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_intervalCount_set
-    __swig_getmethods__["intervalCount"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_intervalCount_get
-    if _newclass:
-        intervalCount = _swig_property(_WMX3ApiPython.CCLinkStatisticsSyncInfo_intervalCount_get, _WMX3ApiPython.CCLinkStatisticsSyncInfo_intervalCount_set)
-    __swig_setmethods__["minInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_minInterval_set
-    __swig_getmethods__["minInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_minInterval_get
-    if _newclass:
-        minInterval = _swig_property(_WMX3ApiPython.CCLinkStatisticsSyncInfo_minInterval_get, _WMX3ApiPython.CCLinkStatisticsSyncInfo_minInterval_set)
-    __swig_setmethods__["maxInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_maxInterval_set
-    __swig_getmethods__["maxInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_maxInterval_get
-    if _newclass:
-        maxInterval = _swig_property(_WMX3ApiPython.CCLinkStatisticsSyncInfo_maxInterval_get, _WMX3ApiPython.CCLinkStatisticsSyncInfo_maxInterval_set)
-    __swig_setmethods__["avgInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_avgInterval_set
-    __swig_getmethods__["avgInterval"] = _WMX3ApiPython.CCLinkStatisticsSyncInfo_avgInterval_get
-    if _newclass:
-        avgInterval = _swig_property(_WMX3ApiPython.CCLinkStatisticsSyncInfo_avgInterval_get, _WMX3ApiPython.CCLinkStatisticsSyncInfo_avgInterval_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkStatisticsSyncInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkStatisticsSyncInfo
-    __del__ = lambda self: None
-CCLinkStatisticsSyncInfo_swigregister = _WMX3ApiPython.CCLinkStatisticsSyncInfo_swigregister
-CCLinkStatisticsSyncInfo_swigregister(CCLinkStatisticsSyncInfo)
-
-class CCLinkStatisticsInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkStatisticsInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkStatisticsInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkStatisticsInfo):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetData(self, cclinkStatisticsInfo)
-
-    def SetData(self, cclinkStatisticsInfo):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetData(self, cclinkStatisticsInfo)
-    __swig_setmethods__["interruptIntervalRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_interruptIntervalRatio_set
-    __swig_getmethods__["interruptIntervalRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_interruptIntervalRatio_get
-    if _newclass:
-        interruptIntervalRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_interruptIntervalRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_interruptIntervalRatio_set)
-
-    def SetInterruptIntervalRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetInterruptIntervalRatio(self, index, value)
-
-    def GetInterruptIntervalRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetInterruptIntervalRatio(self, index)
-    __swig_setmethods__["cycleProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_cycleProcessTimeRatio_set
-    __swig_getmethods__["cycleProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_cycleProcessTimeRatio_get
-    if _newclass:
-        cycleProcessTimeRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_cycleProcessTimeRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_cycleProcessTimeRatio_set)
-
-    def SetCycleProcessTimeRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetCycleProcessTimeRatio(self, index, value)
-
-    def GetCycleProcessTimeRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetCycleProcessTimeRatio(self, index)
-    __swig_setmethods__["processTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_processTimeRatio_set
-    __swig_getmethods__["processTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_processTimeRatio_get
-    if _newclass:
-        processTimeRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_processTimeRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_processTimeRatio_set)
-
-    def SetProcessTimeRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetProcessTimeRatio(self, index, value)
-
-    def GetProcessTimeRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetProcessTimeRatio(self, index)
-    __swig_setmethods__["commandProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_commandProcessTimeRatio_set
-    __swig_getmethods__["commandProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_commandProcessTimeRatio_get
-    if _newclass:
-        commandProcessTimeRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_commandProcessTimeRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_commandProcessTimeRatio_set)
-
-    def SetCommandProcessTimeRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetCommandProcessTimeRatio(self, index, value)
-
-    def GetCommandProcessTimeRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetCommandProcessTimeRatio(self, index)
-    __swig_setmethods__["feedbackProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_feedbackProcessTimeRatio_set
-    __swig_getmethods__["feedbackProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_feedbackProcessTimeRatio_get
-    if _newclass:
-        feedbackProcessTimeRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_feedbackProcessTimeRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_feedbackProcessTimeRatio_set)
-
-    def SetFeedbackProcessTimeRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetFeedbackProcessTimeRatio(self, index, value)
-
-    def GetFeedbackProcessTimeRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetFeedbackProcessTimeRatio(self, index)
-    __swig_setmethods__["communicateProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_communicateProcessTimeRatio_set
-    __swig_getmethods__["communicateProcessTimeRatio"] = _WMX3ApiPython.CCLinkStatisticsInfo_communicateProcessTimeRatio_get
-    if _newclass:
-        communicateProcessTimeRatio = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_communicateProcessTimeRatio_get, _WMX3ApiPython.CCLinkStatisticsInfo_communicateProcessTimeRatio_set)
-
-    def SetCommunicateProcessTimeRatio(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetCommunicateProcessTimeRatio(self, index, value)
-
-    def GetCommunicateProcessTimeRatio(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetCommunicateProcessTimeRatio(self, index)
-    __swig_setmethods__["overCycle"] = _WMX3ApiPython.CCLinkStatisticsInfo_overCycle_set
-    __swig_getmethods__["overCycle"] = _WMX3ApiPython.CCLinkStatisticsInfo_overCycle_get
-    if _newclass:
-        overCycle = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_overCycle_get, _WMX3ApiPython.CCLinkStatisticsInfo_overCycle_set)
-
-    def SetOverCycle(self, index, value):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_SetOverCycle(self, index, value)
-
-    def GetOverCycle(self, index):
-        return _WMX3ApiPython.CCLinkStatisticsInfo_GetOverCycle(self, index)
-    __swig_setmethods__["txErr"] = _WMX3ApiPython.CCLinkStatisticsInfo_txErr_set
-    __swig_getmethods__["txErr"] = _WMX3ApiPython.CCLinkStatisticsInfo_txErr_get
-    if _newclass:
-        txErr = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_txErr_get, _WMX3ApiPython.CCLinkStatisticsInfo_txErr_set)
-    __swig_setmethods__["packetTimeout"] = _WMX3ApiPython.CCLinkStatisticsInfo_packetTimeout_set
-    __swig_getmethods__["packetTimeout"] = _WMX3ApiPython.CCLinkStatisticsInfo_packetTimeout_get
-    if _newclass:
-        packetTimeout = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_packetTimeout_get, _WMX3ApiPython.CCLinkStatisticsInfo_packetTimeout_set)
-    __swig_setmethods__["syncStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_syncStat_set
-    __swig_getmethods__["syncStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_syncStat_get
-    if _newclass:
-        syncStat = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_syncStat_get, _WMX3ApiPython.CCLinkStatisticsInfo_syncStat_set)
-    __swig_setmethods__["pdelayReqRcvStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqRcvStat_set
-    __swig_getmethods__["pdelayReqRcvStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqRcvStat_get
-    if _newclass:
-        pdelayReqRcvStat = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqRcvStat_get, _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqRcvStat_set)
-    __swig_setmethods__["pdelayReqFollowUpStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqFollowUpStat_set
-    __swig_getmethods__["pdelayReqFollowUpStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqFollowUpStat_get
-    if _newclass:
-        pdelayReqFollowUpStat = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqFollowUpStat_get, _WMX3ApiPython.CCLinkStatisticsInfo_pdelayReqFollowUpStat_set)
-    __swig_setmethods__["pdelayStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayStat_set
-    __swig_getmethods__["pdelayStat"] = _WMX3ApiPython.CCLinkStatisticsInfo_pdelayStat_get
-    if _newclass:
-        pdelayStat = _swig_property(_WMX3ApiPython.CCLinkStatisticsInfo_pdelayStat_get, _WMX3ApiPython.CCLinkStatisticsInfo_pdelayStat_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkStatisticsInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkStatisticsInfo
-    __del__ = lambda self: None
-CCLinkStatisticsInfo_swigregister = _WMX3ApiPython.CCLinkStatisticsInfo_swigregister
-CCLinkStatisticsInfo_swigregister(CCLinkStatisticsInfo)
-
-class CCLinkMasterInfo(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLinkMasterInfo, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLinkMasterInfo, name)
-    __repr__ = _swig_repr
-
-    def GetData(self, cclinkMasterInfo):
-        return _WMX3ApiPython.CCLinkMasterInfo_GetData(self, cclinkMasterInfo)
-
-    def SetData(self, cclinkMasterInfo):
-        return _WMX3ApiPython.CCLinkMasterInfo_SetData(self, cclinkMasterInfo)
-    __swig_setmethods__["state"] = _WMX3ApiPython.CCLinkMasterInfo_state_set
-    __swig_getmethods__["state"] = _WMX3ApiPython.CCLinkMasterInfo_state_get
-    if _newclass:
-        state = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_state_get, _WMX3ApiPython.CCLinkMasterInfo_state_set)
-    __swig_setmethods__["mode"] = _WMX3ApiPython.CCLinkMasterInfo_mode_set
-    __swig_getmethods__["mode"] = _WMX3ApiPython.CCLinkMasterInfo_mode_get
-    if _newclass:
-        mode = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_mode_get, _WMX3ApiPython.CCLinkMasterInfo_mode_set)
-    __swig_setmethods__["commPeriod"] = _WMX3ApiPython.CCLinkMasterInfo_commPeriod_set
-    __swig_getmethods__["commPeriod"] = _WMX3ApiPython.CCLinkMasterInfo_commPeriod_get
-    if _newclass:
-        commPeriod = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_commPeriod_get, _WMX3ApiPython.CCLinkMasterInfo_commPeriod_set)
-    __swig_setmethods__["cycleCounter"] = _WMX3ApiPython.CCLinkMasterInfo_cycleCounter_set
-    __swig_getmethods__["cycleCounter"] = _WMX3ApiPython.CCLinkMasterInfo_cycleCounter_get
-    if _newclass:
-        cycleCounter = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_cycleCounter_get, _WMX3ApiPython.CCLinkMasterInfo_cycleCounter_set)
-    __swig_setmethods__["cycleNum"] = _WMX3ApiPython.CCLinkMasterInfo_cycleNum_set
-    __swig_getmethods__["cycleNum"] = _WMX3ApiPython.CCLinkMasterInfo_cycleNum_get
-    if _newclass:
-        cycleNum = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_cycleNum_get, _WMX3ApiPython.CCLinkMasterInfo_cycleNum_set)
-    __swig_setmethods__["tslt"] = _WMX3ApiPython.CCLinkMasterInfo_tslt_set
-    __swig_getmethods__["tslt"] = _WMX3ApiPython.CCLinkMasterInfo_tslt_get
-    if _newclass:
-        tslt = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_tslt_get, _WMX3ApiPython.CCLinkMasterInfo_tslt_set)
-
-    def SetTslt(self, index, value):
-        return _WMX3ApiPython.CCLinkMasterInfo_SetTslt(self, index, value)
-
-    def GetTslt(self, index):
-        return _WMX3ApiPython.CCLinkMasterInfo_GetTslt(self, index)
-    __swig_setmethods__["ipAddr"] = _WMX3ApiPython.CCLinkMasterInfo_ipAddr_set
-    __swig_getmethods__["ipAddr"] = _WMX3ApiPython.CCLinkMasterInfo_ipAddr_get
-    if _newclass:
-        ipAddr = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_ipAddr_get, _WMX3ApiPython.CCLinkMasterInfo_ipAddr_set)
-
-    def SetIpAddr(self, index, value):
-        return _WMX3ApiPython.CCLinkMasterInfo_SetIpAddr(self, index, value)
-
-    def GetIpAddr(self, index):
-        return _WMX3ApiPython.CCLinkMasterInfo_GetIpAddr(self, index)
-    __swig_setmethods__["macAddr"] = _WMX3ApiPython.CCLinkMasterInfo_macAddr_set
-    __swig_getmethods__["macAddr"] = _WMX3ApiPython.CCLinkMasterInfo_macAddr_get
-    if _newclass:
-        macAddr = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_macAddr_get, _WMX3ApiPython.CCLinkMasterInfo_macAddr_set)
-
-    def SetMacAddr(self, index, value):
-        return _WMX3ApiPython.CCLinkMasterInfo_SetMacAddr(self, index, value)
-
-    def GetMacAddr(self, index):
-        return _WMX3ApiPython.CCLinkMasterInfo_GetMacAddr(self, index)
-    __swig_setmethods__["numOfSlaves"] = _WMX3ApiPython.CCLinkMasterInfo_numOfSlaves_set
-    __swig_getmethods__["numOfSlaves"] = _WMX3ApiPython.CCLinkMasterInfo_numOfSlaves_get
-    if _newclass:
-        numOfSlaves = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_numOfSlaves_get, _WMX3ApiPython.CCLinkMasterInfo_numOfSlaves_set)
-    __swig_setmethods__["slaves"] = _WMX3ApiPython.CCLinkMasterInfo_slaves_set
-    __swig_getmethods__["slaves"] = _WMX3ApiPython.CCLinkMasterInfo_slaves_get
-    if _newclass:
-        slaves = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_slaves_get, _WMX3ApiPython.CCLinkMasterInfo_slaves_set)
-
-    def SetSlaves(self, index, value):
-        return _WMX3ApiPython.CCLinkMasterInfo_SetSlaves(self, index, value)
-
-    def GetSlaves(self, index):
-        return _WMX3ApiPython.CCLinkMasterInfo_GetSlaves(self, index)
-    __swig_setmethods__["statisticsInfo"] = _WMX3ApiPython.CCLinkMasterInfo_statisticsInfo_set
-    __swig_getmethods__["statisticsInfo"] = _WMX3ApiPython.CCLinkMasterInfo_statisticsInfo_get
-    if _newclass:
-        statisticsInfo = _swig_property(_WMX3ApiPython.CCLinkMasterInfo_statisticsInfo_get, _WMX3ApiPython.CCLinkMasterInfo_statisticsInfo_set)
-
-    def __init__(self):
-        this = _WMX3ApiPython.new_CCLinkMasterInfo()
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLinkMasterInfo
-    __del__ = lambda self: None
-CCLinkMasterInfo_swigregister = _WMX3ApiPython.CCLinkMasterInfo_swigregister
-CCLinkMasterInfo_swigregister(CCLinkMasterInfo)
-
-class CCLink(_object):
-    __swig_setmethods__ = {}
-    __setattr__ = lambda self, name, value: _swig_setattr(self, CCLink, name, value)
-    __swig_getmethods__ = {}
-    __getattr__ = lambda self, name: _swig_getattr(self, CCLink, name)
-    __repr__ = _swig_repr
-
-    def __init__(self, *args):
-        this = _WMX3ApiPython.new_CCLink(*args)
-        try:
-            self.this.append(this)
-        except __builtin__.Exception:
-            self.this = this
-    __swig_destroy__ = _WMX3ApiPython.delete_CCLink
-    __del__ = lambda self: None
-    if _newclass:
-        ErrorToString = staticmethod(_WMX3ApiPython.CCLink_ErrorToString)
-    else:
-        ErrorToString = _WMX3ApiPython.CCLink_ErrorToString
-    if _newclass:
-        GetLibVersion = staticmethod(_WMX3ApiPython.CCLink_GetLibVersion)
-    else:
-        GetLibVersion = _WMX3ApiPython.CCLink_GetLibVersion
-
-    def IsDeviceValid(self):
-        return _WMX3ApiPython.CCLink_IsDeviceValid(self)
-
-    def GetVersion(self):
-        return _WMX3ApiPython.CCLink_GetVersion(self)
-
-    def ResetSlaveError(self, slaveId):
-        return _WMX3ApiPython.CCLink_ResetSlaveError(self, slaveId)
-
-    def SetUpdatePeriod(self, period):
-        return _WMX3ApiPython.CCLink_SetUpdatePeriod(self, period)
-
-    def GetMasterInfo(self):
-        info = CCLinkMasterInfo()
-        ret = _WMX3ApiPython.CCLink_GetMasterInfo(self, info)
-        return ret, info
-
-
-
-    def ScanNetwork(self):
-        return _WMX3ApiPython.CCLink_ScanNetwork(self)
-
-    def StartHotconnect(self):
-        return _WMX3ApiPython.CCLink_StartHotconnect(self)
-
-    def ResetSyncStatisticsInfo(self):
-        return _WMX3ApiPython.CCLink_ResetSyncStatisticsInfo(self)
-
-    def SdoDownload(self, slaveId, dropNo, index, subindex, sdoDataSize, sdoData):
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoDownload(self, slaveId, dropNo, index, subindex, sdoDataSize, sdoData, errCode)
-        return ret, errCode.value()
-
-
-
-    def SdoDownload_WaitTime(self, slaveId, dropNo, index, subindex, sdoDataSize, sdoData, waitTime):
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoDownload_WaitTime(self, slaveId, dropNo, index, subindex, sdoDataSize, sdoData, errCode, waitTime)
-        return ret, errCode.value()
-
-
-
-    def SdoUpload(self, slaveId, dropNo, index, subindex, sdoBuffSize):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoUpload(self, slaveId, dropNo, index, subindex, sdoBuffSize, sdoBuffArray, actualSize, errCode)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoUpload_WaitTime(self, slaveId, dropNo, index, subindex, sdoBuffSize, waitTime):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoUpload_WaitTime(self, slaveId, dropNo, index, subindex, sdoBuffSize, sdoBuffArray, actualSize, errCode, waitTime)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoDownload_SdoType(self, slaveId, dropNo, index, subindex, sdoType, sdoDataSize, sdoData):
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoDownload_SdoType(self, slaveId, dropNo, index, subindex, sdoType, sdoDataSize, sdoData, errCode)
-        return ret, errCode.value()
-
-
-
-    def SdoDownload_SdoType_WaitTime(self, slaveId, dropNo, index, subindex, sdoType, sdoDataSize, sdoData, waitTime):
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoDownload_SdoType_WaitTime(self, slaveId, dropNo, index, subindex, sdoType, sdoDataSize, sdoData, errCode, waitTime)
-        return ret, errCode.value()
-
-
-
-    def SdoUpload_SdoType(self, slaveId, dropNo, index, subindex, sdoType, sdoBuffSize):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoUpload_SdoType(self, slaveId, dropNo, index, subindex, sdoType, sdoBuffSize, sdoBuffArray, actualSize, errCode)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SdoUpload_SdoType_WaitTime(self, slaveId, dropNo, index, subindex, sdoType, sdoBuffSize, waitTime):
-        sdoBuffArray = uintArray(sdoBuffSize)
-        actualSize = uintp()
-        errCode = uintp()
-        ret = _WMX3ApiPython.CCLink_SdoUpload_SdoType_WaitTime(self, slaveId, dropNo, index, subindex, sdoType, sdoBuffSize, sdoBuffArray, actualSize, errCode, waitTime)
-
-        sdoBuff = []
-        for i in range(sdoBuffSize):
-            sdoBuff.append(sdoBuffArray[i])
-
-        return ret, sdoBuff, actualSize.value(), errCode.value()
-
-
-
-    def SetAxisMode(self, slaveId, axisIndex, mode):
-        return _WMX3ApiPython.CCLink_SetAxisMode(self, slaveId, axisIndex, mode)
-
-    def StartAxisPP(self, *args):
-        return _WMX3ApiPython.CCLink_StartAxisPP(self, *args)
-
-    def StartAxisHM(self, slaveId, axisIndex, method, switchSpeed, zeroSpeed, hmAcc):
-        return _WMX3ApiPython.CCLink_StartAxisHM(self, slaveId, axisIndex, method, switchSpeed, zeroSpeed, hmAcc)
-
-    def HaltAxis(self, slaveId, axisIndex):
-        return _WMX3ApiPython.CCLink_HaltAxis(self, slaveId, axisIndex)
-
-    def HaltAxisRelease(self, slaveId, axisIndex):
-        return _WMX3ApiPython.CCLink_HaltAxisRelease(self, slaveId, axisIndex)
-
-    def SlmpSendBySlaveId(self, slaveId, port, dropNo, command, subCommand, dataSize, data, buffSize):
-        buffArray = uintArray(buffSize)
-        actualSize = uintp()
-        errCode = ushortp()
-        ret = _WMX3ApiPython.CCLink_SlmpSendBySlaveId(self, slaveId, port, dropNo, command, subCommand, dataSize, data, buffSize, buffArray, actualSize, errCode)
-
-        buff = []
-        for i in range(buffSize):
-            buff.append(buffArray[i])
-
-        return ret, buff, actualSize.value(), errCode.value()
-
-
-
-    def SlmpSendBySlaveId_WaitTime(self, slaveId, port, dropNo, command, subCommand, dataSize, data, buffSize, waitTime):
-        buffArray = uintArray(buffSize)
-        actualSize = uintp()
-        errCode = ushortp()
-        ret = _WMX3ApiPython.CCLink_SlmpSendBySlaveId_WaitTime(self, slaveId, port, dropNo, command, subCommand, dataSize, data, buffSize, buffArray, actualSize, errCode, waitTime)
-
-        buff = []
-        for i in range(buffSize):
-            buff.append(buffArray[i])
-
-        return ret, buff, actualSize.value(), errCode.value()
-
-
-
-    def SlmpSendByMacIpAddr(self, macAddr, ipAddr, port, dropNo, command, subCommand, dataSize, data, buffSize):
-        buffArray = uintArray(buffSize)
-        actualSize = uintp()
-        errCode = ushortp()
-        ret = _WMX3ApiPython.CCLink_SlmpSendByMacIpAddr(self, macAddr, ipAddr, port, dropNo, command, subCommand, dataSize, data, buffSize, buffArray, actualSize, errCode)
-
-        buff = []
-        for i in range(buffSize):
-            buff.append(buffArray[i])
-
-        return ret, buff, actualSize.value(), errCode.value()
-
-
-
-    def SlmpSendByMacIpAddr_WaitTime(self, macAddr, ipAddr, port, dropNo, command, subCommand, dataSize, data, buffSize, waitTime):
-        buffArray = uintArray(buffSize)
-        actualSize = uintp()
-        errCode = ushortp()
-        ret = _WMX3ApiPython.CCLink_SlmpSendByMacIpAddr_WaitTime(self, macAddr, ipAddr, port, dropNo, command, subCommand, dataSize, data, buffSize, buffArray, actualSize, errCode, waitTime)
-
-        buff = []
-        for i in range(buffSize):
-            buff.append(buffArray[i])
-
-        return ret, buff, actualSize.value(), errCode.value()
-
-
-CCLink_swigregister = _WMX3ApiPython.CCLink_swigregister
-CCLink_swigregister(CCLink)
-
-def CCLink_ErrorToString(errCode):
-    return _WMX3ApiPython.CCLink_ErrorToString(errCode)
-CCLink_ErrorToString = _WMX3ApiPython.CCLink_ErrorToString
-
-def CCLink_GetLibVersion():
-    return _WMX3ApiPython.CCLink_GetLibVersion()
-CCLink_GetLibVersion = _WMX3ApiPython.CCLink_GetLibVersion
 
 # This file is compatible with both classic and new-style classes.
 

@@ -15,8 +15,17 @@
 // Static instance
 WMX3ContextManager* WMX3ContextManager::s_instance = NULL;
 
-// Fixed WMX3 installation path
-static const TCHAR* WMX3_PATH = _T("C:\\Program Files\\SoftServo\\WMX3");
+// Fixed WMX3 installation path - use explicit char*/wchar_t* to avoid TCHAR ambiguity
+// with WMX3 SDK overloads (WMX3.4 uses char*/wchar_t*, WMX3.6 uses const char*/const wchar_t*)
+#ifdef UNICODE
+static const wchar_t* WMX3_PATH = L"C:\\Program Files\\SoftServo\\WMX3";
+static const wchar_t* WMX3_LIB_PATH = L"C:\\Program Files\\SoftServo\\WMX3\\Lib";
+static const wchar_t* WMX3_IMDLL_PATH = L"C:\\Program Files\\SoftServo\\WMX3\\Lib\\IMDll.dll";
+#else
+static const char* WMX3_PATH = "C:\\Program Files\\SoftServo\\WMX3";
+static const char* WMX3_LIB_PATH = "C:\\Program Files\\SoftServo\\WMX3\\Lib";
+static const char* WMX3_IMDLL_PATH = "C:\\Program Files\\SoftServo\\WMX3\\Lib\\IMDll.dll";
+#endif
 
 WMX3ContextManager::WMX3ContextManager()
     : m_wmx3(NULL)
@@ -59,12 +68,10 @@ void WMX3ContextManager::DestroyInstance()
 long WMX3ContextManager::CreateDeviceInternal()
 {
     // Set DLL search path for WMX3 libraries
-    TCHAR dllPath[MAX_PATH];
-    _stprintf_s(dllPath, MAX_PATH, _T("%s\\Lib"), WMX3_PATH);
-    SetDllDirectory(dllPath);
+    SetDllDirectory(WMX3_LIB_PATH);
 
     // Load IMDll.dll from absolute path to avoid loading from executable directory
-    LoadLibraryEx(_T("C:\\Program Files\\SoftServo\\WMX3\\Lib\\IMDll.dll"), NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+    LoadLibraryEx(WMX3_IMDLL_PATH, NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
 
     // Create WMX3Api instance
     m_wmx3 = new wmx3Api::WMX3Api();
@@ -73,19 +80,27 @@ long WMX3ContextManager::CreateDeviceInternal()
     }
 
     // Create WMX3 device
-    long ret = m_wmx3->CreateDevice(WMX3_PATH, wmx3Api::DeviceType::DeviceTypeNormal);
+    // WMX3.4 SDK uses char*/wchar_t* (non-const)
+    // WMX3.6 SDK uses const char*/const wchar_t*
+    // Use const_cast for WMX3.4 compatibility
+#ifdef UNICODE
+    long ret = m_wmx3->CreateDevice(const_cast<wchar_t*>(WMX3_PATH), wmx3Api::DeviceType::DeviceTypeNormal);
+#else
+    long ret = m_wmx3->CreateDevice(const_cast<char*>(WMX3_PATH), wmx3Api::DeviceType::DeviceTypeNormal);
+#endif
     if (ret != 0) {
         delete m_wmx3;
         m_wmx3 = NULL;
         return ret;
     }
 
-    // WMX3 SDK has overloads for const char* and const wchar_t*
-    // Use explicit type to avoid TCHAR ambiguity
+    // WMX3.4 SDK uses char*/wchar_t* (non-const)
+    // WMX3.6 SDK uses const char*/const wchar_t*
+    // Use const_cast for WMX3.4 compatibility
 #ifdef UNICODE
-    m_wmx3->SetDeviceName(L"WMXBroker");
+    m_wmx3->SetDeviceName(const_cast<wchar_t*>(L"WMXBroker"));
 #else
-    m_wmx3->SetDeviceName("WMXBroker");
+    m_wmx3->SetDeviceName(const_cast<char*>("WMXBroker"));
 #endif
 
     // Create CoreMotion module

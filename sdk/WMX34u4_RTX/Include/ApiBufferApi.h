@@ -5,10 +5,6 @@
 * This file contains the declarations of the ApiBuffer module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the ApiBuffer module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_APIBUFFER_API_H
@@ -35,8 +31,7 @@ namespace wmx3Api{
             WatchTriggerRoutineChannelSameAsExecChannel,
             RewindFailedFirstCommandOverwritten,
             AlreadyRecordingForSpecifiedChannel,
-            NotRecording,
-            RequestModeChangeTimeout
+            NotRecording
         };
     };
 
@@ -49,8 +44,6 @@ namespace wmx3Api{
             IOOutput,
             UserMemory,
             MinimumTrq,
-            OpState,
-            AxisCmdMode,
             InPos,
             PosSET,
             DelayedPosSET,
@@ -110,22 +103,11 @@ namespace wmx3Api{
                 unsigned char bitAddress;
                 unsigned char invert;
             }userMemory;
-            
+
             struct MinimumTrq {
                 int axis;
                 double torque;
             }minimumTrq;
-
-            struct OpState {
-                int axis;
-                OperationState::T opState;
-            }opState;
-
-            struct AxisCmdMode {
-                int axis;
-                AxisCommandMode::T axisCommandMode;
-                unsigned char useFeedback;
-            }axisCmdMode;
 
             struct InPos {
                 int axis;
@@ -232,14 +214,6 @@ namespace wmx3Api{
         int watchTriggerRoutineChannel;
     };
 
-    class ApiBufferChannelSelection{
-    public:
-        ApiBufferChannelSelection();
-
-        unsigned int channelCount;
-        unsigned int channel[constants::maxApiBufferChannel];
-    };
-
     class ApiBufferEventOutput : public EventOutput {
     public:
         enum ApiBufferEventOutputType {
@@ -304,10 +278,6 @@ namespace wmx3Api{
         WMX3APIFUNC Halt(unsigned int channel);
         WMX3APIFUNC Clear(unsigned int channel);
         WMX3APIFUNC Rewind(unsigned int channel);
-        WMX3APIFUNC ExecuteMultipleChannel(ApiBufferChannelSelection *pChannelSelection);
-        WMX3APIFUNC HaltMultipleChannel(ApiBufferChannelSelection *pChannelSelection);
-        WMX3APIFUNC ClearMultipleChannel(ApiBufferChannelSelection *pChannelSelection);
-        WMX3APIFUNC RewindMultipleChannel(ApiBufferChannelSelection *pChannelSelection);
 
         WMX3APIFUNC GetStatus(unsigned int channel, ApiBufferStatus* pStatus);
         WMX3APIFUNC SetOptions(unsigned int channel, ApiBufferOptions *pOptions);
@@ -316,7 +286,6 @@ namespace wmx3Api{
         WMX3APIFUNC GetWatch(unsigned int channel, ApiBufferWatch *pWatch);
 
         WMX3APIFUNC Sleep(unsigned int milliseconds);
-        WMX3APIFUNC USleep(unsigned int microseconds);
         WMX3APIFUNC Wait(int axis);
         WMX3APIFUNC Wait(AxisSelection *pAxisSelection);
         WMX3APIFUNC Wait(ApiBufferCondition* condition);

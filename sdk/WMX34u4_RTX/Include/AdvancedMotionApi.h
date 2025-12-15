@@ -5,10 +5,6 @@
 * This file contains the declarations of the AdvancedMotion module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the AdvancedMotion module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_ADVANCED_MOTION_API_H
@@ -20,8 +16,11 @@
 namespace wmx3Api{
 
     namespace constants {
-        static const int maxSplineDimensions = 8;
+        static const int maxSplineDimensions = 6;
         static const int maxSplineChannel = 128;
+        static const int maxPvtAppendPoints = 4096;
+        static const int maxPvtInterpolateAppendPoints = 2048;
+        static const int maxPvtInterpolateAxes = 4;
         static const int maxPathInterpolateAppendPoints = 512;
         static const int maxPathInterpolateOutputs = 512;
         static const int maxPathInterpolateDimensions = 2;
@@ -29,11 +28,9 @@ namespace wmx3Api{
         static const int maxPathIntplWithRotationAppendPoints = 1024;
         static const int maxPathIntplWithRotationChannel = 128;
         static const int maxPathIntplLookaheadDimensions = 6;
-        static const int maxPathIntplLookaheadAppendPoints = 1500;
+        static const int maxPathIntplLookaheadAppendPoints = 2000;
         static const int maxPathIntplLookaheadChannel = 128;
         static const int maxPathIntplLookaheadOutputPerSegment = 128;
-        static const int maxPathIntplLookaheadSmoothingCycles = 2000;
-        static const int maxPathIntplLookaheadAuxiliaryAxes = 3;
         static const int maxEcamPoints = 4096;
         static const int maxEcamChannel = 8;
     }
@@ -79,15 +76,14 @@ namespace wmx3Api{
             DancerControlIntegralTimeOutOfRange,
             DancerControlInputMinMaxDifferenceOutOfRange,
             FirstPointTimeNotZero,
+            PointTimeOutOfRange,
+            PointTimeNotIncreasing,
             SmoothRatioOutOfRange,
             TwoLinkMotionTypeOutOfRange,
             OutputIOAddressOutOfRange,
             OutputPointOutOfRange,
             TotalDistanceBelowMinimum,
-            DistanceBetweenPointsTooClose,
-            AuxiliaryAxisOutOfRange,
-            AuxiliaryAxisCountOutOfRange,
-            NumCommandsOutOfRange
+            DistanceBetweenPointsTooClose
         };
     };
 
@@ -269,6 +265,111 @@ namespace wmx3Api{
             unsigned char ignoreDimensionForDistanceCalc[constants::maxSplineDimensions];
             unsigned int sampleMultiplier;
             unsigned char sampleMultiplierCubicDistribution;
+        };
+
+        class PVTPoint{
+        public:
+            PVTPoint();
+            double pos;
+            double velocity;
+            double timeMilliseconds;
+        };
+
+        class PVTCommand{
+        public:
+            PVTCommand();
+            int axis;
+            unsigned int pointCount;
+            PVTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class PVTAdditionalCommand{
+        public:
+            PVTAdditionalCommand();
+            unsigned int pointCount;
+            PVTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class PVTIntplCommand{
+        public:
+            PVTIntplCommand();
+            unsigned int axisCount;
+            int axis[constants::maxPvtInterpolateAxes];
+            unsigned int pointCount[constants::maxPvtInterpolateAxes];
+            PVTPoint points[constants::maxPvtInterpolateAxes][constants::maxPvtInterpolateAppendPoints];
+        };
+
+        class PVTIntplAdditionalCommand{
+        public:
+            PVTIntplAdditionalCommand();
+            unsigned int pointCount[constants::maxPvtInterpolateAxes];
+            PVTPoint points[constants::maxPvtInterpolateAxes][constants::maxPvtInterpolateAppendPoints];
+        };
+
+        class PTPoint {
+        public:
+            PTPoint();
+            double pos;
+            double timeMilliseconds;
+        };
+
+        class PTCommand {
+        public:
+            PTCommand();
+            int axis;
+            unsigned int pointCount;
+            PTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class PTAdditionalCommand {
+        public:
+            PTAdditionalCommand();
+            unsigned int pointCount;
+            PTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class VTPoint {
+        public:
+            VTPoint();
+            double velocity;
+            double timeMilliseconds;
+        };
+
+        class VTCommand {
+        public:
+            VTCommand();
+            int axis;
+            unsigned int pointCount;
+            VTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class VTAdditionalCommand {
+        public:
+            VTAdditionalCommand();
+            unsigned int pointCount;
+            VTPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class ATPoint {
+        public:
+            ATPoint();
+            double acc;
+            double timeMilliseconds;
+        };
+
+        class ATCommand {
+        public:
+            ATCommand();
+            int axis;
+            unsigned int pointCount;
+            ATPoint points[constants::maxPvtAppendPoints];
+        };
+
+        class ATAdditionalCommand {
+        public:
+            ATAdditionalCommand();
+            unsigned int pointCount;
+            ATPoint points[constants::maxPvtAppendPoints];
         };
 
         class PathIntplSegmentType {
@@ -469,6 +570,14 @@ namespace wmx3Api{
             double totalDist;
         };
 
+        class PathIntplLookaheadProfileType {
+        public:
+            enum T {
+                Trapezoidal,
+                SCurve
+            };
+        };
+
         class PathIntplLookaheadSegmentType {
         public:
             enum T {
@@ -479,6 +588,7 @@ namespace wmx3Api{
                 LengthAndEndCircular,
                 RadiusAndEndCircular,
                 ThroughAndEnd3DCircular,
+                ThroughAndEnd3DCircularWithAuxiliary,
                 Sleep,
                 SetOutputBit
             };
@@ -512,9 +622,6 @@ namespace wmx3Api{
             double angleToleranceDegrees;
             PathIntplLookaheadCoordinateType::T coordinateType;
             bool stopOnEmptyBuffer;
-            bool setSmoothingTime;
-            double firstSmoothingTimeMilliseconds[constants::maxPathIntplLookaheadDimensions];
-            double secondSmoothingTimeMilliseconds[constants::maxPathIntplLookaheadDimensions];
         };
 
         class PathIntplLookaheadCommandPoint {
@@ -522,6 +629,9 @@ namespace wmx3Api{
             PathIntplLookaheadCommandPoint();
 
             PathIntplLookaheadSegmentType::T type;
+            double smoothRadius;
+            bool setSegmentCompositeVel;
+            double segmentCompositeVel;
 
             union Data {
                 Data();
@@ -530,77 +640,49 @@ namespace wmx3Api{
                     unsigned int axisCount;
                     int axis[constants::maxPathIntplLookaheadDimensions];
                     double target[constants::maxPathIntplLookaheadDimensions];
-                    double smoothRadius;
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }linear;
                 struct {
                     int axis[2];
                     double centerPos[2];
                     double arcLengthDegree;
                     unsigned char clockwise;
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }centerAndLengthCircular;
                 struct {
                     int axis[2];
                     double centerPos[2];
                     double endPos[2];
                     unsigned char clockwise;
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }centerAndEndCircular;
                 struct {
                     int axis[2];
                     double throughPos[2];
                     double endPos[2];
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }throughAndEndCircular;
                 struct {
                     int axis[2];
                     double endPos[2];
                     double arcLengthDegree;
                     unsigned char clockwise;
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }lengthAndEndCircular;
                 struct {
                     int axis[2];
                     double endPos[2];
                     double radius;
                     unsigned char clockwise;
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }radiusAndEndCircular;
                 struct {
                     int axis[3];
                     double throughPos[3];
                     double endPos[3];
-                    bool setSegmentCompositeVel;
-                    double segmentCompositeVel;
-                    unsigned int auxiliaryAxisCount;
-                    int auxiliaryAxis[constants::maxPathIntplLookaheadAuxiliaryAxes];
-                    double auxiliaryTarget[constants::maxPathIntplLookaheadAuxiliaryAxes];
                 }throughAndEnd3DCircular;
+                struct {
+                    int axis[3];
+                    double throughPos[3];
+                    double endPos[3];
+                    unsigned int auxiliaryAxisCount;
+                    int auxiliaryAxis[3];
+                    double auxiliaryTarget[3];
+                }throughAndEnd3DCircularWithAuxiliary;
                 struct {
                     unsigned int milliseconds;
                 }sleep;
@@ -627,7 +709,6 @@ namespace wmx3Api{
         public:
             enum T {
                 Idle,
-                Configured,
                 Executing,
                 Stopping,
                 Stopped
@@ -755,72 +836,66 @@ namespace wmx3Api{
         WMX3APIFUNC FreeSplineBuffer(int channel);
         WMX3APIFUNC GetSplineBufferPoints(int channel, unsigned int *pPoints);
         WMX3APIFUNC GetSplineBytesPerPoint(unsigned int *pBytes);
-        WMX3APIFUNC StartCSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds);
+        WMX3APIFUNC StartCSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint,
+            unsigned int *pPointTimeMilliseconds);
         WMX3APIFUNC StartCSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
-        WMX3APIFUNC StartCSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds);
+        WMX3APIFUNC StartCSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint,
+            unsigned int *pPointTimeMilliseconds);
         WMX3APIFUNC StartCSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
-        WMX3APIFUNC StartCSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds);
+        WMX3APIFUNC StartCBSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint,
+            unsigned int *pPointTimeMilliseconds);
         WMX3APIFUNC StartCBSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCBSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCBSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
-        WMX3APIFUNC StartCBSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds);
+        WMX3APIFUNC StartCBSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint,
+            unsigned int *pPointTimeMilliseconds);
         WMX3APIFUNC StartCBSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCBSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
         WMX3APIFUNC StartCBSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint);
-        WMX3APIFUNC StartCBSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, Trigger *pTrigger);
-        WMX3APIFUNC StartCBSplinePos(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplinePos(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplinePos(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplinePos(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplineMov(int channel, PointTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, double *pPointTimeMilliseconds, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplineMov(int channel, TotalTimeSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplineMov(int channel, ProfileSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartCBSplineMov(int channel, VelAccLimitedSplineCommand *pSplineCommand, unsigned int numPoints, SplinePoint *pPoint, TriggerEvents *pTriggerEvents);
+
+        WMX3APIFUNC CreatePVTBuffer(int axis, unsigned int points);
+        WMX3APIFUNC FreePVTBuffer(int axis);
+        WMX3APIFUNC GetPVTBufferPoints(int axis, unsigned int *pPoints);
+        WMX3APIFUNC GetPVTBytesPerPoint(unsigned int *pBytes);
+        WMX3APIFUNC StartPVT(PVTCommand *pPVTCommand, unsigned int numAddlCommands = 0, PVTAdditionalCommand *pPVTAddlCommand = NULL);
+        WMX3APIFUNC StartPVT(PVTIntplCommand *pPVTCommand, unsigned int numAddlCommands = 0, PVTIntplAdditionalCommand *pPVTAddlCommand = NULL);
+        WMX3APIFUNC StartPT(PTCommand *pPTCommand, unsigned int numAddlCommands = 0, PTAdditionalCommand *pPTAddlCommand = NULL);
+        WMX3APIFUNC StartVT(VTCommand *pVTCommand, unsigned int numAddlCommands = 0, VTAdditionalCommand *pVTAddlCommand = NULL);
+        WMX3APIFUNC StartAT(ATCommand *pATCommand, unsigned int numAddlCommands = 0, ATAdditionalCommand *pATAddlCommand = NULL);
 
         WMX3APIFUNC CreatePathIntplBuffer(int axis, unsigned int points);
         WMX3APIFUNC FreePathIntplBuffer(int axis);
         WMX3APIFUNC GetPathIntplBufferPoints(int axis, unsigned int *pPoints);
         WMX3APIFUNC GetPathIntplBytesPerPoint(unsigned int *pBytes);
-        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand, Trigger *pTrigger, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand, Trigger *pTrigger, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents, unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand, Trigger *pTrigger,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand, Trigger *pTrigger,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplPos(PathIntplCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntplMov(PathIntplCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents,
+            unsigned int numAddlCommands = 0, PathIntplAdditionalCommand *pPathIntplAddlCommand = NULL);
         WMX3APIFUNC OverridePathIntplVelocityMultiplier(int axis, double multiplier);
-        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand, Trigger *pTrigger, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand, Trigger *pTrigger, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
-        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents, unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand, Trigger *pTrigger,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand, Trigger *pTrigger,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DPos(PathIntpl3DCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
+        WMX3APIFUNC StartPathIntpl3DMov(PathIntpl3DCommand *pPathIntplCommand, TriggerEvents *pTriggerEvents,
+            unsigned int numAddlCommands = 0, PathIntpl3DAdditionalCommand *pPathIntplAddlCommand = NULL);
         WMX3APIFUNC OverridePathIntpl3DVelocityMultiplier(int axis, double multiplier);
 
         WMX3APIFUNC CreatePathIntplWithRotationBuffer(int channel, unsigned int points);
@@ -845,7 +920,6 @@ namespace wmx3Api{
         WMX3APIFUNC GetPathIntplLookaheadBytesPerPoint(unsigned int *pBytes);
         WMX3APIFUNC SetPathIntplLookaheadConfiguration(int channel, PathIntplLookaheadConfiguration *pConfig);
         WMX3APIFUNC AddPathIntplLookaheadCommand(int channel, PathIntplLookaheadCommand *pCommand);
-        WMX3APIFUNC AddPathIntplLookaheadCommand(int channel, unsigned int numCommands, PathIntplLookaheadCommand *pCommand);
         WMX3APIFUNC StartPathIntplLookahead(int channel);
         WMX3APIFUNC StopPathIntplLookahead(int channel);
         WMX3APIFUNC ClearPathIntplLookahead(int channel);

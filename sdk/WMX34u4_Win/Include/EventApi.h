@@ -5,10 +5,6 @@
 * This file contains the declarations of the Event module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the Event module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_EVENT_API_H
@@ -191,7 +187,6 @@ namespace wmx3Api{
     public:
 
         //[Deprecated]
-        //This class is deprecated and will be removed in a future release.
         class EventInputFunction{
         public:
             enum T {
@@ -243,7 +238,6 @@ namespace wmx3Api{
         };
 
         //[Deprecated]
-        //This class is deprecated and will be removed in a future release.
         class EventOutputFunction{
         public:
             enum T {
@@ -269,7 +263,6 @@ namespace wmx3Api{
         };
 
         //[Deprecated]
-        //This class is deprecated and will be removed in a future release.
         class Event{
         public:
             Event();
@@ -937,13 +930,10 @@ namespace wmx3Api{
         WMX3APIFUNC SetCustomEventConfigureOfModule(int moduleId, void* pSetEventData, int setEventDataSize);
 
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetEvent(int *pId, Event *pEventData);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetEvent(int *pId, Event *pEventData, int id);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC GetEvent(int id, Event *pEventData);
 
         WMX3APIFUNC SetSoftwareTouchProbe(unsigned int channel, unsigned char enable, int axis, int byteAddrs,

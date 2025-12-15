@@ -5,16 +5,14 @@
 * This file contains the declarations of the CyclicBuffer module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the CyclicBuffer module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_CYCLICBUFFER_API_H
 #define WMX3_CYCLICBUFFER_API_H
 #include <windows.h>
 #include "WMX3Api.h"
+
+using namespace wmx3Api;
 
 namespace wmx3Api{
 
@@ -114,8 +112,10 @@ namespace wmx3Api{
 
         WMX3APIFUNC GetVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion);
 
-        WMX3APIFUNC OpenCyclicBuffer(int axis, unsigned int numOfCycles);
-        WMX3APIFUNC OpenCyclicBuffer(AxisSelection *pAxisSelection, unsigned int numOfCycles);
+        WMX3APIFUNC OpenCyclicBuffer(int axis, unsigned int buffSize);
+        WMX3APIFUNC OpenCyclicBuffer(AxisSelection *pAxisSelection, unsigned int buffSize);
+        WMX3APIFUNC OpenCyclicBuffer(int axis, unsigned int buffSize, SizeUnit::T sizeUnit);
+        WMX3APIFUNC OpenCyclicBuffer(AxisSelection *pAxisSelection, unsigned int buffSize, SizeUnit::T sizeUnit);
         WMX3APIFUNC CloseCyclicBuffer(int axis);
         WMX3APIFUNC CloseCyclicBuffer(AxisSelection *pAxisSelection);
 
@@ -129,8 +129,6 @@ namespace wmx3Api{
         WMX3APIFUNC Execute(AxisSelection *pAxisSelection, CyclicBufferMultiAxisOption *pOption = NULL);
         WMX3APIFUNC Abort(int axis);
         WMX3APIFUNC Abort (AxisSelection *pAxisSelection);
-        WMX3APIFUNC ExecQuickStop(int axis);
-        WMX3APIFUNC ExecQuickStop (AxisSelection *pAxisSelection);
         WMX3APIFUNC GetStatus(int axis, CyclicBufferSingleAxisStatus *pStatus);
         WMX3APIFUNC GetStatus(AxisSelection *pAxisSelection, CyclicBufferMultiAxisStatus *pStatus);
     };

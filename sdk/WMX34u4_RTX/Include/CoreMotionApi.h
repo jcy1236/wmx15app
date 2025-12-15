@@ -5,10 +5,6 @@
 * This file contains the declarations of the CoreMotion module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the CoreMotion module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_CORE_MOTION_API_H
@@ -24,10 +20,6 @@ namespace wmx3Api{
         static const int maxSyncGroup = 64;
         static const int maxTriggerEvents = 8;
         static const unsigned long long int maxProfileUnsignedInput = 274877906943ULL;
-
-        static const int maxPvtAppendPoints = 4096;
-        static const int maxPvtInterpolateAppendPoints = 2048;
-        static const int maxPvtInterpolateAxes = 8;
     }
 
     class CoreMotionErrorCode : public ErrorCode{
@@ -160,9 +152,7 @@ namespace wmx3Api{
             ZPulseDetectionUnsupported,
             TouchProbeDetectionUnsupported,
             HomeSwitchDetectionUnsupported,
-            LimitSwitchDetectionUnsupported,
-            PointTimeOutOfRange,
-            PointTimeNotIncreasing
+            LimitSwitchDetectionUnsupported
         };
     };
 
@@ -171,9 +161,6 @@ namespace wmx3Api{
         CoreMotionAxisLogInput();
         unsigned char servoOn;
         unsigned char servoOffline;
-		unsigned char ampAlarm;
-		unsigned char ampAlarmCode;
-		unsigned char followingErrorAlarm;
         unsigned char commandPos;
         unsigned char feedbackPos;
         unsigned char compCommandPos;
@@ -191,7 +178,6 @@ namespace wmx3Api{
         unsigned char followingError;
         unsigned char homeOffset;
         unsigned char homeSwitch;
-        unsigned char homeDone;
         unsigned char homeState;
         unsigned char inPosFlag;
         unsigned char inPosFlag2;
@@ -203,18 +189,10 @@ namespace wmx3Api{
         unsigned char delayedPosSetFlag;
         unsigned char positiveLS;
         unsigned char negativeLS;
-		unsigned char nearPositiveLS;
-		unsigned char nearNegativeLS;
-		unsigned char externalPositiveLS;
-		unsigned char externalNegativeLS;
-		unsigned char positiveSoftLimit;
-		unsigned char negativeSoftLimit;
         unsigned char opState;
         unsigned char detailOpState;
         unsigned char userOffsetCommandPos;
         unsigned char userOffsetFeedbackPos;
-        unsigned char axisCommandMode;
-        unsigned char axisCommandModeFeedback;
     };
 
     class CoreMotionLogInput : public LogInput {
@@ -226,66 +204,6 @@ namespace wmx3Api{
 
         AxisSelection axisSelection;
         CoreMotionAxisLogInput axisOptions;
-    };
-
-    class CoreMotionAxisLogOutput {
-    public:
-        CoreMotionAxisLogOutput();
-        bool servoOn;
-        bool servoOffline;
-        bool ampAlarm;
-		int ampAlarmCode;
-		bool followingErrorAlarm;
-        double commandPos;
-        double feedbackPos;
-        double compCommandPos;
-        double compFeedbackPos;
-        int encoderCommandPos;
-        int encoderFeedbackPos;
-        double commandVelocity;
-        double feedbackVelocity;
-        int encoderCommandVelocity;
-        int encoderFeedbackVelocity;
-        double commandTrq;
-        double feedbackTrq;
-        int encoderCommandTrq;
-        int encoderFeedbackTrq;
-        double followingError;
-        double homeOffset;
-        bool homeSwitch;
-        bool homeDone;
-        int homeState;
-        bool inPosFlag;
-        bool inPosFlag2;
-        bool inPosFlag3;
-        bool inPosFlag4;
-        bool inPosFlag5;
-        bool commandDistributionEndFlag;
-        bool posSetFlag;
-        bool delayedPosSetFlag;
-        bool positiveLS;
-        bool negativeLS;
-		bool nearPositiveLS;
-		bool nearNegativeLS;
-		bool externalPositiveLS;
-		bool externalNegativeLS;
-		bool positiveSoftLimit;
-		bool negativeSoftLimit;
-        int opState;
-        int detailOpState;
-        double userOffsetCommandPos;
-        double userOffsetFeedbackPos;
-        int axisCommandMode;
-        int axisCommandModeFeedback;
-    };
-
-    class CoreMotionLogOutput : public LogOutput {
-    public:
-        CoreMotionLogOutput();
-        unsigned int GetModuleId();
-        WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex);
-
-        CoreMotionAxisLogOutput axisData[constants::maxLogOutputDataSize][constants::maxAxes];
     };
 
     class CoreMotionEventInput : public EventInput {
@@ -302,7 +220,6 @@ namespace wmx3Api{
             LessTrq,
 
             OpState,
-            AxisCmdMode,
             InPos,
             PosSET,
             DelayedPosSET,
@@ -311,8 +228,7 @@ namespace wmx3Api{
             RemainingDistance,
             CompletedTime,
             CompletedDistance,
-            DistanceToTarget,
-            GreaterPositionError
+            DistanceToTarget
         };
         CoreMotionEventInputType inputFunction;
         union InputFunctionArguments {
@@ -402,13 +318,6 @@ namespace wmx3Api{
                 unsigned char invert;
             }opState;
 
-            struct AxisCmdMode {
-                unsigned int axis;
-                AxisCommandMode::T axisCommandMode;
-                unsigned char useFeedback;
-                unsigned char invert;
-            }axisCmdMode;
-
             struct InPos {
                 unsigned int axis;
                 unsigned char invert;
@@ -464,13 +373,6 @@ namespace wmx3Api{
                 double distance;
                 unsigned char disableIdleAxisTrigger;
             }distanceToTarget;
-
-            struct GreaterPositionError {
-                unsigned int axis;
-                unsigned char invert;
-                double posError;
-                unsigned char useActualFollowingError;
-            }greaterPositionError;
         }input;
 
         CoreMotionEventInput();
@@ -722,6 +624,7 @@ namespace wmx3Api{
     class AxisCompensation{
     public:
         AxisCompensation();
+        AxisCompensation(double pitchErrorCompensation, double pitchErrorCompensation2D, double backlashCompensation, double totalPosCompensation);
 
         double pitchErrorCompensation;
         double pitchErrorCompensation2D;
@@ -774,7 +677,6 @@ namespace wmx3Api{
         OperationState::T opState;
         DetailOperationState::T detailOpState;
         AxisCommandMode::T axisCommandMode;
-        AxisCommandMode::T axisCommandModeFeedback;
         AxisSyncMode::T axisSyncMode;
         double syncOffset;
         double syncPhaseOffset;
@@ -828,17 +730,6 @@ namespace wmx3Api{
         double userOffset;
         double userOffsetPosCmd;
         double userOffsetActualPos;
-        double userVelocityOffset;
-        double userTorqueOffset;
-		double vibrationPosMin;
-		double vibrationPosMax;
-		double vibrationPosAvg;
-		double vibrationVelMin;
-		double vibrationVelMax;
-		double vibrationVelAvg;
-		double vibrationTrqMin;
-		double vibrationTrqMax;
-		double vibrationTrqAvg;
     };
 
     class CoreMotionStatus{
@@ -864,8 +755,7 @@ namespace wmx3Api{
             CompletedDistance,
             StaggeredTimeCompletion,
             StaggeredDistanceCompletion,
-            DistanceToTarget,
-            AxisIdle
+            DistanceToTarget
         };
     };
 
@@ -916,9 +806,7 @@ namespace wmx3Api{
             CompletedDistance,
             StaggeredTimeCompletion,
             StaggeredDistanceCompletion,
-            DistanceToTarget,
-            AxisIdle,
-            GreaterPositionError
+            DistanceToTarget
         };
     };
 
@@ -1167,16 +1055,6 @@ namespace wmx3Api{
                 unsigned char invert;
                 double distance;
             }distanceToTarget;
-            struct AxisIdle {
-                unsigned int axis;
-                unsigned char invert;
-            }axisIdle;
-            struct GreaterPositionError {
-                unsigned int axis;
-                unsigned char invert;
-                double posError;
-                unsigned char useActualFollowingError;
-            }greaterPositionError;
 
         }input;
 
@@ -1614,9 +1492,6 @@ namespace wmx3Api{
             double maxMotorSpeed[constants::maxAxes];
             bool absoluteEncoderMode[constants::maxAxes];
             double absoluteEncoderHomeOffset[constants::maxAxes];
-            bool encoderRangeMode[constants::maxAxes];
-            int encoderRangeLow[constants::maxAxes];
-            int encoderRangeHigh[constants::maxAxes];
         };
 
         WMX3APIFUNC SetParam(SystemParam *pParam, SystemParam *pParamError = NULL);
@@ -1635,7 +1510,6 @@ namespace wmx3Api{
         WMX3APIFUNC SetAxisPolarity(int axis, char polarity);
         WMX3APIFUNC SetAbsoluteEncoderMode(int axis, bool enable);
         WMX3APIFUNC SetAbsoluteEncoderHomeOffset(int axis, double offset);
-        WMX3APIFUNC SetEncoderRange(int axis, bool enable, int encoderRangeLow, int encoderRangeHigh);
         WMX3APIFUNC GetGearRatio(int axis, double *pNumerator, double *pDenominator);
         WMX3APIFUNC GetSingleTurn(int axis, bool *pEnable, unsigned int *pEncoderCount);
         WMX3APIFUNC GetMovingAverageProfileTime(int axis, double *pMilliseconds);
@@ -1644,7 +1518,6 @@ namespace wmx3Api{
         WMX3APIFUNC GetAxisPolarity(int axis, char *pPolarity);
         WMX3APIFUNC GetAbsoluteEncoderMode(int axis, bool *pEnable);
         WMX3APIFUNC GetAbsoluteEncoderHomeOffset(int axis, double *pOffset);
-        WMX3APIFUNC GetEncoderRange(int axis, bool *pEnable, int *pEncoderRangeLow, int *pEncoderRangeHigh);
         WMX3APIFUNC SetFeedbackParam(int axis, FeedbackParam *pParam, FeedbackParam *pParamError = NULL);
         WMX3APIFUNC SetHomeParam(int axis, HomeParam *pParam, HomeParam *pParamError = NULL);
         WMX3APIFUNC SetLimitParam(int axis, LimitParam *pParam, LimitParam *pParamError = NULL);
@@ -1781,7 +1654,6 @@ namespace wmx3Api{
             AxisHomeData();
             double distHStoZPulse;
             double distLStoZPulse;
-            double distMechanicalEndToZPulse;
             double latchedZPulseEncoder;
             double latchedLimitSwitchEncoder;
             double latchedHomeSwitchEncoder;
@@ -1848,17 +1720,6 @@ namespace wmx3Api{
             Trigger trigger;
         };
 
-        class TriggerTimedVelCommand {
-        public:
-            TriggerTimedVelCommand();
-            TriggerTimedVelCommand(int axis, double runTimeMilliseconds, Profile profile, Trigger trigger);
-
-            int axis;
-            double runTimeMilliseconds;
-            Profile profile;
-            Trigger trigger;
-        };
-
         class TimeCommand {
         public:
             TimeCommand();
@@ -1870,31 +1731,10 @@ namespace wmx3Api{
 
         WMX3APIFUNC StartVel(VelCommand *pVelCommand);
         WMX3APIFUNC StartVel(TimedVelCommand *pTimedVelCommand);
-        WMX3APIFUNC StartVel(TriggerVelCommand *pVelCommand);
-        WMX3APIFUNC StartVel(TriggerTimedVelCommand *pTimedVelCommand);
-        WMX3APIFUNC StartVel(VelCommand *pVelCommand, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartVel(TimedVelCommand *pTimedVelCommand, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartVel(VelCommand *pVelCommand, double maxTrqLimit);
-        WMX3APIFUNC StartVel(TimedVelCommand *pTimedVelCommand, double maxTrqLimit);
-        WMX3APIFUNC StartVel(TriggerVelCommand *pVelCommand, double maxTrqLimit);
-        WMX3APIFUNC StartVel(TriggerTimedVelCommand *pTimedVelCommand, double maxTrqLimit);
-        WMX3APIFUNC StartVel(VelCommand *pVelCommand, double maxTrqLimit, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartVel(TimedVelCommand *pTimedVelCommand, double maxTrqLimit, TriggerEvents *pTriggerEvents);
 
         WMX3APIFUNC StartVel(unsigned int numCommands, VelCommand *pVelCommand);
         WMX3APIFUNC StartVel(unsigned int numCommands, TimedVelCommand *pTimedVelCommand);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TriggerVelCommand *pVelCommand);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TriggerTimedVelCommand *pTimedVelCommand);
-        WMX3APIFUNC StartVel(unsigned int numCommands, VelCommand *pVelCommand, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TimedVelCommand *pTimedVelCommand, TriggerEvents *pTriggerEvents);
-
-        WMX3APIFUNC StartVel(unsigned int numCommands, VelCommand *pVelCommand, double *pMaxTrqLimit);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TimedVelCommand *pTimedVelCommand, double *pMaxTrqLimit);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TriggerVelCommand *pVelCommand, double *pMaxTrqLimit);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TriggerTimedVelCommand *pTimedVelCommand, double *pMaxTrqLimit);
-        WMX3APIFUNC StartVel(unsigned int numCommands, VelCommand *pVelCommand, double *pMaxTrqLimit, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartVel(unsigned int numCommands, TimedVelCommand *pTimedVelCommand, double *pMaxTrqLimit, TriggerEvents *pTriggerEvents);
 
         WMX3APIFUNC Stop(int axis);
         WMX3APIFUNC Stop(AxisSelection *pAxisSelection);
@@ -1947,48 +1787,6 @@ namespace wmx3Api{
             Trigger trigger;
         };
 
-        class RampTimeTrqCommand {
-        public:
-            RampTimeTrqCommand();
-            RampTimeTrqCommand(int axis, double torque, unsigned int rampCycleTime);
-
-            int axis;
-            double torque;
-            unsigned int rampCycleTime;
-        };
-
-        class TriggerRampTimeTrqCommand {
-        public:
-            TriggerRampTimeTrqCommand();
-            TriggerRampTimeTrqCommand(int axis, double torque, unsigned int rampCycleTime, Trigger trigger);
-
-            int axis;
-            double torque;
-            unsigned int rampCycleTime;
-            Trigger trigger;
-        };
-
-        class RampRateTrqCommand {
-        public:
-            RampRateTrqCommand();
-            RampRateTrqCommand(int axis, double torque, double rampRate);
-
-            int axis;
-            double torque;
-            double rampRate;
-        };
-
-        class TriggerRampRateTrqCommand {
-        public:
-            TriggerRampRateTrqCommand();
-            TriggerRampRateTrqCommand(int axis, double torque, double rampRate, Trigger trigger);
-
-            int axis;
-            double torque;
-            double rampRate;
-            Trigger trigger;
-        };
-
         WMX3APIFUNC SetMaxTrqLimit(int axis, double torque);
         WMX3APIFUNC GetMaxTrqLimit(int axis, double *pTorque);
         WMX3APIFUNC SetPositiveTrqLimit(int axis, double torque);
@@ -1997,46 +1795,12 @@ namespace wmx3Api{
         WMX3APIFUNC GetNegativeTrqLimit(int axis, double *pTorque);
 
         WMX3APIFUNC StartTrq(TrqCommand *pTrqCommand);
-        WMX3APIFUNC StartTrq(TriggerTrqCommand *pTrqCommand);
-        WMX3APIFUNC StartTrq(TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
         WMX3APIFUNC StartTrq(unsigned int numCommands, TrqCommand *pTrqCommand);
-        WMX3APIFUNC StartTrq(unsigned int numCommands, TriggerTrqCommand *pTrqCommand);
-        WMX3APIFUNC StartTrq(unsigned int numCommands, TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartTrq(TrqCommand *pTrqCommand, double maxMotorSpeed);
-        WMX3APIFUNC StartTrq(TriggerTrqCommand *pTrqCommand, double maxMotorSpeed);
-        WMX3APIFUNC StartTrq(TrqCommand *pTrqCommand, double maxMotorSpeed, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartTrq(unsigned int numCommands, TrqCommand *pTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartTrq(unsigned int numCommands, TriggerTrqCommand *pTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartTrq(unsigned int numCommands, TrqCommand *pTrqCommand, double *pMaxMotorSpeed, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime);
-        WMX3APIFUNC StartRampTimeTrq(TriggerTrqCommand *pTrqCommand, unsigned int rampCycleTime);
-        WMX3APIFUNC StartRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, TriggerRampTimeTrqCommand *pRampTimeTrqCommand);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, double maxMotorSpeed);
-        WMX3APIFUNC StartRampTimeTrq(TriggerTrqCommand *pTrqCommand, unsigned int rampCycleTime, double maxMotorSpeed);
-        WMX3APIFUNC StartRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, double maxMotorSpeed, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, TriggerRampTimeTrqCommand *pRampTimeTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand, double *pMaxMotorSpeed, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartRampRateTrq(TrqCommand *pTrqCommand, double rampRate);
-        WMX3APIFUNC StartRampRateTrq(TriggerTrqCommand *pTrqCommand, double rampRate);
-        WMX3APIFUNC StartRampRateTrq(TrqCommand *pTrqCommand, double rampRate, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, TriggerRampRateTrqCommand *pRampRateTrqCommand);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartRampRateTrq(TrqCommand *pTrqCommand, double rampRate, double maxMotorSpeed);
-        WMX3APIFUNC StartRampRateTrq(TriggerTrqCommand *pTrqCommand, double rampRate, double maxMotorSpeed);
-        WMX3APIFUNC StartRampRateTrq(TrqCommand *pTrqCommand, double rampRate, double maxMotorSpeed, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, TriggerRampRateTrqCommand *pRampRateTrqCommand, double *pMaxMotorSpeed);
-        WMX3APIFUNC StartRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand, double *pMaxMotorSpeed, TriggerEvents *pTriggerEvents);
 
         WMX3APIFUNC StopTrq(int axis);
         WMX3APIFUNC StopTrq(AxisSelection *pAxisSelection);
@@ -2046,30 +1810,10 @@ namespace wmx3Api{
         WMX3APIFUNC StartPosToTrq(TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
         WMX3APIFUNC StartPosToTrq(unsigned int numCommands, TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
 
-		WMX3APIFUNC StartPosToRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, Trigger *pTrigger);
-		WMX3APIFUNC StartPosToRampTimeTrq(unsigned int numCommands, TriggerRampTimeTrqCommand *pTriggerRampTimeTrqCommand);
-		WMX3APIFUNC StartPosToRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, TriggerEvents *pTriggerEvents);
-		WMX3APIFUNC StartPosToRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand, TriggerEvents *pTriggerEvents);
-
-		WMX3APIFUNC StartPosToRampRateTrq(TrqCommand *pTrqCommand, double rampRate, Trigger *pTrigger);
-		WMX3APIFUNC StartPosToRampRateTrq(unsigned int numCommands, TriggerRampRateTrqCommand *pTriggerRampRateTrqCommand);
-		WMX3APIFUNC StartPosToRampRateTrq(TrqCommand *pTrqCommand, double rampRate, TriggerEvents *pTriggerEvents);
-		WMX3APIFUNC StartPosToRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand, TriggerEvents *pTriggerEvents);
-
         WMX3APIFUNC StartVelToTrq(TriggerTrqCommand *pTriggerTrqCommand);
         WMX3APIFUNC StartVelToTrq(unsigned int numCommands, TriggerTrqCommand *pTriggerTrqCommand);
         WMX3APIFUNC StartVelToTrq(TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
         WMX3APIFUNC StartVelToTrq(unsigned int numCommands, TrqCommand *pTrqCommand, TriggerEvents *pTriggerEvents);
-
-		WMX3APIFUNC StartVelToRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, Trigger *pTrigger);
-		WMX3APIFUNC StartVelToRampTimeTrq(unsigned int numCommands, TriggerRampTimeTrqCommand *pTriggerRampTimeTrqCommand);
-		WMX3APIFUNC StartVelToRampTimeTrq(TrqCommand *pTrqCommand, unsigned int rampCycleTime, TriggerEvents *pTriggerEvents);
-		WMX3APIFUNC StartVelToRampTimeTrq(unsigned int numCommands, RampTimeTrqCommand *pRampTimeTrqCommand, TriggerEvents *pTriggerEvents);
-
-		WMX3APIFUNC StartVelToRampRateTrq(TrqCommand *pTrqCommand, double rampRate, Trigger *pTrigger);
-		WMX3APIFUNC StartVelToRampRateTrq(unsigned int numCommands, TriggerRampRateTrqCommand *pTriggerRampRateTrqCommand);
-		WMX3APIFUNC StartVelToRampRateTrq(TrqCommand *pTrqCommand, double rampRate, TriggerEvents *pTriggerEvents);
-		WMX3APIFUNC StartVelToRampRateTrq(unsigned int numCommands, RampRateTrqCommand *pRampRateTrqCommand, TriggerEvents *pTriggerEvents);
     };
 
     class Motion{
@@ -2224,17 +1968,6 @@ namespace wmx3Api{
             Trigger trigger;
         };
 
-        class TriggerTimedJogCommand {
-        public:
-            TriggerTimedJogCommand();
-            TriggerTimedJogCommand(int axis, double runTimeMilliseconds, Profile profile, Trigger trigger);
-
-            int axis;
-            double runTimeMilliseconds;
-            Profile profile;
-            Trigger trigger;
-        };
-
         class PosToJogCommand {
         public:
             PosToJogCommand();
@@ -2303,114 +2036,6 @@ namespace wmx3Api{
             int axisCount;
             int axis[constants::maxAxes];
             unsigned int eventID;
-        };
-
-        /*-----------------------------------------------------------------------------------------------------------------
-         PVT Motion
-        -----------------------------------------------------------------------------------------------------------------*/
-        class PVTPoint {
-        public:
-            PVTPoint();
-            double pos;
-            double velocity;
-            double timeMilliseconds;
-        };
-
-        class PVTCommand {
-        public:
-            PVTCommand();
-            int axis;
-            unsigned int pointCount;
-            PVTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class PVTAdditionalCommand {
-        public:
-            PVTAdditionalCommand();
-            unsigned int pointCount;
-            PVTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class PVTIntplCommand {
-        public:
-            PVTIntplCommand();
-            unsigned int axisCount;
-            int axis[constants::maxPvtInterpolateAxes];
-            unsigned int pointCount[constants::maxPvtInterpolateAxes];
-            PVTPoint points[constants::maxPvtInterpolateAxes][constants::maxPvtInterpolateAppendPoints];
-        };
-
-        class PVTIntplAdditionalCommand {
-        public:
-            PVTIntplAdditionalCommand();
-            unsigned int pointCount[constants::maxPvtInterpolateAxes];
-            PVTPoint points[constants::maxPvtInterpolateAxes][constants::maxPvtInterpolateAppendPoints];
-        };
-
-        class PTPoint {
-        public:
-            PTPoint();
-            double pos;
-            double timeMilliseconds;
-        };
-
-        class PTCommand {
-        public:
-            PTCommand();
-            int axis;
-            unsigned int pointCount;
-            PTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class PTAdditionalCommand {
-        public:
-            PTAdditionalCommand();
-            unsigned int pointCount;
-            PTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class VTPoint {
-        public:
-            VTPoint();
-            double velocity;
-            double timeMilliseconds;
-        };
-
-        class VTCommand {
-        public:
-            VTCommand();
-            int axis;
-            unsigned int pointCount;
-            VTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class VTAdditionalCommand {
-        public:
-            VTAdditionalCommand();
-            unsigned int pointCount;
-            VTPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class ATPoint {
-        public:
-            ATPoint();
-            double acc;
-            double timeMilliseconds;
-        };
-
-        class ATCommand {
-        public:
-            ATCommand();
-            int axis;
-            unsigned int pointCount;
-            ATPoint points[constants::maxPvtAppendPoints];
-        };
-
-        class ATAdditionalCommand {
-        public:
-            ATAdditionalCommand();
-            unsigned int pointCount;
-            ATPoint points[constants::maxPvtAppendPoints];
         };
 
         WMX3APIFUNC StartPos(PosCommand *pPosCommand);
@@ -2500,17 +2125,9 @@ namespace wmx3Api{
 
         WMX3APIFUNC StartJog(JogCommand *pJogCommand);
         WMX3APIFUNC StartJog(TimedJogCommand *pTimedJogCommand);
-        WMX3APIFUNC StartJog(TriggerJogCommand *pJogCommand);
-        WMX3APIFUNC StartJog(TriggerTimedJogCommand *pTimedJogCommand);
-        WMX3APIFUNC StartJog(JogCommand *pJogCommand, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartJog(TimedJogCommand *pTimedJogCommand, TriggerEvents *pTriggerEvents);
 
         WMX3APIFUNC StartJog(unsigned int numCommands, JogCommand *pJogCommand);
         WMX3APIFUNC StartJog(unsigned int numCommands, TimedJogCommand *pTimedJogCommand);
-        WMX3APIFUNC StartJog(unsigned int numCommands, TriggerJogCommand *pJogCommand);
-        WMX3APIFUNC StartJog(unsigned int numCommands, TriggerTimedJogCommand *pTimedJogCommand);
-        WMX3APIFUNC StartJog(unsigned int numCommands, JogCommand *pJogCommand, TriggerEvents *pTriggerEvents);
-        WMX3APIFUNC StartJog(unsigned int numCommands, TimedJogCommand *pTimedJogCommand, TriggerEvents *pTriggerEvents);
 
         WMX3APIFUNC StartPosToJog(TriggerJogCommand *pTriggerJogCommand);
         WMX3APIFUNC StartPosToJog(unsigned int numCommands, TriggerJogCommand *pTriggerJogCommand);
@@ -2581,30 +2198,9 @@ namespace wmx3Api{
             double *pMoveTimeMilliseconds, double *pRemainTimeMilliseconds);
         WMX3APIFUNC SimulateTimeAtDist(SimulateLinearIntplCommand *pSimulateLinearIntplCommand, double specificDistance,
             double *pMoveTimeMilliseconds, double *pRemainTimeMilliseconds, double *pTotalTimeMilliseconds);
-
-        /*-----------------------------------------------------------------------------------------------------------------
-         PVT Motion
-        -----------------------------------------------------------------------------------------------------------------*/
-        WMX3APIFUNC CreatePVTBuffer(int axis, unsigned int points);
-        WMX3APIFUNC FreePVTBuffer(int axis);
-        WMX3APIFUNC GetPVTBufferPoints(int axis, unsigned int* pPoints);
-        WMX3APIFUNC GetPVTBytesPerPoint(unsigned int* pBytes);
-        WMX3APIFUNC StartPVT(PVTCommand* pPVTCommand, unsigned int numAddlCommands = 0, PVTAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPVT(PVTCommand* pPVTCommand, Trigger* pTrigger, unsigned int numAddlCommands = 0, PVTAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPVT(PVTCommand* pPVTCommand, TriggerEvents* pTriggerEvents, unsigned int numAddlCommands = 0, PVTAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPVT(PVTIntplCommand* pPVTCommand, unsigned int numAddlCommands = 0, PVTIntplAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPVT(PVTIntplCommand* pPVTCommand, Trigger* pTrigger, unsigned int numAddlCommands = 0, PVTIntplAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPVT(PVTIntplCommand* pPVTCommand, TriggerEvents* pTriggerEvents, unsigned int numAddlCommands = 0, PVTIntplAdditionalCommand* pPVTAddlCommand = NULL);
-        WMX3APIFUNC StartPT(PTCommand* pPTCommand, unsigned int numAddlCommands = 0, PTAdditionalCommand* pPTAddlCommand = NULL);
-        WMX3APIFUNC StartPT(PTCommand* pPTCommand, Trigger* pTrigger, unsigned int numAddlCommands = 0, PTAdditionalCommand* pPTAddlCommand = NULL);
-        WMX3APIFUNC StartPT(PTCommand* pPTCommand, TriggerEvents* pTriggerEvents, unsigned int numAddlCommands = 0, PTAdditionalCommand* pPTAddlCommand = NULL);
-        WMX3APIFUNC StartVT(VTCommand* pVTCommand, unsigned int numAddlCommands = 0, VTAdditionalCommand* pVTAddlCommand = NULL);
-        WMX3APIFUNC StartVT(VTCommand* pVTCommand, Trigger* pTrigger, unsigned int numAddlCommands = 0, VTAdditionalCommand* pVTAddlCommand = NULL);
-        WMX3APIFUNC StartVT(VTCommand* pVTCommand, TriggerEvents* pTriggerEvents, unsigned int numAddlCommands = 0, VTAdditionalCommand* pVTAddlCommand = NULL);
-        WMX3APIFUNC StartAT(ATCommand* pATCommand, unsigned int numAddlCommands = 0, ATAdditionalCommand* pATAddlCommand = NULL);
-        WMX3APIFUNC StartAT(ATCommand* pATCommand, Trigger* pTrigger, unsigned int numAddlCommands = 0, ATAdditionalCommand* pATAddlCommand = NULL);
-        WMX3APIFUNC StartAT(ATCommand* pATCommand, TriggerEvents* pTriggerEvents, unsigned int numAddlCommands = 0, ATAdditionalCommand* pATAddlCommand = NULL);
     };
+
+
 
     class CoreMotion{
         friend class AxisControl;
@@ -2641,8 +2237,6 @@ namespace wmx3Api{
         WMX3APIFUNC GetVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion);
 
         WMX3APIFUNC GetStatus(CoreMotionStatus* status);
-        WMX3APIFUNC ClearVibrationStatus(int axis);
-        WMX3APIFUNC ClearVibrationStatus(AxisSelection* pAxisSelection);
         WMX3APIFUNC ExecEStop(EStopLevel::T level);
         WMX3APIFUNC ReleaseEStop();
         WMX3APIFUNC TriggerFlightRecorder();

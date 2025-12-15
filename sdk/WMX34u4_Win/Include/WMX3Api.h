@@ -5,10 +5,6 @@
 * This file contains the declarations of the base WMX3 API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by any module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_API_LIB_H
@@ -36,7 +32,6 @@ namespace wmx3Api{
         static const int maxDevices = 256;
         static const int maxInterrupts = 2;
         static const int maxEventInterpolationAxes = 8;
-        static const int maxLogOutputDataSize = 100;
     }
 
     class ErrorCode{
@@ -210,7 +205,6 @@ namespace wmx3Api{
             UpdatesListUninitialized,
             UpdatesListDoesNotMatchInstalledUpdates,
             UpdatesListTimeout,
-            ChannelCountOutOfRange,
 
             UnknownError
         };
@@ -259,7 +253,6 @@ namespace wmx3Api{
             RtexPlatform   = 3,
             MIIIPlatform   = 4,
             CCLinkPlatform = 5,
-			M4Platform	   = 6,
 
             CoreMotion     = 10,
             Log            = 11,
@@ -392,27 +385,7 @@ namespace wmx3Api{
             JerkRatioFixedVelocityS,
             JerkLimitedFixedVelocityT,
             JerkLimitedFixedVelocityS,
-            ParabolicVelocity,
-            CycleTimeIndependentTrapezoidal,
-            CycleTimeIndependentSCurve,
-            CycleTimeIndependentJerkRatio,
-            CycleTimeIndependentParabolic,
-            CycleTimeIndependentSin,
-            CycleTimeIndependentAdvancedS,
-            CycleTimeIndependentTrapezoidalMAT,
-            CycleTimeIndependentJerkLimited,
-            CycleTimeIndependentJerkLimitedSCurve,
-            CycleTimeIndependentJerkLimitedAdvancedS,
-            CycleTimeIndependentTwoVelocityTrapezoidal,
-            CycleTimeIndependentTwoVelocitySCurve,
-            CycleTimeIndependentTwoVelocityJerkRatio,
-            CycleTimeIndependentTimeAccTrapezoidal,
-            CycleTimeIndependentTimeAccSCurve,
-            CycleTimeIndependentTimeAccJerkRatio,
-            CycleTimeIndependentTimeAccParabolic,
-            CycleTimeIndependentTimeAccSin,
-            CycleTimeIndependentTimeAccAdvancedS,
-            CycleTimeIndependentParabolicVelocity
+            ParabolicVelocity
         };
     };
 
@@ -873,18 +846,6 @@ namespace wmx3Api{
         virtual WMX3APIFUNC SetInputData(int moduleId, unsigned char* data, unsigned int dataSize) = 0;
     };
 
-    class LogOutput {
-    public:
-        LogOutput();
-
-        unsigned int count;
-        unsigned char overflowFlag;
-        long long cycleCounter[constants::maxLogOutputDataSize];
-
-        virtual unsigned int GetModuleId() = 0;
-        virtual WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex) = 0;
-    };
-
     class WMX3Api;
 
     class WMX3Api{
@@ -907,12 +868,8 @@ namespace wmx3Api{
 
         static WMX3APIFUNC PrintToFile(const char* filePath, const char * format, ...);
         static WMX3APIFUNC PrintToFile(const wchar_t* filePath, const wchar_t * format, ...);
-        static WMX3APIFUNC PrintToFile(const char* filePath, int charsToPrint, const char* buff);
-        static WMX3APIFUNC PrintToFile(const wchar_t* filePath, int charsToPrint, const wchar_t* buff);
         static WMX3APIFUNC PrintToFileIfExist(const char* filePath, const char * format, ...);
         static WMX3APIFUNC PrintToFileIfExist(const wchar_t* filePath, const wchar_t * format, ...);
-        static WMX3APIFUNC PrintToFileIfExist(const char* filePath, int charsToPrint, const char* buff);
-        static WMX3APIFUNC PrintToFileIfExist(const wchar_t* filePath, int charsToPrint, const wchar_t* buff);
 
         static WMX3APIFUNC GetStdOutStr(char* buff, int buffSize, unsigned char* isWideChar, int* strlen);
         static WMX3APIFUNC GetStdOutDataSize();
@@ -921,15 +878,15 @@ namespace wmx3Api{
 
         bool IsDeviceValid();
 
-        WMX3APIFUNC StartEngine(const char* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
-        WMX3APIFUNC StartEngine(const wchar_t* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
-        WMX3APIFUNC RestartEngine(const char* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
-        WMX3APIFUNC RestartEngine(const wchar_t* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC StartEngine(char* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC StartEngine(wchar_t* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC RestartEngine(char* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC RestartEngine(wchar_t* path, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
         WMX3APIFUNC StopEngine(unsigned int waitTimeMilliseconds = 0);
 
-        WMX3APIFUNC CreateDevice(const char* path, DeviceType::T type = DeviceType::T::DeviceTypeNormal, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
-        WMX3APIFUNC CreateDevice(const wchar_t* path, DeviceType::T type = DeviceType::T::DeviceTypeNormal, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
-        WMX3APIFUNC CloseDevice(bool exitNoDev = true);
+        WMX3APIFUNC CreateDevice(char* path, DeviceType::T type = DeviceType::T::DeviceTypeNormal, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC CreateDevice(wchar_t* path, DeviceType::T type = DeviceType::T::DeviceTypeNormal, unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0);
+        WMX3APIFUNC CloseDevice();
         WMX3APIFUNC GetDeviceID(int *id);
 
         WMX3APIFUNC AutoQuitWithoutActiveDev(bool quit);
@@ -953,8 +910,8 @@ namespace wmx3Api{
         WMX3APIFUNC GetEngineStatus(EngineStatus* status);
         WMX3APIFUNC GetAllDevices(DevicesInfoA* devices);
         WMX3APIFUNC GetAllDevices(DevicesInfoW* devices);
-        WMX3APIFUNC SetDeviceName(const char* name);
-        WMX3APIFUNC SetDeviceName(const wchar_t* name);
+        WMX3APIFUNC SetDeviceName(char* name);
+        WMX3APIFUNC SetDeviceName(wchar_t* name);
         WMX3APIFUNC GetDeviceName(char* nameBuf, unsigned int bufSize);
         WMX3APIFUNC GetDeviceName(wchar_t* nameBuf, unsigned int bufSize);
 

@@ -5,10 +5,6 @@
 * This file contains the declarations of the IO module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the IO module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_IO_API_H
@@ -23,15 +19,12 @@ namespace wmx3Api{
         enum {
             SharedMemoryNull = 0x00014000,
             IOCountOutOfRange,
-            ParameterSettingInvalid,
         };
     };
 
     namespace constants {
         static const int maxIoLogAddressSize = 256;
         static const int maxIoLogFormatSize = 100;
-        static const int maxLogOutputIoInputByteSize = 128;
-        static const int maxLogOutputIoOutputByteSize = 128;
     };
 
     class IoLogInput : public LogInput {
@@ -50,16 +43,6 @@ namespace wmx3Api{
         unsigned int inputIOFormatCount;
         AIOFormat  outputIOLogFormat[constants::maxIoLogFormatSize];
         unsigned int outputIOFormatCount;
-    };
-
-    class IoLogOutput : public LogOutput {
-    public:
-        IoLogOutput();
-        unsigned int GetModuleId();
-        WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex);
-
-        char input[constants::maxLogOutputDataSize][constants::maxLogOutputIoInputByteSize];
-        char output[constants::maxLogOutputDataSize][constants::maxLogOutputIoOutputByteSize];
     };
 
     class IoEventInput : public EventInput {
@@ -215,8 +198,6 @@ namespace wmx3Api{
         void close();
         HANDLE hdl;
         void* ioData;
-        HANDLE hdlMask;
-        void* maskData;
 
     public:
         Io(WMX3Api *f);
@@ -245,11 +226,6 @@ namespace wmx3Api{
         WMX3APIFUNC SetOutAnalogDataUShort(int addr, unsigned short analogData);
         WMX3APIFUNC SetOutAnalogDataInt(int addr, int analogData);
         WMX3APIFUNC SetOutAnalogDataUInt(int addr, unsigned int analogData);
-        WMX3APIFUNC SetOutBitMaskMode(bool enable);
-        WMX3APIFUNC SetOutBitMaskBit(int addr, int bit, unsigned char data);
-        WMX3APIFUNC SetOutBitMaskByte(int addr, unsigned char data);
-        WMX3APIFUNC SetOutBitMaskBytes(int addr, int size, unsigned char* pData);
-        WMX3APIFUNC SetOutBitMaskBits(int* pAddr, int* pBit, unsigned char* pData, int count);
 
         WMX3APIFUNC GetInBit(int addr, int bit, unsigned char *pData);
         WMX3APIFUNC GetInByte(int addr, unsigned char *pData);
@@ -270,10 +246,6 @@ namespace wmx3Api{
         WMX3APIFUNC GetOutAnalogDataUShort(int addr, unsigned short *pAnalogData);
         WMX3APIFUNC GetOutAnalogDataInt(int addr, int *pAnalogData);
         WMX3APIFUNC GetOutAnalogDataUInt(int addr, unsigned int *pAnalogData);
-        WMX3APIFUNC GetOutBitMaskMode(bool* pEnable);
-        WMX3APIFUNC GetOutBitMaskBit(int addr, int bit, unsigned char* pData);
-        WMX3APIFUNC GetOutBitMaskByte(int addr, unsigned char* pData);
-        WMX3APIFUNC GetOutBitMaskBytes(int addr, int size, unsigned char* pData);
 
         WMX3APIFUNC SetOutBitEx(int addr, int bit, unsigned char data);
         WMX3APIFUNC SetOutByteEx(int addr, unsigned char data);

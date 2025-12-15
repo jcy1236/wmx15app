@@ -5,10 +5,6 @@
 * This file contains the declarations of the UserMemory module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the UserMemory module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_USER_MEMORY_API_H
@@ -23,7 +19,6 @@ namespace wmx3Api{
         static const int maxUserMemoryReadWriteBytes = 1024*248;
         static const int maxUserMemoryLogAddressSize = 1500;
         static const int maxUserMemoryLogFormatSize = 100;
-		static const int maxLogOutputMDataByteSize = 128;
     }
 
     class UserMemoryErrorCode : public ErrorCode{
@@ -182,15 +177,6 @@ namespace wmx3Api{
 
         AIOFormat mLogFormat[constants::maxUserMemoryLogFormatSize];
         unsigned int mFormatCount;
-    };
-
-    class UserMemoryLogOutput : public LogOutput {
-    public:
-        UserMemoryLogOutput();
-        unsigned int GetModuleId();
-        WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex);
-
-        char data[constants::maxLogOutputDataSize][constants::maxLogOutputMDataByteSize];
     };
 
     class UserMemory {

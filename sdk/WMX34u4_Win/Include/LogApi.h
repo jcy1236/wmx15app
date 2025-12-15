@@ -5,10 +5,6 @@
 * This file contains the declarations of the Log module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used the Log module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_LOG_API_H
@@ -22,7 +18,7 @@ namespace wmx3Api{
     namespace constants {
         static const unsigned int maxLogBufferSize = ((unsigned int)2048 * 1024);
         static const int maxLogBufferSampleSize = 80;
-        static const int maxLogChannel = 16;
+        static const int maxLogChannel = 8;
         static const int maxLogHeaderBytes = 4096;
         static const int maxLogHeaderLines = 2048;
         static const int maxLogDirSize = 260;
@@ -32,7 +28,7 @@ namespace wmx3Api{
         static const int maxLogPrecision = 20;
 
         static const int maxMemLogBufferSize = 1024;
-        static const int maxMemLogChannel = 16;
+        static const int maxMemLogChannel = 8;
         static const int maxMemLogAxesSize = 8;
         static const int maxMemLogDataSize = 100;
         static const int maxMemLogIoInputByteSize = 128;
@@ -96,8 +92,6 @@ namespace wmx3Api{
         double millisecondsWritten;
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class LogOptions{
     public:
         LogOptions();
@@ -129,31 +123,12 @@ namespace wmx3Api{
         unsigned char detailOpState;
         unsigned char userOffsetCommandPos;
         unsigned char userOffsetFeedbackPos;
-        unsigned char axisCommandMode;
-        unsigned char axisCommandModeFeedback;
-		unsigned char followingErrorAlarm;
-		unsigned char ampAlarm;
-		unsigned char ampAlarmCode;
-		unsigned char servoOn;
-		unsigned char servoOffline;
-		unsigned char positiveLS;
-		unsigned char negativeLS;
-		unsigned char nearPositiveLS;
-		unsigned char nearNegativeLS;
-		unsigned char externalPositiveLS;
-		unsigned char externalNegativeLS;
-		unsigned char positiveSoftLimit;
-		unsigned char negativeSoftLimit;
-		unsigned char homeState;
-		unsigned char homeSwitch;
-		unsigned char homeDone;
         unsigned char triggerOnCommandChange;
         unsigned char triggerOnEvent;
         unsigned int triggerEventID;
     };
 
     //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class IOLogFormat{
     public:
         IOLogFormat();
@@ -163,7 +138,6 @@ namespace wmx3Api{
     };
 
     //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MLogFormat {
     public:
         MLogFormat();
@@ -184,8 +158,6 @@ namespace wmx3Api{
         double interruptPeriod;
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MemoryLogAxisData{
     public:
         MemoryLogAxisData();
@@ -217,12 +189,8 @@ namespace wmx3Api{
         int detailOpState;
         double userOffsetCommandPos;
         double userOffsetFeedbackPos;
-        int axisCommandMode;
-        int axisCommandModeFeedback;
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MemoryLogIOData{
     public:
         MemoryLogIOData();
@@ -230,8 +198,6 @@ namespace wmx3Api{
         char output[constants::maxMemLogIoOutputByteSize];
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MemoryLogMData {
     public:
         MemoryLogMData();
@@ -245,8 +211,6 @@ namespace wmx3Api{
         unsigned int triggerEventID[constants::maxMemLogTriggerEventSize];
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MemoryLogDatas{
     public:
         MemoryLogDatas();
@@ -256,8 +220,6 @@ namespace wmx3Api{
         MemoryLogMData logMData;
     };
 
-    //[Deprecated]
-    //This class is deprecated and will be removed in a future release.
     class MemoryLogData{
     public:
         MemoryLogData();
@@ -358,31 +320,12 @@ namespace wmx3Api{
         WMX3APIFUNC SetInputData(int moduleId, unsigned char* data, unsigned int dataSize);
     };
 
-    class LogApiLogOutput : public LogOutput {
-    public:
-        LogApiLogOutput();
-        unsigned int GetModuleId();
-        WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex);
-    };
-
-    class LogType {
-    public:
-        enum T {
-            Log,
-            MemoryLog
-        };
-    };
-
-    class ApiLogType {
+	class ApiLogInfo{
 	public:
-		enum T {
+		enum LogType {
 			Command,
 			Response
 		};
-	};
-
-	class ApiLogInfo{
-	public:
 		ApiLogInfo();
 		int majorVer;
 		int minorVer;
@@ -391,19 +334,18 @@ namespace wmx3Api{
 		int devId;
 		int moduleId;
 		int mode;
-		ApiLogType::T type;
+		LogType type;
 		unsigned int dataLen;
 		unsigned short logId;
-		long long timestamp;
 	};
 
 	class ApiLogOptions{
 	public:
 		ApiLogOptions();
 		unsigned int sizePerFile;
-		bool deviceExcluded[constants::maxDevices];
-		bool moduleExcluded[constants::moduleLen];
-		bool moduleResp[constants::moduleLen];
+		unsigned char deviceExcluded[constants::maxDevices];
+		unsigned char moduleExcluded[constants::moduleLen];
+		unsigned char moduleResp[constants::moduleLen];
 	};
 
 	class ApiLogState {
@@ -444,8 +386,6 @@ namespace wmx3Api{
         static WMX3APIFUNC ErrorToString(int errCode, wchar_t *pString, unsigned int size);
 		static WMX3APIFUNC ApiLogToString(unsigned char* pLogData, unsigned int logDataSize, char *pString, unsigned int size);
 		static WMX3APIFUNC ApiLogToString(unsigned char* pLogData, unsigned int logDataSize, wchar_t *pString, unsigned int size);
-		static WMX3APIFUNC TimestampToString(long long timestamp, char *pString, unsigned int size);
-		static WMX3APIFUNC TimestampToString(long long timestamp, wchar_t *pString, unsigned int size);
         static WMX3APIFUNC GetLibVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion);
 
         bool IsDeviceValid();
@@ -467,56 +407,35 @@ namespace wmx3Api{
         WMX3APIFUNC GetDetailLogStatus(unsigned int channel, DetailLogStatus *pStatus);
         
         //[For Custom Log Developers]
-        WMX3APIFUNC SetCustomLog(unsigned int channel, unsigned int moduleId, void *data, unsigned int dataSize, LogType::T type);
+        WMX3APIFUNC SetCustomLog(unsigned int channel, unsigned int moduleId, void *data, unsigned int dataSize);
 
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetLog(unsigned int channel, char *pPath, unsigned int milliseconds,
             unsigned int samplePeriodInCycles, AxisSelection *pAxisSelection, LogOptions *pOptions,
             unsigned int mode, unsigned int burstWriteLines = 4, unsigned int scale = 9);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetLog(unsigned int channel, wchar_t *pPath, unsigned int milliseconds,
             unsigned int samplePeriodInCycles, AxisSelection *pAxisSelection, LogOptions *pOptions,
             unsigned int mode, unsigned int burstWriteLines = 4, unsigned int scale = 9);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetIOLog(unsigned int channel, IOAddress *pInputIOAddress, unsigned int inputSize,
             IOAddress *pOutputIOAddress, unsigned int outputSize);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetIOLogFormat(unsigned int channel, IOLogFormat *pInputIOLogFormat, unsigned int inputIOFormatCount,
             IOLogFormat *pOutputIOLogFormat, unsigned int outputIOFormatCount);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetMLog(unsigned int channel, MAddress *pMAddress, unsigned int size);
         //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC SetMLogFormat(unsigned int channel, MLogFormat *pMLogFormat, unsigned int mFormatCount);
 
         WMX3APIFUNC OpenMemoryLogBuffer(unsigned int channel);
         WMX3APIFUNC CloseMemoryLogBuffer(unsigned int channel);
-        WMX3APIFUNC SetMemoryLog(unsigned int channel, LogInput* input);
-        WMX3APIFUNC SetMemoryLogOption(unsigned int channel, MemoryLogOptions *pOption);
-        WMX3APIFUNC GetMemoryLogOption(unsigned int channel, MemoryLogOptions *pOption);
+        WMX3APIFUNC SetMemoryLog(unsigned int channel, AxisSelection *pAxisSelection, MemoryLogOptions *pOption);
+        WMX3APIFUNC SetMemoryIOLog(unsigned int channel, IOAddress *pInputIOAddress, unsigned int inputSize, IOAddress *pOutputIOAddress, unsigned int outputSize);
+        WMX3APIFUNC SetMemoryMLog(unsigned int channel, MAddress *pMAddress, unsigned int size);
         WMX3APIFUNC StartMemoryLog(unsigned int channel);
         WMX3APIFUNC StopMemoryLog(unsigned int channel);
-        WMX3APIFUNC ResetMemoryLog(unsigned int channel);
         WMX3APIFUNC GetMemoryLogStatus(unsigned int channel, MemoryLogStatus *pStatus);
-        WMX3APIFUNC GetMemoryLogData(unsigned int channel, LogOutput *pOutput);
-        WMX3APIFUNC GetMemoryLogData(unsigned int channel, LogOutput **ppOutput, unsigned int size);
-
-        //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
-        WMX3APIFUNC SetMemoryLog(unsigned int channel, AxisSelection *pAxisSelection, MemoryLogOptions *pOption);
-        //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
-        WMX3APIFUNC SetMemoryIOLog(unsigned int channel, IOAddress *pInputIOAddress, unsigned int inputSize, IOAddress *pOutputIOAddress, unsigned int outputSize);
-        //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
-        WMX3APIFUNC SetMemoryMLog(unsigned int channel, MAddress *pMAddress, unsigned int size);
-        //[Deprecated]
-        //This function is deprecated and will be removed in a future release.
         WMX3APIFUNC GetMemoryLogData(unsigned int channel, MemoryLogData *pData);
 
 		WMX3APIFUNC SetApiLog(char *pPath, ApiLogOptions* pOptions = NULL, unsigned int buffSize = 16777216);

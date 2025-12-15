@@ -5,10 +5,6 @@
 * This file contains the declarations of the PMMotion module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the PMMotion module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_PM_MOTION_API_H
@@ -315,10 +311,6 @@ namespace wmx3Api{
 		void init(WMX3Api *f);
 		void close();
 
-		PMAxisControl::HomeProfiles* homeProfiles;
-		PMAxisControl::VelocityProfiles* velProfiles;
-		PMAxisControl::TorqueProfiles* trqProfiles;
-
 	public:
 		PMMotion(WMX3Api *f);
 		PMMotion(const PMMotion& src);
@@ -343,6 +335,9 @@ namespace wmx3Api{
 		PMAxisHome *home;
 		PMAxisVelocity *velocity;
 		PMAxisTorque *torque;
+		PMAxisControl::HomeProfiles *homeProfiles;
+		PMAxisControl::VelocityProfiles *velProfiles;
+		PMAxisControl::TorqueProfiles *trqProfiles;
 	};
 }
 

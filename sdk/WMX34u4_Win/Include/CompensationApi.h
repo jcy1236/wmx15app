@@ -5,10 +5,6 @@
 * This file contains the declarations of the Compensation module API functions for the C++ library.
 * This file contains constants, enumerators, and data types that are used by the Compensation module.
 *
-* Copyright (c) 2011-2021, Soft Servo Systems, Inc.
-*
-* All Rights Reserved. Reproduction or modification of this program is not allowed by any other users.
-*
 **********************************************************************************************************************/
 
 #ifndef WMX3_COMPENSATION_API_H
@@ -20,10 +16,8 @@ namespace wmx3Api{
 
     namespace constants {
         static const int maxPitchErrorCompPoints = 1024;
-        static const int maxPitchErrorCompFreePositionRangeMultiplier = 40000;
-        static const int max2dPitchErrorCompPoints = 512;
-        static const int max2dPitchErrorCompChannel = 32;
-        static const int max2dPitchErrorCompFreePositionRangeMultiplier = 40000;
+        static const int max2dPitchErrorCompPoints = 128;
+        static const int max2dPitchErrorCompChannel = 5;
         static const int maxSizeSet2dPitchErrorCompValue = 62;
     }
 
@@ -38,13 +32,7 @@ namespace wmx3Api{
             PitchCountOutOfRange,
             PitchOriginIndexOutOfRange,
             PitchIntervalOutOfRange,
-            EdgeDropoffDistanceOutOfRange,
-            CompensationAxisNotPosMode,
-            ReferenceAxisNotPosMode,
-            NotUsingPitchIntervalMode,
-            NotUsingFreePositionMode,
-            PitchPositionRangeTooLarge,
-            PitchPositionNotInAscendingOrder
+            EdgeDropoffDistanceOutOfRange
         };
     };
 
@@ -87,17 +75,6 @@ namespace wmx3Api{
         PitchErrorCompensationOptions options;
     };
 
-    class PitchErrorCompensationFreePositionData{
-    public:
-        PitchErrorCompensationFreePositionData();
-        int enable;
-        double pitchPosition[constants::maxPitchErrorCompPoints];
-        int pitchCount;
-        double pitchCompensationValue[constants::maxPitchErrorCompPoints];
-        double edgeDropoffDistance;
-        PitchErrorCompensationOptions options;
-    };
-
     class TwoDPitchErrorCompensationData{
     public:
         TwoDPitchErrorCompensationData();
@@ -108,19 +85,6 @@ namespace wmx3Api{
         int pitchOriginIndex[2];
         double pitchInterval[2];
         char pitchIntervalDirection[2];
-        int pitchCount[2];
-        double pitchCompensationValue[constants::max2dPitchErrorCompPoints][constants::max2dPitchErrorCompPoints];
-        double edgeDropoffDistance[2];
-        PitchErrorCompensationOptions options;
-    };
-
-    class TwoDPitchErrorCompensationFreePositionData{
-    public:
-        TwoDPitchErrorCompensationFreePositionData();
-        int enable;
-        int axis;
-        int referenceAxis[2];
-        double pitchPosition[2][constants::max2dPitchErrorCompPoints];
         int pitchCount[2];
         double pitchCompensationValue[constants::max2dPitchErrorCompPoints][constants::max2dPitchErrorCompPoints];
         double edgeDropoffDistance[2];
@@ -162,17 +126,13 @@ namespace wmx3Api{
         WMX3APIFUNC GetVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion);
 
         WMX3APIFUNC SetPitchErrorCompensation(int axis, PitchErrorCompensationData *pitchErrCompData);
-        WMX3APIFUNC SetPitchErrorCompensation(int axis, PitchErrorCompensationFreePositionData *pitchErrCompData);
         WMX3APIFUNC GetPitchErrorCompensation(int axis, PitchErrorCompensationData *pitchErrCompData);
-        WMX3APIFUNC GetPitchErrorCompensation(int axis, PitchErrorCompensationFreePositionData *pitchErrCompData);
         WMX3APIFUNC EnablePitchErrorCompensation(int axis);
         WMX3APIFUNC DisablePitchErrorCompensation(int axis);
         WMX3APIFUNC GetPitchErrorCompensationAtPosition(int axis, double pos, double *pCompensation);
 
         WMX3APIFUNC Set2DPitchErrorCompensation(unsigned int channel, TwoDPitchErrorCompensationData *pitchErrCompData2D);
-        WMX3APIFUNC Set2DPitchErrorCompensation(unsigned int channel, TwoDPitchErrorCompensationFreePositionData *pitchErrCompData2D);
         WMX3APIFUNC Get2DPitchErrorCompensation(unsigned int channel, TwoDPitchErrorCompensationData *pitchErrCompData2D);
-        WMX3APIFUNC Get2DPitchErrorCompensation(unsigned int channel, TwoDPitchErrorCompensationFreePositionData *pitchErrCompData2D);
         WMX3APIFUNC Enable2DPitchErrorCompensation(unsigned int channel);
         WMX3APIFUNC Disable2DPitchErrorCompensation(unsigned int channel);
         WMX3APIFUNC Get2DPitchErrorCompensationAtPosition(unsigned int channel, double refPos1, double refPos2, double *pCompensation);

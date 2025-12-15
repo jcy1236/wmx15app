@@ -22,12 +22,8 @@ namespace wmx3Api {
             static const int maxFoEFileNameLen = 64;
             static const int maxSdoInfoNameLen = 64;
             static const int maxSdoInfoODListSize = 450;
-            static const int maxSdoInfoEDListSize = 256;
+            static const int maxSdoInfoEDListSize = 50;
 			static const int maxLogPdoSize = 256;
-			static const int maxLogPdoDataSize = 8;
-			static const int maxMappedRxPdo = 128;
-			static const int maxMappedTxPdo = 128;
-			static const int maxIoExtNameLen = 32;
         }
 
         class EcStateMachine {
@@ -89,20 +85,6 @@ namespace wmx3Api {
             };
         };
 
-		class EcDiagnosisScanState {
-		public:
-			enum T {
-				None = 0x00,
-				Scanning,
-				Done,
-				MemoryAllocError,
-				PortStateError,
-				PortOpenError,
-
-				Unknown
-			};
-		};
-
         class EcOperationMode {
         public:
             enum T {
@@ -126,8 +108,7 @@ namespace wmx3Api {
 		public:
 			enum T {
 				CyclicMode,
-				PPMode,
-				MonitorMode
+				PPMode
 			};
 		};
 
@@ -178,18 +159,13 @@ namespace wmx3Api {
 				PdoNotMapped,
                 SlaveNotSupportVirtualSerial,
                 OpenComFailed,
-                CreateComProcessThreadFailed,
-				NotInMonitorMode,
-				VirtualSlaveNotEnabled,
-				OtherOperationIsRunning,
-				IoExtNotAttached,
-				IoExtFuncNotSupported,
+                CreateComProcessThreadFailed
             };
 
             static int ConvertEcErrorCode(int errCode);
         };
 
-		class EcLogInputPdo{
+		class EcLogPdo{
 		public:
 			enum DataType {
 				Signed,
@@ -210,44 +186,8 @@ namespace wmx3Api {
 			WMX3APIFUNC GetInputData(unsigned char* buff, int buffSize, unsigned int* dataSize);
 			WMX3APIFUNC SetInputData(int moduleId, unsigned char* data, unsigned int dataSize);
 
-			int masterId;
 			int numOfPdo;
-			EcLogInputPdo pdo[constants::maxLogPdoSize];
-		};
-
-		class EcLogOutputPdo{
-		public:
-			EcLogOutputPdo();
-
-			int slaveId;
-			unsigned int index;
-			unsigned int subIndex;
-			int length;
-			unsigned char data[constants::maxLogPdoDataSize];
-		};
-
-		class EcLogOutputData{
-		public:
-			EcLogOutputData();
-
-			int masterId;
-			int numOfPdo;
-			EcLogOutputPdo pdo[constants::maxLogPdoSize];
-		};
-
-		class EcLogOutput : public LogOutput {
-		public:
-			EcLogOutput();
-			unsigned int GetModuleId();
-			WMX3APIFUNC SetOutputData(int moduleId, unsigned char* cfgData, unsigned int cfgDataSize, unsigned char* data, unsigned int dataSize, unsigned int dataIndex, unsigned int storeIndex);
-
-			EcLogOutputData ecData[wmx3Api::constants::maxLogOutputDataSize];
-		};
-
-		class EcAoESender{
-		public:
-			unsigned char senderNetId[6];
-			unsigned short senderPort;
+			EcLogPdo pdo[constants::maxLogPdoSize];
 		};
 
         class EcSlaveSdoInfoObjectDescription {
@@ -364,7 +304,7 @@ namespace wmx3Api {
 
             unsigned char dcSupport;
             unsigned char dcWidth;          //0: none, 1: 32bit, 2: 64bit
-            unsigned char portState[4];     //bit0: Physical link, bit1: Loop, bit2: Communication, bit3: Broken
+            unsigned char portState[4];     //bit0: physical link, bit1: Loop, bit2: Communication
             int neighbor[4];
             unsigned int propagaDelay;
             unsigned long long systemTime;
@@ -388,13 +328,12 @@ namespace wmx3Api {
         public:
             long commPeriod;
             long long cycleCounter;
-            long long interruptIntervalCount[9];
-            long long cycleProcessTimeCount[6];
-            long long processTimeCount[6];
-            long long commandProcessTimeCount[6];
-            long long feedbackProcessTimeCount[6];
-            long long communicateProcessTimeCount[6];
-			long long dcDiffCount[12];
+            double interruptIntervalRatio[9];
+            double cycleProcessTimeRatio[6];
+            double processTimeRatio[6];
+            double commandProcessTimeRatio[6];
+            double feedbackProcessTimeRatio[6];
+            double communicateProcessTimeRatio[6];
 
             unsigned int txDelay;
             unsigned int minTxDelay;
@@ -403,8 +342,6 @@ namespace wmx3Api {
             unsigned int packetTimeout;
             unsigned int packetLossMode[4];
             unsigned int packetTimeoutMode[4];
-
-			unsigned int dlEventCount;
 
             unsigned long long minRefClockInterval;
             unsigned long long maxRefClockInterval;
@@ -433,93 +370,7 @@ namespace wmx3Api {
             EcHotconnectState::T hcState;
             EcHotconnectAbortCode::T hcAbortCode;
             long hcErrorCode;
-
-			EcDiagnosisScanState::T diagnosisScanState;
         };
-
-		class EcVirtualSlavePdo{
-		public:
-			unsigned int index;
-			unsigned int subIndex;
-			unsigned int size;
-			int offset;
-		};
-
-		class EcVirtualSlaveDcStatisticsInfo{
-		public:
-			long long minRefClockIntvl;						//unit: ns
-			long long sysIntvlWhenMinRefClockIntvl;			//unit: ns
-			long long maxRefClockIntvl;						//unit: ns
-			long long sysIntvlWhenMaxRefClockIntvl;			//unit: ns
-			long long avgRefClockIntvl;						//unit: ns
-
-			long long minSysClockIntvl;						//unit: ns
-			long long maxSysClockIntvl;						//unit: ns
-			long long avgSysClockIntvl;						//unit: ns
-
-			unsigned long long count;
-		};
-
-		class EcVirtualSlaveStatisticsInfo{
-		public:
-			EcVirtualSlaveDcStatisticsInfo dc;
-		};
-
-		class EcVirtualSlaveInfo{
-		public:
-			EcStateMachine::T state;
-			short address;
-			unsigned char enabled;
-
-			unsigned int vendorId;
-			unsigned int productCode;
-			unsigned int revisionNo;
-			unsigned int serialNo;
-			unsigned int alias;
-
-			unsigned int commPeriod;
-
-			unsigned int numOfMappedRxPdo;
-			EcVirtualSlavePdo mappedRxPdo[constants::maxMappedRxPdo];
-			unsigned int numOfMappedTxPdo;
-			EcVirtualSlavePdo mappedTxPdo[constants::maxMappedTxPdo];
-
-			EcVirtualSlaveStatisticsInfo statistics;
-		};
-
-		class EcMonitorDcStatisticsInfo{
-		public:
-			long long minRefClockIntvl;						//unit: ns
-			long long sysIntvlWhenMinRefClockIntvl;			//unit: ns
-			long long maxRefClockIntvl;						//unit: ns
-			long long sysIntvlWhenMaxRefClockIntvl;			//unit: ns
-			long long avgRefClockIntvl;						//unit: ns
-
-			long long minSysClockIntvl;						//unit: ns
-			long long maxSysClockIntvl;						//unit: ns
-			long long avgSysClockIntvl;						//unit: ns
-
-			unsigned long long count;
-		};
-
-		class EcMonitorStatisticsInfo{
-		public:
-			EcMonitorDcStatisticsInfo dc;
-		};
-
-		class EcMonitorInfo{
-		public:
-			unsigned char enabled;
-
-			int id;
-			unsigned int commPeriod;
-			int numOfSlaves;
-			int position;
-
-			EcMonitorStatisticsInfo statistics;
-
-			EcVirtualSlaveInfo virtualSlave;
-		};
 
         class EcMasterInfo {
         public:
@@ -542,25 +393,25 @@ namespace wmx3Api {
             EcMasterInfo masters[constants::maxMasters];
         };
 
-        typedef int (*EcSdoDownloadCallBack)(int result, int masterid, int slaveid, int index, int subindex, EcSdoType::T sdoType, int len, unsigned char* data, unsigned int errorCode);
-        typedef int (*EcSdoUploadCallBack)(int result, int masterid, int slaveid, int index, int subindex, EcSdoType::T sdoType, int len, unsigned char* data, unsigned int errorCode);
-        typedef int (*EcRegisterWriteCallBack)(int result, int masterid, int slaveid, int off, int len, unsigned char* data);
-        typedef int (*EcRegisterReadCallBack)(int result, int masterid, int slaveid, int off, int len, unsigned char* data);
-        typedef int (*EcRegisterBroadcastWriteCallBack)(int result, int masterid, int off, int len, unsigned char* data, int wkc);
-        typedef int (*EcRegisterBroadcastReadCallBack)(int result, int masterid, int off, int len, unsigned char* data, int wkc);
-        typedef int (*EcSdoInfoGetODListCallBack)(int result, int masterid, int slaveid, EcObjectDescriptionListType::T type, EcSlaveSdoInfoObjectDescriptionList* list);
-        typedef int (*EcSdoInfoGetEDListCallBack)(int result, int masterid, int slaveid, int index, EcSlaveSdoInfoEntryDescriptionList* list);
-        typedef int (*EcFoEReadCallBack)(int result, int masterid, int slaveId, wchar_t* filePath, char* fileName, unsigned int password, unsigned int errorCode);
-        typedef int (*EcFoEWriteCallBack)(int result, int masterid, int slaveId, wchar_t* filePath, char* fileName, unsigned int password, unsigned int errorCode);
-        typedef int (*EcSIIWriteCallBack)(int result, int masterid, int slaveid, int addr, int len, unsigned char* data);
-        typedef int (*EcSIIReadCallBack)(int result, int masterid, int slaveid, int addr, int len, unsigned char* data);
-        typedef int (*EcAoEReadCallBack)(int result, int masterid, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned char senderNetId[6], unsigned short senderPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* aoeBuff, unsigned int errorCode);
-        typedef int (*EcAoEWriteCallBack)(int result, int masterid, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned char senderNetId[6], unsigned short senderPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* aoeData, unsigned int errorCode);
-        typedef int (*EcAoEWriteControlCallBack)(int result, int masterid, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned char senderNetId[6], unsigned short senderPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* aoeData, unsigned int errorCode);
-        typedef int (*EcSoEReadCallBack)(int result, int masterid, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int buffSize, unsigned char* readSoEBuffer, unsigned int errorCode);
-        typedef int (*EcSoEWriteCallBack)(int result, int masterid, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, unsigned int errorCode);
-        typedef int (*EcVoEReadCallBack)(int result, int masterid, int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int readDataSize, unsigned char* readVoEBuffer);
-        typedef int (*EcVoEWriteCallBack)(int result, int masterid, int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int writeDataSize, unsigned char* writeAoEData);
+        typedef int (*EcSdoDownloadCallBack)(int, int, int, int, int, EcSdoType::T, int, unsigned char*, unsigned int); //result, masterid, slaveid, index, subindex, sdoType, len, data, error code
+        typedef int (*EcSdoUploadCallBack)(int, int, int, int, int, EcSdoType::T, int, unsigned char*, unsigned int);   //result, masterid, slaveid, index, subindex, sdoType, len, data, error code
+        typedef int (*EcRegisterWriteCallBack)(int, int, int, int, int, unsigned char*); //result, masterid, slaveid, off, len, data
+        typedef int (*EcRegisterReadCallBack)(int, int, int, int, int, unsigned char*); //result, masterid, slaveid, off, len, data
+        typedef int (*EcRegisterBroadcastWriteCallBack)(int, int, int, int, unsigned char*, int); //result, masterid, off, len, data, wkc
+        typedef int (*EcRegisterBroadcastReadCallBack)(int, int, int, int, unsigned char*, int); //result, masterid, off, len, data, wkc
+        typedef int (*EcSdoInfoGetODListCallBack)(int, int, int, EcObjectDescriptionListType::T, EcSlaveSdoInfoObjectDescriptionList*); //result, masterid, slaveid, type, list
+        typedef int (*EcSdoInfoGetEDListCallBack)(int, int, int, int, EcSlaveSdoInfoEntryDescriptionList*); //result, masterid, slaveid, index, list
+        typedef int (*EcFoEReadCallBack)(int, int, int, wchar_t*, char*, unsigned int, unsigned int); //result, masterid, slaveId, filePath, fileName, password, error code
+        typedef int (*EcFoEWriteCallBack)(int, int, int, wchar_t*, char*, unsigned int, unsigned int); //result, masterid, slaveId, filePath, fileName, password, error code
+        typedef int (*EcSIIWriteCallBack)(int, int, int, int, int, unsigned char*); //result, masterid, slaveid, addr, len, data
+        typedef int (*EcSIIReadCallBack)(int, int, int, int, int, unsigned char*); //result, masterid, slaveid, addr, len, data
+        typedef int (*EcAoEReadCallBack)(int, int, int, unsigned char*, unsigned short, unsigned int, unsigned int, unsigned int, unsigned char*, unsigned int); //result, masterid, slaveId, targetNetId[6], targetPort, indexGroup, indexOffset, readLength, aoeBuff, error code
+        typedef int (*EcAoEWriteCallBack)(int, int, int, unsigned char*, unsigned short, unsigned int, unsigned int, unsigned int, unsigned char*, unsigned int); //result, masterid, slaveId, targetNetId[6], targetPort, indexGroup, indexOffset, writeLength, aoeData, error code
+        typedef int (*EcAoEWriteControlCallBack)(int, int, int, unsigned char*, unsigned short, unsigned short, unsigned short, unsigned int, unsigned char*, unsigned int); //result, masterid, slaveId, targetNetId[6], targetPort, aoeState, deviceState, writeLength, aoeData, error code
+        typedef int (*EcSoEReadCallBack)(int, int, int, unsigned char, unsigned char, unsigned short, unsigned int, unsigned char*, unsigned int); //result, masterid, slaveId, driveNo, elementFlags, idn, buffSize, readSoEBuffer, error code
+        typedef int (*EcSoEWriteCallBack)(int, int, int, unsigned char, unsigned char, unsigned short, unsigned int, unsigned char*, unsigned int); //result, masterid, slaveId, driveNo, elementFlags, idn, dataSize, writeSoEData, error code
+        typedef int (*EcVoEReadCallBack)(int, int, int, unsigned int, unsigned short, unsigned int, unsigned char*); //result, masterid, slaveId, vendorId, vendorType, readDataSize, readVoEBuffer
+        typedef int (*EcVoEWriteCallBack)(int, int, int, unsigned int, unsigned short, unsigned int, unsigned char*); //result, masterid, slaveId, vendorId, vendorType, writeDataSize, writeAoEData
 
         class Ecat;
 
@@ -568,7 +419,6 @@ namespace wmx3Api {
         private:
             WMX3Api *wmx3Api;
             int statChnlId;
-			int monChnlId;
             bool isSelfDev;
             void init(WMX3Api *f);
             void close();
@@ -593,26 +443,18 @@ namespace wmx3Api {
 
             ECAPIFUNC GetVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion);
 
-			ECAPIFUNC SetMonitorMode(unsigned char enable);
-
             ECAPIFUNC ScanNetwork();
 
             ECAPIFUNC ChangeSlaveState(int slaveId, EcStateMachine::T state, int* errorCode);
 
             ECAPIFUNC StartHotconnect();
             ECAPIFUNC ResetRefClockInfo();
-            ECAPIFUNC ResetTransmitStatisticsInfo();
-			ECAPIFUNC ResetMonitorStatisticsInfo();
-
-			ECAPIFUNC DiagnosisScan();
+            ECAPIFUNC ResetTransmitStaticInfo();
 
             ECAPIFUNC GetMasterInfo(EcMasterInfo* master);
-			ECAPIFUNC GetMasterMonitorInfo(EcMonitorInfo* monitor);
 
             ECAPIFUNC SetEniFilePath(int slaveId, char* path, unsigned char oneshot = 1);
             ECAPIFUNC SetEniFilePath(int slaveId, wchar_t* path, unsigned char oneshot = 1);
-			ECAPIFUNC GetEniFilePath(int slaveId, char* path, int len);
-			ECAPIFUNC GetEniFilePath(int slaveId, wchar_t* path, int len);
 
             ECAPIFUNC RegisterWrite(int slaveId, int regAddr, int len, unsigned char* data);
             ECAPIFUNC RegisterRead(int slaveId, int regAddr, int len, unsigned char* buff);
@@ -630,10 +472,10 @@ namespace wmx3Api {
             ECAPIFUNC SdoDownload(int slaveId, int index, int subindex, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC SdoUpload(int slaveId, int index, int subindex, EcSdoUploadCallBack callbackFunc, unsigned int waitTime);
             //SDO download/upload with specified type
-            ECAPIFUNC SdoDownload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime = 0, BOOL complete = FALSE);
-            ECAPIFUNC SdoUpload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0, BOOL complete = FALSE);
-            ECAPIFUNC SdoDownload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime, BOOL complete = FALSE);
-            ECAPIFUNC SdoUpload(int slaveId, int index, int subindex, EcSdoType::T sdoType, EcSdoUploadCallBack callbackFunc, unsigned int waitTime, BOOL complete = FALSE);
+            ECAPIFUNC SdoDownload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SdoUpload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SdoDownload(int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC SdoUpload(int slaveId, int index, int subindex, EcSdoType::T sdoType, EcSdoUploadCallBack callbackFunc, unsigned int waitTime);
 
             ECAPIFUNC GetSdoInfoODList(int slaveId, EcObjectDescriptionListType::T type, EcSlaveSdoInfoObjectDescriptionList* list);
             ECAPIFUNC GetSdoInfoEDList(int slaveId, int index, EcSlaveSdoInfoEntryDescriptionList* list);
@@ -670,22 +512,22 @@ namespace wmx3Api {
             ECAPIFUNC SIIWrite(int slaveId, int siiAddr, int len, unsigned char* data, EcSIIWriteCallBack callbackFunc, unsigned int waitTime, bool checkSum = false);
             ECAPIFUNC SIIRead(int slaveId, int siiAddr, int len, EcSIIReadCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC AoERead(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWriteControl(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEReadWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoERead(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, EcAoEReadCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWriteControl(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteControlCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEReadWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned int writeLength, unsigned char* writeAoEData, EcAoEReadCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
+            ECAPIFUNC AoERead(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int* errCode);
+            ECAPIFUNC AoEWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoEWriteControl(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoEReadWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoERead(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, EcAoEReadCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEWriteControl(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteControlCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEReadWrite(int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned int writeLength, unsigned char* writeAoEData, EcAoEReadCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC SoERead(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int buffSize, unsigned char* readSoEBuffer, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0);
-            ECAPIFUNC SoEWrite(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SoERead(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int buffSize, unsigned char* readSoEBuffer, unsigned int* actualSize, unsigned int* errCode);
+            ECAPIFUNC SoEWrite(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, unsigned int* errCode);
             ECAPIFUNC SoERead(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, EcSoEReadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC SoEWrite(int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, EcSoEWriteCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC VoERead(int slaveId, unsigned int* vendorId, unsigned short* vendorType, unsigned int buffSize, unsigned char* readVoEBuffer, unsigned int* actualSize, unsigned int waitTime = 0);
-            ECAPIFUNC VoEWrite(int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData, unsigned int waitTime = 0);
+            ECAPIFUNC VoERead(int slaveId, unsigned int* vendorId, unsigned short* vendorType, unsigned int buffSize, unsigned char* readVoEBuffer, unsigned int* actualSize);
+            ECAPIFUNC VoEWrite(int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData);
             ECAPIFUNC VoERead(int slaveId, EcVoEReadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC VoEWrite(int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData, EcVoEWriteCallBack callbackFunc, unsigned int waitTime);
 
@@ -704,37 +546,21 @@ namespace wmx3Api {
             ECAPIFUNC OpenSerialChannel(int slaveId, int chnlId, char* comName, DCB* dcb, COMMTIMEOUTS* timeout, unsigned int* error = NULL);
             ECAPIFUNC CloseSerialChannel(int slaveId, int chnlId);
 
-			ECAPIFUNC VirtualSlaveTxPdoWrite(int index, int subindex, int pdoDataSize, unsigned char* pdoData, unsigned int mask = 0);
-			ECAPIFUNC VirtualSlaveClearTxPdoWrite(int index, int subindex);
-			ECAPIFUNC VirtualSlavePdoRead(int index, int subindex, int pdoBuffSize, unsigned char* pdoBuff, unsigned int* actualSize);
 
-			ECAPIFUNC IoExtSendCommand(int slaveId, char* ioExtName, unsigned char* sendData, unsigned int sendDataSize, unsigned char* recvBuff, unsigned int recvBuffSize);
-			ECAPIFUNC IoExtSendCommand(int slaveId, wchar_t* ioExtName, unsigned char* sendData, unsigned int sendDataSize, unsigned char* recvBuff, unsigned int recvBuffSize);
-
-
-            ECAPIFUNC SetMonitorMode(int masterId, unsigned char enable);
-			
-			ECAPIFUNC ScanNetwork(int masterId);
+            ECAPIFUNC ScanNetwork(int masterId);
 
             ECAPIFUNC ChangeSlaveState(int masterId, int slaveId, EcStateMachine::T state, int* errorCode);
 
             ECAPIFUNC StartHotconnect(int masterId);
             ECAPIFUNC ResetRefClockInfo(int masterId);
-            ECAPIFUNC ResetTransmitStatisticsInfo(int masterId);
-			ECAPIFUNC ResetMonitorStatisticsInfo(int masterId);
-
-			ECAPIFUNC DiagnosisScan(int masterId);
+            ECAPIFUNC ResetTransmitStaticInfo(int masterId);
 
             ECAPIFUNC SetUpdatePeriod(unsigned int period);
             ECAPIFUNC GetMasterInfo(int masterId, EcMasterInfo* master);
             ECAPIFUNC GetMasterInfoList(EcMasterInfoList* masters);
 
-			ECAPIFUNC GetMasterMonitorInfo(int masterId, EcMonitorInfo* monitor);
-
             ECAPIFUNC SetEniFilePath(int masterId, int slaveId, char* path, unsigned char oneshot = 1);
             ECAPIFUNC SetEniFilePath(int masterId, int slaveId, wchar_t* path, unsigned char oneshot = 1);
-			ECAPIFUNC GetEniFilePath(int masterId, int slaveId, char* path, int len);
-			ECAPIFUNC GetEniFilePath(int masterId, int slaveId, wchar_t* path, int len);
 
             ECAPIFUNC RegisterWrite(int masterId, int slaveId, int regAddr, int len, unsigned char* data);
             ECAPIFUNC RegisterRead(int masterId, int slaveId, int regAddr, int len, unsigned char* buff);
@@ -752,10 +578,10 @@ namespace wmx3Api {
             ECAPIFUNC SdoDownload(int masterId, int slaveId, int index, int subindex, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC SdoUpload(int masterId, int slaveId, int index, int subindex, EcSdoUploadCallBack callbackFunc, unsigned int waitTime);
             //SDO download/upload with specified type
-            ECAPIFUNC SdoDownload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime = 0, BOOL complete = FALSE);
-            ECAPIFUNC SdoUpload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0, BOOL complete = FALSE);
-            ECAPIFUNC SdoDownload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime, BOOL complete = FALSE);
-            ECAPIFUNC SdoUpload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, EcSdoUploadCallBack callbackFunc, unsigned int waitTime, BOOL complete = FALSE);
+            ECAPIFUNC SdoDownload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SdoUpload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SdoDownload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, int sdoDataSize, unsigned char* sdoData, EcSdoDownloadCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC SdoUpload(int masterId, int slaveId, int index, int subindex, EcSdoType::T sdoType, EcSdoUploadCallBack callbackFunc, unsigned int waitTime);
 
             ECAPIFUNC GetSdoInfoODList(int masterId, int slaveId, EcObjectDescriptionListType::T type, EcSlaveSdoInfoObjectDescriptionList* list);
             ECAPIFUNC GetSdoInfoEDList(int masterId, int slaveId, int index, EcSlaveSdoInfoEntryDescriptionList* list);
@@ -792,22 +618,22 @@ namespace wmx3Api {
             ECAPIFUNC SIIWrite(int masterId, int slaveId, int siiAddr, int len, unsigned char* data, EcSIIWriteCallBack callbackFunc, unsigned int waitTime, bool checkSum = false);
             ECAPIFUNC SIIRead(int masterId, int slaveId, int siiAddr, int len, EcSIIReadCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC AoERead(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWriteControl(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEReadWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode, unsigned int waitTime = 0, EcAoESender* sender = NULL);
-            ECAPIFUNC AoERead(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, EcAoEReadCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEWriteControl(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteControlCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
-            ECAPIFUNC AoEReadWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned int writeLength, unsigned char* writeAoEData, EcAoEReadCallBack callbackFunc, unsigned int waitTime, EcAoESender* sender = NULL);
+            ECAPIFUNC AoERead(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int* errCode);
+            ECAPIFUNC AoEWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoEWriteControl(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoEReadWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned char* readAoEBuff, unsigned int writeLength, unsigned char* writeAoEData, unsigned int* errCode);
+            ECAPIFUNC AoERead(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, EcAoEReadCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEWriteControl(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned short aoeState, unsigned short deviceState, unsigned int writeLength, unsigned char* writeAoEData, EcAoEWriteControlCallBack callbackFunc, unsigned int waitTime);
+            ECAPIFUNC AoEReadWrite(int masterId, int slaveId, unsigned char targetNetId[6], unsigned short targetPort, unsigned int indexGroup, unsigned int indexOffset, unsigned int readLength, unsigned int writeLength, unsigned char* writeAoEData, EcAoEReadCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC SoERead(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int buffSize, unsigned char* readSoEBuffer, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime = 0);
-            ECAPIFUNC SoEWrite(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, unsigned int* errCode, unsigned int waitTime = 0);
+            ECAPIFUNC SoERead(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int buffSize, unsigned char* readSoEBuffer, unsigned int* actualSize, unsigned int* errCode);
+            ECAPIFUNC SoEWrite(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, unsigned int* errCode);
             ECAPIFUNC SoERead(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, EcSoEReadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC SoEWrite(int masterId, int slaveId, unsigned char driveNo, unsigned char elementFlags, unsigned short idn, unsigned int dataSize, unsigned char* writeSoEData, EcSoEWriteCallBack callbackFunc, unsigned int waitTime);
 
-            ECAPIFUNC VoERead(int masterId, int slaveId, unsigned int* vendorId, unsigned short* vendorType, unsigned int buffSize, unsigned char* readVoEBuffer, unsigned int* actualSize, unsigned int waitTime = 0);
-            ECAPIFUNC VoEWrite(int masterId, int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData, unsigned int waitTime = 0);
+            ECAPIFUNC VoERead(int masterId, int slaveId, unsigned int* vendorId, unsigned short* vendorType, unsigned int buffSize, unsigned char* readVoEBuffer, unsigned int* actualSize);
+            ECAPIFUNC VoEWrite(int masterId, int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData);
             ECAPIFUNC VoERead(int masterId, int slaveId, EcVoEReadCallBack callbackFunc, unsigned int waitTime);
             ECAPIFUNC VoEWrite(int masterId, int slaveId, unsigned int vendorId, unsigned short vendorType, unsigned int dataSize, unsigned char* writeVoEData, EcVoEWriteCallBack callbackFunc, unsigned int waitTime);
 
@@ -825,13 +651,6 @@ namespace wmx3Api {
             ECAPIFUNC OpenSerialChannel(int masterId, int slaveId, int chnlId, wchar_t* comName, DCB* dcb, COMMTIMEOUTS* timeout, unsigned int* error = NULL);
             ECAPIFUNC OpenSerialChannel(int masterId, int slaveId, int chnlId, char* comName, DCB* dcb, COMMTIMEOUTS* timeout, unsigned int* error = NULL);
             ECAPIFUNC CloseSerialChannel(int masterId, int slaveId, int chnlId);
-
-			ECAPIFUNC VirtualSlaveTxPdoWrite(int masterId, int index, int subindex, int pdoDataSize, unsigned char* pdoData, unsigned int mask = 0);
-			ECAPIFUNC VirtualSlaveClearTxPdoWrite(int masterId, int index, int subindex);
-			ECAPIFUNC VirtualSlavePdoRead(int masterId, int index, int subindex, int pdoBuffSize, unsigned char* pdoBuff, unsigned int* actualSize);
-
-			ECAPIFUNC IoExtSendCommand(int masterId, int slaveId, char* ioExtName, unsigned char* sendData, unsigned int sendDataSize, unsigned char* recvBuff, unsigned int recvBuffSize);
-			ECAPIFUNC IoExtSendCommand(int masterId, int slaveId, wchar_t* ioExtName, unsigned char* sendData, unsigned int sendDataSize, unsigned char* recvBuff, unsigned int recvBuffSize);
         };
     }
 

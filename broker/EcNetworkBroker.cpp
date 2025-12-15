@@ -257,6 +257,11 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatistics(ECDEV dev, PEC_MAST
 
 extern "C" ECBROKER_API long __stdcall ecClearMasterStatistics(ECDEV dev)
 {
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
+    // ResetTransmitStatisticsInfo is not available in WMX3.4
+    (void)dev;
+    return EC_API_ERROR_CODE_NOT_SUPPORTED;
+#else
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
@@ -274,6 +279,7 @@ extern "C" ECBROKER_API long __stdcall ecClearMasterStatistics(ECDEV dev)
     }
 
     return EC_SUCCESS;
+#endif
 }
 
 //=============================================================================
@@ -688,6 +694,12 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHA
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
+    // GetEniFilePath is not available in WMX3.4
+    (void)dev;
+    filename[0] = '\0';
+    return EC_API_ERROR_CODE_NOT_SUPPORTED;
+#else
     EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
@@ -698,11 +710,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHA
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
 
-#ifdef UNICODE
     long ret = ecat->GetEniFilePath(0, filename, bufferSize);
-#else
-    long ret = ecat->GetEniFilePath(0, filename, bufferSize);
-#endif
 
     if (ret != 0) {
         ctx->lastError = ret;
@@ -710,6 +718,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHA
     }
 
     return EC_SUCCESS;
+#endif
 }
 
 extern "C" ECBROKER_API long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHAR* filename)
