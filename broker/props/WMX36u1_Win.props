@@ -11,12 +11,25 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
       <!-- WMX3 Include comes first to resolve EcApi.h correctly (WMX1.5 also has EcApi.h) -->
       <AdditionalIncludeDirectories>$(CommonIncludeDir);$(WMX3_IncludeDir);$(WMX15_IncludeDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WMX_VERSION_36U1_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;WMXBROKER_EXPORTS;WMX_VERSION_36U1_WIN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(WMX3_LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;AdvancedMotionApi.lib;IOApi.lib;EcApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
+      <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
     </Link>
   </ItemDefinitionGroup>
 </Project>

@@ -209,3 +209,57 @@ MSBuild broker\WMXBroker.vcxproj /p:Configuration=Release /p:Platform=x64 /p:WMX
 - `x64/Release_WMX34u4_RTX/WMXBroker.dll` (139,264 bytes)
 - `x64/Release_WMX36u1_Win/WMXBroker.dll` (144,896 bytes)
 - `x64/Release_WMX36u1_RTX/WMXBroker.dll` (144,896 bytes)
+
+---
+
+## 추가 수정: Include 경로 문제 수정
+
+### 문제점
+`Release_WMX34u4_Win|x64` 등 새 구성으로 빌드할 때, SDK 폴더의 헤더가 아닌 시스템 설치 경로(`C:\Program Files\SoftServo\WMX3\Include`)의 헤더를 참조함.
+
+### 원인
+vcxproj의 `Release_WMX34u4_Win` ItemDefinitionGroup에 AdditionalIncludeDirectories가 없음.
+props 파일에 설정이 있지만, vcxproj ItemDefinitionGroup의 기본 설정이 우선 적용됨.
+
+### 해결책
+1. vcxproj에서 4개 새 구성의 ItemDefinitionGroup을 **삭제**
+2. props 파일에 모든 빌드 설정을 **완전히 정의**
+
+### 수정된 파일
+
+#### broker/WMXBroker.vcxproj
+다음 ItemDefinitionGroup 삭제:
+- `Release_WMX34u4_Win|x64`
+- `Release_WMX34u4_RTX|x64`
+- `Release_WMX36u1_Win|x64`
+- `Release_WMX36u1_RTX|x64`
+
+#### broker/props/WMX*.props (4개 파일 모두)
+다음 설정 추가:
+```xml
+<ItemDefinitionGroup>
+  <ClCompile>
+    <WarningLevel>Level3</WarningLevel>
+    <FunctionLevelLinking>true</FunctionLevelLinking>
+    <IntrinsicFunctions>true</IntrinsicFunctions>
+    <SDLCheck>true</SDLCheck>
+    <ConformanceMode>true</ConformanceMode>
+    <AdditionalIncludeDirectories>...</AdditionalIncludeDirectories>
+    <PreprocessorDefinitions>NDEBUG;WMXBROKER_EXPORTS;WMX_VERSION_*;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+  </ClCompile>
+  <Link>
+    <SubSystem>Windows</SubSystem>
+    <EnableCOMDATFolding>true</EnableCOMDATFolding>
+    <OptimizeReferences>true</OptimizeReferences>
+    <GenerateDebugInformation>true</GenerateDebugInformation>
+    <AdditionalLibraryDirectories>...</AdditionalLibraryDirectories>
+    <AdditionalDependencies>...</AdditionalDependencies>
+    <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
+    <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
+    <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
+  </Link>
+</ItemDefinitionGroup>
+```
+
+### 빌드 결과
+4개 버전 모두 빌드 성공
