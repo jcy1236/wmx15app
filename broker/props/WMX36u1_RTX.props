@@ -30,6 +30,7 @@
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
 </Project>
