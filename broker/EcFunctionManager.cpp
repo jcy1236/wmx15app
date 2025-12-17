@@ -1,24 +1,24 @@
-// EcDeviceManager.cpp
+// EcFunctionManager.cpp
 // ECDEV handle to WMX3 object mapping manager implementation
 // Uses WMX3ContextManager for shared WMX3 instance
 
-#include "EcDeviceManager.h"
+#include "EcFunctionManager.h"
 #include "WMX3ContextManager.h"
 #include "WMX3Api.h"
 // Include WMX3's EcApi.h (WMX3 Include path has priority in AdditionalIncludeDirectories)
 #include "EcApi.h"
 
 // Static instance
-EcDeviceManager* EcDeviceManager::s_instance = NULL;
+EcFunctionManager* EcFunctionManager::s_instance = NULL;
 
-EcDeviceManager::EcDeviceManager()
+EcFunctionManager::EcFunctionManager()
     : m_nextDeviceId(1)
     , m_nextHandleId(1)
 {
     InitializeCriticalSection(&m_cs);
 }
 
-EcDeviceManager::~EcDeviceManager()
+EcFunctionManager::~EcFunctionManager()
 {
     // Close all devices - release shared context for each
     EnterCriticalSection(&m_cs);
@@ -32,15 +32,15 @@ EcDeviceManager::~EcDeviceManager()
     DeleteCriticalSection(&m_cs);
 }
 
-EcDeviceManager* EcDeviceManager::GetInstance()
+EcFunctionManager* EcFunctionManager::GetInstance()
 {
     if (s_instance == NULL) {
-        s_instance = new EcDeviceManager();
+        s_instance = new EcFunctionManager();
     }
     return s_instance;
 }
 
-void EcDeviceManager::DestroyInstance()
+void EcFunctionManager::DestroyInstance()
 {
     if (s_instance != NULL) {
         delete s_instance;
@@ -48,7 +48,7 @@ void EcDeviceManager::DestroyInstance()
     }
 }
 
-long EcDeviceManager::CreateDevice(PECDEV pDev)
+long EcFunctionManager::CreateDevice(PECDEV pDev)
 {
     if (pDev == NULL) {
         return EC_API_ERROR_CODE_NULL_ARG;
@@ -83,7 +83,7 @@ long EcDeviceManager::CreateDevice(PECDEV pDev)
     return EC_SUCCESS;
 }
 
-long EcDeviceManager::CloseDevice(ECDEV dev)
+long EcFunctionManager::CloseDevice(ECDEV dev)
 {
     if (dev == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
@@ -106,7 +106,7 @@ long EcDeviceManager::CloseDevice(ECDEV dev)
     return EC_SUCCESS;
 }
 
-EcDeviceContext* EcDeviceManager::GetContext(ECDEV dev)
+EcDeviceContext* EcFunctionManager::GetContext(ECDEV dev)
 {
     if (dev == NULL) {
         return NULL;
@@ -125,7 +125,7 @@ EcDeviceContext* EcDeviceManager::GetContext(ECDEV dev)
     return ctx;
 }
 
-long EcDeviceManager::GetLastError(ECDEV dev)
+long EcFunctionManager::GetLastError(ECDEV dev)
 {
     EcDeviceContext* ctx = GetContext(dev);
     if (ctx == NULL) {
@@ -134,7 +134,7 @@ long EcDeviceManager::GetLastError(ECDEV dev)
     return ctx->lastError;
 }
 
-void EcDeviceManager::SetLastError(ECDEV dev, long error)
+void EcFunctionManager::SetLastError(ECDEV dev, long error)
 {
     EcDeviceContext* ctx = GetContext(dev);
     if (ctx != NULL) {
@@ -142,7 +142,7 @@ void EcDeviceManager::SetLastError(ECDEV dev, long error)
     }
 }
 
-long EcDeviceManager::GetDeviceID(ECDEV dev, int* pId)
+long EcFunctionManager::GetDeviceID(ECDEV dev, int* pId)
 {
     if (pId == NULL) {
         return EC_API_ERROR_CODE_NULL_ARG;
@@ -157,7 +157,7 @@ long EcDeviceManager::GetDeviceID(ECDEV dev, int* pId)
     return EC_SUCCESS;
 }
 
-long EcDeviceManager::GetDeviceCount(ECDEV dev, int* pCount)
+long EcFunctionManager::GetDeviceCount(ECDEV dev, int* pCount)
 {
     if (pCount == NULL) {
         return EC_API_ERROR_CODE_NULL_ARG;
@@ -174,7 +174,7 @@ long EcDeviceManager::GetDeviceCount(ECDEV dev, int* pCount)
     return EC_SUCCESS;
 }
 
-long EcDeviceManager::GetActiveDeviceList(EC_ACT_DEV_LIST* list)
+long EcFunctionManager::GetActiveDeviceList(EC_ACT_DEV_LIST* list)
 {
     if (list == NULL) {
         return EC_API_ERROR_CODE_NULL_ARG;
@@ -192,7 +192,7 @@ long EcDeviceManager::GetActiveDeviceList(EC_ACT_DEV_LIST* list)
     return EC_SUCCESS;
 }
 
-long EcDeviceManager::ForceCloseDevice(int deviceId)
+long EcFunctionManager::ForceCloseDevice(int deviceId)
 {
     EnterCriticalSection(&m_cs);
 

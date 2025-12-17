@@ -1,6 +1,6 @@
 // WMX3ContextManager.h
 // Shared WMX3 context manager with reference counting
-// Provides singleton pattern for sharing WMX3Api instance across WMXLIB and EcDeviceManager
+// Provides singleton pattern for sharing WMX3Api instance across WMXLIB and EcFunctionManager
 
 #ifndef WMX3_CONTEXT_MANAGER_H
 #define WMX3_CONTEXT_MANAGER_H

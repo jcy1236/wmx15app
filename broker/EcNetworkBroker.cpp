@@ -2,7 +2,7 @@
 // EC_Network_Api to WMX3 EcApi Broker Layer Implementation
 
 #include "EcNetworkBroker.h"
-#include "EcDeviceManager.h"
+#include "EcFunctionManager.h"
 #include "WMX3ContextManager.h"
 #include "WMX3Api.h"
 // Include WMX3's EcApi.h (WMX3 Include path has priority in AdditionalIncludeDirectories)
@@ -115,37 +115,37 @@ static EC_MASTER_HOTCONNECT_STATE ConvertHotConnectState(wmx3Api::ecApi::EcHotco
 
 extern "C" ECBROKER_API long __stdcall ecCreateDevice(PECDEV pDev)
 {
-    return EcDeviceManager::GetInstance()->CreateDevice(pDev);
+    return EcFunctionManager::GetInstance()->CreateDevice(pDev);
 }
 
 extern "C" ECBROKER_API long __stdcall ecCloseDevice(ECDEV dev)
 {
-    return EcDeviceManager::GetInstance()->CloseDevice(dev);
+    return EcFunctionManager::GetInstance()->CloseDevice(dev);
 }
 
 extern "C" ECBROKER_API long __stdcall ecGetLastError(ECDEV dev)
 {
-    return EcDeviceManager::GetInstance()->GetLastError(dev);
+    return EcFunctionManager::GetInstance()->GetLastError(dev);
 }
 
 extern "C" ECBROKER_API long __stdcall ecForceCloseDevice(int deviceId)
 {
-    return EcDeviceManager::GetInstance()->ForceCloseDevice(deviceId);
+    return EcFunctionManager::GetInstance()->ForceCloseDevice(deviceId);
 }
 
 extern "C" ECBROKER_API long __stdcall ecGetActiveDeviceList(EC_ACT_DEV_LIST* list)
 {
-    return EcDeviceManager::GetInstance()->GetActiveDeviceList(list);
+    return EcFunctionManager::GetInstance()->GetActiveDeviceList(list);
 }
 
 extern "C" ECBROKER_API long __stdcall ecGetDeviceID(ECDEV dev, int* pId)
 {
-    return EcDeviceManager::GetInstance()->GetDeviceID(dev, pId);
+    return EcFunctionManager::GetInstance()->GetDeviceID(dev, pId);
 }
 
 extern "C" ECBROKER_API long __stdcall ecGetDeviceCount(ECDEV dev, int* pCount)
 {
-    return EcDeviceManager::GetInstance()->GetDeviceCount(dev, pCount);
+    return EcFunctionManager::GetInstance()->GetDeviceCount(dev, pCount);
 }
 
 //=============================================================================
@@ -158,7 +158,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterState(ECDEV dev, PEC_MASTER_ST
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -185,7 +185,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatus(ECDEV dev, PEC_MASTER_S
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -224,7 +224,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterStatistics(ECDEV dev, PEC_MAST
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -262,7 +262,7 @@ extern "C" ECBROKER_API long __stdcall ecClearMasterStatistics(ECDEV dev)
     (void)dev;
     return EC_API_ERROR_CODE_NOT_SUPPORTED;
 #else
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -292,7 +292,7 @@ extern "C" ECBROKER_API long __stdcall ecGetTotalSlaveCount(ECDEV dev, int* pCou
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -319,7 +319,7 @@ extern "C" ECBROKER_API long __stdcall ecGetOnlineSlaveCount(ECDEV dev, int* pCo
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -346,7 +346,7 @@ extern "C" ECBROKER_API long __stdcall ecGetOfflineSlaveCount(ECDEV dev, int* pC
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -373,7 +373,7 @@ extern "C" ECBROKER_API long __stdcall ecGetUnknownSlaveCount(ECDEV dev, int* pC
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -412,7 +412,7 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveInfo(ECDEV dev, int nodeId, PEC
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -480,7 +480,7 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveState(ECDEV dev, int configured
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -510,7 +510,7 @@ extern "C" ECBROKER_API long __stdcall ecGetSlaveState(ECDEV dev, int configured
 
 extern "C" ECBROKER_API long __stdcall ecSetSlaveState(ECDEV dev, int configuredId, EC_SLAVE_STATE newState)
 {
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -544,7 +544,7 @@ extern "C" ECBROKER_API long __stdcall ecDownloadSDO(ECDEV dev, int configuredId
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -582,7 +582,7 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -619,7 +619,7 @@ extern "C" ECBROKER_API long __stdcall ecUploadSDO(ECDEV dev, int configuredId,
 
 extern "C" ECBROKER_API long __stdcall ecStartHotConnect(ECDEV dev)
 {
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -640,7 +640,7 @@ extern "C" ECBROKER_API long __stdcall ecStartHotConnect(ECDEV dev)
 
 extern "C" ECBROKER_API long __stdcall ecStartHotConnectWithRes(ECDEV dev)
 {
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -688,7 +688,7 @@ extern "C" ECBROKER_API long __stdcall ecStartHotConnectWithRes(ECDEV dev)
 
 extern "C" ECBROKER_API long __stdcall ecClearHotConnectAbortionFlag(ECDEV dev)
 {
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -714,7 +714,7 @@ extern "C" ECBROKER_API long __stdcall ecGetMasterConfigFilename(ECDEV dev, TCHA
     filename[0] = '\0';
     return EC_API_ERROR_CODE_NOT_SUPPORTED;
 #else
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -741,7 +741,7 @@ extern "C" ECBROKER_API long __stdcall ecSetMasterConfigFilename(ECDEV dev, TCHA
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -775,7 +775,7 @@ extern "C" ECBROKER_API long __stdcall ecRawWrite(ECDEV dev, int location, unsig
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }
@@ -805,7 +805,7 @@ extern "C" ECBROKER_API long __stdcall ecRawRead(ECDEV dev, int location, unsign
         return EC_API_ERROR_CODE_NULL_ARG;
     }
 
-    EcDeviceContext* ctx = EcDeviceManager::GetInstance()->GetContext(dev);
+    EcDeviceContext* ctx = EcFunctionManager::GetInstance()->GetContext(dev);
     if (ctx == NULL) {
         return EC_API_ERROR_CODE_DEVICE_IS_NULL;
     }

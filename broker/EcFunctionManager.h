@@ -1,4 +1,4 @@
-// EcDeviceManager.h
+// EcFunctionManager.h
 // ECDEV handle to WMX3 object mapping manager
 // Provides singleton pattern for managing EC device handles
 
@@ -56,29 +56,29 @@ struct EcDeviceContext {
 };
 
 //=============================================================================
-// EcDeviceManager - Singleton class for managing ECDEV handles
+// EcFunctionManager - Singleton class for managing ECDEV handles
 // Uses WMX3ContextManager for shared WMX3 instance
 //=============================================================================
-class EcDeviceManager {
+class EcFunctionManager {
 private:
     std::map<ECDEV, EcDeviceContext> m_devices;
     int m_nextDeviceId;
     int m_nextHandleId;  // For generating unique ECDEV handles
     CRITICAL_SECTION m_cs;
 
-    static EcDeviceManager* s_instance;
+    static EcFunctionManager* s_instance;
 
     // Private constructor for singleton
-    EcDeviceManager();
-    ~EcDeviceManager();
+    EcFunctionManager();
+    ~EcFunctionManager();
 
     // Prevent copying
-    EcDeviceManager(const EcDeviceManager&);
-    EcDeviceManager& operator=(const EcDeviceManager&);
+    EcFunctionManager(const EcFunctionManager&);
+    EcFunctionManager& operator=(const EcFunctionManager&);
 
 public:
     // Singleton access
-    static EcDeviceManager* GetInstance();
+    static EcFunctionManager* GetInstance();
     static void DestroyInstance();
 
     // Device management

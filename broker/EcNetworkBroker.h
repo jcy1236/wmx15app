@@ -7,7 +7,7 @@
 
 #include <windows.h>
 #include <tchar.h>
-#include "EcDeviceManager.h"  // For ECDEV, PECDEV, EC_ACT_DEV_LIST
+#include "EcFunctionManager.h"  // For ECDEV, PECDEV, EC_ACT_DEV_LIST
 
 // DLL Export/Import macros
 #ifdef WMXBROKER_EXPORTS

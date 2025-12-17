@@ -2,7 +2,8 @@
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <!-- WMXVersion property for multi-version builds (default: empty for legacy build) -->
   <PropertyGroup>
-    <WMXVersion Condition="'$(WMXVersion)'==''"></WMXVersion>
+    <WMXVersion Condition="'$(WMXVersion)'==''">
+    </WMXVersion>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -181,7 +182,7 @@
     <ClInclude Include="ExtVelocity2Broker.h" />
     <ClInclude Include="TorqueControlBroker.h" />
     <ClInclude Include="WMX3ContextManager.h" />
-    <ClInclude Include="EcDeviceManager.h" />
+    <ClInclude Include="EcFunctionManager.h" />
     <ClInclude Include="EcNetworkBroker.h" />
   </ItemGroup>
   <ItemGroup>
@@ -200,7 +201,7 @@
     <ClCompile Include="ExtVelocity2Broker.cpp" />
     <ClCompile Include="TorqueControlBroker.cpp" />
     <ClCompile Include="WMX3ContextManager.cpp" />
-    <ClCompile Include="EcDeviceManager.cpp" />
+    <ClCompile Include="EcFunctionManager.cpp" />
     <ClCompile Include="EcNetworkBroker.cpp" />
   </ItemGroup>
   <ItemGroup>
