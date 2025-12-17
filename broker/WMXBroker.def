@@ -113,3 +113,125 @@ EXPORTS
     ; EC_Network_Api - Raw Register Read/Write
     ecRawWrite                        @270
     ecRawRead                         @271
+
+    ; =========================================================================
+    ; WMX3 Native API Wrapper - C API exports
+    ; =========================================================================
+
+    ; WMX3 Initialization
+    WMX3Broker_Initialize             @300
+    WMX3Broker_Uninitialize           @301
+
+    ; WMX3 System APIs
+    WMX3Broker_CreateDevice           @310
+    WMX3Broker_CreateDeviceW          @311
+    WMX3Broker_CloseDevice            @312
+    WMX3Broker_StartCommunication     @313
+    WMX3Broker_StopCommunication      @314
+    WMX3Broker_GetDeviceID            @315
+    WMX3Broker_SetDeviceName          @316
+    WMX3Broker_SetDeviceNameW         @317
+
+    ; WMX3 CoreMotion Status
+    WMX3Broker_CoreMotion_GetStatus   @320
+
+    ; WMX3 AxisControl APIs
+    WMX3Broker_AxisControl_SetServoOn           @330
+    WMX3Broker_AxisControl_ClearAmpAlarm        @331
+    WMX3Broker_AxisControl_ClearAxisAlarm       @332
+    WMX3Broker_AxisControl_SetAxisCommandMode   @333
+    WMX3Broker_AxisControl_GetAxisCommandMode   @334
+    WMX3Broker_AxisControl_GetPosCommand        @335
+    WMX3Broker_AxisControl_GetPosFeedback       @336
+    WMX3Broker_AxisControl_GetVelCommand        @337
+    WMX3Broker_AxisControl_GetVelFeedback       @338
+
+    ; WMX3 Motion APIs
+    WMX3Broker_Motion_StartPos        @350
+    WMX3Broker_Motion_StartMov        @351
+    WMX3Broker_Motion_StartJog        @352
+    WMX3Broker_Motion_Stop            @353
+    WMX3Broker_Motion_ExecQuickStop   @354
+    WMX3Broker_Motion_ExecTimedStop   @355
+    WMX3Broker_Motion_Wait            @356
+    WMX3Broker_Motion_Pause           @357
+    WMX3Broker_Motion_Resume          @358
+    WMX3Broker_Motion_StartLinearIntplPos @359
+
+    ; WMX3 Home APIs
+    WMX3Broker_Home_StartHome         @370
+    WMX3Broker_Home_Continue          @371
+    WMX3Broker_Home_Cancel            @372
+    WMX3Broker_Home_SetCommandPos     @373
+    WMX3Broker_Home_SetFeedbackPos    @374
+    WMX3Broker_Home_SetCommandPosToFeedbackPos @375
+    WMX3Broker_Home_GetHomeData       @376
+
+    ; WMX3 Velocity APIs
+    WMX3Broker_Velocity_StartVel      @380
+    WMX3Broker_Velocity_Stop          @381
+    WMX3Broker_Velocity_ExecQuickStop @382
+    WMX3Broker_Velocity_ExecTimedStop @383
+    WMX3Broker_Velocity_OverrideVel   @384
+
+    ; WMX3 Torque APIs
+    WMX3Broker_Torque_SetMaxTrqLimit      @390
+    WMX3Broker_Torque_GetMaxTrqLimit      @391
+    WMX3Broker_Torque_SetPositiveTrqLimit @392
+    WMX3Broker_Torque_GetPositiveTrqLimit @393
+    WMX3Broker_Torque_SetNegativeTrqLimit @394
+    WMX3Broker_Torque_GetNegativeTrqLimit @395
+    WMX3Broker_Torque_StartTrq            @396
+    WMX3Broker_Torque_StartTrqWithMaxSpeed @397
+    WMX3Broker_Torque_StopTrq             @398
+
+    ; WMX3 Config APIs
+    WMX3Broker_Config_SetHomeParam              @400
+    WMX3Broker_Config_GetHomeParam              @401
+    WMX3Broker_Config_SetFeedbackParam          @402
+    WMX3Broker_Config_GetFeedbackParam          @403
+    WMX3Broker_Config_SetLimitParam             @404
+    WMX3Broker_Config_GetLimitParam             @405
+    WMX3Broker_Config_SetMotionParam            @406
+    WMX3Broker_Config_GetMotionParam            @407
+    WMX3Broker_Config_SetAlarmParam             @408
+    WMX3Broker_Config_GetAlarmParam             @409
+    WMX3Broker_Config_SetGearRatio              @410
+    WMX3Broker_Config_GetGearRatio              @411
+    WMX3Broker_Config_SetSingleTurn             @412
+    WMX3Broker_Config_GetSingleTurn             @413
+    WMX3Broker_Config_SetVelocityFeedforwardGain @414
+    WMX3Broker_Config_GetVelocityFeedforwardGain @415
+
+    ; WMX3 Io APIs
+    WMX3Broker_Io_SetOutBit           @420
+    WMX3Broker_Io_SetOutByte          @421
+    WMX3Broker_Io_SetOutBytes         @422
+    WMX3Broker_Io_GetInBit            @423
+    WMX3Broker_Io_GetInByte           @424
+    WMX3Broker_Io_GetInBytes          @425
+    WMX3Broker_Io_GetOutBit           @426
+    WMX3Broker_Io_GetOutByte          @427
+    WMX3Broker_Io_GetOutBytes         @428
+    WMX3Broker_Io_SetOutAnalogDataShort @429
+    WMX3Broker_Io_GetInAnalogDataShort  @430
+    WMX3Broker_Io_SetOutAnalogDataInt   @431
+    WMX3Broker_Io_GetInAnalogDataInt    @432
+
+    ; WMX3 Ecat APIs
+    WMX3Broker_Ecat_GetMasterInfo     @450
+    WMX3Broker_Ecat_ScanNetwork       @451
+    WMX3Broker_Ecat_StartHotconnect   @452
+    WMX3Broker_Ecat_ChangeSlaveState  @453
+    WMX3Broker_Ecat_SdoDownload       @454
+    WMX3Broker_Ecat_SdoUpload         @455
+    WMX3Broker_Ecat_RegisterWrite     @456
+    WMX3Broker_Ecat_RegisterRead      @457
+    WMX3Broker_Ecat_TxPdoWrite        @458
+    WMX3Broker_Ecat_PdoRead           @459
+    WMX3Broker_Ecat_SetOutputBit      @460
+    WMX3Broker_Ecat_SetOutputByte     @461
+    WMX3Broker_Ecat_SetOutputBytes    @462
+    WMX3Broker_Ecat_GetInputBit       @463
+    WMX3Broker_Ecat_GetInputByte      @464
+    WMX3Broker_Ecat_GetInputBytes     @465

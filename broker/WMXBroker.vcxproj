@@ -184,6 +184,7 @@
     <ClInclude Include="WMX3ContextManager.h" />
     <ClInclude Include="EcFunctionManager.h" />
     <ClInclude Include="EcNetworkBroker.h" />
+    <ClInclude Include="WMX3BrokerC.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="WMXBroker.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="WMX3ContextManager.cpp" />
     <ClCompile Include="EcFunctionManager.cpp" />
     <ClCompile Include="EcNetworkBroker.cpp" />
+    <ClCompile Include="WMX3BrokerC.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="WMXBroker.def" />
