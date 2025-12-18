@@ -248,6 +248,10 @@ EXPORTS
     WMX3Broker_Ecat_SIIWrite          @470
     WMX3Broker_Ecat_SIIRead           @471
 
+    ; WMX3 EventControl APIs - SetEvent
+    WMX3Broker_Event_SetEvent         @498
+    WMX3Broker_Event_SetEventWithId   @499
+
     ; WMX3 EventControl APIs - Event Management
     WMX3Broker_Event_EnableEvent      @500
     WMX3Broker_Event_RemoveEvent      @501

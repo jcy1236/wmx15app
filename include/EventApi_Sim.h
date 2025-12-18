@@ -304,6 +304,21 @@ namespace wmx3Api
         }
 
         //=====================================================================
+        // SetEvent APIs
+        //=====================================================================
+        // Note: pEventInput and pEventOutput should point to SDK EventInput/EventOutput derived classes
+        // pOption should point to wmx3Api::EventOption
+        long SetEvent(int *pId, void *pEventInput, void *pEventOutput, EventOption *pOption = NULL)
+        {
+            return WMX3Broker_Event_SetEvent(pId, pEventInput, pEventOutput, pOption);
+        }
+
+        long SetEvent(int *pId, void *pEventInput, void *pEventOutput, int id, EventOption *pOption = NULL)
+        {
+            return WMX3Broker_Event_SetEventWithId(pId, pEventInput, pEventOutput, id, pOption);
+        }
+
+        //=====================================================================
         // Event Management APIs
         //=====================================================================
         long EnableEvent(int id, unsigned char enable)

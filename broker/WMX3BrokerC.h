@@ -235,6 +235,14 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SIIRead(int slaveId, int siiAddr,
 //=============================================================================
 // EventControl APIs
 //=============================================================================
+// SetEvent
+// Note: pEventInput/pEventOutput should point to SDK EventInput/EventOutput derived classes
+// Note: pOption should point to wmx3Api::EventOption structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEvent(int* pId, void* pEventInput,
+    void* pEventOutput, void* pOption);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEventWithId(int* pId, void* pEventInput,
+    void* pEventOutput, int id, void* pOption);
+
 // Event Management
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_RemoveEvent(int id);

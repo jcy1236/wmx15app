@@ -1028,6 +1028,29 @@ long __stdcall WMX3Broker_Ecat_SIIRead(int slaveId, int siiAddr, int len, unsign
 //=============================================================================
 // EventControl APIs
 //=============================================================================
+long __stdcall WMX3Broker_Event_SetEvent(int* pId, void* pEventInput, void* pEventOutput, void* pOption)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pId || !pEventInput || !pEventOutput) return -1;
+    return eventCtrl->SetEvent(pId,
+        static_cast<wmx3Api::EventInput*>(pEventInput),
+        static_cast<wmx3Api::EventOutput*>(pEventOutput),
+        static_cast<wmx3Api::EventOption*>(pOption));
+}
+
+long __stdcall WMX3Broker_Event_SetEventWithId(int* pId, void* pEventInput, void* pEventOutput, int id, void* pOption)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pId || !pEventInput || !pEventOutput) return -1;
+    return eventCtrl->SetEvent(pId,
+        static_cast<wmx3Api::EventInput*>(pEventInput),
+        static_cast<wmx3Api::EventOutput*>(pEventOutput),
+        id,
+        static_cast<wmx3Api::EventOption*>(pOption));
+}
+
 long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
