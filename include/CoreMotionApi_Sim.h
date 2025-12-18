@@ -12,6 +12,246 @@ namespace wmx3Api
     class CoreMotion;
 
     //=========================================================================
+    // CoreMotion Enums
+    //=========================================================================
+    class DetailOperationState
+    {
+    public:
+        enum T
+        {
+            Idle = 0,
+            Pos = 200,
+            Pos_OverrideSetup,
+            Pos_WaitingForTrigger,
+            Jog = 300,
+            Jog_OverrideSetup,
+            Home = 400,
+            Sync = 500,
+            Sync_PhaseShift,
+            Sync_GearShift,
+            GantryHome = 600,
+            Stop = 700,
+            Stop_QStop,
+            Stop_EStop,
+            Intpl = 800,
+            Intpl_Linear,
+            Intpl_Circular,
+            Intpl_Helical,
+            Intpl_Spline,
+            Intpl_Path,
+            Intpl_PathWithRotation,
+            Intpl_PathLookahead,
+            Intpl_OverrideSetup,
+            Intpl_OverrideSmoothing,
+            Velocity = 900,
+            Velocity_OverrideSetup,
+            ConstLinearVelocity = 1100,
+            Trq = 1200
+        };
+    };
+
+    class HomeError
+    {
+    public:
+        enum T
+        {
+            NoError,
+            LSTriggered,
+            MaxLSRevDistanceTraveled,
+            MaxHSOnAtStartRevDistanceTraveled,
+            ZPulseDistanceCheckError
+        };
+    };
+
+    class AxisSyncMode
+    {
+    public:
+        enum T
+        {
+            NoSync,
+            NoOffset,
+            VelocityOffset,
+            SymmetricVelocityOffset
+        };
+    };
+
+    class EStopLevel
+    {
+    public:
+        enum T
+        {
+            Final,
+            Level1
+        };
+    };
+
+    //=========================================================================
+    // CoreMotion Data Classes
+    //=========================================================================
+    class AxisCompensation
+    {
+    public:
+        AxisCompensation() : pitchErrorCompensation(0), pitchErrorCompensation2D(0),
+                             backlashCompensation(0), totalPosCompensation(0) {}
+
+        double pitchErrorCompensation;
+        double pitchErrorCompensation2D;
+        double backlashCompensation;
+        double totalPosCompensation;
+    };
+
+    class AxisSupportedFunction
+    {
+    public:
+        AxisSupportedFunction() : posFeedbackSupport(false), posCommandSupport(false),
+                                  velocityFeedbackSupport(false), velocityCommandSupport(false),
+                                  velocityOffsetSupport(false), trqFeedbackSupport(false),
+                                  trqCommandSupport(false), maxTrqLimitSupport(false),
+                                  positiveTrqLimitSupport(false), negativeTrqLimitSupport(false),
+                                  maxMotorSpeedSupport(false) {}
+
+        bool posFeedbackSupport;
+        bool posCommandSupport;
+        bool velocityFeedbackSupport;
+        bool velocityCommandSupport;
+        bool velocityOffsetSupport;
+        bool trqFeedbackSupport;
+        bool trqCommandSupport;
+        bool maxTrqLimitSupport;
+        bool positiveTrqLimitSupport;
+        bool negativeTrqLimitSupport;
+        bool maxMotorSpeedSupport;
+    };
+
+    //=========================================================================
+    // CoreMotionAxisStatus class
+    //=========================================================================
+    class CoreMotionAxisStatus
+    {
+    public:
+        CoreMotionAxisStatus()
+        {
+            memset(this, 0, sizeof(CoreMotionAxisStatus));
+            opState = OperationState::Idle;
+            detailOpState = DetailOperationState::Idle;
+            axisCommandMode = AxisCommandMode::Position;
+            axisSyncMode = AxisSyncMode::NoSync;
+            homeState = HomeState::Idle;
+            homeError = HomeError::NoError;
+        }
+
+        bool servoOn;
+        bool servoOffline;
+        bool ampAlarm;
+        int ampAlarmCode;
+        int masterAxis;
+        int secondMasterAxis;
+        double posCmd;
+        double actualPos;
+        double compPosCmd;
+        double compActualPos;
+        double syncPosCmd;
+        double syncActualPos;
+        int encoderCommand;
+        int encoderFeedback;
+        long long accumulatedEncoderFeedback;
+        double velocityCmd;
+        double actualVelocity;
+        double velocityLag;
+        double torqueCmd;
+        double actualTorque;
+        double actualFollowingError;
+        AxisCompensation compensation;
+        AxisSupportedFunction axisSupportedFunction;
+        OperationState::T opState;
+        DetailOperationState::T detailOpState;
+        AxisCommandMode::T axisCommandMode;
+        AxisSyncMode::T axisSyncMode;
+        double syncOffset;
+        double syncPhaseOffset;
+        double syncGearRatio;
+        double profileTotalMilliseconds;
+        double profileAccMilliseconds;
+        double profileCruiseMilliseconds;
+        double profileDecMilliseconds;
+        double profileRemainingMilliseconds;
+        double profileCompletedMilliseconds;
+        double profileTargetPos;
+        double profileTotalDistance;
+        double profileRemainingDistance;
+        double profileCompletedDistance;
+        double intplVelocity;
+        int intplSegment;
+        bool followingErrorAlarm;
+        bool commandReady;
+        bool waitingForTrigger;
+        bool motionPaused;
+        bool motionComplete;
+        bool execSuperimposedMotion;
+        double cmdAcc;
+        bool accFlag;
+        bool decFlag;
+        bool inPos;
+        bool inPos2;
+        bool inPos3;
+        bool inPos4;
+        bool inPos5;
+        bool cmdDistributionEnd;
+        bool posSet;
+        bool delayedPosSet;
+        unsigned int cmdDistributionEndDelayedPosSetDiff;
+        bool positiveLS;
+        bool negativeLS;
+        bool nearPositiveLS;
+        bool nearNegativeLS;
+        bool externalPositiveLS;
+        bool externalNegativeLS;
+        bool positiveSoftLimit;
+        bool negativeSoftLimit;
+        HomeState::T homeState;
+        HomeError::T homeError;
+        double homeOffset;
+        bool homeSwitch;
+        bool homeDone;
+        bool homePaused;
+        bool cmdPosToFbPosFlag;
+        unsigned int singleTurnCounter;
+        double userOffset;
+        double userOffsetPosCmd;
+        double userOffsetActualPos;
+    };
+
+    //=========================================================================
+    // CoreMotionStatus class
+    //=========================================================================
+    class CoreMotionStatus
+    {
+    public:
+        CoreMotionStatus()
+        {
+            invalidLicenseError = false;
+            engineState = EngineState::Idle;
+            numOfInterrupts = 0;
+            emergencyStop = false;
+            emergencyStopLevel = EStopLevel::Final;
+            for (int i = 0; i < constants::maxInterrupts; i++)
+            {
+                cycleTimeMilliseconds[i] = 0;
+                cycleCounter[i] = 0;
+            }
+        }
+
+        bool invalidLicenseError;
+        EngineState::T engineState;
+        int numOfInterrupts;
+        double cycleTimeMilliseconds[constants::maxInterrupts];
+        long long cycleCounter[constants::maxInterrupts];
+        bool emergencyStop;
+        EStopLevel::T emergencyStopLevel;
+        CoreMotionAxisStatus axesStatus[constants::maxAxes];
+    };
+
+    //=========================================================================
     // AxisControl sub-class
     //=========================================================================
     class AxisControl

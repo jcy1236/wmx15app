@@ -92,6 +92,19 @@ namespace wmx3Api
         }
 
         //=====================================================================
+        // Ex APIs (Extended - same as non-Ex in this wrapper)
+        //=====================================================================
+        long GetInBytesEx(int addr, int size, unsigned char *pData)
+        {
+            return WMX3Broker_Io_GetInBytesEx(addr, size, pData);
+        }
+
+        long GetOutBytesEx(int addr, int size, unsigned char *pData)
+        {
+            return WMX3Broker_Io_GetOutBytesEx(addr, size, pData);
+        }
+
+        //=====================================================================
         // Analog Output
         //=====================================================================
         long SetOutAnalogDataShort(int addr, short analogData)

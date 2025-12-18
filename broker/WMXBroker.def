@@ -123,6 +123,8 @@ EXPORTS
     WMX3Broker_Uninitialize           @301
 
     ; WMX3 System APIs
+    WMX3Broker_GetIMDllVersion        @308
+    WMX3Broker_GetEngineStatus        @309
     WMX3Broker_CreateDevice           @310
     WMX3Broker_CreateDeviceW          @311
     WMX3Broker_CloseDevice            @312
@@ -217,8 +219,12 @@ EXPORTS
     WMX3Broker_Io_GetInAnalogDataShort  @430
     WMX3Broker_Io_SetOutAnalogDataInt   @431
     WMX3Broker_Io_GetInAnalogDataInt    @432
+    WMX3Broker_Io_GetInBytesEx          @433
+    WMX3Broker_Io_GetOutBytesEx         @434
 
     ; WMX3 Ecat APIs
+    WMX3Broker_Ecat_ErrorToString     @448
+    WMX3Broker_Ecat_ErrorToStringW    @449
     WMX3Broker_Ecat_GetMasterInfo     @450
     WMX3Broker_Ecat_ScanNetwork       @451
     WMX3Broker_Ecat_StartHotconnect   @452

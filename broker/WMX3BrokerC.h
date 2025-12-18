@@ -39,6 +39,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Uninitialize(void);
 //=============================================================================
 // WMX3Api System APIs
 //=============================================================================
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetIMDllVersion(int* pVersion, int* pRevision);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetEngineStatus(void* pStatus);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_CreateDevice(const char* path, int deviceType);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_CreateDeviceW(const wchar_t* path, int deviceType);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_CloseDevice(void);
@@ -184,9 +186,16 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInAnalogDataShort(int addr, shor
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutAnalogDataInt(int addr, int analogData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData);
 
+// Ex APIs (Extended)
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData);
+
 //=============================================================================
 // Ecat APIs
 //=============================================================================
+// ErrorToString
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ErrorToString(int errCode, char* pString, unsigned int size);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size);
 // Note: pMaster should point to wmx3Api::ecApi::EcMasterInfo structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetMasterInfo(void* pMaster);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ScanNetwork(void);

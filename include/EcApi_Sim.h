@@ -335,6 +335,17 @@ namespace wmx3Api
             Ecat() : m_wmx3Api(NULL) {}
             ~Ecat() {}
 
+            // Static methods
+            static long ErrorToString(int errCode, char *pString, unsigned int size)
+            {
+                return WMX3Broker_Ecat_ErrorToString(errCode, pString, size);
+            }
+
+            static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+            {
+                return WMX3Broker_Ecat_ErrorToStringW(errCode, pString, size);
+            }
+
             // Copy constructor and assignment operator
             Ecat(const Ecat &src) : m_wmx3Api(src.m_wmx3Api) {}
             Ecat &operator=(const Ecat &src)

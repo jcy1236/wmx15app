@@ -58,6 +58,19 @@ long __stdcall WMX3Broker_Uninitialize(void)
 //=============================================================================
 // WMX3Api System APIs
 //=============================================================================
+long __stdcall WMX3Broker_GetIMDllVersion(int* pVersion, int* pRevision)
+{
+    return wmx3Api::WMX3Api::GetIMDllVersion(pVersion, pRevision);
+}
+
+long __stdcall WMX3Broker_GetEngineStatus(void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3 || !pStatus) return -1;
+    return wmx3->GetEngineStatus(static_cast<wmx3Api::EngineStatus*>(pStatus));
+}
+
 long __stdcall WMX3Broker_CreateDevice(const char* path, int deviceType)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
@@ -819,9 +832,35 @@ long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData)
     return io->GetInAnalogDataInt(addr, pAnalogData);
 }
 
+long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io || !pData) return -1;
+    return io->GetInBytesEx(addr, size, pData);
+}
+
+long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io || !pData) return -1;
+    return io->GetOutBytesEx(addr, size, pData);
+}
+
 //=============================================================================
 // Ecat APIs
 //=============================================================================
+long __stdcall WMX3Broker_Ecat_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::ecApi::Ecat::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_Ecat_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::ecApi::Ecat::ErrorToString(errCode, pString, size);
+}
+
 long __stdcall WMX3Broker_Ecat_GetMasterInfo(void* pMaster)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();

@@ -25,7 +25,216 @@ namespace wmx3Api
         static const int maxIoOutSize = 8000;
         static const int maxDevices = 256;
         static const int maxInterrupts = 2;
+        static const int maxDeviceName = 64;
     }
+
+    //=========================================================================
+    // ErrorCode class (from WMX3Api.h)
+    //=========================================================================
+    class ErrorCode
+    {
+    public:
+        enum
+        {
+            None = 0x0,
+
+            StartProcessFailed = 0x00000100,
+            StartProcessNull,
+            StartProcessMaxInstance,
+            StartProcessLockError,
+            StartProcessWaitEventFailed,
+            StartProcessWaitTimeout,
+            MemoryAllocFailed,
+            IMLibIsNotRunning,
+            ControlChannelLockFailed,
+            ControlChannelEventFailed,
+            ControlChannelWaitEventFailed,
+            ControlChannelSharedMemoryFailed,
+            ControlChannelLockWaitTimeOut,
+            APIChannelError,
+            APIChannelTimeOut,
+            StatusChannelError,
+
+            RtssFileNotFoundError,
+            RtssStartError,
+            RequestChannelTimeOut,
+            FreeChannelTimeOut,
+            CloseDeviceTimeOut,
+
+            RequestChannelFailed,
+            ReachMaxChannelNumber,
+            FreeChannelFailed,
+            InvalidChannelId,
+            CloseDeviceFailed,
+
+            StatusChannelNull,
+            StatusChannelIdError,
+            StatusSharedMemoryChannelIndexError,
+            StatusChannelGettingInitialData,
+
+            RequestQueueFailed,
+            InvalidQueueId,
+            InvalidQueueSize,
+            RequestQueueTimeout,
+            InvalidQueue,
+            FreeQueueTimeout,
+            InvalidQueueControlCommand,
+            ControlQueueTimeout,
+            SetQueueOptionsTimeout,
+            FreeQueueFailed,
+            RequestQueueIDAlreadyUsed,
+
+            CreateDeviceLockError,
+            CloseDeviceLockError,
+
+            SetDeviceNameTimeout,
+            GetActiveDeviceTimeout,
+
+            DeviceIsNull,
+            InvalidModuleId,
+            InvalidDeterMode,
+            NoSupportedFunction,
+            CommandInvalidQueueId,
+            CommandQueueAddFailed,
+            CommandQueueIsFull,
+            CommandQueueAddTimeOut,
+
+            IMVersionMismatch,
+            ModuleVersionMismatch,
+
+            CommandIdLockError,
+            CommandIdGetError,
+
+            CallbackMallocFailed,
+            CallbackThreadNull,
+            CallbackThreadError,
+            CallbackThreadTimeOut,
+
+            IMLibNullParam,
+            IMLibInvalidParam,
+
+            ConflictingErrorCode,
+            UtilDataChnlSizeTooSmall,
+            UtilBuffAndDataSizeDiff,
+            UtilNoEnoughDataChnlSize,
+            UtilReachMaxDataChnlSize,
+            UtilIndexOutOfRange,
+            UtilInitFailed,
+            UtilLockFailed,
+            UtilQueueFull,
+            UtilQueueEmpty,
+            UtilBufferSizeNotEnough,
+
+            WaitForDeviceEventTimeout,
+            DeviceEventProcessFailed,
+            ImCommandNotMatched,
+
+            ApiLogCreateQueueFailed,
+            ApiLogIsNotSet,
+            ApiLogIsRunning,
+            ApiLogIsNotRunning,
+            ApiLogQueueError,
+            ApiLogOpenFileFailed,
+            ApiLogWriteFileFailed,
+            ApiLogReadFileFailed,
+            ApiLogFolderNotExist,
+            ApiLogGetStatusError,
+
+            SystemError = 0x00000500,
+            SystemIsNoRunning,
+            SystemInitializationNotDone,
+            EngineNotStartedInSpecifiedTime,
+            EngineNotStoppedInSpecifiedTime,
+            CommNotStartedInSpecifiedTime,
+            CommNotStoppedInSpecifiedTime,
+            ModuleIsNotLoaded,
+            StartCommunicationError,
+            DeviceIsNotInUse,
+            SetDeviceEventFailed,
+            ResetDeviceEventFailed,
+            WaitForDeviceEventFailed,
+
+            Reserved = 0x00000600,
+            CommNotStarted,
+            CommNotStopped,
+            VersionCheckError,
+            CallbackFuncError,
+            CallbackFuncTimeOut,
+            CallbackFuncInvalidState,
+            CallbackFuncInvalidMode,
+            MissingRequiredRtdll,
+
+            BusyReceivingAnotherAPICommand,
+            NotIdleState,
+            AxisOutOfRange,
+            AxisCountOutOfRange,
+            DuplicateAxis,
+            IOAddressOutOfRange,
+            IOSizeOutOfRange,
+            ChannelOutOfRange,
+            ChannelUninitialized,
+            ChannelInUse,
+            ArgumentOutOfRange,
+            ArgumentIsNull,
+            PrevSettingsBeingApplied,
+            ParamOutOfRange,
+            IDOutOfRange,
+            IDNotDefined,
+            ResourceInUse,
+            FileOperationFailed,
+            StartingPreviousCommand,
+            StringConversionError,
+            NoMotion,
+            ServoOffline,
+            ServoOff,
+            AxisAmpAlarm,
+            AxisSoftLimit,
+            AxisNearLimit,
+            AxisExternalLimit,
+            AxisHardLimit,
+            UserMemoryAddressOutOfRange,
+            UserMemorySizeOutOfRange,
+            InvalidCommandProcessingMode,
+            InterruptMismatch,
+            ErrorCodeNotDefined,
+            BufferTooSmall,
+            RequestedBufferTooLarge,
+            RequestedBufferTooSmall,
+            ModuleIDOutOfRange,
+            UpdatesListUninitialized,
+            UpdatesListDoesNotMatchInstalledUpdates,
+            UpdatesListTimeout,
+
+            UnknownError
+        };
+    };
+
+    //=========================================================================
+    // InterruptData class (from WMX3Api.h)
+    //=========================================================================
+    class InterruptData
+    {
+    public:
+        InterruptData() : numOfAxes(0), cycleTimeMicroseconds(0), cycleCounter(0) {}
+
+        int numOfAxes;
+        int cycleTimeMicroseconds;
+        long long cycleCounter;
+    };
+
+    //=========================================================================
+    // EngineStatus class (from WMX3Api.h)
+    //=========================================================================
+    class EngineStatus
+    {
+    public:
+        EngineStatus() : state(EngineState::Idle), error(0), numOfInterrupts(0) {}
+
+        EngineState::T state;
+        unsigned int error;
+        int numOfInterrupts;
+        InterruptData interrupts[constants::maxInterrupts];
+    };
 
     //=========================================================================
     // Enums (from WMX3Api.h)
@@ -40,6 +249,36 @@ namespace wmx3Api
             DeviceTypeExitWOCnt = 0x02,
             DeviceTypeLowpriorityExitWOCnt = 0x03
         };
+    };
+
+    //=========================================================================
+    // DeviceInfoA class (from WMX3Api.h)
+    //=========================================================================
+    class DeviceInfoA
+    {
+    public:
+        DeviceInfoA() : id(0), type(DeviceType::DeviceTypeNormal), watchdog(0), watchdogCount(0)
+        {
+            memset(name, 0, sizeof(name));
+        }
+
+        unsigned int id;
+        DeviceType::T type;
+        unsigned int watchdog;
+        unsigned int watchdogCount;
+        char name[constants::maxDeviceName];
+    };
+
+    //=========================================================================
+    // DevicesInfoA class (from WMX3Api.h)
+    //=========================================================================
+    class DevicesInfoA
+    {
+    public:
+        DevicesInfoA() : count(0) {}
+
+        unsigned int count;
+        DeviceInfoA devices[constants::maxDevices];
     };
 
     class EngineState
@@ -224,87 +463,8 @@ namespace wmx3Api
         int axis[constants::maxAxes];
     };
 
-    //=========================================================================
-    // CoreMotionAxisStatus (from CoreMotionApi.h)
-    //=========================================================================
-    class CoreMotionAxisStatus
-    {
-    public:
-        CoreMotionAxisStatus()
-        {
-            memset(this, 0, sizeof(CoreMotionAxisStatus));
-        }
-
-        bool servoOn;
-        bool servoOffline;
-        bool ampAlarm;
-        unsigned int ampAlarmCode;
-        double posCmd;
-        double actualPos;
-        double compPosCmd;
-        double compActualPos;
-        double velocityCmd;
-        double actualVelocity;
-        double velocityLag;
-        double torqueCmd;
-        double actualTorque;
-        double followingError;
-        double profileTotalMilliseconds;
-        double profileAccMilliseconds;
-        double profileCruiseMilliseconds;
-        double profileDecMilliseconds;
-        OperationState::T opState;
-        int detailOpState;
-        bool positiveLS;
-        bool negativeLS;
-        bool nearPositiveLS;
-        bool nearNegativeLS;
-        bool externalPositiveLS;
-        bool externalNegativeLS;
-        bool inPos;
-        bool inPos2;
-        bool inPos3;
-        bool inPos4;
-        bool inPos5;
-        bool homeSwitch;
-        bool homeDone;
-        bool homePaused;
-        HomeState::T homeState;
-        bool cmdDistributionEnd;
-        bool posSet;
-        bool delayedPosSet;
-        bool positiveSoftLimit;
-        bool negativeSoftLimit;
-        int masterAxis;
-    };
-
-    //=========================================================================
-    // CoreMotionStatus (from CoreMotionApi.h)
-    //=========================================================================
-    class CoreMotionStatus
-    {
-    public:
-        CoreMotionStatus() : invalidLicenseError(false), engineState(EngineState::Idle),
-                             numOfInterrupts(0), emergencyStop(false), emergencyStopLevel(0)
-        {
-            for (int i = 0; i < constants::maxInterrupts; i++)
-            {
-                cycleTimeMilliseconds[i] = 0;
-                cycleCounter[i] = 0;
-            }
-        }
-
-        bool invalidLicenseError;
-        EngineState::T engineState;
-        int numOfInterrupts;
-        double cycleTimeMilliseconds[constants::maxInterrupts];
-        long long cycleCounter[constants::maxInterrupts];
-        bool emergencyStop;
-        int emergencyStopLevel;
-        CoreMotionAxisStatus axesStatus[constants::maxAxes];
-    };
-
     // Forward declarations
+    // Note: CoreMotionAxisStatus and CoreMotionStatus are defined in CoreMotionApi_Sim.h
     class WMX3Api;
     class CoreMotion;
     class Io;
@@ -376,6 +536,16 @@ namespace wmx3Api
         long SetDeviceName(wchar_t *name)
         {
             return WMX3Broker_SetDeviceNameW(name);
+        }
+
+        long GetEngineStatus(EngineStatus *status)
+        {
+            return WMX3Broker_GetEngineStatus(status);
+        }
+
+        static long GetIMDllVersion(int *pVersion, int *pRevision)
+        {
+            return WMX3Broker_GetIMDllVersion(pVersion, pRevision);
         }
     };
 
