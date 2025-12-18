@@ -463,6 +463,19 @@ namespace wmx3Api
             {
                 return WMX3Broker_Ecat_GetInputBytes(slaveId, byte, size, pData);
             }
+
+            //=================================================================
+            // SII (Slave Information Interface) Read/Write
+            //=================================================================
+            long SIIWrite(int slaveId, int siiAddr, int len, unsigned char *data, bool checkSum = false)
+            {
+                return WMX3Broker_Ecat_SIIWrite(slaveId, siiAddr, len, data, checkSum ? 1 : 0);
+            }
+
+            long SIIRead(int slaveId, int siiAddr, int len, unsigned char *buff)
+            {
+                return WMX3Broker_Ecat_SIIRead(slaveId, siiAddr, len, buff);
+            }
         };
 
     } // namespace ecApi

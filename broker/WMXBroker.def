@@ -244,6 +244,10 @@ EXPORTS
     WMX3Broker_Ecat_GetInputByte      @464
     WMX3Broker_Ecat_GetInputBytes     @465
 
+    ; WMX3 Ecat APIs - SII (Slave Information Interface)
+    WMX3Broker_Ecat_SIIWrite          @470
+    WMX3Broker_Ecat_SIIRead           @471
+
     ; WMX3 EventControl APIs - Event Management
     WMX3Broker_Event_EnableEvent      @500
     WMX3Broker_Event_RemoveEvent      @501

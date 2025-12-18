@@ -209,6 +209,18 @@ namespace wmx3Api
         };
     };
 
+    class EngineState
+    {
+    public:
+        enum T
+        {
+            Idle,
+            Running,
+            Communicating,
+            Shutdown,
+            Unknown
+        };
+    };
     //=========================================================================
     // InterruptData class (from WMX3Api.h)
     //=========================================================================
@@ -318,19 +330,6 @@ namespace wmx3Api
         {
             Input,
             Output
-        };
-    };
-
-    class EngineState
-    {
-    public:
-        enum T
-        {
-            Idle,
-            Running,
-            Communicating,
-            Shutdown,
-            Unknown
         };
     };
 

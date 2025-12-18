@@ -228,6 +228,10 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputBit(int slaveId, int byte
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputByte(int slaveId, int byte, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputBytes(int slaveId, int byte, int size, unsigned char* pData);
 
+// SII (Slave Information Interface) Read/Write
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SIIWrite(int slaveId, int siiAddr, int len, unsigned char* data, int checkSum);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SIIRead(int slaveId, int siiAddr, int len, unsigned char* buff);
+
 //=============================================================================
 // EventControl APIs
 //=============================================================================

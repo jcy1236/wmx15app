@@ -1009,6 +1009,22 @@ long __stdcall WMX3Broker_Ecat_GetInputBytes(int slaveId, int byte, int size, un
     return ecat->GetInputBytes(slaveId, byte, size, pData);
 }
 
+long __stdcall WMX3Broker_Ecat_SIIWrite(int slaveId, int siiAddr, int len, unsigned char* data, int checkSum)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
+    if (!ecat || !data) return -1;
+    return ecat->SIIWrite(slaveId, siiAddr, len, data, checkSum != 0);
+}
+
+long __stdcall WMX3Broker_Ecat_SIIRead(int slaveId, int siiAddr, int len, unsigned char* buff)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
+    if (!ecat || !buff) return -1;
+    return ecat->SIIRead(slaveId, siiAddr, len, buff);
+}
+
 //=============================================================================
 // EventControl APIs
 //=============================================================================
