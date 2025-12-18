@@ -318,6 +318,18 @@ namespace wmx3Api
             return WMX3Broker_Event_SetEventWithId(pId, pEventInput, pEventOutput, id, pOption);
         }
 
+        //[Deprecated]
+        long SetEvent(int *pId, Event *pEventData)
+        {
+            return WMX3Broker_Event_SetEventDeprecated(pId, pEventData);
+        }
+
+        //[Deprecated]
+        long SetEvent(int *pId, Event *pEventData, int id)
+        {
+            return WMX3Broker_Event_SetEventDeprecatedWithId(pId, pEventData, id);
+        }
+
         //=====================================================================
         // Event Management APIs
         //=====================================================================

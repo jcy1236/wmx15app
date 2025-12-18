@@ -401,6 +401,15 @@ namespace wmx3Api
                                                  sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
             }
 
+            long SdoUpload(int slaveId, int index, int subindex, EcSdoType::T sdoType,
+                           int sdoBuffSize, unsigned char *sdoBuff, unsigned int *actualSize,
+                           unsigned int *errCode, unsigned int waitTime = 0)
+            {
+                return WMX3Broker_Ecat_SdoUploadWithType(slaveId, index, subindex,
+                                                         static_cast<int>(sdoType),
+                                                         sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
+            }
+
             //=================================================================
             // Register Read/Write
             //=================================================================

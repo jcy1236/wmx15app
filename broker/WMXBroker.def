@@ -247,6 +247,11 @@ EXPORTS
     ; WMX3 Ecat APIs - SII (Slave Information Interface)
     WMX3Broker_Ecat_SIIWrite          @470
     WMX3Broker_Ecat_SIIRead           @471
+    WMX3Broker_Ecat_SdoUploadWithType @472
+
+    ; WMX3 EventControl APIs - Deprecated SetEvent (Event structure based)
+    WMX3Broker_Event_SetEventDeprecated       @496
+    WMX3Broker_Event_SetEventDeprecatedWithId @497
 
     ; WMX3 EventControl APIs - SetEvent
     WMX3Broker_Event_SetEvent         @498

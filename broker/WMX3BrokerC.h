@@ -209,6 +209,9 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SdoDownload(int slaveId, int inde
     int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SdoUpload(int slaveId, int index, int subindex,
     int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode, unsigned int waitTime);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SdoUploadWithType(int slaveId, int index, int subindex,
+    int sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize,
+    unsigned int* errCode, unsigned int waitTime);
 
 // Register Read/Write
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_RegisterWrite(int slaveId, int regAddr, int len, unsigned char* data);
@@ -242,6 +245,11 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEvent(int* pId, void* pEventI
     void* pEventOutput, void* pOption);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEventWithId(int* pId, void* pEventInput,
     void* pEventOutput, int id, void* pOption);
+
+// Deprecated SetEvent (Event structure based)
+// Note: pEventData should point to wmx3Api::EventControl::Event structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEventDeprecated(int* pId, void* pEventData);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetEventDeprecatedWithId(int* pId, void* pEventData, int id);
 
 // Event Management
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable);

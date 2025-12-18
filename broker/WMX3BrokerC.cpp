@@ -927,6 +927,18 @@ long __stdcall WMX3Broker_Ecat_SdoUpload(int slaveId, int index, int subindex,
     return ecat->SdoUpload(slaveId, index, subindex, sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
 }
 
+long __stdcall WMX3Broker_Ecat_SdoUploadWithType(int slaveId, int index, int subindex,
+    int sdoType, int sdoBuffSize, unsigned char* sdoBuff, unsigned int* actualSize,
+    unsigned int* errCode, unsigned int waitTime)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
+    if (!ecat || !sdoBuff) return -1;
+    return ecat->SdoUpload(slaveId, index, subindex,
+        static_cast<wmx3Api::ecApi::EcSdoType::T>(sdoType),
+        sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
+}
+
 long __stdcall WMX3Broker_Ecat_RegisterWrite(int slaveId, int regAddr, int len, unsigned char* data)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
@@ -1049,6 +1061,22 @@ long __stdcall WMX3Broker_Event_SetEventWithId(int* pId, void* pEventInput, void
         static_cast<wmx3Api::EventOutput*>(pEventOutput),
         id,
         static_cast<wmx3Api::EventOption*>(pOption));
+}
+
+long __stdcall WMX3Broker_Event_SetEventDeprecated(int* pId, void* pEventData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pId || !pEventData) return -1;
+    return eventCtrl->SetEvent(pId, static_cast<wmx3Api::EventControl::Event*>(pEventData));
+}
+
+long __stdcall WMX3Broker_Event_SetEventDeprecatedWithId(int* pId, void* pEventData, int id)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pId || !pEventData) return -1;
+    return eventCtrl->SetEvent(pId, static_cast<wmx3Api::EventControl::Event*>(pEventData), id);
 }
 
 long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable)
