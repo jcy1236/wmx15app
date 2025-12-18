@@ -10,6 +10,7 @@
 #include "CoreMotionApi.h"
 #include "IOApi.h"
 #include "EcApi.h"
+#include "EventApi.h"
 
 #include <cstring>
 
@@ -951,4 +952,130 @@ long __stdcall WMX3Broker_Ecat_GetInputBytes(int slaveId, int byte, int size, un
     wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
     if (!ecat || !pData) return -1;
     return ecat->GetInputBytes(slaveId, byte, size, pData);
+}
+
+//=============================================================================
+// EventControl APIs
+//=============================================================================
+long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->EnableEvent(id, enable != 0);
+}
+
+long __stdcall WMX3Broker_Event_RemoveEvent(int id)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->RemoveEvent(id);
+}
+
+long __stdcall WMX3Broker_Event_ClearAllEvent(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->ClearAllEvent();
+}
+
+long __stdcall WMX3Broker_Event_GetAllEventID(void* pEventIdData, int filterInputModuleId, int filterOutputModuleId)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pEventIdData) return -1;
+    return eventCtrl->GetAllEventID(static_cast<wmx3Api::AllEventID*>(pEventIdData),
+        filterInputModuleId, filterOutputModuleId);
+}
+
+//=============================================================================
+// EventControl - Software Touch Probe APIs
+//=============================================================================
+long __stdcall WMX3Broker_Event_SetSoftwareTouchProbe(unsigned int channel,
+    unsigned char enable, int axis, int byteAddrs, int bitOffset, unsigned char logic, int mode)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->SetSoftwareTouchProbe(channel, enable != 0, axis, byteAddrs, bitOffset,
+        logic != 0, static_cast<wmx3Api::EventControl::TouchProbeMode::T>(mode));
+}
+
+long __stdcall WMX3Broker_Event_EnableSoftwareTouchProbe(unsigned int channel, unsigned char enable)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->EnableSoftwareTouchProbe(channel, enable != 0);
+}
+
+long __stdcall WMX3Broker_Event_GetSoftwareTouchProbe(unsigned int channel,
+    unsigned char* pEnabled, int* pAxis, int* pByteAddrs, int* pBitOffset,
+    unsigned char* pLogic, int* pMode)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+
+    unsigned char enabled = 0;
+    unsigned char logic = 0;
+    wmx3Api::EventControl::TouchProbeMode::T mode;
+
+    long ret = eventCtrl->GetSoftwareTouchProbe(channel, &enabled, pAxis, pByteAddrs, pBitOffset, &logic, &mode);
+    if (ret == 0) {
+        if (pEnabled) *pEnabled = enabled;
+        if (pLogic) *pLogic = logic;
+        if (pMode) *pMode = static_cast<int>(mode);
+    }
+    return ret;
+}
+
+long __stdcall WMX3Broker_Event_IsSoftwareTouchProbeLatched(unsigned int channel, unsigned char* pLatched)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pLatched) return -1;
+    return eventCtrl->IsSoftwareTouchProbeLatched(channel, pLatched);
+}
+
+long __stdcall WMX3Broker_Event_GetSoftwareTouchProbeCounterValue(unsigned int channel,
+    unsigned char* pLatched, double* pCounterValue)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pCounterValue) return -1;
+    return eventCtrl->GetSoftwareTouchProbeCounterValue(channel, pLatched, pCounterValue);
+}
+
+//=============================================================================
+// EventControl - Hardware Touch Probe APIs
+//=============================================================================
+long __stdcall WMX3Broker_Event_SetHardwareTouchProbe(int axis, unsigned char enable,
+    int mode, int triggerSource, unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->SetHardwareTouchProbe(axis, enable != 0,
+        static_cast<wmx3Api::EventControl::TouchProbeMode::T>(mode),
+        static_cast<wmx3Api::EventControl::TouchProbeSource::T>(triggerSource), channel);
+}
+
+long __stdcall WMX3Broker_Event_GetHardwareTouchProbeStatus(int axis, void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl || !pStatus) return -1;
+    return eventCtrl->GetHardwareTouchProbeStatus(axis,
+        static_cast<wmx3Api::EventControl::HardwareTouchProbeStatus*>(pStatus));
+}
+
+long __stdcall WMX3Broker_Event_EnableHardwareTouchProbe(int axis, unsigned char enable)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
+    if (!eventCtrl) return -1;
+    return eventCtrl->EnableHardwareTouchProbe(axis, enable != 0);
 }

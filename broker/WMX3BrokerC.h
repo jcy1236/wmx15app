@@ -217,6 +217,37 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputBit(int slaveId, int byte
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputByte(int slaveId, int byte, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetInputBytes(int slaveId, int byte, int size, unsigned char* pData);
 
+//=============================================================================
+// EventControl APIs
+//=============================================================================
+// Event Management
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableEvent(int id, unsigned char enable);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_RemoveEvent(int id);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_ClearAllEvent(void);
+// Note: pEventIdData should point to wmx3Api::AllEventID structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_GetAllEventID(void* pEventIdData,
+    int filterInputModuleId, int filterOutputModuleId);
+
+// Software Touch Probe
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetSoftwareTouchProbe(unsigned int channel,
+    unsigned char enable, int axis, int byteAddrs, int bitOffset, unsigned char logic, int mode);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableSoftwareTouchProbe(unsigned int channel,
+    unsigned char enable);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_GetSoftwareTouchProbe(unsigned int channel,
+    unsigned char* pEnabled, int* pAxis, int* pByteAddrs, int* pBitOffset,
+    unsigned char* pLogic, int* pMode);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_IsSoftwareTouchProbeLatched(unsigned int channel,
+    unsigned char* pLatched);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_GetSoftwareTouchProbeCounterValue(unsigned int channel,
+    unsigned char* pLatched, double* pCounterValue);
+
+// Hardware Touch Probe
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetHardwareTouchProbe(int axis, unsigned char enable,
+    int mode, int triggerSource, unsigned int channel);
+// Note: pStatus should point to wmx3Api::EventControl::HardwareTouchProbeStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_GetHardwareTouchProbeStatus(int axis, void* pStatus);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableHardwareTouchProbe(int axis, unsigned char enable);
+
 #ifdef __cplusplus
 }
 #endif

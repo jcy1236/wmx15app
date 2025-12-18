@@ -1,4 +1,4 @@
-// Ecat_Sim.h
+// EcApi_Sim.h
 // WMX3 EtherCAT API Header-only wrapper for VS2012 compatibility
 // Part of WMX3Api_Sim.h - provides wmx3Api::ecApi namespace interface
 //
@@ -6,18 +6,20 @@
 //   Include via WMX3Api_Sim.h (not directly)
 //   Link with WMXBroker.lib
 
-#ifndef ECAT_SIM_H
-#define ECAT_SIM_H
+#ifndef ECAPI_SIM_H
+#define ECAPI_SIM_H
 
 #include "WMX3BrokerC.h"
 
-namespace wmx3Api {
-    namespace ecApi {
-
+namespace wmx3Api
+{
+    namespace ecApi
+    {
         //=====================================================================
         // EtherCAT Constants
         //=====================================================================
-        namespace constants {
+        namespace constants
+        {
             static const int maxMasters = 2;
             static const int maxSlaves = 256;
             static const int maxSlaveAxes = 16;
@@ -30,9 +32,11 @@ namespace wmx3Api {
         //=====================================================================
         // EtherCAT Enums
         //=====================================================================
-        class EcStateMachine {
+        class EcStateMachine
+        {
         public:
-            enum T {
+            enum T
+            {
                 None = 0x00,
                 Init = 0x01,
                 Preop = 0x02,
@@ -42,17 +46,21 @@ namespace wmx3Api {
             };
         };
 
-        class EcSdoType {
+        class EcSdoType
+        {
         public:
-            enum T {
+            enum T
+            {
                 Expedited = 0x00,
                 Normal = 0x01
             };
         };
 
-        class EcHotconnectState {
+        class EcHotconnectState
+        {
         public:
-            enum T {
+            enum T
+            {
                 Idle = 0x00,
                 Running,
                 Abort,
@@ -60,9 +68,11 @@ namespace wmx3Api {
             };
         };
 
-        class EcHotconnectAbortCode {
+        class EcHotconnectAbortCode
+        {
         public:
-            enum T {
+            enum T
+            {
                 None = 0x00,
                 PortOpenError,
                 Timeout,
@@ -75,9 +85,11 @@ namespace wmx3Api {
             };
         };
 
-        class EcOperationMode {
+        class EcOperationMode
+        {
         public:
-            enum T {
+            enum T
+            {
                 NONE = 0x00,
                 PP = 0x01,
                 VL = 0x02,
@@ -93,9 +105,11 @@ namespace wmx3Api {
             };
         };
 
-        class EcMasterMode {
+        class EcMasterMode
+        {
         public:
-            enum T {
+            enum T
+            {
                 CyclicMode,
                 PPMode
             };
@@ -104,7 +118,8 @@ namespace wmx3Api {
         //=====================================================================
         // EtherCAT Data Structures
         //=====================================================================
-        class EcSlavePdo {
+        class EcSlavePdo
+        {
         public:
             EcSlavePdo() : enable(false), size(0), offset(0) {}
             bool enable;
@@ -112,9 +127,11 @@ namespace wmx3Api {
             unsigned short offset;
         };
 
-        class EcSlavePdoInfo {
+        class EcSlavePdoInfo
+        {
         public:
-            EcSlavePdoInfo() {
+            EcSlavePdoInfo()
+            {
                 memset(this, 0, sizeof(EcSlavePdoInfo));
             }
             EcSlavePdo statusWord;
@@ -144,9 +161,11 @@ namespace wmx3Api {
             EcSlavePdo digitalOutput;
         };
 
-        class EcSlaveAxisInfo {
+        class EcSlaveAxisInfo
+        {
         public:
-            EcSlaveAxisInfo() {
+            EcSlaveAxisInfo()
+            {
                 memset(this, 0, sizeof(EcSlaveAxisInfo));
                 operationMode = EcOperationMode::NONE;
             }
@@ -164,9 +183,11 @@ namespace wmx3Api {
             unsigned char halt;
         };
 
-        class EcSlaveInfo {
+        class EcSlaveInfo
+        {
         public:
-            EcSlaveInfo() {
+            EcSlaveInfo()
+            {
                 memset(this, 0, sizeof(EcSlaveInfo));
                 state = EcStateMachine::None;
             }
@@ -206,9 +227,11 @@ namespace wmx3Api {
             unsigned int txSize;
         };
 
-        class EcMasterStatisticsInfo {
+        class EcMasterStatisticsInfo
+        {
         public:
-            EcMasterStatisticsInfo() {
+            EcMasterStatisticsInfo()
+            {
                 memset(this, 0, sizeof(EcMasterStatisticsInfo));
                 hcState = EcHotconnectState::Idle;
                 hcAbortCode = EcHotconnectAbortCode::None;
@@ -249,9 +272,11 @@ namespace wmx3Api {
             long hcErrorCode;
         };
 
-        class EcMasterInfo {
+        class EcMasterInfo
+        {
         public:
-            EcMasterInfo() {
+            EcMasterInfo()
+            {
                 memset(this, 0, sizeof(EcMasterInfo));
                 state = EcStateMachine::None;
                 mode = EcMasterMode::CyclicMode;
@@ -263,26 +288,35 @@ namespace wmx3Api {
             EcSlaveInfo slaves[constants::maxSlaves];
             EcMasterStatisticsInfo statisticsInfo;
 
-            int GetOnlineSlaveCount() {
+            int GetOnlineSlaveCount()
+            {
                 int count = 0;
-                for (unsigned int i = 0; i < numOfSlaves; i++) {
-                    if (!slaves[i].offline) count++;
+                for (unsigned int i = 0; i < numOfSlaves; i++)
+                {
+                    if (!slaves[i].offline)
+                        count++;
                 }
                 return count;
             }
 
-            int GetOfflineSlaveCount() {
+            int GetOfflineSlaveCount()
+            {
                 int count = 0;
-                for (unsigned int i = 0; i < numOfSlaves; i++) {
-                    if (slaves[i].offline) count++;
+                for (unsigned int i = 0; i < numOfSlaves; i++)
+                {
+                    if (slaves[i].offline)
+                        count++;
                 }
                 return count;
             }
 
-            int GetInaccessibleSlaveCount() {
+            int GetInaccessibleSlaveCount()
+            {
                 int count = 0;
-                for (unsigned int i = 0; i < numOfSlaves; i++) {
-                    if (slaves[i].inaccessible) count++;
+                for (unsigned int i = 0; i < numOfSlaves; i++)
+                {
+                    if (slaves[i].inaccessible)
+                        count++;
                 }
                 return count;
             }
@@ -291,19 +325,22 @@ namespace wmx3Api {
         //=====================================================================
         // Ecat class - EtherCAT operations
         //=====================================================================
-        class Ecat {
+        class Ecat
+        {
         private:
-            WMX3Api* m_wmx3Api;
+            WMX3Api *m_wmx3Api;
 
         public:
-            Ecat(WMX3Api* wmx3Api) : m_wmx3Api(wmx3Api) {}
+            Ecat(WMX3Api *wmx3Api) : m_wmx3Api(wmx3Api) {}
             Ecat() : m_wmx3Api(NULL) {}
             ~Ecat() {}
 
             // Copy constructor and assignment operator
-            Ecat(const Ecat& src) : m_wmx3Api(src.m_wmx3Api) {}
-            Ecat& operator=(const Ecat& src) {
-                if (this != &src) {
+            Ecat(const Ecat &src) : m_wmx3Api(src.m_wmx3Api) {}
+            Ecat &operator=(const Ecat &src)
+            {
+                if (this != &src)
+                {
                     m_wmx3Api = src.m_wmx3Api;
                 }
                 return *this;
@@ -312,22 +349,26 @@ namespace wmx3Api {
             //=================================================================
             // Master Information
             //=================================================================
-            long GetMasterInfo(EcMasterInfo* pMaster) {
+            long GetMasterInfo(EcMasterInfo *pMaster)
+            {
                 return WMX3Broker_Ecat_GetMasterInfo(pMaster);
             }
 
             //=================================================================
             // Network Control
             //=================================================================
-            long ScanNetwork() {
+            long ScanNetwork()
+            {
                 return WMX3Broker_Ecat_ScanNetwork();
             }
 
-            long StartHotconnect() {
+            long StartHotconnect()
+            {
                 return WMX3Broker_Ecat_StartHotconnect();
             }
 
-            long ChangeSlaveState(int slaveId, EcStateMachine::T state, int* pErrorCode) {
+            long ChangeSlaveState(int slaveId, EcStateMachine::T state, int *pErrorCode)
+            {
                 return WMX3Broker_Ecat_ChangeSlaveState(slaveId, static_cast<int>(state), pErrorCode);
             }
 
@@ -335,26 +376,30 @@ namespace wmx3Api {
             // SDO Communication
             //=================================================================
             long SdoDownload(int slaveId, int index, int subindex, int sdoDataSize,
-                unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime = 0) {
+                             unsigned char *sdoData, unsigned int *errCode, unsigned int waitTime = 0)
+            {
                 return WMX3Broker_Ecat_SdoDownload(slaveId, index, subindex,
-                    sdoDataSize, sdoData, errCode, waitTime);
+                                                   sdoDataSize, sdoData, errCode, waitTime);
             }
 
             long SdoUpload(int slaveId, int index, int subindex, int sdoBuffSize,
-                unsigned char* sdoBuff, unsigned int* actualSize, unsigned int* errCode,
-                unsigned int waitTime = 0) {
+                           unsigned char *sdoBuff, unsigned int *actualSize, unsigned int *errCode,
+                           unsigned int waitTime = 0)
+            {
                 return WMX3Broker_Ecat_SdoUpload(slaveId, index, subindex,
-                    sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
+                                                 sdoBuffSize, sdoBuff, actualSize, errCode, waitTime);
             }
 
             //=================================================================
             // Register Read/Write
             //=================================================================
-            long RegisterWrite(int slaveId, int regAddr, int len, unsigned char* data) {
+            long RegisterWrite(int slaveId, int regAddr, int len, unsigned char *data)
+            {
                 return WMX3Broker_Ecat_RegisterWrite(slaveId, regAddr, len, data);
             }
 
-            long RegisterRead(int slaveId, int regAddr, int len, unsigned char* buff) {
+            long RegisterRead(int slaveId, int regAddr, int len, unsigned char *buff)
+            {
                 return WMX3Broker_Ecat_RegisterRead(slaveId, regAddr, len, buff);
             }
 
@@ -362,41 +407,49 @@ namespace wmx3Api {
             // PDO Read/Write
             //=================================================================
             long TxPdoWrite(int slaveId, int index, int subindex, int pdoDataSize,
-                unsigned char* pdoData, unsigned int mask = 0) {
+                            unsigned char *pdoData, unsigned int mask = 0)
+            {
                 return WMX3Broker_Ecat_TxPdoWrite(slaveId, index, subindex,
-                    pdoDataSize, pdoData);
+                                                  pdoDataSize, pdoData);
             }
 
             long PdoRead(int slaveId, int index, int subindex, int pdoBuffSize,
-                unsigned char* pdoBuff, unsigned int* actualSize) {
+                         unsigned char *pdoBuff, unsigned int *actualSize)
+            {
                 return WMX3Broker_Ecat_PdoRead(slaveId, index, subindex,
-                    pdoBuffSize, pdoBuff, actualSize);
+                                               pdoBuffSize, pdoBuff, actualSize);
             }
 
             //=================================================================
             // Slave I/O (Digital)
             //=================================================================
-            long SetOutputBit(int slaveId, int byte, int bit, unsigned char data) {
+            long SetOutputBit(int slaveId, int byte, int bit, unsigned char data)
+            {
                 return WMX3Broker_Ecat_SetOutputBit(slaveId, byte, bit, data);
             }
 
-            long SetOutputByte(int slaveId, int byte, unsigned char data) {
+            long SetOutputByte(int slaveId, int byte, unsigned char data)
+            {
                 return WMX3Broker_Ecat_SetOutputByte(slaveId, byte, data);
             }
 
-            long SetOutputBytes(int slaveId, int byte, int size, unsigned char* pData) {
+            long SetOutputBytes(int slaveId, int byte, int size, unsigned char *pData)
+            {
                 return WMX3Broker_Ecat_SetOutputBytes(slaveId, byte, size, pData);
             }
 
-            long GetInputBit(int slaveId, int byte, int bit, unsigned char* pData) {
+            long GetInputBit(int slaveId, int byte, int bit, unsigned char *pData)
+            {
                 return WMX3Broker_Ecat_GetInputBit(slaveId, byte, bit, pData);
             }
 
-            long GetInputByte(int slaveId, int byte, unsigned char* pData) {
+            long GetInputByte(int slaveId, int byte, unsigned char *pData)
+            {
                 return WMX3Broker_Ecat_GetInputByte(slaveId, byte, pData);
             }
 
-            long GetInputBytes(int slaveId, int byte, int size, unsigned char* pData) {
+            long GetInputBytes(int slaveId, int byte, int size, unsigned char *pData)
+            {
                 return WMX3Broker_Ecat_GetInputBytes(slaveId, byte, size, pData);
             }
         };

@@ -12,12 +12,14 @@
 #include "WMX3BrokerC.h"
 #include <windows.h>
 
-namespace wmx3Api {
+namespace wmx3Api
+{
 
     //=========================================================================
     // Constants (from WMX3Api.h)
     //=========================================================================
-    namespace constants {
+    namespace constants
+    {
         static const int maxAxes = 128;
         static const int maxIoInSize = 8000;
         static const int maxIoOutSize = 8000;
@@ -28,9 +30,11 @@ namespace wmx3Api {
     //=========================================================================
     // Enums (from WMX3Api.h)
     //=========================================================================
-    class DeviceType {
+    class DeviceType
+    {
     public:
-        enum T {
+        enum T
+        {
             DeviceTypeNormal = 0,
             DeviceTypeLowPriority = 0x1,
             DeviceTypeExitWOCnt = 0x02,
@@ -38,9 +42,11 @@ namespace wmx3Api {
         };
     };
 
-    class EngineState {
+    class EngineState
+    {
     public:
-        enum T {
+        enum T
+        {
             Idle,
             Running,
             Communicating,
@@ -49,9 +55,11 @@ namespace wmx3Api {
         };
     };
 
-    class ProfileType {
+    class ProfileType
+    {
     public:
-        enum T {
+        enum T
+        {
             Trapezoidal = 0,
             SCurve,
             JerkRatio,
@@ -74,18 +82,22 @@ namespace wmx3Api {
         };
     };
 
-    class AxisCommandMode {
+    class AxisCommandMode
+    {
     public:
-        enum T {
+        enum T
+        {
             Position,
             Velocity,
             Torque
         };
     };
 
-    class OperationState {
+    class OperationState
+    {
     public:
-        enum T {
+        enum T
+        {
             Idle = 0,
             Pos = 1,
             Jog = 2,
@@ -99,9 +111,11 @@ namespace wmx3Api {
         };
     };
 
-    class HomeState {
+    class HomeState
+    {
     public:
-        enum T {
+        enum T
+        {
             Idle = 0,
             HSSearch,
             HSReverse,
@@ -128,12 +142,13 @@ namespace wmx3Api {
     //=========================================================================
     // Profile class (from WMX3Api.h)
     //=========================================================================
-    class Profile {
+    class Profile
+    {
     public:
         Profile() : type(ProfileType::Trapezoidal), velocity(0), acc(0), dec(0),
-            jerkAcc(0), jerkDec(0), jerkAccRatio(0), jerkDecRatio(0),
-            startingVelocity(0), endVelocity(0), secondVelocity(0),
-            timeMilliseconds(0), accTimeMilliseconds(0), decTimeMilliseconds(0) {}
+                    jerkAcc(0), jerkDec(0), jerkAccRatio(0), jerkDecRatio(0),
+                    startingVelocity(0), endVelocity(0), secondVelocity(0),
+                    timeMilliseconds(0), accTimeMilliseconds(0), decTimeMilliseconds(0) {}
 
         ProfileType::T type;
         double velocity;
@@ -152,7 +167,8 @@ namespace wmx3Api {
 
         // Static setup methods
         static Profile SetupTrapezoidal(double velocity, double acc, double dec,
-            double startingVelocity = 0, double endVelocity = 0) {
+                                        double startingVelocity = 0, double endVelocity = 0)
+        {
             Profile p;
             p.type = ProfileType::Trapezoidal;
             p.velocity = velocity;
@@ -164,7 +180,8 @@ namespace wmx3Api {
         }
 
         static Profile SetupSCurve(double velocity, double acc, double dec,
-            double startingVelocity = 0, double endVelocity = 0) {
+                                   double startingVelocity = 0, double endVelocity = 0)
+        {
             Profile p;
             p.type = ProfileType::SCurve;
             p.velocity = velocity;
@@ -176,8 +193,9 @@ namespace wmx3Api {
         }
 
         static Profile SetupJerkRatio(double velocity, double acc, double dec,
-            double jerkAccRatio, double jerkDecRatio,
-            double startingVelocity = 0, double endVelocity = 0) {
+                                      double jerkAccRatio, double jerkDecRatio,
+                                      double startingVelocity = 0, double endVelocity = 0)
+        {
             Profile p;
             p.type = ProfileType::JerkRatio;
             p.velocity = velocity;
@@ -194,10 +212,13 @@ namespace wmx3Api {
     //=========================================================================
     // AxisSelection class (from WMX3Api.h)
     //=========================================================================
-    class AxisSelection {
+    class AxisSelection
+    {
     public:
-        AxisSelection() : axisCount(0) {
-            for (int i = 0; i < constants::maxAxes; i++) axis[i] = 0;
+        AxisSelection() : axisCount(0)
+        {
+            for (int i = 0; i < constants::maxAxes; i++)
+                axis[i] = 0;
         }
         unsigned int axisCount;
         int axis[constants::maxAxes];
@@ -206,9 +227,11 @@ namespace wmx3Api {
     //=========================================================================
     // CoreMotionAxisStatus (from CoreMotionApi.h)
     //=========================================================================
-    class CoreMotionAxisStatus {
+    class CoreMotionAxisStatus
+    {
     public:
-        CoreMotionAxisStatus() {
+        CoreMotionAxisStatus()
+        {
             memset(this, 0, sizeof(CoreMotionAxisStatus));
         }
 
@@ -258,11 +281,14 @@ namespace wmx3Api {
     //=========================================================================
     // CoreMotionStatus (from CoreMotionApi.h)
     //=========================================================================
-    class CoreMotionStatus {
+    class CoreMotionStatus
+    {
     public:
         CoreMotionStatus() : invalidLicenseError(false), engineState(EngineState::Idle),
-            numOfInterrupts(0), emergencyStop(false), emergencyStopLevel(0) {
-            for (int i = 0; i < constants::maxInterrupts; i++) {
+                             numOfInterrupts(0), emergencyStop(false), emergencyStopLevel(0)
+        {
+            for (int i = 0; i < constants::maxInterrupts; i++)
+            {
                 cycleTimeMilliseconds[i] = 0;
                 cycleCounter[i] = 0;
             }
@@ -286,56 +312,69 @@ namespace wmx3Api {
 } // namespace wmx3Api
 
 // Include sub-modules
-#include "CoreMotion_Sim.h"
-#include "Io_Sim.h"
-#include "Ecat_Sim.h"
+#include "CoreMotionApi_Sim.h"
+#include "IOApi_Sim.h"
+#include "EcApi_Sim.h"
+#include "EventApi_Sim.h"
 
-namespace wmx3Api {
+namespace wmx3Api
+{
 
     //=========================================================================
     // WMX3Api main class
     //=========================================================================
-    class WMX3Api {
+    class WMX3Api
+    {
     public:
-        WMX3Api() {
+        WMX3Api()
+        {
             WMX3Broker_Initialize();
         }
 
-        ~WMX3Api() {
+        ~WMX3Api()
+        {
             WMX3Broker_Uninitialize();
         }
 
-        long CreateDevice(char* path, DeviceType::T type = DeviceType::DeviceTypeNormal,
-            unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0) {
+        long CreateDevice(char *path, DeviceType::T type = DeviceType::DeviceTypeNormal,
+                          unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0)
+        {
             return WMX3Broker_CreateDevice(path, static_cast<int>(type));
         }
 
-        long CreateDevice(wchar_t* path, DeviceType::T type = DeviceType::DeviceTypeNormal,
-            unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0) {
+        long CreateDevice(wchar_t *path, DeviceType::T type = DeviceType::DeviceTypeNormal,
+                          unsigned int waitTimeMilliseconds = 0, int core = -1, DWORD_PTR affinityMask = 0)
+        {
             return WMX3Broker_CreateDeviceW(path, static_cast<int>(type));
         }
 
-        long CloseDevice() {
+        long CloseDevice()
+        {
             return WMX3Broker_CloseDevice();
         }
 
-        long GetDeviceID(int* id) {
+        long GetDeviceID(int *id)
+        {
             return WMX3Broker_GetDeviceID(id);
         }
 
-        long StartCommunication(unsigned int waitTimeMilliseconds = 0) {
+        long StartCommunication(unsigned int waitTimeMilliseconds = 0)
+        {
             return WMX3Broker_StartCommunication(waitTimeMilliseconds);
         }
 
-        long StopCommunication(unsigned int waitTimeMilliseconds = 0) {
+        long StopCommunication(unsigned int waitTimeMilliseconds = 0)
+        {
             return WMX3Broker_StopCommunication(waitTimeMilliseconds);
         }
 
-        long SetDeviceName(char* name) {
+        long SetDeviceName(char *name)
+        {
             return WMX3Broker_SetDeviceName(name);
         }
 
-        long SetDeviceName(wchar_t* name) {
+        long SetDeviceName(wchar_t *name)
+        {
             return WMX3Broker_SetDeviceNameW(name);
         }
     };

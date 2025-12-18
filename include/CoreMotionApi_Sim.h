@@ -1,81 +1,101 @@
-// CoreMotion_Sim.h
+// CoreMotionApi_Sim.h
 // CoreMotion Header-only wrapper for VS2012 compatibility
 // Provides wmx3Api::CoreMotion interface that internally calls WMX3Broker C API
 
-#ifndef COREMOTION_SIM_H
-#define COREMOTION_SIM_H
+#ifndef COREMOTIONAPI_SIM_H
+#define COREMOTIONAPI_SIM_H
 
 #include "WMX3BrokerC.h"
 
-namespace wmx3Api {
-
+namespace wmx3Api
+{
     class CoreMotion;
 
     //=========================================================================
     // AxisControl sub-class
     //=========================================================================
-    class AxisControl {
+    class AxisControl
+    {
     public:
-        CoreMotion* cmApi;
-        AxisControl(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        AxisControl(CoreMotion *f) : cmApi(f) {}
 
-        long SetServoOn(int axis, int newStatus) {
+        long SetServoOn(int axis, int newStatus)
+        {
             return WMX3Broker_AxisControl_SetServoOn(axis, newStatus);
         }
 
-        long SetServoOn(AxisSelection* pAxisSelection, int newStatus) {
-            if (!pAxisSelection) return -1;
+        long SetServoOn(AxisSelection *pAxisSelection, int newStatus)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_AxisControl_SetServoOn(pAxisSelection->axis[i], newStatus);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long ClearAmpAlarm(int axis) {
+        long ClearAmpAlarm(int axis)
+        {
             return WMX3Broker_AxisControl_ClearAmpAlarm(axis);
         }
 
-        long ClearAmpAlarm(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long ClearAmpAlarm(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_AxisControl_ClearAmpAlarm(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long ClearAxisAlarm(int axis) {
+        long ClearAxisAlarm(int axis)
+        {
             return WMX3Broker_AxisControl_ClearAxisAlarm(axis);
         }
 
-        long SetAxisCommandMode(int axis, AxisCommandMode::T mode) {
+        long SetAxisCommandMode(int axis, AxisCommandMode::T mode)
+        {
             return WMX3Broker_AxisControl_SetAxisCommandMode(axis, static_cast<int>(mode));
         }
 
-        long GetAxisCommandMode(int axis, AxisCommandMode::T* pMode) {
-            if (!pMode) return -1;
+        long GetAxisCommandMode(int axis, AxisCommandMode::T *pMode)
+        {
+            if (!pMode)
+                return -1;
             int mode;
             long ret = WMX3Broker_AxisControl_GetAxisCommandMode(axis, &mode);
-            if (ret == 0) *pMode = static_cast<AxisCommandMode::T>(mode);
+            if (ret == 0)
+                *pMode = static_cast<AxisCommandMode::T>(mode);
             return ret;
         }
 
-        long GetPosCommand(int axis, double* pPosition) {
+        long GetPosCommand(int axis, double *pPosition)
+        {
             return WMX3Broker_AxisControl_GetPosCommand(axis, pPosition);
         }
 
-        long GetPosFeedback(int axis, double* pPosition) {
+        long GetPosFeedback(int axis, double *pPosition)
+        {
             return WMX3Broker_AxisControl_GetPosFeedback(axis, pPosition);
         }
 
-        long GetVelCommand(int axis, double* pVelocity) {
+        long GetVelCommand(int axis, double *pVelocity)
+        {
             return WMX3Broker_AxisControl_GetVelCommand(axis, pVelocity);
         }
 
-        long GetVelFeedback(int axis, double* pVelocity) {
+        long GetVelFeedback(int axis, double *pVelocity)
+        {
             return WMX3Broker_AxisControl_GetVelFeedback(axis, pVelocity);
         }
     };
@@ -83,13 +103,15 @@ namespace wmx3Api {
     //=========================================================================
     // Motion sub-class
     //=========================================================================
-    class Motion {
+    class Motion
+    {
     public:
-        CoreMotion* cmApi;
-        Motion(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        Motion(CoreMotion *f) : cmApi(f) {}
 
         // PosCommand struct (WMX3 compatible)
-        class PosCommand {
+        class PosCommand
+        {
         public:
             PosCommand() : axis(0), target(0) {}
             PosCommand(int _axis, double _target, Profile _profile)
@@ -100,7 +122,8 @@ namespace wmx3Api {
         };
 
         // JogCommand struct
-        class JogCommand {
+        class JogCommand
+        {
         public:
             JogCommand() : axis(0) {}
             JogCommand(int _axis, Profile _profile) : axis(_axis), profile(_profile) {}
@@ -109,10 +132,13 @@ namespace wmx3Api {
         };
 
         // LinearIntplCommand struct
-        class LinearIntplCommand {
+        class LinearIntplCommand
+        {
         public:
-            LinearIntplCommand() : axisCount(0) {
-                for (int i = 0; i < constants::maxAxes; i++) {
+            LinearIntplCommand() : axisCount(0)
+            {
+                for (int i = 0; i < constants::maxAxes; i++)
+                {
                     axis[i] = 0;
                     target[i] = 0;
                     maxVelocity[i] = 0;
@@ -133,8 +159,10 @@ namespace wmx3Api {
             Profile profile;
         };
 
-        long StartPos(PosCommand* pPosCommand) {
-            if (!pPosCommand) return -1;
+        long StartPos(PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
             return WMX3Broker_Motion_StartPos(
                 pPosCommand->axis, pPosCommand->target,
                 static_cast<int>(pPosCommand->profile.type),
@@ -147,18 +175,24 @@ namespace wmx3Api {
                 pPosCommand->profile.endVelocity);
         }
 
-        long StartPos(unsigned int numCommands, PosCommand* pPosCommand) {
-            if (!pPosCommand) return -1;
+        long StartPos(unsigned int numCommands, PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < numCommands; i++) {
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
                 ret = StartPos(&pPosCommand[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long StartMov(PosCommand* pPosCommand) {
-            if (!pPosCommand) return -1;
+        long StartMov(PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
             return WMX3Broker_Motion_StartMov(
                 pPosCommand->axis, pPosCommand->target,
                 static_cast<int>(pPosCommand->profile.type),
@@ -171,18 +205,24 @@ namespace wmx3Api {
                 pPosCommand->profile.endVelocity);
         }
 
-        long StartMov(unsigned int numCommands, PosCommand* pPosCommand) {
-            if (!pPosCommand) return -1;
+        long StartMov(unsigned int numCommands, PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < numCommands; i++) {
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
                 ret = StartMov(&pPosCommand[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long StartJog(JogCommand* pJogCommand) {
-            if (!pJogCommand) return -1;
+        long StartJog(JogCommand *pJogCommand)
+        {
+            if (!pJogCommand)
+                return -1;
             return WMX3Broker_Motion_StartJog(
                 pJogCommand->axis,
                 static_cast<int>(pJogCommand->profile.type),
@@ -191,8 +231,10 @@ namespace wmx3Api {
                 pJogCommand->profile.jerkAccRatio);
         }
 
-        long StartLinearIntplPos(LinearIntplCommand* pLinearIntplCommand) {
-            if (!pLinearIntplCommand) return -1;
+        long StartLinearIntplPos(LinearIntplCommand *pLinearIntplCommand)
+        {
+            if (!pLinearIntplCommand)
+                return -1;
             return WMX3Broker_Motion_StartLinearIntplPos(
                 pLinearIntplCommand->axisCount,
                 pLinearIntplCommand->axis,
@@ -210,47 +252,61 @@ namespace wmx3Api {
                 pLinearIntplCommand->profile.endVelocity);
         }
 
-        long Stop(int axis) {
+        long Stop(int axis)
+        {
             return WMX3Broker_Motion_Stop(axis);
         }
 
-        long Stop(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long Stop(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_Motion_Stop(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long ExecQuickStop(int axis) {
+        long ExecQuickStop(int axis)
+        {
             return WMX3Broker_Motion_ExecQuickStop(axis);
         }
 
-        long ExecQuickStop(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long ExecQuickStop(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_Motion_ExecQuickStop(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long ExecTimedStop(int axis, double timeMilliseconds) {
+        long ExecTimedStop(int axis, double timeMilliseconds)
+        {
             return WMX3Broker_Motion_ExecTimedStop(axis, timeMilliseconds);
         }
 
-        long Wait(int axis) {
+        long Wait(int axis)
+        {
             return WMX3Broker_Motion_Wait(axis);
         }
 
-        long Pause(int axis) {
+        long Pause(int axis)
+        {
             return WMX3Broker_Motion_Pause(axis);
         }
 
-        long Resume(int axis) {
+        long Resume(int axis)
+        {
             return WMX3Broker_Motion_Resume(axis);
         }
     };
@@ -258,59 +314,73 @@ namespace wmx3Api {
     //=========================================================================
     // Home sub-class
     //=========================================================================
-    class Home {
+    class Home
+    {
     public:
-        CoreMotion* cmApi;
-        Home(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        Home(CoreMotion *f) : cmApi(f) {}
 
-        class AxisHomeData {
+        class AxisHomeData
+        {
         public:
             AxisHomeData() : distHStoZPulse(0), distLStoZPulse(0) {}
             double distHStoZPulse;
             double distLStoZPulse;
         };
 
-        class HomeData {
+        class HomeData
+        {
         public:
             HomeData() {}
             AxisHomeData axesHomeData[constants::maxAxes];
         };
 
-        long StartHome(int axis) {
+        long StartHome(int axis)
+        {
             return WMX3Broker_Home_StartHome(axis);
         }
 
-        long StartHome(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long StartHome(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_Home_StartHome(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long Continue(int axis) {
+        long Continue(int axis)
+        {
             return WMX3Broker_Home_Continue(axis);
         }
 
-        long Cancel(int axis) {
+        long Cancel(int axis)
+        {
             return WMX3Broker_Home_Cancel(axis);
         }
 
-        long SetCommandPos(int axis, double position) {
+        long SetCommandPos(int axis, double position)
+        {
             return WMX3Broker_Home_SetCommandPos(axis, position);
         }
 
-        long SetFeedbackPos(int axis, double position) {
+        long SetFeedbackPos(int axis, double position)
+        {
             return WMX3Broker_Home_SetFeedbackPos(axis, position);
         }
 
-        long SetCommandPosToFeedbackPos(int axis, double posChangePerCycle = 0) {
+        long SetCommandPosToFeedbackPos(int axis, double posChangePerCycle = 0)
+        {
             return WMX3Broker_Home_SetCommandPosToFeedbackPos(axis, posChangePerCycle);
         }
 
-        long GetHomeData(HomeData* pHomeData) {
+        long GetHomeData(HomeData *pHomeData)
+        {
             return WMX3Broker_Home_GetHomeData(pHomeData);
         }
     };
@@ -318,12 +388,14 @@ namespace wmx3Api {
     //=========================================================================
     // Velocity sub-class
     //=========================================================================
-    class Velocity {
+    class Velocity
+    {
     public:
-        CoreMotion* cmApi;
-        Velocity(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        Velocity(CoreMotion *f) : cmApi(f) {}
 
-        class VelCommand {
+        class VelCommand
+        {
         public:
             VelCommand() : axis(0) {}
             VelCommand(int _axis, Profile _profile) : axis(_axis), profile(_profile) {}
@@ -331,8 +403,10 @@ namespace wmx3Api {
             Profile profile;
         };
 
-        long StartVel(VelCommand* pVelCommand) {
-            if (!pVelCommand) return -1;
+        long StartVel(VelCommand *pVelCommand)
+        {
+            if (!pVelCommand)
+                return -1;
             return WMX3Broker_Velocity_StartVel(
                 pVelCommand->axis,
                 static_cast<int>(pVelCommand->profile.type),
@@ -343,40 +417,53 @@ namespace wmx3Api {
                 pVelCommand->profile.jerkDecRatio);
         }
 
-        long StartVel(unsigned int numCommands, VelCommand* pVelCommand) {
-            if (!pVelCommand) return -1;
+        long StartVel(unsigned int numCommands, VelCommand *pVelCommand)
+        {
+            if (!pVelCommand)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < numCommands; i++) {
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
                 ret = StartVel(&pVelCommand[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long Stop(int axis) {
+        long Stop(int axis)
+        {
             return WMX3Broker_Velocity_Stop(axis);
         }
 
-        long Stop(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long Stop(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_Velocity_Stop(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long ExecQuickStop(int axis) {
+        long ExecQuickStop(int axis)
+        {
             return WMX3Broker_Velocity_ExecQuickStop(axis);
         }
 
-        long ExecTimedStop(int axis, double timeMilliseconds) {
+        long ExecTimedStop(int axis, double timeMilliseconds)
+        {
             return WMX3Broker_Velocity_ExecTimedStop(axis, timeMilliseconds);
         }
 
-        long OverrideVel(VelCommand* pVelCommand) {
-            if (!pVelCommand) return -1;
+        long OverrideVel(VelCommand *pVelCommand)
+        {
+            if (!pVelCommand)
+                return -1;
             return WMX3Broker_Velocity_OverrideVel(
                 pVelCommand->axis,
                 static_cast<int>(pVelCommand->profile.type),
@@ -391,12 +478,14 @@ namespace wmx3Api {
     //=========================================================================
     // Torque sub-class
     //=========================================================================
-    class Torque {
+    class Torque
+    {
     public:
-        CoreMotion* cmApi;
-        Torque(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        Torque(CoreMotion *f) : cmApi(f) {}
 
-        class TrqCommand {
+        class TrqCommand
+        {
         public:
             TrqCommand() : axis(0), torque(0) {}
             TrqCommand(int _axis, double _torque) : axis(_axis), torque(_torque) {}
@@ -404,60 +493,79 @@ namespace wmx3Api {
             double torque;
         };
 
-        long SetMaxTrqLimit(int axis, double torque) {
+        long SetMaxTrqLimit(int axis, double torque)
+        {
             return WMX3Broker_Torque_SetMaxTrqLimit(axis, torque);
         }
 
-        long GetMaxTrqLimit(int axis, double* pTorque) {
+        long GetMaxTrqLimit(int axis, double *pTorque)
+        {
             return WMX3Broker_Torque_GetMaxTrqLimit(axis, pTorque);
         }
 
-        long SetPositiveTrqLimit(int axis, double torque) {
+        long SetPositiveTrqLimit(int axis, double torque)
+        {
             return WMX3Broker_Torque_SetPositiveTrqLimit(axis, torque);
         }
 
-        long GetPositiveTrqLimit(int axis, double* pTorque) {
+        long GetPositiveTrqLimit(int axis, double *pTorque)
+        {
             return WMX3Broker_Torque_GetPositiveTrqLimit(axis, pTorque);
         }
 
-        long SetNegativeTrqLimit(int axis, double torque) {
+        long SetNegativeTrqLimit(int axis, double torque)
+        {
             return WMX3Broker_Torque_SetNegativeTrqLimit(axis, torque);
         }
 
-        long GetNegativeTrqLimit(int axis, double* pTorque) {
+        long GetNegativeTrqLimit(int axis, double *pTorque)
+        {
             return WMX3Broker_Torque_GetNegativeTrqLimit(axis, pTorque);
         }
 
-        long StartTrq(TrqCommand* pTrqCommand) {
-            if (!pTrqCommand) return -1;
+        long StartTrq(TrqCommand *pTrqCommand)
+        {
+            if (!pTrqCommand)
+                return -1;
             return WMX3Broker_Torque_StartTrq(pTrqCommand->axis, pTrqCommand->torque);
         }
 
-        long StartTrq(unsigned int numCommands, TrqCommand* pTrqCommand) {
-            if (!pTrqCommand) return -1;
+        long StartTrq(unsigned int numCommands, TrqCommand *pTrqCommand)
+        {
+            if (!pTrqCommand)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < numCommands; i++) {
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
                 ret = StartTrq(&pTrqCommand[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
 
-        long StartTrq(TrqCommand* pTrqCommand, double maxMotorSpeed) {
-            if (!pTrqCommand) return -1;
+        long StartTrq(TrqCommand *pTrqCommand, double maxMotorSpeed)
+        {
+            if (!pTrqCommand)
+                return -1;
             return WMX3Broker_Torque_StartTrqWithMaxSpeed(pTrqCommand->axis, pTrqCommand->torque, maxMotorSpeed);
         }
 
-        long StopTrq(int axis) {
+        long StopTrq(int axis)
+        {
             return WMX3Broker_Torque_StopTrq(axis);
         }
 
-        long StopTrq(AxisSelection* pAxisSelection) {
-            if (!pAxisSelection) return -1;
+        long StopTrq(AxisSelection *pAxisSelection)
+        {
+            if (!pAxisSelection)
+                return -1;
             long ret = 0;
-            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++) {
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
                 ret = WMX3Broker_Torque_StopTrq(pAxisSelection->axis[i]);
-                if (ret != 0) return ret;
+                if (ret != 0)
+                    return ret;
             }
             return ret;
         }
@@ -466,20 +574,22 @@ namespace wmx3Api {
     //=========================================================================
     // Config sub-class
     //=========================================================================
-    class Config {
+    class Config
+    {
     public:
-        CoreMotion* cmApi;
-        Config(CoreMotion* f) : cmApi(f) {}
+        CoreMotion *cmApi;
+        Config(CoreMotion *f) : cmApi(f) {}
 
         // HomeParam class (from CoreMotionApi.h)
-        class HomeParam {
+        class HomeParam
+        {
         public:
             HomeParam() : homeType(0), homeDirection(0),
-                homingVelocitySlow(0), homingVelocitySlowAcc(0), homingVelocitySlowDec(0),
-                homingVelocityFast(0), homingVelocityFastAcc(0), homingVelocityFastDec(0),
-                homingReverseDistance(0), homeShiftVelocity(0), homeShiftAcc(0),
-                homeShiftDec(0), homeShiftDistance(0), invertHSPolarity(false),
-                pauseMode(false), homePosition(0) {}
+                          homingVelocitySlow(0), homingVelocitySlowAcc(0), homingVelocitySlowDec(0),
+                          homingVelocityFast(0), homingVelocityFastAcc(0), homingVelocityFastDec(0),
+                          homingReverseDistance(0), homeShiftVelocity(0), homeShiftAcc(0),
+                          homeShiftDec(0), homeShiftDistance(0), invertHSPolarity(false),
+                          pauseMode(false), homePosition(0) {}
 
             int homeType;
             int homeDirection;
@@ -500,19 +610,23 @@ namespace wmx3Api {
         };
 
         // FeedbackParam class
-        class FeedbackParam {
+        class FeedbackParam
+        {
         public:
-            FeedbackParam() {
-                for (int i = 0; i < 5; i++) inPosWidth[i] = 0;
+            FeedbackParam()
+            {
+                for (int i = 0; i < 5; i++)
+                    inPosWidth[i] = 0;
             }
             double inPosWidth[5];
         };
 
         // LimitParam class
-        class LimitParam {
+        class LimitParam
+        {
         public:
             LimitParam() : positiveSoftLimit(0), negativeSoftLimit(0),
-                enablePositiveSoftLimit(false), enableNegativeSoftLimit(false) {}
+                           enablePositiveSoftLimit(false), enableNegativeSoftLimit(false) {}
             double positiveSoftLimit;
             double negativeSoftLimit;
             bool enablePositiveSoftLimit;
@@ -520,85 +634,105 @@ namespace wmx3Api {
         };
 
         // MotionParam class
-        class MotionParam {
+        class MotionParam
+        {
         public:
             MotionParam() : quickStopDec(0) {}
             double quickStopDec;
         };
 
         // AlarmParam class
-        class AlarmParam {
+        class AlarmParam
+        {
         public:
             AlarmParam() : followingErrorLimit(0), enableFollowingError(false) {}
             double followingErrorLimit;
             bool enableFollowingError;
         };
 
-        long SetHomeParam(int axis, HomeParam* pParam, HomeParam* pParamError = NULL) {
+        long SetHomeParam(int axis, HomeParam *pParam, HomeParam *pParamError = NULL)
+        {
             return WMX3Broker_Config_SetHomeParam(axis, pParam);
         }
 
-        long GetHomeParam(int axis, HomeParam* pParam) {
+        long GetHomeParam(int axis, HomeParam *pParam)
+        {
             return WMX3Broker_Config_GetHomeParam(axis, pParam);
         }
 
-        long SetFeedbackParam(int axis, FeedbackParam* pParam, FeedbackParam* pParamError = NULL) {
+        long SetFeedbackParam(int axis, FeedbackParam *pParam, FeedbackParam *pParamError = NULL)
+        {
             return WMX3Broker_Config_SetFeedbackParam(axis, pParam);
         }
 
-        long GetFeedbackParam(int axis, FeedbackParam* pParam) {
+        long GetFeedbackParam(int axis, FeedbackParam *pParam)
+        {
             return WMX3Broker_Config_GetFeedbackParam(axis, pParam);
         }
 
-        long SetLimitParam(int axis, LimitParam* pParam, LimitParam* pParamError = NULL) {
+        long SetLimitParam(int axis, LimitParam *pParam, LimitParam *pParamError = NULL)
+        {
             return WMX3Broker_Config_SetLimitParam(axis, pParam);
         }
 
-        long GetLimitParam(int axis, LimitParam* pParam) {
+        long GetLimitParam(int axis, LimitParam *pParam)
+        {
             return WMX3Broker_Config_GetLimitParam(axis, pParam);
         }
 
-        long SetMotionParam(int axis, MotionParam* pParam, MotionParam* pParamError = NULL) {
+        long SetMotionParam(int axis, MotionParam *pParam, MotionParam *pParamError = NULL)
+        {
             return WMX3Broker_Config_SetMotionParam(axis, pParam);
         }
 
-        long GetMotionParam(int axis, MotionParam* pParam) {
+        long GetMotionParam(int axis, MotionParam *pParam)
+        {
             return WMX3Broker_Config_GetMotionParam(axis, pParam);
         }
 
-        long SetAlarmParam(int axis, AlarmParam* pParam, AlarmParam* pParamError = NULL) {
+        long SetAlarmParam(int axis, AlarmParam *pParam, AlarmParam *pParamError = NULL)
+        {
             return WMX3Broker_Config_SetAlarmParam(axis, pParam);
         }
 
-        long GetAlarmParam(int axis, AlarmParam* pParam) {
+        long GetAlarmParam(int axis, AlarmParam *pParam)
+        {
             return WMX3Broker_Config_GetAlarmParam(axis, pParam);
         }
 
-        long SetGearRatio(int axis, double numerator, double denominator) {
+        long SetGearRatio(int axis, double numerator, double denominator)
+        {
             return WMX3Broker_Config_SetGearRatio(axis, numerator, denominator);
         }
 
-        long GetGearRatio(int axis, double* pNumerator, double* pDenominator) {
+        long GetGearRatio(int axis, double *pNumerator, double *pDenominator)
+        {
             return WMX3Broker_Config_GetGearRatio(axis, pNumerator, pDenominator);
         }
 
-        long SetSingleTurn(int axis, bool enable, unsigned int encoderCount) {
+        long SetSingleTurn(int axis, bool enable, unsigned int encoderCount)
+        {
             return WMX3Broker_Config_SetSingleTurn(axis, enable ? 1 : 0, encoderCount);
         }
 
-        long GetSingleTurn(int axis, bool* pEnable, unsigned int* pEncoderCount) {
-            if (!pEnable || !pEncoderCount) return -1;
+        long GetSingleTurn(int axis, bool *pEnable, unsigned int *pEncoderCount)
+        {
+            if (!pEnable || !pEncoderCount)
+                return -1;
             int enable;
             long ret = WMX3Broker_Config_GetSingleTurn(axis, &enable, pEncoderCount);
-            if (ret == 0) *pEnable = (enable != 0);
+            if (ret == 0)
+                *pEnable = (enable != 0);
             return ret;
         }
 
-        long SetVelocityFeedforwardGain(int axis, double gain) {
+        long SetVelocityFeedforwardGain(int axis, double gain)
+        {
             return WMX3Broker_Config_SetVelocityFeedforwardGain(axis, gain);
         }
 
-        long GetVelocityFeedforwardGain(int axis, double* pGain) {
+        long GetVelocityFeedforwardGain(int axis, double *pGain)
+        {
             return WMX3Broker_Config_GetVelocityFeedforwardGain(axis, pGain);
         }
     };
@@ -606,16 +740,18 @@ namespace wmx3Api {
     //=========================================================================
     // CoreMotion main class
     //=========================================================================
-    class CoreMotion {
+    class CoreMotion
+    {
     public:
-        AxisControl* axisControl;
-        Motion* motion;
-        Home* home;
-        Velocity* velocity;
-        Torque* torque;
-        Config* config;
+        AxisControl *axisControl;
+        Motion *motion;
+        Home *home;
+        Velocity *velocity;
+        Torque *torque;
+        Config *config;
 
-        CoreMotion(WMX3Api* f) {
+        CoreMotion(WMX3Api *f)
+        {
             axisControl = new AxisControl(this);
             motion = new Motion(this);
             home = new Home(this);
@@ -624,7 +760,8 @@ namespace wmx3Api {
             config = new Config(this);
         }
 
-        CoreMotion() {
+        CoreMotion()
+        {
             axisControl = new AxisControl(this);
             motion = new Motion(this);
             home = new Home(this);
@@ -633,16 +770,24 @@ namespace wmx3Api {
             config = new Config(this);
         }
 
-        ~CoreMotion() {
-            delete axisControl; axisControl = NULL;
-            delete motion; motion = NULL;
-            delete home; home = NULL;
-            delete velocity; velocity = NULL;
-            delete torque; torque = NULL;
-            delete config; config = NULL;
+        ~CoreMotion()
+        {
+            delete axisControl;
+            axisControl = NULL;
+            delete motion;
+            motion = NULL;
+            delete home;
+            home = NULL;
+            delete velocity;
+            velocity = NULL;
+            delete torque;
+            torque = NULL;
+            delete config;
+            config = NULL;
         }
 
-        long GetStatus(CoreMotionStatus* pStatus) {
+        long GetStatus(CoreMotionStatus *pStatus)
+        {
             return WMX3Broker_CoreMotion_GetStatus(pStatus);
         }
     };

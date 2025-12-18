@@ -235,3 +235,21 @@ EXPORTS
     WMX3Broker_Ecat_GetInputBit       @463
     WMX3Broker_Ecat_GetInputByte      @464
     WMX3Broker_Ecat_GetInputBytes     @465
+
+    ; WMX3 EventControl APIs - Event Management
+    WMX3Broker_Event_EnableEvent      @500
+    WMX3Broker_Event_RemoveEvent      @501
+    WMX3Broker_Event_ClearAllEvent    @502
+    WMX3Broker_Event_GetAllEventID    @503
+
+    ; WMX3 EventControl APIs - Software Touch Probe
+    WMX3Broker_Event_SetSoftwareTouchProbe           @510
+    WMX3Broker_Event_EnableSoftwareTouchProbe        @511
+    WMX3Broker_Event_GetSoftwareTouchProbe           @512
+    WMX3Broker_Event_IsSoftwareTouchProbeLatched     @513
+    WMX3Broker_Event_GetSoftwareTouchProbeCounterValue @514
+
+    ; WMX3 EventControl APIs - Hardware Touch Probe
+    WMX3Broker_Event_SetHardwareTouchProbe           @520
+    WMX3Broker_Event_GetHardwareTouchProbeStatus     @521
+    WMX3Broker_Event_EnableHardwareTouchProbe        @522
