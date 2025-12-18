@@ -133,6 +133,8 @@ EXPORTS
     WMX3Broker_GetDeviceID            @315
     WMX3Broker_SetDeviceName          @316
     WMX3Broker_SetDeviceNameW         @317
+    WMX3Broker_GetAllDevices          @318
+    WMX3Broker_GetAllDevicesW         @319
 
     ; WMX3 CoreMotion Status
     WMX3Broker_CoreMotion_GetStatus   @320

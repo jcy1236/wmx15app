@@ -49,6 +49,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_StopCommunication(unsigned int waitTim
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetDeviceID(int* pId);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceName(const char* name);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevices(void* pDevices);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices);
 
 //=============================================================================
 // CoreMotion Status APIs

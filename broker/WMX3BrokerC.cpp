@@ -130,6 +130,22 @@ long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name)
     return wmx3->SetDeviceName(const_cast<wchar_t*>(name));
 }
 
+long __stdcall WMX3Broker_GetAllDevices(void* pDevices)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3 || !pDevices) return -1;
+    return wmx3->GetAllDevices(static_cast<wmx3Api::DevicesInfoA*>(pDevices));
+}
+
+long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3 || !pDevices) return -1;
+    return wmx3->GetAllDevices(static_cast<wmx3Api::DevicesInfoW*>(pDevices));
+}
+
 //=============================================================================
 // CoreMotion Status APIs
 //=============================================================================

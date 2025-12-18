@@ -215,7 +215,7 @@ namespace wmx3Api
     class InterruptData
     {
     public:
-        InterruptData() : numOfAxes(0), cycleTimeMicroseconds(0), cycleCounter(0) {}
+        InterruptData() {}
 
         int numOfAxes;
         int cycleTimeMicroseconds;
@@ -228,7 +228,7 @@ namespace wmx3Api
     class EngineStatus
     {
     public:
-        EngineStatus() : state(EngineState::Idle), error(0), numOfInterrupts(0) {}
+        EngineStatus() {}
 
         EngineState::T state;
         unsigned int error;
@@ -279,6 +279,46 @@ namespace wmx3Api
 
         unsigned int count;
         DeviceInfoA devices[constants::maxDevices];
+    };
+
+    //=========================================================================
+    // DeviceInfoW class (from WMX3Api.h)
+    //=========================================================================
+    class DeviceInfoW
+    {
+    public:
+        DeviceInfoW() : id(0), type(DeviceType::DeviceTypeNormal), watchdog(0), watchdogCount(0)
+        {
+            memset(name, 0, sizeof(name));
+        }
+
+        unsigned int id;
+        DeviceType::T type;
+        unsigned int watchdog;
+        unsigned int watchdogCount;
+        wchar_t name[constants::maxDeviceName];
+    };
+
+    //=========================================================================
+    // DevicesInfoW class (from WMX3Api.h)
+    //=========================================================================
+    class DevicesInfoW
+    {
+    public:
+        DevicesInfoW() : count(0) {}
+
+        unsigned int count;
+        DeviceInfoW devices[constants::maxDevices];
+    };
+
+    class IOSourceType
+    {
+    public:
+        enum T
+        {
+            Input,
+            Output
+        };
     };
 
     class EngineState
@@ -541,6 +581,16 @@ namespace wmx3Api
         long GetEngineStatus(EngineStatus *status)
         {
             return WMX3Broker_GetEngineStatus(status);
+        }
+
+        long GetAllDevices(DevicesInfoA *devices)
+        {
+            return WMX3Broker_GetAllDevices(devices);
+        }
+
+        long GetAllDevices(DevicesInfoW *devices)
+        {
+            return WMX3Broker_GetAllDevicesW(devices);
         }
 
         static long GetIMDllVersion(int *pVersion, int *pRevision)
