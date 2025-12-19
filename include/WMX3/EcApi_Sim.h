@@ -115,6 +115,61 @@ namespace wmx3Api
             };
         };
 
+        class EcErrorCode : public ErrorCode
+        {
+        public:
+            enum
+            {
+                EcError = 0x00002000,
+                ScanNetworkFailed,
+                HotconnectFailed,
+                SharedMemoryNull,
+                SlaveStateChangeError,
+                SlaveStateBelowPreop,
+                SlaveInvalidAddressingMode,
+                SlaveInEmergencyState,
+                SlaveMailboxInUse,
+                SlaveSdoDownloadError,
+                SlaveSdoUploadError,
+                SlaveSdoInfoGetODListError,
+                SlaveSdoInfoGetODError,
+                SlaveSdoInfoGetEDError,
+                SlaveActualSizeLargerThanBufferSize,
+                SlaveRegWriteError,
+                SlaveRegReadError,
+                SlaveSIIWriteError,
+                SlaveSIIWriteFailedToSetChecksum,
+                SlaveSIIReadError,
+                SlavePdoReadWriteNotAllowed,
+                SlavePdoReadWriteTimeout,
+                SlavePdoNotMapped,
+                SlaveTxPdoWriteNotAllowed,
+                SlaveFoENotInBootState,
+                SlaveFoEFileOpenError,
+                SlaveFoEReadError,
+                SlaveFoEWriteError,
+                SlaveFoEFilePathTooLong,
+                SlaveFoEFileNameTooLong,
+                SlaveAoEReadError,
+                SlaveAoEWriteError,
+                SlaveSoEReadError,
+                SlaveSoEWriteError,
+                SlaveVoEReadError,
+                SlaveVoEWriteError,
+                AxisNotServoOn,
+                NotInPPMode,
+                NotInHMMode,
+                NotInPVMode,
+                NotInTQMode,
+                PdoNotMapped,
+                SlaveNotSupportVirtualSerial,
+                OpenComFailed,
+                CreateComProcessThreadFailed
+            };
+
+            static int ConvertEcErrorCode(int errCode);
+        };
+
         //=====================================================================
         // EtherCAT Data Structures
         //=====================================================================

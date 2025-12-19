@@ -333,44 +333,6 @@ namespace wmx3Api
         };
     };
 
-    class ProfileType
-    {
-    public:
-        enum T
-        {
-            Trapezoidal = 0,
-            SCurve,
-            JerkRatio,
-            Parabolic,
-            Sin,
-            AdvancedS,
-            JerkLimited,
-            TimeAccTrapezoidal,
-            TimeAccSCurve,
-            TimeAccJerkRatio,
-            TimeDecTrapezoidal,
-            TimeDecSCurve,
-            TimeDecJerkRatio,
-            TimeAccDecTrapezoidal,
-            TimeAccDecSCurve,
-            TimeAccDecJerkRatio,
-            TimeTrapezoidal,
-            TimeSCurve,
-            TimeJerkRatio
-        };
-    };
-
-    class AxisCommandMode
-    {
-    public:
-        enum T
-        {
-            Position,
-            Velocity,
-            Torque
-        };
-    };
-
     class OperationState
     {
     public:
@@ -420,6 +382,65 @@ namespace wmx3Api
             TouchProbeConfirm,
             Done,
             Paused
+        };
+    };
+
+    class AxisCommandMode
+    {
+    public:
+        enum T
+        {
+            Position,
+            Velocity,
+            Torque
+        };
+    };
+
+    //=========================================================================
+    // AxisSelection class (from WMX3Api.h)
+    //=========================================================================
+    class AxisSelection
+    {
+    public:
+        AxisSelection() : axisCount(0)
+        {
+            for (int i = 0; i < constants::maxAxes; i++)
+                axis[i] = 0;
+        }
+        unsigned int axisCount;
+        int axis[constants::maxAxes];
+    };
+
+    class ProfileType
+    {
+    public:
+        enum T
+        {
+            Trapezoidal,
+            SCurve,
+            JerkRatio,
+            Parabolic,
+            Sin,
+            AdvancedS,
+            TrapezoidalMAT,
+            JerkLimited,
+            JerkLimitedSCurve,
+            JerkLimitedAdvancedS,
+            TwoVelocityTrapezoidal,
+            TwoVelocitySCurve,
+            TwoVelocityJerkRatio,
+            TimeAccTrapezoidal,
+            TimeAccSCurve,
+            TimeAccJerkRatio,
+            TimeAccParabolic,
+            TimeAccSin,
+            TimeAccAdvancedS,
+            ConstantDec,
+            JerkRatioFixedVelocityT,
+            JerkRatioFixedVelocityS,
+            JerkLimitedFixedVelocityT,
+            JerkLimitedFixedVelocityS,
+            ParabolicVelocity
         };
     };
 
@@ -491,65 +512,6 @@ namespace wmx3Api
             p.endVelocity = endVelocity;
             return p;
         }
-    };
-
-    class AxisCommandMode
-    {
-    public:
-        enum T
-        {
-            Position,
-            Velocity,
-            Torque
-        };
-    };
-
-    //=========================================================================
-    // AxisSelection class (from WMX3Api.h)
-    //=========================================================================
-    class AxisSelection
-    {
-    public:
-        AxisSelection() : axisCount(0)
-        {
-            for (int i = 0; i < constants::maxAxes; i++)
-                axis[i] = 0;
-        }
-        unsigned int axisCount;
-        int axis[constants::maxAxes];
-    };
-
-    class ProfileType
-    {
-    public:
-        enum T
-        {
-            Trapezoidal,
-            SCurve,
-            JerkRatio,
-            Parabolic,
-            Sin,
-            AdvancedS,
-            TrapezoidalMAT,
-            JerkLimited,
-            JerkLimitedSCurve,
-            JerkLimitedAdvancedS,
-            TwoVelocityTrapezoidal,
-            TwoVelocitySCurve,
-            TwoVelocityJerkRatio,
-            TimeAccTrapezoidal,
-            TimeAccSCurve,
-            TimeAccJerkRatio,
-            TimeAccParabolic,
-            TimeAccSin,
-            TimeAccAdvancedS,
-            ConstantDec,
-            JerkRatioFixedVelocityT,
-            JerkRatioFixedVelocityS,
-            JerkLimitedFixedVelocityT,
-            JerkLimitedFixedVelocityS,
-            ParabolicVelocity
-        };
     };
 
     // Forward declarations

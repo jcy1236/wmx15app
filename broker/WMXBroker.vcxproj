@@ -163,6 +163,15 @@
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
     </Link>
+    <PostBuildEvent>
+      <Command>
+if not exist "$(SolutionDir)include\WMX1.5\" mkdir "$(SolutionDir)include\WMX1.5\"
+if not exist "$(SolutionDir)include\WMX3\" mkdir "$(SolutionDir)include\WMX3\"
+xcopy /Y /F "$(ProjectDir)WMXBrokerC.h" "$(SolutionDir)include\WMX1.5\"
+xcopy /Y /F "$(ProjectDir)WMX3BrokerC.h" "$(SolutionDir)include\WMX3\"
+      </Command>
+      <Message>Copying Broker headers to include folders...</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <!-- Release_WMX34u4_Win/RTX, Release_WMX36u1_Win/RTX:
        All settings come from props files (props\WMX*.props) -->

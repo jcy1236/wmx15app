@@ -6,4 +6,15 @@
     <WMX15_IncludeDir>$(WMXBrokerRoot)\sdk\WMX15\Include</WMX15_IncludeDir>
     <CommonIncludeDir>$(WMXBrokerRoot)\Common</CommonIncludeDir>
   </PropertyGroup>
+  <ItemDefinitionGroup>
+    <PostBuildEvent>
+      <Command>
+if not exist "$(WMXBrokerRoot)\include\WMX1.5\" mkdir "$(WMXBrokerRoot)\include\WMX1.5\"
+if not exist "$(WMXBrokerRoot)\include\WMX3\" mkdir "$(WMXBrokerRoot)\include\WMX3\"
+xcopy /Y /F "$(ProjectDir)WMXBrokerC.h" "$(WMXBrokerRoot)\include\WMX1.5\"
+xcopy /Y /F "$(ProjectDir)WMX3BrokerC.h" "$(WMXBrokerRoot)\include\WMX3\"
+      </Command>
+      <Message>Copying Broker headers to include folders...</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
 </Project>

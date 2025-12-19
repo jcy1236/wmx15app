@@ -171,6 +171,7 @@ EXPORTS
     WMX3Broker_Home_SetFeedbackPos    @374
     WMX3Broker_Home_SetCommandPosToFeedbackPos @375
     WMX3Broker_Home_GetHomeData       @376
+    WMX3Broker_Home_SetHomeDone       @377
 
     ; WMX3 Velocity APIs
     WMX3Broker_Velocity_StartVel      @380
@@ -207,6 +208,10 @@ EXPORTS
     WMX3Broker_Config_GetSingleTurn             @413
     WMX3Broker_Config_SetVelocityFeedforwardGain @414
     WMX3Broker_Config_GetVelocityFeedforwardGain @415
+    WMX3Broker_Config_GetAxisParam              @416
+    WMX3Broker_Config_SetAxisUnit               @417
+    WMX3Broker_Config_GetAxisUnit               @418
+    WMX3Broker_Config_SetAbsoluteEncoderHomeOffset @419
 
     ; WMX3 Io APIs
     WMX3Broker_Io_SetOutBit           @420

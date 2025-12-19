@@ -462,6 +462,14 @@ long __stdcall WMX3Broker_Home_GetHomeData(void* pHomeData)
     return coreMotion->home->GetHomeData(static_cast<wmx3Api::Home::HomeData*>(pHomeData));
 }
 
+long __stdcall WMX3Broker_Home_SetHomeDone(int axis, unsigned char value)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion) return -1;
+    return coreMotion->home->SetHomeDone(axis, value);
+}
+
 //=============================================================================
 // CoreMotion::Velocity APIs
 //=============================================================================
@@ -746,6 +754,38 @@ long __stdcall WMX3Broker_Config_GetVelocityFeedforwardGain(int axis, double* pG
     wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
     if (!coreMotion || !pGain) return -1;
     return coreMotion->config->GetVelocityFeedforwardGain(axis, pGain);
+}
+
+long __stdcall WMX3Broker_Config_GetAxisParam(int axis, void* pParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->GetAxisParam(axis, static_cast<wmx3Api::Config::AxisParam*>(pParam));
+}
+
+long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double unit)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion) return -1;
+    return coreMotion->config->SetAxisUnit(axis, unit);
+}
+
+long __stdcall WMX3Broker_Config_GetAxisUnit(int axis, double* pUnit)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pUnit) return -1;
+    return coreMotion->config->GetAxisUnit(axis, pUnit);
+}
+
+long __stdcall WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(int axis, double offset)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion) return -1;
+    return coreMotion->config->SetAbsoluteEncoderHomeOffset(axis, offset);
 }
 
 //=============================================================================

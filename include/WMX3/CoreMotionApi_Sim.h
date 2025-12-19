@@ -623,6 +623,11 @@ namespace wmx3Api
         {
             return WMX3Broker_Home_GetHomeData(pHomeData);
         }
+
+        long SetHomeDone(int axis, unsigned char value)
+        {
+            return WMX3Broker_Home_SetHomeDone(axis, value);
+        }
     };
 
     //=========================================================================
@@ -830,6 +835,7 @@ namespace wmx3Api
             };
         };
 
+        // FeedbackParam class
         class FeedbackParam
         {
         public:
@@ -952,18 +958,6 @@ namespace wmx3Api
             };
         };
 
-        // FeedbackParam class
-        class FeedbackParam
-        {
-        public:
-            FeedbackParam()
-            {
-                for (int i = 0; i < 5; i++)
-                    inPosWidth[i] = 0;
-            }
-            double inPosWidth[5];
-        };
-
         // LimitParam class
         class LimitParam
         {
@@ -1018,6 +1012,26 @@ namespace wmx3Api
             AlarmParam() : followingErrorLimit(0), enableFollowingError(false) {}
             double followingErrorLimit;
             bool enableFollowingError;
+        };
+
+        class AxisParam
+        {
+        public:
+            AxisParam();
+            AxisCommandMode::T axisCommandMode[constants::maxAxes];
+            double gearRatioNumerator[constants::maxAxes];
+            double gearRatioDenominator[constants::maxAxes];
+            bool singleTurnMode[constants::maxAxes];
+            unsigned int singleTurnEncoderCount[constants::maxAxes];
+            double maxTrqLimit[constants::maxAxes];
+            double negativeTrqLimit[constants::maxAxes];
+            double positiveTrqLimit[constants::maxAxes];
+            double axisUnit[constants::maxAxes];
+            double velocityFeedforwardGain[constants::maxAxes];
+            char axisPolarity[constants::maxAxes];
+            double maxMotorSpeed[constants::maxAxes];
+            bool absoluteEncoderMode[constants::maxAxes];
+            double absoluteEncoderHomeOffset[constants::maxAxes];
         };
 
         long SetHomeParam(int axis, HomeParam *pParam, HomeParam *pParamError = NULL)
@@ -1104,6 +1118,26 @@ namespace wmx3Api
         long GetVelocityFeedforwardGain(int axis, double *pGain)
         {
             return WMX3Broker_Config_GetVelocityFeedforwardGain(axis, pGain);
+        }
+
+        long GetAxisParam(int axis, AxisParam *pParam)
+        {
+            return WMX3Broker_Config_GetAxisParam(axis, pParam);
+        }
+
+        long SetAxisUnit(int axis, double unit)
+        {
+            return WMX3Broker_Config_SetAxisUnit(axis, unit);
+        }
+
+        long GetAxisUnit(int axis, double *pUnit)
+        {
+            return WMX3Broker_Config_GetAxisUnit(axis, pUnit);
+        }
+
+        long SetAbsoluteEncoderHomeOffset(int axis, double offset)
+        {
+            return WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(axis, offset);
         }
     };
 
