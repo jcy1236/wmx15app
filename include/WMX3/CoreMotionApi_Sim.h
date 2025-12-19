@@ -9,6 +9,15 @@
 
 namespace wmx3Api
 {
+    namespace constants
+    {
+        static const int maxFlightRecorderBufferSize = 5000;
+        static const int maxInPosChannel = 5;
+        static const int maxSyncGroup = 64;
+        static const int maxTriggerEvents = 8;
+        static const unsigned long long int maxProfileUnsignedInput = 274877906943ULL;
+    }
+
     class CoreMotion;
 
     //=========================================================================
@@ -839,7 +848,11 @@ namespace wmx3Api
         class FeedbackParam
         {
         public:
-            FeedbackParam();
+            FeedbackParam()
+            {
+                memset(this, 0, sizeof(FeedbackParam));
+                // velocityMonitorSource defaults to UseVelocityFeedback(0) via memset
+            }
             double inPosWidth;
             double inPosWidth2;
             double inPosWidth3;
@@ -894,7 +907,12 @@ namespace wmx3Api
         class HomeParam
         {
         public:
-            HomeParam();
+            HomeParam()
+            {
+                memset(this, 0, sizeof(HomeParam));
+                // homeType defaults to CurrentPos(0) via memset
+                // homeDirection defaults to Positive(0) via memset
+            }
             HomeType::T homeType;
             HomeDirection::T homeDirection;
             double homingVelocitySlow;
@@ -962,7 +980,11 @@ namespace wmx3Api
         class LimitParam
         {
         public:
-            LimitParam();
+            LimitParam()
+            {
+                memset(this, 0, sizeof(LimitParam));
+                // All LimitSwitchType members default to None(0) via memset
+            }
             LimitSwitchType::T lsType;
             LimitSwitchType::T positiveLSType;
             LimitSwitchType::T negativeLSType;
@@ -997,12 +1019,77 @@ namespace wmx3Api
             LimitSwitchDirection::T lsDirection;
         };
 
+        class ProhibitOvertravelType
+        {
+        public:
+            enum T
+            {
+                Disabled,
+                ChangeDeceleration,
+                ChangeInitialVelocity
+            };
+        };
+
+        class LinearIntplOverrideType
+        {
+        public:
+            enum T
+            {
+                Smoothing,
+                Blending,
+                FastBlending
+            };
+        };
+
+        class LinearIntplProfileCalcMode
+        {
+        public:
+            enum T
+            {
+                AxisLimit,
+                MatchSlowestAxis,
+                MatchFarthestAxis
+            };
+        };
+
+        class CircularIntplOverrideType
+        {
+        public:
+            enum T
+            {
+                Blending,
+                FastBlending
+            };
+        };
+
         // MotionParam class
         class MotionParam
         {
         public:
-            MotionParam() : quickStopDec(0) {}
+            MotionParam()
+            {
+                memset(this, 0, sizeof(MotionParam));
+                // All enum members default to first value (0) via memset:
+                // ProhibitOvertravelType::Disabled, LinearIntplOverrideType::Smoothing,
+                // CircularIntplOverrideType::Blending, LinearIntplProfileCalcMode::AxisLimit
+            }
             double quickStopDec;
+            ProhibitOvertravelType::T prohibitOvertravel;
+            LinearIntplOverrideType::T linearIntplOverrideType;
+            unsigned int linearIntplOverrideSmoothPercent;
+            CircularIntplOverrideType::T circularIntplOverrideType;
+            bool interruptedIntplUseQuickStop;
+            bool singleTurnReduceToHalfTurn;
+            bool enableGlobalStartingVelocity;
+            double globalStartingVelocity;
+            bool enableGlobalEndVelocity;
+            double globalEndVelocity;
+            bool enableGlobalMinVelocity;
+            double globalMinVelocity;
+            bool enableGlobalMovingAverageProfileTimeMilliseconds;
+            double globalMovingAverageProfileTimeMilliseconds;
+            bool apiWaitUntilMotionStart;
+            LinearIntplProfileCalcMode::T linearIntplProfileCalcMode;
         };
 
         // AlarmParam class
@@ -1017,7 +1104,11 @@ namespace wmx3Api
         class AxisParam
         {
         public:
-            AxisParam();
+            AxisParam()
+            {
+                memset(this, 0, sizeof(AxisParam));
+                // AxisCommandMode::Position(0) is default via memset
+            }
             AxisCommandMode::T axisCommandMode[constants::maxAxes];
             double gearRatioNumerator[constants::maxAxes];
             double gearRatioDenominator[constants::maxAxes];
