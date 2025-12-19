@@ -123,6 +123,7 @@ EXPORTS
     WMX3Broker_Uninitialize           @301
 
     ; WMX3 System APIs
+    WMX3Broker_GetLibVersion          @307
     WMX3Broker_GetIMDllVersion        @308
     WMX3Broker_GetEngineStatus        @309
     WMX3Broker_CreateDevice           @310
@@ -274,3 +275,60 @@ EXPORTS
     WMX3Broker_Event_SetHardwareTouchProbe           @520
     WMX3Broker_Event_GetHardwareTouchProbeStatus     @521
     WMX3Broker_Event_EnableHardwareTouchProbe        @522
+
+    ; WMX3 ApiBuffer APIs
+    WMX3Broker_ApiBuffer_GetLibVersion               @530
+    WMX3Broker_ApiBuffer_GetVersion                  @531
+    WMX3Broker_ApiBuffer_CreateApiBuffer             @532
+    WMX3Broker_ApiBuffer_FreeApiBuffer               @533
+    WMX3Broker_ApiBuffer_StartRecordBufferChannel    @534
+    WMX3Broker_ApiBuffer_EndRecordBufferChannel      @535
+    WMX3Broker_ApiBuffer_GetRecordingBufferChannel   @536
+    WMX3Broker_ApiBuffer_Execute                     @537
+    WMX3Broker_ApiBuffer_Halt                        @538
+    WMX3Broker_ApiBuffer_Clear                       @539
+    WMX3Broker_ApiBuffer_Rewind                      @540
+    WMX3Broker_ApiBuffer_GetStatus                   @541
+    WMX3Broker_ApiBuffer_SetOptions                  @542
+    WMX3Broker_ApiBuffer_GetOptions                  @543
+    WMX3Broker_ApiBuffer_SetWatch                    @544
+    WMX3Broker_ApiBuffer_GetWatch                    @545
+    WMX3Broker_ApiBuffer_Sleep                       @546
+    WMX3Broker_ApiBuffer_Wait                        @547
+    WMX3Broker_ApiBuffer_WaitAxes                    @548
+    WMX3Broker_ApiBuffer_WaitCondition               @549
+    WMX3Broker_ApiBuffer_FlowIf                      @550
+    WMX3Broker_ApiBuffer_FlowElseIf                  @551
+    WMX3Broker_ApiBuffer_FlowElse                    @552
+    WMX3Broker_ApiBuffer_FlowEndIf                   @553
+
+    ; WMX3 Log APIs
+    WMX3Broker_Log_GetLibVersion                     @560
+    WMX3Broker_Log_GetVersion                        @561
+    WMX3Broker_Log_StartLog                          @562
+    WMX3Broker_Log_StopLog                           @563
+    WMX3Broker_Log_ResetLog                          @564
+    WMX3Broker_Log_SetLogOption                      @565
+    WMX3Broker_Log_GetLogOption                      @566
+    WMX3Broker_Log_SetLogFilePath                    @567
+    WMX3Broker_Log_GetLogFilePath                    @568
+    WMX3Broker_Log_SetLogFilePathW                   @569
+    WMX3Broker_Log_GetLogFilePathW                   @570
+    WMX3Broker_Log_GetLogStatus                      @571
+    WMX3Broker_Log_GetDetailLogStatus                @572
+
+    ; WMX3 Log APIs - Memory Log
+    WMX3Broker_Log_OpenMemoryLogBuffer               @580
+    WMX3Broker_Log_CloseMemoryLogBuffer              @581
+    WMX3Broker_Log_SetMemoryLog                      @582
+    WMX3Broker_Log_StartMemoryLog                    @583
+    WMX3Broker_Log_StopMemoryLog                     @584
+    WMX3Broker_Log_GetMemoryLogStatus                @585
+    WMX3Broker_Log_GetMemoryLogData                  @586
+
+    ; WMX3 Log APIs - Api Log
+    WMX3Broker_Log_SetApiLog                         @590
+    WMX3Broker_Log_SetApiLogW                        @591
+    WMX3Broker_Log_StartApiLog                       @592
+    WMX3Broker_Log_StopApiLog                        @593
+    WMX3Broker_Log_GetApiLogStatus                   @594

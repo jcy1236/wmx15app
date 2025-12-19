@@ -9,6 +9,8 @@
 // Include WMX3's EcApi.h (WMX3 Include path has priority in AdditionalIncludeDirectories)
 #include "EcApi.h"
 #include "EventApi.h"
+#include "ApiBufferApi.h"
+#include "LogApi.h"
 
 #include <tchar.h>
 #include <cstdio>
@@ -35,6 +37,8 @@ WMX3ContextManager::WMX3ContextManager()
     , m_io(NULL)
     , m_ecat(NULL)
     , m_eventControl(NULL)
+    , m_apiBuffer(NULL)
+    , m_log(NULL)
     , m_refCount(0)
 {
     InitializeCriticalSection(&m_cs);
@@ -170,11 +174,61 @@ long WMX3ContextManager::CreateDeviceInternal()
         return -1;
     }
 
+    // Create ApiBuffer module
+    m_apiBuffer = new wmx3Api::ApiBuffer(m_wmx3);
+    if (m_apiBuffer == NULL) {
+        delete m_eventControl;
+        m_eventControl = NULL;
+        delete m_ecat;
+        m_ecat = NULL;
+        delete m_advancedMotion;
+        m_advancedMotion = NULL;
+        delete m_io;
+        m_io = NULL;
+        delete m_coreMotion;
+        m_coreMotion = NULL;
+        m_wmx3->CloseDevice();
+        delete m_wmx3;
+        m_wmx3 = NULL;
+        return -1;
+    }
+
+    // Create Log module
+    m_log = new wmx3Api::Log(m_wmx3);
+    if (m_log == NULL) {
+        delete m_apiBuffer;
+        m_apiBuffer = NULL;
+        delete m_eventControl;
+        m_eventControl = NULL;
+        delete m_ecat;
+        m_ecat = NULL;
+        delete m_advancedMotion;
+        m_advancedMotion = NULL;
+        delete m_io;
+        m_io = NULL;
+        delete m_coreMotion;
+        m_coreMotion = NULL;
+        m_wmx3->CloseDevice();
+        delete m_wmx3;
+        m_wmx3 = NULL;
+        return -1;
+    }
+
     return 0;
 }
 
 void WMX3ContextManager::CloseDeviceInternal()
 {
+    if (m_log != NULL) {
+        delete m_log;
+        m_log = NULL;
+    }
+
+    if (m_apiBuffer != NULL) {
+        delete m_apiBuffer;
+        m_apiBuffer = NULL;
+    }
+
     if (m_eventControl != NULL) {
         delete m_eventControl;
         m_eventControl = NULL;

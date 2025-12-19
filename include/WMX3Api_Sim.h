@@ -376,16 +376,22 @@ namespace wmx3Api
     public:
         enum T
         {
-            Idle = 0,
-            Pos = 1,
-            Jog = 2,
-            Home = 3,
-            Velocity = 4,
-            Interpolation = 5,
-            Torque = 6,
-            Sync = 7,
-            ECAM = 8,
-            DancerControl = 9
+            Idle,
+            Pos,
+            Jog,
+            Home,
+            Sync,
+            GantryHome,
+            Stop,
+            Intpl,
+            Velocity,
+            ConstLinearVelocity,
+            Trq,
+            DirectControl,
+            PVT,
+            ECAM,
+            SyncCatchUp,
+            DancerControl
         };
     };
 
@@ -487,6 +493,17 @@ namespace wmx3Api
         }
     };
 
+    class AxisCommandMode
+    {
+    public:
+        enum T
+        {
+            Position,
+            Velocity,
+            Torque
+        };
+    };
+
     //=========================================================================
     // AxisSelection class (from WMX3Api.h)
     //=========================================================================
@@ -502,6 +519,39 @@ namespace wmx3Api
         int axis[constants::maxAxes];
     };
 
+    class ProfileType
+    {
+    public:
+        enum T
+        {
+            Trapezoidal,
+            SCurve,
+            JerkRatio,
+            Parabolic,
+            Sin,
+            AdvancedS,
+            TrapezoidalMAT,
+            JerkLimited,
+            JerkLimitedSCurve,
+            JerkLimitedAdvancedS,
+            TwoVelocityTrapezoidal,
+            TwoVelocitySCurve,
+            TwoVelocityJerkRatio,
+            TimeAccTrapezoidal,
+            TimeAccSCurve,
+            TimeAccJerkRatio,
+            TimeAccParabolic,
+            TimeAccSin,
+            TimeAccAdvancedS,
+            ConstantDec,
+            JerkRatioFixedVelocityT,
+            JerkRatioFixedVelocityS,
+            JerkLimitedFixedVelocityT,
+            JerkLimitedFixedVelocityS,
+            ParabolicVelocity
+        };
+    };
+
     // Forward declarations
     // Note: CoreMotionAxisStatus and CoreMotionStatus are defined in CoreMotionApi_Sim.h
     class WMX3Api;
@@ -515,6 +565,8 @@ namespace wmx3Api
 #include "IOApi_Sim.h"
 #include "EcApi_Sim.h"
 #include "EventApi_Sim.h"
+#include "ApiBufferApi_Sim.h"
+#include "LogApi_Sim.h"
 
 namespace wmx3Api
 {
@@ -590,6 +642,11 @@ namespace wmx3Api
         long GetAllDevices(DevicesInfoW *devices)
         {
             return WMX3Broker_GetAllDevicesW(devices);
+        }
+
+        static long GetLibVersion(int *pMajorVersion, int *pMinorVersion, int *pRevisionVersion, int *pFixVersion)
+        {
+            return WMX3Broker_GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
         }
 
         static long GetIMDllVersion(int *pVersion, int *pRevision)

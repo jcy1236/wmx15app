@@ -820,19 +820,77 @@ namespace wmx3Api
         CoreMotion *cmApi;
         Config(CoreMotion *f) : cmApi(f) {}
 
+        class VelocityMonitorSource
+        {
+        public:
+            enum T
+            {
+                UseVelocityFeedback,
+                CalculateFromPositionFeedback
+            };
+        };
+
+        class FeedbackParam
+        {
+        public:
+            FeedbackParam();
+            double inPosWidth;
+            double inPosWidth2;
+            double inPosWidth3;
+            double inPosWidth4;
+            double inPosWidth5;
+            VelocityMonitorSource::T velocityMonitorSource;
+            double posSetWidth;
+            double delayedPosSetWidth;
+            double delayedPosSetMilliseconds;
+        };
+
+        class HomeDirection
+        {
+        public:
+            enum T
+            {
+                Positive,
+                Negative
+            };
+        };
+
+        class HomeType
+        {
+        public:
+            enum T
+            {
+                CurrentPos,
+                ZPulse,
+                HS,
+                HSHS,
+                HSZPulse,
+                HSReverseZPulse,
+                HSOff,
+                HSOffZPulse,
+                HSOffReverseZPulse,
+                LSReverseZPulse,
+                NearLSReverseZPulse,
+                ExternalLSReverseZPulse,
+                TouchProbe,
+                HSTouchProbe,
+                LS,
+                NearLS,
+                ExternalLS,
+                MechanicalEndDetection,
+                MechanicalEndDetectionHS,
+                MechanicalEndDetectionLS,
+                MechanicalEndDetectionReverseZPulse
+            };
+        };
+
         // HomeParam class (from CoreMotionApi.h)
         class HomeParam
         {
         public:
-            HomeParam() : homeType(0), homeDirection(0),
-                          homingVelocitySlow(0), homingVelocitySlowAcc(0), homingVelocitySlowDec(0),
-                          homingVelocityFast(0), homingVelocityFastAcc(0), homingVelocityFastDec(0),
-                          homingReverseDistance(0), homeShiftVelocity(0), homeShiftAcc(0),
-                          homeShiftDec(0), homeShiftDistance(0), invertHSPolarity(false),
-                          pauseMode(false), homePosition(0) {}
-
-            int homeType;
-            int homeDirection;
+            HomeParam();
+            HomeType::T homeType;
+            HomeDirection::T homeDirection;
             double homingVelocitySlow;
             double homingVelocitySlowAcc;
             double homingVelocitySlowDec;
@@ -845,8 +903,53 @@ namespace wmx3Api
             double homeShiftDec;
             double homeShiftDistance;
             bool invertHSPolarity;
+            unsigned int multipleZPulse;
+            bool roundPosCmdAfterHoming;
             bool pauseMode;
+            double maxHSOnAtStartReverseDistance;
+            double maxLSReverseDistance;
+            unsigned int zPulseDistanceCheck;
             double homePosition;
+            bool gantryHomingUseSlaveHS;
+            bool gantryHomingUseSlaveLS;
+            bool gantryHomingUseSlaveZPulse;
+            bool gantryHomingUseSlaveTouchProbe;
+            bool gantryHomingUseSlaveMechanicalEnd;
+            bool gantryHomingRetainSyncOffset;
+            bool immediateStopAtLS;
+            double mechanicalEndDetectionPosDiff;
+            double mechanicalEndDetectionTimeMilliseconds;
+            bool mechanicalEndDetectionIgnoreLS;
+            double mechanicalEndDetectionFirstTorqueLimit;
+            double mechanicalEndDetectionSecondTorqueLimit;
+            bool openLoopHoming;
+            bool clearHomeDoneOnServoOff;
+            bool clearHomeDoneOnCommStop;
+        };
+
+        class LimitSwitchType
+        {
+        public:
+            enum T
+            {
+                None,
+                ServoOff,
+                DecServoOff,
+                Dec,
+                SlowDecServoOff,
+                SlowDec,
+                SeparatePositiveLSNegativeLS
+            };
+        };
+
+        class LimitSwitchDirection
+        {
+        public:
+            enum T
+            {
+                Normal,
+                Reverse
+            };
         };
 
         // FeedbackParam class
@@ -865,12 +968,39 @@ namespace wmx3Api
         class LimitParam
         {
         public:
-            LimitParam() : positiveSoftLimit(0), negativeSoftLimit(0),
-                           enablePositiveSoftLimit(false), enableNegativeSoftLimit(false) {}
-            double positiveSoftLimit;
-            double negativeSoftLimit;
-            bool enablePositiveSoftLimit;
-            bool enableNegativeSoftLimit;
+            LimitParam();
+            LimitSwitchType::T lsType;
+            LimitSwitchType::T positiveLSType;
+            LimitSwitchType::T negativeLSType;
+            bool invertPositiveLSPolarity;
+            bool invertNegativeLSPolarity;
+            LimitSwitchType::T nearLSType;
+            LimitSwitchType::T nearPositiveLSType;
+            LimitSwitchType::T nearNegativeLSType;
+            int nearPositiveLSByte;
+            int nearPositiveLSBit;
+            bool invertNearPositiveLSPolarity;
+            int nearNegativeLSByte;
+            int nearNegativeLSBit;
+            bool invertNearNegativeLSPolarity;
+            LimitSwitchType::T externalLSType;
+            LimitSwitchType::T externalPositiveLSType;
+            LimitSwitchType::T externalNegativeLSType;
+            int externalPositiveLSByte;
+            int externalPositiveLSBit;
+            bool invertExternalPositiveLSPolarity;
+            int externalNegativeLSByte;
+            int externalNegativeLSBit;
+            bool invertExternalNegativeLSPolarity;
+            LimitSwitchType::T softLimitType;
+            LimitSwitchType::T positiveSoftLimitType;
+            LimitSwitchType::T negativeSoftLimitType;
+            double softLimitPositivePos;
+            double softLimitNegativePos;
+            double lsDec;
+            double lsSlowDec;
+            bool allLSDuringHoming;
+            LimitSwitchDirection::T lsDirection;
         };
 
         // MotionParam class

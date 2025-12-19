@@ -11,6 +11,8 @@
 #include "IOApi.h"
 #include "EcApi.h"
 #include "EventApi.h"
+#include "ApiBufferApi.h"
+#include "LogApi.h"
 
 #include <cstring>
 
@@ -58,6 +60,11 @@ long __stdcall WMX3Broker_Uninitialize(void)
 //=============================================================================
 // WMX3Api System APIs
 //=============================================================================
+long __stdcall WMX3Broker_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
+{
+    return wmx3Api::WMX3Api::GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
+}
+
 long __stdcall WMX3Broker_GetIMDllVersion(int* pVersion, int* pRevision)
 {
     return wmx3Api::WMX3Api::GetIMDllVersion(pVersion, pRevision);
@@ -1200,4 +1207,401 @@ long __stdcall WMX3Broker_Event_EnableHardwareTouchProbe(int axis, unsigned char
     wmx3Api::EventControl* eventCtrl = ctx->GetEventControl();
     if (!eventCtrl) return -1;
     return eventCtrl->EnableHardwareTouchProbe(axis, enable != 0);
+}
+
+//=============================================================================
+// ApiBuffer APIs
+//=============================================================================
+long __stdcall WMX3Broker_ApiBuffer_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
+{
+    return wmx3Api::ApiBuffer::GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_GetVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->GetVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_CreateApiBuffer(unsigned int channel, unsigned int size)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->CreateApiBuffer(channel, size);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_FreeApiBuffer(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->FreeApiBuffer(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_StartRecordBufferChannel(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->StartRecordBufferChannel(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_EndRecordBufferChannel(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->EndRecordBufferChannel();
+}
+
+long __stdcall WMX3Broker_ApiBuffer_GetRecordingBufferChannel(int* pChannel, unsigned char* pEnable)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->GetRecordingBufferChannel(pChannel, pEnable);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Execute(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Execute(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Halt(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Halt(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Clear(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Clear(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Rewind(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Rewind(channel);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_GetStatus(unsigned int channel, void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pStatus) return -1;
+    return apiBuffer->GetStatus(channel, static_cast<wmx3Api::ApiBufferStatus*>(pStatus));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_SetOptions(unsigned int channel, void* pOptions)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pOptions) return -1;
+    return apiBuffer->SetOptions(channel, static_cast<wmx3Api::ApiBufferOptions*>(pOptions));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_GetOptions(unsigned int channel, void* pOptions)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pOptions) return -1;
+    return apiBuffer->GetOptions(channel, static_cast<wmx3Api::ApiBufferOptions*>(pOptions));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_SetWatch(unsigned int channel, void* pWatch)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pWatch) return -1;
+    return apiBuffer->SetWatch(channel, static_cast<wmx3Api::ApiBufferWatch*>(pWatch));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_GetWatch(unsigned int channel, void* pWatch)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pWatch) return -1;
+    return apiBuffer->GetWatch(channel, static_cast<wmx3Api::ApiBufferWatch*>(pWatch));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Sleep(unsigned int milliseconds)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Sleep(milliseconds);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_Wait(int axis)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->Wait(axis);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_WaitAxes(void* pAxisSelection)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pAxisSelection) return -1;
+    return apiBuffer->Wait(static_cast<wmx3Api::AxisSelection*>(pAxisSelection));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_WaitCondition(void* pCondition)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pCondition) return -1;
+    return apiBuffer->Wait(static_cast<wmx3Api::ApiBufferCondition*>(pCondition));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_FlowIf(void* pCondition, void* pWait)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pCondition) return -1;
+    return apiBuffer->FlowIf(static_cast<wmx3Api::ApiBufferCondition*>(pCondition),
+        static_cast<wmx3Api::ApiBufferCondition*>(pWait));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_FlowElseIf(void* pCondition)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer || !pCondition) return -1;
+    return apiBuffer->FlowElseIf(static_cast<wmx3Api::ApiBufferCondition*>(pCondition));
+}
+
+long __stdcall WMX3Broker_ApiBuffer_FlowElse(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->FlowElse();
+}
+
+long __stdcall WMX3Broker_ApiBuffer_FlowEndIf(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return -1;
+    return apiBuffer->FlowEndIf();
+}
+
+//=============================================================================
+// Log APIs
+//=============================================================================
+long __stdcall WMX3Broker_Log_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
+{
+    return wmx3Api::Log::GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
+}
+
+long __stdcall WMX3Broker_Log_GetVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->GetVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
+}
+
+long __stdcall WMX3Broker_Log_StartLog(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StartLog(channel);
+}
+
+long __stdcall WMX3Broker_Log_StopLog(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StopLog(channel);
+}
+
+long __stdcall WMX3Broker_Log_ResetLog(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->ResetLog(channel);
+}
+
+long __stdcall WMX3Broker_Log_SetLogOption(unsigned int channel, void* pOption)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pOption) return -1;
+    return log->SetLogOption(channel, static_cast<wmx3Api::LogChannelOptions*>(pOption));
+}
+
+long __stdcall WMX3Broker_Log_GetLogOption(unsigned int channel, void* pOption)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pOption) return -1;
+    return log->GetLogOption(channel, static_cast<wmx3Api::LogChannelOptions*>(pOption));
+}
+
+long __stdcall WMX3Broker_Log_SetLogFilePath(unsigned int channel, void* pPath)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pPath) return -1;
+    return log->SetLogFilePath(channel, static_cast<wmx3Api::LogFilePathA*>(pPath));
+}
+
+long __stdcall WMX3Broker_Log_GetLogFilePath(unsigned int channel, void* pPath)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pPath) return -1;
+    return log->GetLogFilePath(channel, static_cast<wmx3Api::LogFilePathA*>(pPath));
+}
+
+long __stdcall WMX3Broker_Log_SetLogFilePathW(unsigned int channel, void* pPath)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pPath) return -1;
+    return log->SetLogFilePath(channel, static_cast<wmx3Api::LogFilePathW*>(pPath));
+}
+
+long __stdcall WMX3Broker_Log_GetLogFilePathW(unsigned int channel, void* pPath)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pPath) return -1;
+    return log->GetLogFilePath(channel, static_cast<wmx3Api::LogFilePathW*>(pPath));
+}
+
+long __stdcall WMX3Broker_Log_GetLogStatus(unsigned int channel, void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pStatus) return -1;
+    return log->GetLogStatus(channel, static_cast<wmx3Api::LogStatus*>(pStatus));
+}
+
+long __stdcall WMX3Broker_Log_GetDetailLogStatus(unsigned int channel, void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pStatus) return -1;
+    return log->GetDetailLogStatus(channel, static_cast<wmx3Api::DetailLogStatus*>(pStatus));
+}
+
+long __stdcall WMX3Broker_Log_OpenMemoryLogBuffer(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->OpenMemoryLogBuffer(channel);
+}
+
+long __stdcall WMX3Broker_Log_CloseMemoryLogBuffer(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->CloseMemoryLogBuffer(channel);
+}
+
+long __stdcall WMX3Broker_Log_SetMemoryLog(unsigned int channel, void* pAxisSelection, void* pOption)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->SetMemoryLog(channel,
+        static_cast<wmx3Api::AxisSelection*>(pAxisSelection),
+        static_cast<wmx3Api::MemoryLogOptions*>(pOption));
+}
+
+long __stdcall WMX3Broker_Log_StartMemoryLog(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StartMemoryLog(channel);
+}
+
+long __stdcall WMX3Broker_Log_StopMemoryLog(unsigned int channel)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StopMemoryLog(channel);
+}
+
+long __stdcall WMX3Broker_Log_GetMemoryLogStatus(unsigned int channel, void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pStatus) return -1;
+    return log->GetMemoryLogStatus(channel, static_cast<wmx3Api::MemoryLogStatus*>(pStatus));
+}
+
+long __stdcall WMX3Broker_Log_GetMemoryLogData(unsigned int channel, void* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pData) return -1;
+    return log->GetMemoryLogData(channel, static_cast<wmx3Api::MemoryLogData*>(pData));
+}
+
+long __stdcall WMX3Broker_Log_SetApiLog(const char* pPath, void* pOptions, unsigned int buffSize)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->SetApiLog(const_cast<char*>(pPath),
+        static_cast<wmx3Api::ApiLogOptions*>(pOptions), buffSize);
+}
+
+long __stdcall WMX3Broker_Log_SetApiLogW(const wchar_t* pPath, void* pOptions, unsigned int buffSize)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->SetApiLog(const_cast<wchar_t*>(pPath),
+        static_cast<wmx3Api::ApiLogOptions*>(pOptions), buffSize);
+}
+
+long __stdcall WMX3Broker_Log_StartApiLog(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StartApiLog();
+}
+
+long __stdcall WMX3Broker_Log_StopApiLog(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log) return -1;
+    return log->StopApiLog();
+}
+
+long __stdcall WMX3Broker_Log_GetApiLogStatus(void* pStatus)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Log* log = ctx->GetLog();
+    if (!log || !pStatus) return -1;
+    return log->GetApiLogStatus(static_cast<wmx3Api::ApiLogStatus*>(pStatus));
 }

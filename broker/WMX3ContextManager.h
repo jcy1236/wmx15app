@@ -14,6 +14,8 @@ namespace wmx3Api {
     class AdvancedMotion;
     class Io;
     class EventControl;
+    class ApiBuffer;
+    class Log;
     namespace ecApi {
         class Ecat;
     }
@@ -31,6 +33,8 @@ private:
     wmx3Api::Io* m_io;
     wmx3Api::ecApi::Ecat* m_ecat;
     wmx3Api::EventControl* m_eventControl;
+    wmx3Api::ApiBuffer* m_apiBuffer;
+    wmx3Api::Log* m_log;
 
     // Reference counting
     int m_refCount;
@@ -79,6 +83,8 @@ public:
     wmx3Api::Io* GetIo() { return m_io; }
     wmx3Api::ecApi::Ecat* GetEcat() { return m_ecat; }
     wmx3Api::EventControl* GetEventControl() { return m_eventControl; }
+    wmx3Api::ApiBuffer* GetApiBuffer() { return m_apiBuffer; }
+    wmx3Api::Log* GetLog() { return m_log; }
 };
 
 #endif // WMX3_CONTEXT_MANAGER_H

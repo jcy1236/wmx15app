@@ -39,6 +39,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Uninitialize(void);
 //=============================================================================
 // WMX3Api System APIs
 //=============================================================================
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetIMDllVersion(int* pVersion, int* pRevision);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetEngineStatus(void* pStatus);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_CreateDevice(const char* path, int deviceType);
@@ -278,6 +279,84 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_SetHardwareTouchProbe(int axis, 
 // Note: pStatus should point to wmx3Api::EventControl::HardwareTouchProbeStatus structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_GetHardwareTouchProbeStatus(int axis, void* pStatus);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Event_EnableHardwareTouchProbe(int axis, unsigned char enable);
+
+//=============================================================================
+// ApiBuffer APIs
+//=============================================================================
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_CreateApiBuffer(unsigned int channel, unsigned int size);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FreeApiBuffer(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_StartRecordBufferChannel(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_EndRecordBufferChannel(void);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetRecordingBufferChannel(int* pChannel, unsigned char* pEnable);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Execute(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Halt(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Clear(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Rewind(unsigned int channel);
+// Note: pStatus should point to wmx3Api::ApiBufferStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetStatus(unsigned int channel, void* pStatus);
+// Note: pOptions should point to wmx3Api::ApiBufferOptions structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_SetOptions(unsigned int channel, void* pOptions);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetOptions(unsigned int channel, void* pOptions);
+// Note: pWatch should point to wmx3Api::ApiBufferWatch structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_SetWatch(unsigned int channel, void* pWatch);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_GetWatch(unsigned int channel, void* pWatch);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Sleep(unsigned int milliseconds);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_Wait(int axis);
+// Note: pAxisSelection should point to wmx3Api::AxisSelection structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_WaitAxes(void* pAxisSelection);
+// Note: pCondition should point to wmx3Api::ApiBufferCondition structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_WaitCondition(void* pCondition);
+// Flow control
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowIf(void* pCondition, void* pWait);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowElseIf(void* pCondition);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowElse(void);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowEndIf(void);
+
+//=============================================================================
+// Log APIs
+//=============================================================================
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StartLog(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StopLog(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_ResetLog(unsigned int channel);
+// Note: pOption should point to wmx3Api::LogChannelOptions structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetLogOption(unsigned int channel, void* pOption);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetLogOption(unsigned int channel, void* pOption);
+// Note: pPath should point to wmx3Api::LogFilePathA structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetLogFilePath(unsigned int channel, void* pPath);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetLogFilePath(unsigned int channel, void* pPath);
+// Note: pPath should point to wmx3Api::LogFilePathW structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetLogFilePathW(unsigned int channel, void* pPath);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetLogFilePathW(unsigned int channel, void* pPath);
+// Note: pStatus should point to wmx3Api::LogStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetLogStatus(unsigned int channel, void* pStatus);
+// Note: pStatus should point to wmx3Api::DetailLogStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetDetailLogStatus(unsigned int channel, void* pStatus);
+
+// Memory Log APIs
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_OpenMemoryLogBuffer(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_CloseMemoryLogBuffer(unsigned int channel);
+// Note: pAxisSelection should point to wmx3Api::AxisSelection structure
+// Note: pOption should point to wmx3Api::MemoryLogOptions structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetMemoryLog(unsigned int channel, void* pAxisSelection, void* pOption);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StartMemoryLog(unsigned int channel);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StopMemoryLog(unsigned int channel);
+// Note: pStatus should point to wmx3Api::MemoryLogStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetMemoryLogStatus(unsigned int channel, void* pStatus);
+// Note: pData should point to wmx3Api::MemoryLogData structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetMemoryLogData(unsigned int channel, void* pData);
+
+// Api Log APIs
+// Note: pOptions should point to wmx3Api::ApiLogOptions structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetApiLog(const char* pPath, void* pOptions, unsigned int buffSize);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_SetApiLogW(const wchar_t* pPath, void* pOptions, unsigned int buffSize);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StartApiLog(void);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_StopApiLog(void);
+// Note: pStatus should point to wmx3Api::ApiLogStatus structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Log_GetApiLogStatus(void* pStatus);
 
 #ifdef __cplusplus
 }
