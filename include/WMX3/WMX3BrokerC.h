@@ -179,6 +179,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetVelocityFeedforwardGain(int 
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetVelocityFeedforwardGain(int axis, double* pGain);
 // Note: pParam should point to wmx3Api::Config::AxisParam structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisParam(int axis, void* pParam);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisParam(int axis, void* pParam, void* pParamError);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double unit);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisUnit(int axis, double* pUnit);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(int axis, double offset);

@@ -1301,6 +1301,11 @@ namespace wmx3Api
             return WMX3Broker_Config_GetAxisParam(axis, pParam);
         }
 
+        long SetAxisParam(int axis, AxisParam *pParam, AxisParam *pParamError = NULL)
+        {
+            return WMX3Broker_Config_SetAxisParam(axis, pParam, pParamError);
+        }
+
         long SetAxisUnit(int axis, double unit)
         {
             return WMX3Broker_Config_SetAxisUnit(axis, unit);

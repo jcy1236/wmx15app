@@ -842,6 +842,15 @@ long __stdcall WMX3Broker_Config_GetAxisParam(int axis, void* pParam)
     return coreMotion->config->GetAxisParam(axis, static_cast<wmx3Api::Config::AxisParam*>(pParam));
 }
 
+long __stdcall WMX3Broker_Config_SetAxisParam(int axis, void* pParam, void* pParamError)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->SetAxisParam(axis, static_cast<wmx3Api::Config::AxisParam*>(pParam),
+        static_cast<wmx3Api::Config::AxisParam*>(pParamError));
+}
+
 long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double unit)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
