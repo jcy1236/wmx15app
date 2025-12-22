@@ -415,6 +415,16 @@ namespace wmx3Api
         {
             return WMX3Broker_Event_EnableHardwareTouchProbe(axis, enable);
         }
+
+        static long ErrorToString(int errCode, char *pString, unsigned int size)
+        {
+            return WMX3Broker_EventControl_ErrorToString(errCode, pString, size);
+        }
+
+        static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+        {
+            return WMX3Broker_EventControl_ErrorToStringW(errCode, pString, size);
+        }
     };
 
 } // namespace wmx3Api

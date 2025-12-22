@@ -656,6 +656,16 @@ namespace wmx3Api
         {
             return WMX3Broker_Log_GetApiLogStatus(pStatus);
         }
+
+        static long ErrorToString(int errCode, char *pString, unsigned int size)
+        {
+            return WMX3Broker_Log_ErrorToString(errCode, pString, size);
+        }
+
+        static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+        {
+            return WMX3Broker_Log_ErrorToStringW(errCode, pString, size);
+        }
     };
 
 } // namespace wmx3Api

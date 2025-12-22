@@ -501,6 +501,35 @@ namespace wmx3Api
                 pLinearIntplCommand->profile.endVelocity);
         }
 
+        long StopJogAtPos(PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
+            return WMX3Broker_Motion_StopJogAtPos(
+                pPosCommand->axis,
+                pPosCommand->target,
+                static_cast<int>(pPosCommand->profile.type),
+                pPosCommand->profile.velocity,
+                pPosCommand->profile.acc,
+                pPosCommand->profile.dec,
+                pPosCommand->profile.jerkAccRatio,
+                pPosCommand->profile.jerkDecRatio);
+        }
+
+        long StopJogAtPos(unsigned int numCommands, PosCommand *pPosCommand)
+        {
+            if (!pPosCommand)
+                return -1;
+            long ret = 0;
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
+                ret = StopJogAtPos(&pPosCommand[i]);
+                if (ret != 0)
+                    return ret;
+            }
+            return ret;
+        }
+
         long Stop(int axis)
         {
             return WMX3Broker_Motion_Stop(axis);
@@ -1125,6 +1154,62 @@ namespace wmx3Api
             double absoluteEncoderHomeOffset[constants::maxAxes];
         };
 
+        // SyncParam class (placeholder for SystemParam)
+        class SyncParam
+        {
+        public:
+            SyncParam() { memset(this, 0, sizeof(SyncParam)); }
+            int masterAxis;
+            double ratio;
+        };
+
+        // FlightRecorderParam class (placeholder for SystemParam)
+        class FlightRecorderParam
+        {
+        public:
+            FlightRecorderParam() { memset(this, 0, sizeof(FlightRecorderParam)); }
+            bool enabled;
+            unsigned int bufferSize;
+        };
+
+        // EmergencyStopParam class (placeholder for SystemParam)
+        class EmergencyStopParam
+        {
+        public:
+            EmergencyStopParam() { memset(this, 0, sizeof(EmergencyStopParam)); }
+            double eStopDec;
+        };
+
+        // SystemParam class
+        class SystemParam
+        {
+        public:
+            SystemParam() { memset(this, 0, sizeof(SystemParam)); }
+            FeedbackParam feedbackParam[constants::maxAxes];
+            HomeParam homeParam[constants::maxAxes];
+            LimitParam limitParam[constants::maxAxes];
+            MotionParam motionParam[constants::maxAxes];
+            AlarmParam alarmParam[constants::maxAxes];
+            SyncParam syncParam[constants::maxAxes];
+            FlightRecorderParam flightRecorderParam;
+            EmergencyStopParam emergencyStopParam;
+        };
+
+        long SetParam(SystemParam *pParam, SystemParam *pParamError = NULL)
+        {
+            return WMX3Broker_Config_SetParam(pParam, pParamError);
+        }
+
+        long GetDefaultParam(SystemParam *pParam)
+        {
+            return WMX3Broker_Config_GetDefaultParam(pParam);
+        }
+
+        long GetDefaultAxisParam(AxisParam *pAxisParam)
+        {
+            return WMX3Broker_Config_GetDefaultAxisParam(pAxisParam);
+        }
+
         long SetHomeParam(int axis, HomeParam *pParam, HomeParam *pParamError = NULL)
         {
             return WMX3Broker_Config_SetHomeParam(axis, pParam);
@@ -1284,6 +1369,21 @@ namespace wmx3Api
         long GetStatus(CoreMotionStatus *pStatus)
         {
             return WMX3Broker_CoreMotion_GetStatus(pStatus);
+        }
+
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_CoreMotion_IsDeviceValid() != 0;
+        }
+
+        static long ErrorToString(int errCode, char *pString, unsigned int size)
+        {
+            return WMX3Broker_CoreMotion_ErrorToString(errCode, pString, size);
+        }
+
+        static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+        {
+            return WMX3Broker_CoreMotion_ErrorToStringW(errCode, pString, size);
         }
     };
 

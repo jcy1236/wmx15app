@@ -13,6 +13,11 @@
 #include "EventApi.h"
 #include "ApiBufferApi.h"
 #include "LogApi.h"
+#include "CyclicBufferApi.h"
+#include "CompensationApi.h"
+#include "UserMemoryApi.h"
+#include "PMMotionApi.h"
+#include "AdvancedMotionApi.h"
 
 #include <cstring>
 
@@ -68,6 +73,16 @@ long __stdcall WMX3Broker_GetLibVersion(int* pMajorVersion, int* pMinorVersion, 
 long __stdcall WMX3Broker_GetIMDllVersion(int* pVersion, int* pRevision)
 {
     return wmx3Api::WMX3Api::GetIMDllVersion(pVersion, pRevision);
+}
+
+long __stdcall WMX3Broker_WMX3Api_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::WMX3Api::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_WMX3Api_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::WMX3Api::ErrorToString(errCode, pString, size);
 }
 
 long __stdcall WMX3Broker_GetEngineStatus(void* pStatus)
@@ -126,7 +141,11 @@ long __stdcall WMX3Broker_SetDeviceName(const char* name)
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
     wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
     if (!wmx3 || !name) return -1;
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
     return wmx3->SetDeviceName(const_cast<char*>(name));
+#else
+    return wmx3->SetDeviceName(name);
+#endif
 }
 
 long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name)
@@ -134,7 +153,27 @@ long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name)
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
     wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
     if (!wmx3 || !name) return -1;
+#if defined(WMX_VERSION_34U4_WIN) || defined(WMX_VERSION_34U4_RTX)
     return wmx3->SetDeviceName(const_cast<wchar_t*>(name));
+#else
+    return wmx3->SetDeviceName(name);
+#endif
+}
+
+long __stdcall WMX3Broker_SetWatchdog(unsigned int watchdog)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3) return -1;
+    return wmx3->SetWatchdog(watchdog);
+}
+
+long __stdcall WMX3Broker_SetWatchdogEx(int deviceId, unsigned int watchdog)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3) return -1;
+    return wmx3->SetWatchdog(deviceId, watchdog);
 }
 
 long __stdcall WMX3Broker_GetAllDevices(void* pDevices)
@@ -162,6 +201,24 @@ long __stdcall WMX3Broker_CoreMotion_GetStatus(void* pStatus)
     wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
     if (!coreMotion || !pStatus) return -1;
     return coreMotion->GetStatus(static_cast<wmx3Api::CoreMotionStatus*>(pStatus));
+}
+
+int __stdcall WMX3Broker_CoreMotion_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion) return 0;
+    return coreMotion->IsDeviceValid() ? 1 : 0;
+}
+
+long __stdcall WMX3Broker_CoreMotion_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::CoreMotion::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_CoreMotion_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::CoreMotion::ErrorToString(errCode, pString, size);
 }
 
 //=============================================================================
@@ -369,6 +426,27 @@ long __stdcall WMX3Broker_Motion_Resume(int axis)
     wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
     if (!coreMotion) return -1;
     return coreMotion->motion->Resume(axis);
+}
+
+long __stdcall WMX3Broker_Motion_StopJogAtPos(int axis, double target,
+    int profileType, double velocity, double acc, double dec,
+    double jerkAccRatio, double jerkDecRatio)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion) return -1;
+
+    wmx3Api::Motion::PosCommand posCmd;
+    posCmd.axis = axis;
+    posCmd.target = target;
+    posCmd.profile.type = static_cast<wmx3Api::ProfileType::T>(profileType);
+    posCmd.profile.velocity = velocity;
+    posCmd.profile.acc = acc;
+    posCmd.profile.dec = dec;
+    posCmd.profile.jerkAccRatio = jerkAccRatio;
+    posCmd.profile.jerkDecRatio = jerkDecRatio;
+
+    return coreMotion->motion->StopJogAtPos(&posCmd);
 }
 
 long __stdcall WMX3Broker_Motion_StartLinearIntplPos(
@@ -788,6 +866,32 @@ long __stdcall WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(int axis, double o
     return coreMotion->config->SetAbsoluteEncoderHomeOffset(axis, offset);
 }
 
+long __stdcall WMX3Broker_Config_SetParam(void* pParam, void* pParamError)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->SetParam(
+        static_cast<wmx3Api::Config::SystemParam*>(pParam),
+        static_cast<wmx3Api::Config::SystemParam*>(pParamError));
+}
+
+long __stdcall WMX3Broker_Config_GetDefaultParam(void* pParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->GetDefaultParam(static_cast<wmx3Api::Config::SystemParam*>(pParam));
+}
+
+long __stdcall WMX3Broker_Config_GetDefaultAxisParam(void* pAxisParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pAxisParam) return -1;
+    return coreMotion->config->GetDefaultAxisParam(static_cast<wmx3Api::Config::AxisParam*>(pAxisParam));
+}
+
 //=============================================================================
 // Io APIs
 //=============================================================================
@@ -956,6 +1060,27 @@ long __stdcall WMX3Broker_Ecat_ChangeSlaveState(int slaveId, int state, int* pEr
     return ecat->ChangeSlaveState(slaveId, static_cast<wmx3Api::ecApi::EcStateMachine::T>(state), pErrorCode);
 }
 
+int __stdcall WMX3Broker_Ecat_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
+    if (!ecat) return 0;
+    return ecat->IsDeviceValid() ? 1 : 0;
+}
+
+long __stdcall WMX3Broker_Ecat_ResetTransmitStatisticsInfo(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ecApi::Ecat* ecat = ctx->GetEcat();
+    if (!ecat) return -1;
+#if defined(WMX_VERSION_36U1_WIN) || defined(WMX_VERSION_36U1_RTX)
+    return ecat->ResetTransmitStatisticsInfo();
+#else
+    // WMX 3.4 does not have this API
+    return 0;
+#endif
+}
+
 long __stdcall WMX3Broker_Ecat_SdoDownload(int slaveId, int index, int subindex,
     int sdoDataSize, unsigned char* sdoData, unsigned int* errCode, unsigned int waitTime)
 {
@@ -1087,6 +1212,16 @@ long __stdcall WMX3Broker_Ecat_SIIRead(int slaveId, int siiAddr, int len, unsign
 //=============================================================================
 // EventControl APIs
 //=============================================================================
+long __stdcall WMX3Broker_EventControl_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::EventControl::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_EventControl_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::EventControl::ErrorToString(errCode, pString, size);
+}
+
 long __stdcall WMX3Broker_Event_SetEvent(int* pId, void* pEventInput, void* pEventOutput, void* pOption)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
@@ -1252,6 +1387,16 @@ long __stdcall WMX3Broker_Event_EnableHardwareTouchProbe(int axis, unsigned char
 //=============================================================================
 // ApiBuffer APIs
 //=============================================================================
+long __stdcall WMX3Broker_ApiBuffer_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::ApiBuffer::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_ApiBuffer_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::ApiBuffer::ErrorToString(errCode, pString, size);
+}
+
 long __stdcall WMX3Broker_ApiBuffer_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
 {
     return wmx3Api::ApiBuffer::GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
@@ -1445,6 +1590,16 @@ long __stdcall WMX3Broker_ApiBuffer_FlowEndIf(void)
 //=============================================================================
 // Log APIs
 //=============================================================================
+long __stdcall WMX3Broker_Log_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::Log::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_Log_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::Log::ErrorToString(errCode, pString, size);
+}
+
 long __stdcall WMX3Broker_Log_GetLibVersion(int* pMajorVersion, int* pMinorVersion, int* pRevisionVersion, int* pFixVersion)
 {
     return wmx3Api::Log::GetLibVersion(pMajorVersion, pMinorVersion, pRevisionVersion, pFixVersion);
@@ -1644,4 +1799,69 @@ long __stdcall WMX3Broker_Log_GetApiLogStatus(void* pStatus)
     wmx3Api::Log* log = ctx->GetLog();
     if (!log || !pStatus) return -1;
     return log->GetApiLogStatus(static_cast<wmx3Api::ApiLogStatus*>(pStatus));
+}
+
+//=============================================================================
+// CyclicBuffer APIs
+//=============================================================================
+long __stdcall WMX3Broker_CyclicBuffer_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::CyclicBuffer::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_CyclicBuffer_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::CyclicBuffer::ErrorToString(errCode, pString, size);
+}
+
+//=============================================================================
+// Compensation APIs
+//=============================================================================
+long __stdcall WMX3Broker_Compensation_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::Compensation::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_Compensation_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::Compensation::ErrorToString(errCode, pString, size);
+}
+
+//=============================================================================
+// UserMemory APIs
+//=============================================================================
+long __stdcall WMX3Broker_UserMemory_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::UserMemory::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_UserMemory_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::UserMemory::ErrorToString(errCode, pString, size);
+}
+
+//=============================================================================
+// PMMotion APIs
+//=============================================================================
+long __stdcall WMX3Broker_PMMotion_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::PMMotion::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_PMMotion_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::PMMotion::ErrorToString(errCode, pString, size);
+}
+
+//=============================================================================
+// AdvancedMotion APIs
+//=============================================================================
+long __stdcall WMX3Broker_AdvancedMotion_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::AdvancedMotion::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_AdvancedMotion_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::AdvancedMotion::ErrorToString(errCode, pString, size);
 }

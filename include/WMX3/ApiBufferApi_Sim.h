@@ -486,6 +486,16 @@ namespace wmx3Api
         {
             return WMX3Broker_ApiBuffer_FlowEndIf();
         }
+
+        static long ErrorToString(int errCode, char *pString, unsigned int size)
+        {
+            return WMX3Broker_ApiBuffer_ErrorToString(errCode, pString, size);
+        }
+
+        static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+        {
+            return WMX3Broker_ApiBuffer_ErrorToStringW(errCode, pString, size);
+        }
     };
 
 } // namespace wmx3Api

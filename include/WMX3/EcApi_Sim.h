@@ -438,6 +438,16 @@ namespace wmx3Api
                 return WMX3Broker_Ecat_ChangeSlaveState(slaveId, static_cast<int>(state), pErrorCode);
             }
 
+            bool IsDeviceValid()
+            {
+                return WMX3Broker_Ecat_IsDeviceValid() != 0;
+            }
+
+            long ResetTransmitStatisticsInfo()
+            {
+                return WMX3Broker_Ecat_ResetTransmitStatisticsInfo();
+            }
+
             //=================================================================
             // SDO Communication
             //=================================================================

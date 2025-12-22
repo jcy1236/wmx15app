@@ -529,6 +529,11 @@ namespace wmx3Api
 #include "EventApi_Sim.h"
 #include "ApiBufferApi_Sim.h"
 #include "LogApi_Sim.h"
+#include "CyclicBufferApi_Sim.h"
+#include "CompensationApi_Sim.h"
+#include "UserMemoryApi_Sim.h"
+#include "PMMotionApi_Sim.h"
+#include "AdvancedMotionApi_Sim.h"
 
 namespace wmx3Api
 {
@@ -581,14 +586,24 @@ namespace wmx3Api
             return WMX3Broker_StopCommunication(waitTimeMilliseconds);
         }
 
-        long SetDeviceName(char *name)
+        long SetDeviceName(const char *name)
         {
             return WMX3Broker_SetDeviceName(name);
         }
 
-        long SetDeviceName(wchar_t *name)
+        long SetDeviceName(const wchar_t *name)
         {
             return WMX3Broker_SetDeviceNameW(name);
+        }
+
+        long SetWatchdog(unsigned int watchdog)
+        {
+            return WMX3Broker_SetWatchdog(watchdog);
+        }
+
+        long SetWatchdog(int deviceId, unsigned int watchdog)
+        {
+            return WMX3Broker_SetWatchdogEx(deviceId, watchdog);
         }
 
         long GetEngineStatus(EngineStatus *status)
@@ -614,6 +629,16 @@ namespace wmx3Api
         static long GetIMDllVersion(int *pVersion, int *pRevision)
         {
             return WMX3Broker_GetIMDllVersion(pVersion, pRevision);
+        }
+
+        static long ErrorToString(int errCode, char *pString, unsigned int size)
+        {
+            return WMX3Broker_WMX3Api_ErrorToString(errCode, pString, size);
+        }
+
+        static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
+        {
+            return WMX3Broker_WMX3Api_ErrorToStringW(errCode, pString, size);
         }
     };
 
