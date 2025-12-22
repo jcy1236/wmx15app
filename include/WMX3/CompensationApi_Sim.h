@@ -13,6 +13,29 @@
 
 namespace wmx3Api
 {
+    class CompensationErrorCode : public ErrorCode
+    {
+    public:
+        enum
+        {
+            PitchErrorCompensationIsEnabled = 0x00015000,
+            PitchErrorCompensationIsDisabled,
+            PitchErrorCompensationDataIsNotSet,
+            BacklashCompensationIsEnabled,
+            BacklashCompensationIsDisabled,
+            PitchCountOutOfRange,
+            PitchOriginIndexOutOfRange,
+            PitchIntervalOutOfRange,
+            EdgeDropoffDistanceOutOfRange,
+            CompensationAxisNotPosMode,
+            ReferenceAxisNotPosMode,
+            NotUsingPitchIntervalMode,
+            NotUsingFreePositionMode,
+            PitchPositionRangeTooLarge,
+            PitchPositionNotInAscendingOrder
+        };
+    };
+
     //=========================================================================
     // Compensation class
     //=========================================================================

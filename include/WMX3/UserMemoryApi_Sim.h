@@ -13,6 +13,19 @@
 
 namespace wmx3Api
 {
+    class UserMemoryErrorCode : public ErrorCode
+    {
+    public:
+        enum
+        {
+            CurrentlyReallocatingUserMemory = 0x00018000,
+            FailedToReallocateUserMemory,
+            UserMemoryCountOutOfRange,
+            ExceededMaxReadWriteBytesRange,
+            SharedMemoryNull
+        };
+    };
+
     //=========================================================================
     // UserMemory class
     //=========================================================================

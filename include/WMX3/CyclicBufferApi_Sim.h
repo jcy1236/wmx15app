@@ -13,6 +13,21 @@
 
 namespace wmx3Api
 {
+    class CyclicBufferErrorCode : public ErrorCode
+    {
+    public:
+        enum
+        {
+            CreateBufferFailed = 0x00013000,
+            BufferIsNull,
+            OpenBufferError,
+            BufferIsNotOpened,
+            BufferSizeIsNotEnough,
+            LockBufferFailed,
+            BufferAlreadyOpened
+        };
+    };
+
     //=========================================================================
     // CyclicBuffer class
     //=========================================================================

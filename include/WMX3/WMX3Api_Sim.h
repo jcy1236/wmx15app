@@ -596,6 +596,16 @@ namespace wmx3Api
             return WMX3Broker_SetDeviceNameW(name);
         }
 
+        long GetDeviceName(char *nameBuf, unsigned int bufSize)
+        {
+            return WMX3Broker_GetDeviceName(nameBuf, bufSize);
+        }
+
+        long GetDeviceName(wchar_t *nameBuf, unsigned int bufSize)
+        {
+            return WMX3Broker_GetDeviceNameW(nameBuf, bufSize);
+        }
+
         long SetWatchdog(unsigned int watchdog)
         {
             return WMX3Broker_SetWatchdog(watchdog);
@@ -639,6 +649,11 @@ namespace wmx3Api
         static long ErrorToString(int errCode, wchar_t *pString, unsigned int size)
         {
             return WMX3Broker_WMX3Api_ErrorToStringW(errCode, pString, size);
+        }
+
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_WMX3Api_IsDeviceValid() != 0;
         }
     };
 

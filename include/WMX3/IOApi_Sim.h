@@ -94,6 +94,11 @@ namespace wmx3Api
         //=====================================================================
         // Ex APIs (Extended - same as non-Ex in this wrapper)
         //=====================================================================
+        long SetOutByteEx(int addr, unsigned char data)
+        {
+            return WMX3Broker_Io_SetOutByteEx(addr, data);
+        }
+
         long GetInBytesEx(int addr, int size, unsigned char *pData)
         {
             return WMX3Broker_Io_GetInBytesEx(addr, size, pData);

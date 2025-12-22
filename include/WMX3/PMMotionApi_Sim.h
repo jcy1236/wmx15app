@@ -13,6 +13,25 @@
 
 namespace wmx3Api
 {
+    class PMMotionErrorCode : public ErrorCode
+    {
+    public:
+        enum
+        {
+            PMErrorCode = 0x00019000,
+            AxisIsOffline,
+            AxisIsNotServoOn,
+            AxisIsInUse,
+            PPModeNotSupported,
+            PVModeNotSupported,
+            TQModeNotSupported,
+            HMModeNotSupported,
+            InvalidProfileSetting,
+        };
+
+        static int ConvertPMMotionErrorCode(int errCode);
+    };
+
     //=========================================================================
     // PMMotion class
     //=========================================================================

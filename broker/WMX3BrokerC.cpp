@@ -160,6 +160,22 @@ long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name)
 #endif
 }
 
+long __stdcall WMX3Broker_GetDeviceName(char* nameBuf, unsigned int bufSize)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3 || !nameBuf) return -1;
+    return wmx3->GetDeviceName(nameBuf, bufSize);
+}
+
+long __stdcall WMX3Broker_GetDeviceNameW(wchar_t* nameBuf, unsigned int bufSize)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3 || !nameBuf) return -1;
+    return wmx3->GetDeviceName(nameBuf, bufSize);
+}
+
 long __stdcall WMX3Broker_SetWatchdog(unsigned int watchdog)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
@@ -190,6 +206,14 @@ long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices)
     wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
     if (!wmx3 || !pDevices) return -1;
     return wmx3->GetAllDevices(static_cast<wmx3Api::DevicesInfoW*>(pDevices));
+}
+
+int __stdcall WMX3Broker_WMX3Api_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::WMX3Api* wmx3 = ctx->GetWMX3();
+    if (!wmx3) return 0;
+    return wmx3->IsDeviceValid() ? 1 : 0;
 }
 
 //=============================================================================
@@ -1006,6 +1030,14 @@ long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData)
     wmx3Api::Io* io = ctx->GetIo();
     if (!io || !pAnalogData) return -1;
     return io->GetInAnalogDataInt(addr, pAnalogData);
+}
+
+long __stdcall WMX3Broker_Io_SetOutByteEx(int addr, unsigned char data)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io) return -1;
+    return io->SetOutByteEx(addr, data);
 }
 
 long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData)

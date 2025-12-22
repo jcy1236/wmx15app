@@ -52,10 +52,13 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_StopCommunication(unsigned int waitTim
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetDeviceID(int* pId);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceName(const char* name);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetDeviceName(char* nameBuf, unsigned int bufSize);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_GetDeviceNameW(wchar_t* nameBuf, unsigned int bufSize);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetWatchdog(unsigned int watchdog);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetWatchdogEx(int deviceId, unsigned int watchdog);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevices(void* pDevices);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices);
+WMX3BROKER_CAPI int __stdcall WMX3Broker_WMX3Api_IsDeviceValid(void);
 
 //=============================================================================
 // CoreMotion Status APIs
@@ -216,6 +219,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutAnalogDataInt(int addr, int a
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData);
 
 // Ex APIs (Extended)
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutByteEx(int addr, unsigned char data);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData);
 
