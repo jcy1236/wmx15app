@@ -50,6 +50,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_StopCommunication(unsigned int waitTim
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetDeviceID(int* pId);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceName(const char* name);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_SetDeviceNameW(const wchar_t* name);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_SetWatchdog(unsigned int watchdog);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_SetWatchdogEx(int deviceId, unsigned int watchdog);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevices(void* pDevices);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices);
 
@@ -58,6 +60,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_GetAllDevicesW(void* pDevices);
 //=============================================================================
 // Note: pStatus should point to wmx3Api::CoreMotionStatus structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_CoreMotion_GetStatus(void* pStatus);
+WMX3BROKER_CAPI int __stdcall WMX3Broker_CoreMotion_IsDeviceValid(void);
 
 //=============================================================================
 // CoreMotion::AxisControl APIs
@@ -98,6 +101,11 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_ExecTimedStop(int axis, double 
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_Wait(int axis);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_Pause(int axis);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_Resume(int axis);
+
+// StopJogAtPos
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_StopJogAtPos(int axis, double target,
+    int profileType, double velocity, double acc, double dec,
+    double jerkAccRatio, double jerkDecRatio);
 
 // Linear Interpolation
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Motion_StartLinearIntplPos(
@@ -171,6 +179,13 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double un
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisUnit(int axis, double* pUnit);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(int axis, double offset);
 
+// SystemParam/AxisParam APIs
+// Note: pParam should point to wmx3Api::Config::SystemParam structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetParam(void* pParam, void* pParamError);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetDefaultParam(void* pParam);
+// Note: pAxisParam should point to wmx3Api::Config::AxisParam structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetDefaultAxisParam(void* pAxisParam);
+
 //=============================================================================
 // Io APIs
 //=============================================================================
@@ -210,6 +225,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_GetMasterInfo(void* pMaster);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ScanNetwork(void);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_StartHotconnect(void);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ChangeSlaveState(int slaveId, int state, int* pErrorCode);
+WMX3BROKER_CAPI int __stdcall WMX3Broker_Ecat_IsDeviceValid(void);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_ResetTransmitStatisticsInfo(void);
 
 // SDO Communication
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Ecat_SdoDownload(int slaveId, int index, int subindex,

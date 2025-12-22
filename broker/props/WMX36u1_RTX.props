@@ -26,7 +26,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(WMX3_LibDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;AdvancedMotionApi.lib;IOApi.lib;EcApi.lib;EventApi.lib;ApiBufferApi.lib;LogApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>WMX3Api.lib;CoreMotionApi.lib;AdvancedMotionApi.lib;IOApi.lib;EcApi.lib;EventApi.lib;ApiBufferApi.lib;LogApi.lib;CyclicBufferApi.lib;CompensationApi.lib;UserMemoryApi.lib;PMMotionApi.lib;IMDll.lib;legacy_stdio_definitions.lib;ucrt.lib;delayimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <DelayLoadDLLs>IMDll.dll</DelayLoadDLLs>
       <IgnoreSpecificDefaultLibraries>LIBCMT</IgnoreSpecificDefaultLibraries>
       <ModuleDefinitionFile>WMXBroker.def</ModuleDefinitionFile>
