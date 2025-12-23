@@ -1444,6 +1444,17 @@ namespace wmx3Api
             return WMX3Broker_Config_SetAxisParam(axis, pParam, pParamError);
         }
 
+        // Axis-independent AxisParam APIs (no axis parameter)
+        long GetAxisParam(AxisParam *pParam)
+        {
+            return WMX3Broker_Config_GetAxisParamNoAxis(pParam);
+        }
+
+        long SetAxisParam(AxisParam *pParam, AxisParam *pParamError = NULL)
+        {
+            return WMX3Broker_Config_SetAxisParamNoAxis(pParam, pParamError);
+        }
+
         long SetAxisUnit(int axis, double unit)
         {
             return WMX3Broker_Config_SetAxisUnit(axis, unit);

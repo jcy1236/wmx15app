@@ -875,6 +875,23 @@ long __stdcall WMX3Broker_Config_SetAxisParam(int axis, void* pParam, void* pPar
         static_cast<wmx3Api::Config::AxisParam*>(pParamError));
 }
 
+long __stdcall WMX3Broker_Config_GetAxisParamNoAxis(void* pParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->GetAxisParam(static_cast<wmx3Api::Config::AxisParam*>(pParam));
+}
+
+long __stdcall WMX3Broker_Config_SetAxisParamNoAxis(void* pParam, void* pParamError)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->SetAxisParam(static_cast<wmx3Api::Config::AxisParam*>(pParam),
+        static_cast<wmx3Api::Config::AxisParam*>(pParamError));
+}
+
 long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double unit)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
@@ -1032,12 +1049,36 @@ long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData)
     return io->GetInAnalogDataInt(addr, pAnalogData);
 }
 
+int __stdcall WMX3Broker_Io_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io) return 0;
+    return io->IsDeviceValid() ? 1 : 0;
+}
+
 long __stdcall WMX3Broker_Io_SetOutByteEx(int addr, unsigned char data)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
     wmx3Api::Io* io = ctx->GetIo();
     if (!io) return -1;
     return io->SetOutByteEx(addr, data);
+}
+
+long __stdcall WMX3Broker_Io_SetOutBytesEx(int addr, int size, unsigned char* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io || !pData) return -1;
+    return io->SetOutBytesEx(addr, size, pData);
+}
+
+long __stdcall WMX3Broker_Io_GetInBitEx(int addr, int bit, unsigned char* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io || !pData) return -1;
+    return io->GetInBitEx(addr, bit, pData);
 }
 
 long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData)

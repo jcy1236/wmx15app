@@ -94,9 +94,24 @@ namespace wmx3Api
         //=====================================================================
         // Ex APIs (Extended - same as non-Ex in this wrapper)
         //=====================================================================
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_Io_IsDeviceValid() != 0;
+        }
+
         long SetOutByteEx(int addr, unsigned char data)
         {
             return WMX3Broker_Io_SetOutByteEx(addr, data);
+        }
+
+        long SetOutBytesEx(int addr, int size, unsigned char *pData)
+        {
+            return WMX3Broker_Io_SetOutBytesEx(addr, size, pData);
+        }
+
+        long GetInBitEx(int addr, int bit, unsigned char *pData)
+        {
+            return WMX3Broker_Io_GetInBitEx(addr, bit, pData);
         }
 
         long GetInBytesEx(int addr, int size, unsigned char *pData)

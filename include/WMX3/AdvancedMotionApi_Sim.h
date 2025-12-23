@@ -13,6 +13,27 @@
 
 namespace wmx3Api
 {
+    class PosCommand
+    {
+    public:
+        PosCommand();
+
+        int axis;
+        double target;
+        Profile profile;
+    };
+
+    class CoordinatedPosCommand
+    {
+    public:
+        CoordinatedPosCommand();
+
+        PosCommand posCommand;
+        int axis2;
+        double axis2Target;
+        double axis2SmoothRatio;
+    };
+
     //=========================================================================
     // AdvancedMotion class
     //=========================================================================

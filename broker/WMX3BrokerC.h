@@ -183,6 +183,9 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetVelocityFeedforwardGain(int 
 // Note: pParam should point to wmx3Api::Config::AxisParam structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisParam(int axis, void* pParam);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisParam(int axis, void* pParam, void* pParamError);
+// Axis-independent AxisParam APIs (no axis parameter)
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisParamNoAxis(void* pParam);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisParamNoAxis(void* pParam, void* pParamError);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAxisUnit(int axis, double unit);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetAxisUnit(int axis, double* pUnit);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetAbsoluteEncoderHomeOffset(int axis, double offset);
@@ -219,7 +222,10 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutAnalogDataInt(int addr, int a
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInAnalogDataInt(int addr, int* pAnalogData);
 
 // Ex APIs (Extended)
+WMX3BROKER_CAPI int __stdcall WMX3Broker_Io_IsDeviceValid(void);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutByteEx(int addr, unsigned char data);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutBytesEx(int addr, int size, unsigned char* pData);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBitEx(int addr, int bit, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData);
 
