@@ -228,6 +228,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutBytesEx(int addr, int size, u
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBitEx(int addr, int bit, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutBitEx(int addr, int bit, unsigned char data);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInByteEx(int addr, unsigned char* pData);
 
 //=============================================================================
 // Ecat APIs

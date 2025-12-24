@@ -124,6 +124,16 @@ namespace wmx3Api
             return WMX3Broker_Io_GetOutBytesEx(addr, size, pData);
         }
 
+        long SetOutBitEx(int addr, int bit, unsigned char data)
+        {
+            return WMX3Broker_Io_SetOutBitEx(addr, bit, data);
+        }
+
+        long GetInByteEx(int addr, unsigned char *pData)
+        {
+            return WMX3Broker_Io_GetInByteEx(addr, pData);
+        }
+
         //=====================================================================
         // Analog Output
         //=====================================================================

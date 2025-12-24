@@ -1097,6 +1097,22 @@ long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pD
     return io->GetOutBytesEx(addr, size, pData);
 }
 
+long __stdcall WMX3Broker_Io_SetOutBitEx(int addr, int bit, unsigned char data)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io) return -1;
+    return io->SetOutBitEx(addr, bit, data);
+}
+
+long __stdcall WMX3Broker_Io_GetInByteEx(int addr, unsigned char* pData)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::Io* io = ctx->GetIo();
+    if (!io || !pData) return -1;
+    return io->GetInByteEx(addr, pData);
+}
+
 //=============================================================================
 // Ecat APIs
 //=============================================================================
