@@ -487,6 +487,14 @@ namespace wmx3Api
             return WMX3Broker_ApiBuffer_FlowEndIf();
         }
 
+        //=====================================================================
+        // Device Validation
+        //=====================================================================
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_ApiBuffer_IsDeviceValid() != 0;
+        }
+
         static long ErrorToString(int errCode, char *pString, unsigned int size)
         {
             return WMX3Broker_ApiBuffer_ErrorToString(errCode, pString, size);

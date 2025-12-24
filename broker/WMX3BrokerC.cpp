@@ -942,6 +942,24 @@ long __stdcall WMX3Broker_Config_GetDefaultAxisParam(void* pAxisParam)
     return coreMotion->config->GetDefaultAxisParam(static_cast<wmx3Api::Config::AxisParam*>(pAxisParam));
 }
 
+long __stdcall WMX3Broker_Config_SetEmergencyStopParam(void* pParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->SetEmergencyStopParam(
+        static_cast<wmx3Api::Config::EmergencyStopParam*>(pParam), nullptr);
+}
+
+long __stdcall WMX3Broker_Config_GetEmergencyStopParam(void* pParam)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::CoreMotion* coreMotion = ctx->GetCoreMotion();
+    if (!coreMotion || !pParam) return -1;
+    return coreMotion->config->GetEmergencyStopParam(
+        static_cast<wmx3Api::Config::EmergencyStopParam*>(pParam));
+}
+
 //=============================================================================
 // Io APIs
 //=============================================================================
@@ -1685,6 +1703,14 @@ long __stdcall WMX3Broker_ApiBuffer_FlowEndIf(void)
     return apiBuffer->FlowEndIf();
 }
 
+int __stdcall WMX3Broker_ApiBuffer_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::ApiBuffer* apiBuffer = ctx->GetApiBuffer();
+    if (!apiBuffer) return 0;
+    return apiBuffer->IsDeviceValid() ? 1 : 0;
+}
+
 //=============================================================================
 // Log APIs
 //=============================================================================
@@ -1962,4 +1988,12 @@ long __stdcall WMX3Broker_AdvancedMotion_ErrorToString(int errCode, char* pStrin
 long __stdcall WMX3Broker_AdvancedMotion_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
 {
     return wmx3Api::AdvancedMotion::ErrorToString(errCode, pString, size);
+}
+
+int __stdcall WMX3Broker_AdvancedMotion_AdvSync_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::AdvancedMotion* advancedMotion = ctx->GetAdvancedMotion();
+    if (!advancedMotion || !advancedMotion->advSync) return 0;
+    return advancedMotion->advSync->IsDeviceValid() ? 1 : 0;
 }

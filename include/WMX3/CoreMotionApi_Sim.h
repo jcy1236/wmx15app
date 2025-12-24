@@ -742,6 +742,15 @@ namespace wmx3Api
             AxisHomeData() : distHStoZPulse(0), distLStoZPulse(0) {}
             double distHStoZPulse;
             double distLStoZPulse;
+            double distMechanicalEndToZPulse;
+            double latchedZPulseEncoder;
+            double latchedLimitSwitchEncoder;
+            double latchedHomeSwitchEncoder;
+            double latchedFirstHomeSwitchEncoder;
+            double latchedTouchProbeEncoder;
+            double distZPulseToMasterZPulse;
+            double distLSToMasterLS;
+            double distHSToMasterHS;
         };
 
         class HomeData
@@ -1259,13 +1268,45 @@ namespace wmx3Api
             LinearIntplProfileCalcMode::T linearIntplProfileCalcMode;
         };
 
+        class FollowingErrorAlarmType
+        {
+        public:
+            enum T
+            {
+                NoAction,
+                QuickStop
+            };
+        };
+
+        class VelocityFollowingErrorAlarmType
+        {
+        public:
+            enum T
+            {
+                NoAction,
+                QuickStop,
+                Warning
+            };
+        };
+
         // AlarmParam class
         class AlarmParam
         {
         public:
-            AlarmParam() : followingErrorLimit(0), enableFollowingError(false) {}
-            double followingErrorLimit;
-            bool enableFollowingError;
+            AlarmParam()
+            {
+                memset(this, 0, sizeof(AlarmParam));
+            }
+            double followingErrorStopped;
+            double followingErrorMoving;
+            FollowingErrorAlarmType::T followingErrorType;
+            double velocityFollowingErrorStopped;
+            double velocityFollowingErrorStoppedMilliseconds;
+            double velocityFollowingErrorMoving;
+            double velocityFollowingErrorMovingMilliseconds;
+            VelocityFollowingErrorAlarmType::T velocityFollowingErrorType;
+            bool servoOffDuringAmpAlarm;
+            int servoOnFollowingError;
         };
 
         class AxisParam
@@ -1310,12 +1351,25 @@ namespace wmx3Api
             unsigned int bufferSize;
         };
 
-        // EmergencyStopParam class (placeholder for SystemParam)
+        // EmergencyStopParam class
         class EmergencyStopParam
         {
         public:
             EmergencyStopParam() { memset(this, 0, sizeof(EmergencyStopParam)); }
-            double eStopDec;
+
+            double eStopDec[constants::maxAxes];
+            bool enableEStopSignal;
+            int eStopSignalSource;          // EStopSignalSource::T
+            int eStopSignalLevel;           // EStopLevel::T
+            bool invertEStopSignalPolarity;
+            unsigned int eStopSignalByteAddress;
+            unsigned char eStopSignalBitAddress;
+            bool enableEStopStatusSignal;
+            int eStopStatusSignalDestination;  // EStopStatusSignalDestination::T
+            bool invertEStopStatusSignalPolarity;
+            unsigned int eStopStatusSignalByteAddress;
+            unsigned char eStopStatusSignalBitAddress;
+            int eStopLevel1Type;            // EStopLevel1Type::T
         };
 
         // SystemParam class
@@ -1356,6 +1410,16 @@ namespace wmx3Api
         long GetHomeParam(int axis, HomeParam *pParam)
         {
             return WMX3Broker_Config_GetHomeParam(axis, pParam);
+        }
+
+        long SetEmergencyStopParam(EmergencyStopParam *pParam, EmergencyStopParam *pParamError = NULL)
+        {
+            return WMX3Broker_Config_SetEmergencyStopParam(pParam);
+        }
+
+        long GetEmergencyStopParam(EmergencyStopParam *pParam)
+        {
+            return WMX3Broker_Config_GetEmergencyStopParam(pParam);
         }
 
         long SetFeedbackParam(int axis, FeedbackParam *pParam, FeedbackParam *pParamError = NULL)

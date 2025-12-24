@@ -196,6 +196,9 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetParam(void* pParam, void* pP
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetDefaultParam(void* pParam);
 // Note: pAxisParam should point to wmx3Api::Config::AxisParam structure
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetDefaultAxisParam(void* pAxisParam);
+// Note: pParam should point to wmx3Api::Config::EmergencyStopParam structure
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_SetEmergencyStopParam(void* pParam);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Config_GetEmergencyStopParam(void* pParam);
 
 //=============================================================================
 // Io APIs
@@ -228,6 +231,8 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutBytesEx(int addr, int size, u
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBitEx(int addr, int bit, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInBytesEx(int addr, int size, unsigned char* pData);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetOutBytesEx(int addr, int size, unsigned char* pData);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_SetOutBitEx(int addr, int bit, unsigned char data);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Io_GetInByteEx(int addr, unsigned char* pData);
 
 //=============================================================================
 // Ecat APIs
@@ -355,6 +360,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowIf(void* pCondition, voi
 WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowElseIf(void* pCondition);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowElse(void);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_ApiBuffer_FlowEndIf(void);
+WMX3BROKER_CAPI int __stdcall WMX3Broker_ApiBuffer_IsDeviceValid(void);
 
 //=============================================================================
 // Log APIs
@@ -431,6 +437,7 @@ WMX3BROKER_CAPI long __stdcall WMX3Broker_PMMotion_ErrorToStringW(int errCode, w
 //=============================================================================
 WMX3BROKER_CAPI long __stdcall WMX3Broker_AdvancedMotion_ErrorToString(int errCode, char* pString, unsigned int size);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_AdvancedMotion_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size);
+WMX3BROKER_CAPI int __stdcall WMX3Broker_AdvancedMotion_AdvSync_IsDeviceValid(void);
 
 #ifdef __cplusplus
 }

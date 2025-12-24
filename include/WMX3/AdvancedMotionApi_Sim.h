@@ -35,11 +35,35 @@ namespace wmx3Api
     };
 
     //=========================================================================
+    // AdvSync class (Advanced Synchronization)
+    //=========================================================================
+    class AdvancedMotion;
+
+    class AdvSync
+    {
+    private:
+        AdvancedMotion *amApi;
+
+    public:
+        AdvSync(AdvancedMotion *api) : amApi(api) {}
+
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_AdvancedMotion_AdvSync_IsDeviceValid() != 0;
+        }
+    };
+
+    //=========================================================================
     // AdvancedMotion class
     //=========================================================================
     class AdvancedMotion
     {
     public:
+        AdvSync *advSync;
+
+        AdvancedMotion() : advSync(new AdvSync(this)) {}
+        ~AdvancedMotion() { delete advSync; }
+
         static long ErrorToString(int errCode, char *pString, unsigned int size)
         {
             return WMX3Broker_AdvancedMotion_ErrorToString(errCode, pString, size);
