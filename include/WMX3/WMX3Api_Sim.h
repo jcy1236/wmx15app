@@ -534,6 +534,7 @@ namespace wmx3Api
 #include "UserMemoryApi_Sim.h"
 #include "PMMotionApi_Sim.h"
 #include "AdvancedMotionApi_Sim.h"
+#include "SimuApi_Sim.h"
 
 namespace wmx3Api
 {

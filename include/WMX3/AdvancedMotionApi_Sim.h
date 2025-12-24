@@ -98,7 +98,13 @@ namespace wmx3Api
         AdvMotion *advMotion;
 
         AdvancedMotion() : advSync(new AdvSync(this)), advMotion(new AdvMotion(this)) {}
-        ~AdvancedMotion() { delete advSync; delete advMotion; }
+        AdvancedMotion(WMX3Api *f) : advSync(new AdvSync(this)), advMotion(new AdvMotion(this)) {}
+        AdvancedMotion(const AdvancedMotion &src) : advSync(new AdvSync(this)), advMotion(new AdvMotion(this)) {}
+        ~AdvancedMotion()
+        {
+            delete advSync;
+            delete advMotion;
+        }
 
         bool IsDeviceValid()
         {

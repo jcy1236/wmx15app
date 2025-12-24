@@ -518,6 +518,17 @@ namespace wmx3Api
             Profile profile;
         };
 
+        // TimeCommand struct
+        class TimeCommand
+        {
+        public:
+            TimeCommand() : axis(0), timeMilliseconds(0.0) {}
+            TimeCommand(int _axis, double _timeMilliseconds)
+                : axis(_axis), timeMilliseconds(_timeMilliseconds) {}
+            int axis;
+            double timeMilliseconds;
+        };
+
         // LinearIntplCommand struct
         class LinearIntplCommand
         {
@@ -709,6 +720,34 @@ namespace wmx3Api
         long ExecTimedStop(int axis, double timeMilliseconds)
         {
             return WMX3Broker_Motion_ExecTimedStop(axis, timeMilliseconds);
+        }
+
+        long ExecTimedStop(AxisSelection *pAxisSelection, double timeMilliseconds)
+        {
+            if (!pAxisSelection)
+                return -1;
+            long ret = 0;
+            for (unsigned int i = 0; i < pAxisSelection->axisCount; i++)
+            {
+                ret = WMX3Broker_Motion_ExecTimedStop(pAxisSelection->axis[i], timeMilliseconds);
+                if (ret != 0)
+                    return ret;
+            }
+            return ret;
+        }
+
+        long ExecTimedStop(unsigned int numCommands, TimeCommand *pTimeCommand)
+        {
+            if (!pTimeCommand)
+                return -1;
+            long ret = 0;
+            for (unsigned int i = 0; i < numCommands; i++)
+            {
+                ret = WMX3Broker_Motion_ExecTimedStop(pTimeCommand[i].axis, pTimeCommand[i].timeMilliseconds);
+                if (ret != 0)
+                    return ret;
+            }
+            return ret;
         }
 
         long Wait(int axis)
