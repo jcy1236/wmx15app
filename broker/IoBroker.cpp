@@ -92,6 +92,26 @@ namespace common {
     }
 
     //////////////////////////////////////////////////////////////////////////
+    // Extended I/O APIs (WMX3 Ex variants - uses int for extended address range)
+    //////////////////////////////////////////////////////////////////////////
+
+    WMXAPIFUNC Io::SetOutBitEx(int addr, int bit, unsigned char data)
+    {
+        wmx3Api::Io* wmx3Io = wmxlib->GetWMX3Io();
+        if (!wmx3Io) return -1;
+
+        return wmx3Io->SetOutBitEx(addr, bit, data);
+    }
+
+    WMXAPIFUNC Io::GetInByteEx(int addr, unsigned char* pData)
+    {
+        wmx3Api::Io* wmx3Io = wmxlib->GetWMX3Io();
+        if (!wmx3Io) return -1;
+
+        return wmx3Io->GetInByteEx(addr, pData);
+    }
+
+    //////////////////////////////////////////////////////////////////////////
     // Initial Output APIs (not available in WMX3 - stored in internal buffer)
     //////////////////////////////////////////////////////////////////////////
 

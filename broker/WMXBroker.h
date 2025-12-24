@@ -245,6 +245,10 @@ namespace wmxAPI {
             WMXAPIFUNC GetOutByte(short offsetByte, unsigned char* data);
             WMXAPIFUNC GetOutBytes(short offsetByte, short size, unsigned char* data);
 
+            // Extended I/O APIs (WMX3 Ex variants - uses int for extended address range)
+            WMXAPIFUNC SetOutBitEx(int addr, int bit, unsigned char data);
+            WMXAPIFUNC GetInByteEx(int addr, unsigned char* pData);
+
             // Initial Output APIs (not available in WMX3 - stored internally)
             WMXAPIFUNC SetInitialOutBit(short byte, short bit, unsigned char data);
             WMXAPIFUNC SetInitialOutByte(short offsetByte, unsigned char data);
