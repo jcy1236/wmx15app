@@ -443,6 +443,12 @@ WMX3BROKER_CAPI int __stdcall WMX3Broker_AdvancedMotion_AdvSync_IsDeviceValid(vo
 WMX3BROKER_CAPI int __stdcall WMX3Broker_AdvancedMotion_AdvMotion_IsDeviceValid(void);
 WMX3BROKER_CAPI long __stdcall WMX3Broker_AdvancedMotion_AdvMotion_StartCoordinatedPos(void* pPosCommand);
 
+//=============================================================================
+// Simu APIs (Simulation)
+//=============================================================================
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Simu_ErrorToString(int errCode, char* pString, unsigned int size);
+WMX3BROKER_CAPI long __stdcall WMX3Broker_Simu_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size);
+
 #ifdef __cplusplus
 }
 #endif

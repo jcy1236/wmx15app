@@ -14,9 +14,6 @@
 
 namespace wmx3Api
 {
-    class PosCommand;
-    class CoordinatedPosCommand;
-
     //=========================================================================
     // AdvMotion class (Advanced Motion Control)
     //=========================================================================
@@ -24,6 +21,38 @@ namespace wmx3Api
 
     class AdvMotion
     {
+    public:
+        // Nested classes - must be public to be used by client code
+        class PosCommand
+        {
+        public:
+            PosCommand()
+            {
+                axis = 0;
+                target = 0.0;
+            }
+
+            int axis;
+            double target;
+            Profile profile;
+        };
+
+        class CoordinatedPosCommand
+        {
+        public:
+            CoordinatedPosCommand()
+            {
+                axis2 = 0;
+                axis2Target = 0.0;
+                axis2SmoothRatio = 0.0;
+            }
+
+            PosCommand posCommand;
+            int axis2;
+            double axis2Target;
+            double axis2SmoothRatio;
+        };
+
     private:
         AdvancedMotion *amApi;
 

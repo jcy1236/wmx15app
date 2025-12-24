@@ -2023,3 +2023,19 @@ long __stdcall WMX3Broker_AdvancedMotion_AdvMotion_StartCoordinatedPos(void* pPo
     return advancedMotion->advMotion->StartCoordinatedPos(
         static_cast<wmx3Api::AdvMotion::CoordinatedPosCommand*>(pPosCommand));
 }
+
+//=============================================================================
+// Simu APIs Implementation
+//=============================================================================
+
+#include "SimuApi.h"  // WMX3 SDK SimuApi header
+
+long __stdcall WMX3Broker_Simu_ErrorToString(int errCode, char* pString, unsigned int size)
+{
+    return wmx3Api::simuApi::Simu::ErrorToString(errCode, pString, size);
+}
+
+long __stdcall WMX3Broker_Simu_ErrorToStringW(int errCode, wchar_t* pString, unsigned int size)
+{
+    return wmx3Api::simuApi::Simu::ErrorToString(errCode, pString, size);
+}
