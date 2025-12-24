@@ -1990,10 +1990,36 @@ long __stdcall WMX3Broker_AdvancedMotion_ErrorToStringW(int errCode, wchar_t* pS
     return wmx3Api::AdvancedMotion::ErrorToString(errCode, pString, size);
 }
 
+int __stdcall WMX3Broker_AdvancedMotion_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::AdvancedMotion* advancedMotion = ctx->GetAdvancedMotion();
+    if (!advancedMotion) return 0;
+    return advancedMotion->IsDeviceValid() ? 1 : 0;
+}
+
 int __stdcall WMX3Broker_AdvancedMotion_AdvSync_IsDeviceValid(void)
 {
     WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
     wmx3Api::AdvancedMotion* advancedMotion = ctx->GetAdvancedMotion();
     if (!advancedMotion || !advancedMotion->advSync) return 0;
     return advancedMotion->advSync->IsDeviceValid() ? 1 : 0;
+}
+
+int __stdcall WMX3Broker_AdvancedMotion_AdvMotion_IsDeviceValid(void)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::AdvancedMotion* advancedMotion = ctx->GetAdvancedMotion();
+    if (!advancedMotion || !advancedMotion->advMotion) return 0;
+    return advancedMotion->advMotion->IsDeviceValid() ? 1 : 0;
+}
+
+long __stdcall WMX3Broker_AdvancedMotion_AdvMotion_StartCoordinatedPos(void* pPosCommand)
+{
+    WMX3ContextManager* ctx = WMX3ContextManager::GetInstance();
+    wmx3Api::AdvancedMotion* advancedMotion = ctx->GetAdvancedMotion();
+    if (!advancedMotion || !advancedMotion->advMotion || !pPosCommand) return -1;
+
+    return advancedMotion->advMotion->StartCoordinatedPos(
+        static_cast<wmx3Api::AdvMotion::CoordinatedPosCommand*>(pPosCommand));
 }

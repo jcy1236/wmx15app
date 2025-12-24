@@ -10,34 +10,40 @@
 #define ADVANCEDMOTIONAPI_SIM_H
 
 #include "WMX3BrokerC.h"
+#include "CoreMotionApi_Sim.h"
 
 namespace wmx3Api
 {
-    class PosCommand
+    class PosCommand;
+    class CoordinatedPosCommand;
+
+    //=========================================================================
+    // AdvMotion class (Advanced Motion Control)
+    //=========================================================================
+    class AdvancedMotion;
+
+    class AdvMotion
     {
+    private:
+        AdvancedMotion *amApi;
+
     public:
-        PosCommand();
+        AdvMotion(AdvancedMotion *api) : amApi(api) {}
 
-        int axis;
-        double target;
-        Profile profile;
-    };
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_AdvancedMotion_AdvMotion_IsDeviceValid() != 0;
+        }
 
-    class CoordinatedPosCommand
-    {
-    public:
-        CoordinatedPosCommand();
-
-        PosCommand posCommand;
-        int axis2;
-        double axis2Target;
-        double axis2SmoothRatio;
+        long StartCoordinatedPos(CoordinatedPosCommand *pPosCommand)
+        {
+            return WMX3Broker_AdvancedMotion_AdvMotion_StartCoordinatedPos(pPosCommand);
+        }
     };
 
     //=========================================================================
     // AdvSync class (Advanced Synchronization)
     //=========================================================================
-    class AdvancedMotion;
 
     class AdvSync
     {
@@ -60,9 +66,15 @@ namespace wmx3Api
     {
     public:
         AdvSync *advSync;
+        AdvMotion *advMotion;
 
-        AdvancedMotion() : advSync(new AdvSync(this)) {}
-        ~AdvancedMotion() { delete advSync; }
+        AdvancedMotion() : advSync(new AdvSync(this)), advMotion(new AdvMotion(this)) {}
+        ~AdvancedMotion() { delete advSync; delete advMotion; }
+
+        bool IsDeviceValid()
+        {
+            return WMX3Broker_AdvancedMotion_IsDeviceValid() != 0;
+        }
 
         static long ErrorToString(int errCode, char *pString, unsigned int size)
         {
